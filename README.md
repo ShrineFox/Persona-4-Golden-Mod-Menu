@@ -7,6 +7,7 @@
 - Change the in-game date and time
 - Change your rank with any confidant
 - Play the credits sequence
+
 More features will be added in the future.
 ## Usage
 You can use the [Mod Compendium](https://amicitia.github.io/post/modcompendium) to create modded archives containing the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases).
@@ -23,4 +24,4 @@ Alternatively, you can just extract the init_free.bin from the zip to your "mods
 5. Run build_local.bat.
 
 When you run the bat, the **field.bf** script will be recompiled into a new BF file including the Mod Menu (with the latest changes) and packed into a new init_free.bin.
-- **field.bf** can be found in **init_free.bin** (extracted from data_e.cpk with [preappfile](https://amicitia.github.io/post/preappfile) or data00004.pak with [NR2_unpacker](https://modworkshop.net/mod/17641).)
+- **field.bf** can be found in **init_free.bin** (extracted from data_e.cpk with [preappfile](https://amicitia.github.io/post/preappfile) or data00004.pac with [NR2_unpacker](https://modworkshop.net/mod/17641).)
