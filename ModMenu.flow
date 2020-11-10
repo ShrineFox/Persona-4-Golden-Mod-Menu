@@ -1,0 +1,351 @@
+import( "ModMenu.msg" );
+import( "Utilities.flow" );
+
+void ModMenuDisplay()
+{
+	int selection = SEL(Mod_Menu);
+	switch (selection)
+	{
+		case 0:
+			BGMSelect();
+			break;
+		case 1:
+			FieldSelect();
+			break;
+		case 2:
+			EventSelect();
+			break;
+		case 3:
+			BattleSelect();
+			break;
+		case 4:
+			Facilities();
+			break;
+		case 5:
+			DateSelect();
+			break;
+		case 6:
+			Misc();
+	}
+}
+
+void BGMSelect()
+{
+	Message_Window(MSG_5);
+	int bgm = Get_Number(5);
+	CALL_BGM(bgm);
+}
+
+void FieldSelect()
+{
+	Message_Window(MSG_3);
+	int major = Get_Number(3);
+	Message_Window(MSG_3);
+	int minor = Get_Number(3);
+	OUTRO(2, 5);
+	OUTRO_SYNC();
+	CALL_FIELD(major, minor, 0, 0);
+}
+
+void EventSelect()
+{
+	Message_Window(MSG_3);
+	int major = Get_Number(3);
+	Message_Window(MSG_3);
+	int minor = Get_Number(3);
+	OUTRO(2, 5);
+	OUTRO_SYNC();
+	CALL_EVENT(major, minor, 0);
+	CALL_FIELD(20, 1, 0, 0);
+}
+
+void BattleSelect()
+{
+	int battle = SEL(BATTLE_SEL);
+	if (battle == 0)
+	{
+		Message_Window(MSG_3);
+		int major = Get_Number(3);
+		Message_Window(MSG_3);
+		CALL_BATTLE(major, 0);
+	}
+	else if (battle == 1)
+	{
+		Battles();
+	}
+}
+
+void DateSelect()
+{
+	Message_Window(MSG_2);
+	int major = Get_Number(2);
+	Message_Window(MSG_2);
+	int minor = Get_Number(2);
+	NEXT_DATE(major, minor, 0);
+}
+
+void Facilities()
+{
+	int facility = SEL(Facility_Menu);
+	switch (facility) 
+	{
+		case 0:
+			TV_STUDIO();
+			break;
+		case 1:
+			TOWN_MAP(1);
+			break;
+		case 2:
+			DAIDARA_SHOP();
+			break;
+		case 3:
+			SHIROKU_SHOP();
+			break;
+		case 4:
+			JUNES_FOODCOURT();
+			break;
+		case 5:
+			VELVET_ROOM();
+			break;
+		case 6:
+			break;
+	}
+}
+
+void Misc()
+{
+	int misc = SEL(Misc_Menu);
+	switch (misc) 
+	{
+		case 0:
+			Flag_Menu();
+			break;
+		case 1:
+			AddParty();
+			break;
+		case 2:
+			BAD_END_CREDITS();
+			break;
+		case 3:
+			SpawnNPC();
+			break;
+		case 4:
+			SL();
+			break;
+		case 5:
+			CallDungeon();
+			break;
+		case 6:
+			break;
+	}
+}
+
+void AddParty()
+{
+	Message_Window(MSG_1);
+	int major = Get_Number(1);
+	ADD_PARTY(major);
+}
+
+void SpawnNPC()
+{
+	Message_Window(MSG_5);
+	int major = Get_Number(5);
+	SPAWN_NPC(0, major);
+}
+
+void CallDungeon()
+{
+	Message_Window(MSG_3);
+	int major = Get_Number(3);
+	Message_Window(MSG_3);
+	int minor = Get_Number(3);
+	OUTRO(4, 10);
+	OUTRO_SYNC();
+	CALL_DUNGEON(major, minor);
+}
+
+void Flag_Menu()
+{
+	int flag = SEL(Flag_Menu);
+	switch (flag) 
+	{
+		case 0:
+			ToggleBit();
+			break;
+		case 1:
+			ToggleBitRange();
+			break;
+		case 2:
+			break;
+	}
+}
+
+void ToggleBit()
+{
+	Message_Window(MSG_4);
+	int major = Get_Number(4);
+	int toggle = SEL(OnOff);
+	if (toggle == 0)
+	{
+		BIT_ON(major);
+	}
+	else
+	{
+		BIT_OFF(major);
+	}
+}
+
+void ToggleBitRange()
+{
+	Message_Window(MSG_4);
+	int major = Get_Number(4);
+	Message_Window(MSG_4);
+	int minor = Get_Number(4);
+	int i = major;
+	int toggle = SEL(OnOff);
+	if (toggle == 0)
+	{
+		while (i <= minor)
+		{
+			BIT_ON(i);
+			i++;
+		}
+	}
+	else
+	{
+		while (i <= minor)
+		{
+			BIT_OFF(i);
+			i++;
+		}
+	}
+}
+
+void SL()
+{
+	int sl = SEL(SL_Menu);
+	switch (sl)
+	{
+		case 0:
+			IncreaseSL();
+			break;
+		case 1:
+			ReverseSL();
+			break;
+		case 2:
+			BreakSL();
+			break;
+		case 3:
+			LevelUpSL();
+			break;
+		case 4:
+			AddSL();
+			break;
+		case 5:
+			break;
+	}
+}
+
+void IncreaseSL()
+{
+	Message_Window(MSG_2);
+	int major = Get_Number(2);
+	EVT_FUNCTION_0031( major, 50, 1 );
+	SL_LVLUP_VISUAL(major, (GET_SL_LEVEL(major) + 1), 1);
+	INCREASE_SL(major);
+}
+
+void ReverseSL()
+{
+	Message_Window(MSG_2);
+	int major = Get_Number(2);
+	SL_LVLUP_VISUAL(major, 11, 1);
+	REVERSE_SL(major, 1);
+}
+
+void BreakSL()
+{
+	Message_Window(MSG_2);
+	int major = Get_Number(2);
+	SL_LVLUP_VISUAL(major, 12, 1);
+	BREAK_SL(major, 1);
+}
+
+void LevelUpSL()
+{
+	Message_Window(MSG_2);
+	int major = Get_Number(2);
+	Message_Window(MSG_2);
+	int minor = Get_Number(2);
+	Message_Window(MSG_2);
+	int oddity = Get_Number(2);
+	SL_LVLUP_VISUAL(major, minor, oddity);
+	EVT_FUNCTION_003D();
+}
+
+void AddSL()
+{
+	Message_Window(MSG_2);
+	int major = Get_Number(2);
+	EVT_FUNCTION_0016( major );
+	EVT_FUNCTION_0031( major, 0, 1 );
+}
+
+void Battles()
+{
+	int boss = SEL( BOSS_SEL1 );
+	switch (boss)
+	{
+		case 0:
+			CALL_BATTLE( 512, 0 );
+			break;
+		case 1:
+			CALL_BATTLE( 513, 0 );
+			break;
+		case 2:
+			CALL_BATTLE( 514, 0 );
+			break;
+		case 3:
+			CALL_BATTLE( 515, 0 );
+			break;
+		case 4:
+			CALL_BATTLE( 516, 0 );
+			break;
+		case 5:
+			CALL_BATTLE( 517, 0 );
+			break;
+		case 6:
+			int boss2 = SEL( BOSS_SEL2 );
+			switch (boss2)
+			{
+				case 0:
+					CALL_BATTLE( 518, 0 );
+					break;
+				case 0:
+					CALL_BATTLE( 519, 0 );
+					break;
+				case 0:
+					CALL_BATTLE( 520, 0 );
+					break;
+				case 0:
+					CALL_BATTLE( 521, 0 );
+					break;
+				case 0:
+					CALL_BATTLE( 522, 0 );
+					break;
+				case 0:
+					CALL_BATTLE( 523, 0 );
+					break;
+				case 0:
+					CALL_BATTLE( 524, 0 );
+					break;
+				case 0:
+					CALL_BATTLE( 525, 0 );
+					break;
+			}
+			break;
+	}
+}
+
+

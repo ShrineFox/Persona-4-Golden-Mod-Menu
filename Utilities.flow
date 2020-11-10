@@ -1,0 +1,31 @@
+import( "Utilities.msg" );
+
+void Message_Window(int messageNum)
+{
+    OPEN_MSG_WIN();
+    MSG( messageNum );
+    CLOSE_MSG_WIN();
+}
+
+int Get_Number(int digitNum)
+{
+	int digit = 0;
+	int n = 0;
+	_OpenNumMenu:
+	while (n < digitNum)
+	{
+		int select = SEL(Num_Menu);
+		if (select > 6)
+		{
+			select = (SEL(Num_Menu2) + 7);
+			if (select == 10)
+			{
+				goto _OpenNumMenu;
+			}
+		}
+		digit *= 10;
+		digit += select;
+		n += 1;
+	}
+	return(digit);
+}

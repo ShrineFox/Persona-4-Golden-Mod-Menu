@@ -1,0 +1,7 @@
+import( "../build/input/extracted/field/script/field.bf" );
+import( "../ModMenu.flow" );
+
+void order_party_hook()
+{
+    ModMenuDisplay();
+}
