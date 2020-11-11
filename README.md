@@ -18,10 +18,11 @@ Use the [latest p4gpc.modloader](https://amicitia.github.io/post/p4g-pc-modloade
 Alternatively, you can just extract the init_free.bin from the zip to your "mods" folder directly like so: Steam\steamapps\common\Day\mods\data_e\init_free.bin
 ## Compiling
 1. Download the latest build of TGE's [AtlusScriptCompiler](https://ci.appveyor.com/project/TGEnigma/atlusscripttoolchain/build/artifacts) ([source](https://github.com/TGEnigma/AtlusScriptToolchain)), which you can use to compile the **.flow** and **.msg** scripts in this repository and recompile them into **.bf** format.
-2. Also download [TGE's PAKTools](https://github.com/TGEnigma/AtlusFileSystemLibrary/releases).
-3. Edit the build.bat file with the paths to your AtlusScriptCompiler and PAKTool exe files. Name your edited copy build_local.bat.
-4. Place the init_free.bin file from your copy of the game in the build/input folder (see below).
-5. Run build_local.bat.
+2. Download this [P4G Library](https://cdn.discordapp.com/attachments/476948840063434752/774077518826700800/P4GLibrary.7z) by Sierra which includes some function names used in this menu. Extract it and overwrite the contents of the AtlusScriptTools\Libraries folder.
+3. Also download [TGE's PAKTools](https://github.com/TGEnigma/AtlusFileSystemLibrary/releases).
+4. Edit the build.bat file with the paths to your AtlusScriptCompiler and PAKTool exe files. Name your edited copy build_local.bat.
+5. Place the init_free.bin file from your copy of the game in the build/input folder (see below).
+6. Run build_local.bat.
 
 When you run the bat, the **field.bf** script will be recompiled into a new BF file including the Mod Menu (with the latest changes) and packed into a new init_free.bin.
 - **field.bf** can be found in **init_free.bin** (extracted from data_e.cpk with [preappfile](https://amicitia.github.io/post/preappfile) or data00004.pac with [NR2_unpacker](https://modworkshop.net/mod/17641).)
