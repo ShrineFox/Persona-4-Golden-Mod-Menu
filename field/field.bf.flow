@@ -1,7 +1,42 @@
 import( "../build/input/extracted/field/script/field.bf" );
 import( "../ModMenu.flow" );
 
+
 void order_party_hook()
 {
-    ModMenuDisplay();
+	int dungeon = FLD_FUNCTION_0002();
+	int time = GET_TIME_OF_DAY();
+	int field = FLD_FUNCTION_0022();
+	
+	//Show text?
+	FUNCTION_0023( 0, 3 );
+	
+	if (dungeon > 0 || ((time >= 3 && time <= 5) && ((field >= 6 && field <= 11) || (field == 17 || field == 18))))
+	{
+		//Prompt user to choose between mod menu or quick travel if in an appropriate area
+		int selection = FUNCTION_0025( Square_Menu_Text, Square_Menu, 0);
+		switch (selection)
+		{
+			case 0:
+				if ( FLD_FUNCTION_0002() > 0 )
+				{
+					dungeon_order();
+				}
+				else
+				{
+					field_order();
+				}
+				break;
+			case 1:
+				ModMenuDisplay();
+				break;
+			case 2:
+				break;
+		}
+	}
+	else
+	{
+		//Show mod menu by default if not in an area with quick travel options
+		ModMenuDisplay();
+	}
 }

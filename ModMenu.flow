@@ -3,7 +3,7 @@ import( "Utilities.flow" );
 
 void ModMenuDisplay()
 {
-	int selection = SEL(Mod_Menu);
+	int selection = FUNCTION_0025(Mod_Menu_Text, Mod_Menu, 0);
 	switch (selection)
 	{
 		case 0:
@@ -31,17 +31,14 @@ void ModMenuDisplay()
 
 void BGMSelect()
 {
-	Message_Window(MSG_5);
-	int bgm = Get_Number(5);
+	int bgm = Get_Number(5, MSG_5);
 	CALL_BGM(bgm);
 }
 
 void FieldSelect()
 {
-	Message_Window(MSG_3);
-	int major = Get_Number(3);
-	Message_Window(MSG_3);
-	int minor = Get_Number(3);
+	int major = Get_Number(3, MSG_3_Major);
+	int minor = Get_Number(3, MSG_3_Minor);
 	OUTRO(2, 5);
 	OUTRO_SYNC();
 	CALL_FIELD(major, minor, 0, 0);
@@ -49,10 +46,8 @@ void FieldSelect()
 
 void EventSelect()
 {
-	Message_Window(MSG_3);
-	int major = Get_Number(3);
-	Message_Window(MSG_3);
-	int minor = Get_Number(3);
+	int major = Get_Number(3, MSG_3_Major);
+	int minor = Get_Number(3, MSG_3_Minor);
 	OUTRO(2, 5);
 	OUTRO_SYNC();
 	CALL_EVENT(major, minor, 0);
@@ -61,12 +56,10 @@ void EventSelect()
 
 void BattleSelect()
 {
-	int battle = SEL(BATTLE_SEL);
+	int battle = FUNCTION_0025(BATTLE_SEL_Text, BATTLE_SEL, 0);
 	if (battle == 0)
 	{
-		Message_Window(MSG_3);
-		int major = Get_Number(3);
-		Message_Window(MSG_3);
+		int major = Get_Number(3, MSG_3);
 		CALL_BATTLE(major, 0);
 	}
 	else if (battle == 1)
@@ -77,16 +70,14 @@ void BattleSelect()
 
 void DateSelect()
 {
-	Message_Window(MSG_2);
-	int major = Get_Number(2);
-	Message_Window(MSG_2);
-	int minor = Get_Number(2);
+	int major = Get_Number(2, MSG_2_Major);
+	int minor = Get_Number(2, MSG_2_Minor);
 	NEXT_DATE(major, minor, 0);
 }
 
 void Facilities()
 {
-	int facility = SEL(Facility_Menu);
+	int facility = FUNCTION_0025(Facility_Menu_Text, Facility_Menu, 0);
 	switch (facility) 
 	{
 		case 0:
@@ -114,7 +105,7 @@ void Facilities()
 
 void Misc()
 {
-	int misc = SEL(Misc_Menu);
+	int misc = FUNCTION_0025(Misc_Menu_Text, Misc_Menu, 0);
 	switch (misc) 
 	{
 		case 0:
@@ -142,24 +133,20 @@ void Misc()
 
 void AddParty()
 {
-	Message_Window(MSG_1);
-	int major = Get_Number(1);
+	int major = Get_Number(1, MSG_1);
 	ADD_PARTY(major);
 }
 
 void SpawnNPC()
 {
-	Message_Window(MSG_5);
-	int major = Get_Number(5);
+	int major = Get_Number(5, MSG_5);
 	SPAWN_NPC(0, major);
 }
 
 void CallDungeon()
 {
-	Message_Window(MSG_3);
-	int major = Get_Number(3);
-	Message_Window(MSG_3);
-	int minor = Get_Number(3);
+	int major = Get_Number(3, MSG_3_Major);
+	int minor = Get_Number(3, MSG_3_Minor);
 	OUTRO(4, 10);
 	OUTRO_SYNC();
 	CALL_DUNGEON(major, minor);
@@ -167,7 +154,7 @@ void CallDungeon()
 
 void Flag_Menu()
 {
-	int flag = SEL(Flag_Menu);
+	int flag = FUNCTION_0025(Flag_Menu_Text, Flag_Menu, 0);
 	switch (flag) 
 	{
 		case 0:
@@ -183,9 +170,8 @@ void Flag_Menu()
 
 void ToggleBit()
 {
-	Message_Window(MSG_4);
-	int major = Get_Number(4);
-	int toggle = SEL(OnOff);
+	int major = Get_Number(4, MSG_4);
+	int toggle = FUNCTION_0025(OnOff_Text, OnOff, 0);
 	if (toggle == 0)
 	{
 		BIT_ON(major);
@@ -198,12 +184,10 @@ void ToggleBit()
 
 void ToggleBitRange()
 {
-	Message_Window(MSG_4);
-	int major = Get_Number(4);
-	Message_Window(MSG_4);
-	int minor = Get_Number(4);
+	int major = Get_Number(4, MSG_4_Major);
+	int minor = Get_Number(4, MSG_4_Minor);
 	int i = major;
-	int toggle = SEL(OnOff);
+	int toggle = FUNCTION_0025(OnOff_Text, OnOff, 0);
 	if (toggle == 0)
 	{
 		while (i <= minor)
@@ -224,7 +208,7 @@ void ToggleBitRange()
 
 void SL()
 {
-	int sl = SEL(SL_Menu);
+	int sl = FUNCTION_0025(SL_Menu_Text, SL_Menu, 0);
 	switch (sl)
 	{
 		case 0:
@@ -249,8 +233,7 @@ void SL()
 
 void IncreaseSL()
 {
-	Message_Window(MSG_2);
-	int major = Get_Number(2);
+	int major = Get_Number(2, MSG_2);
 	EVT_FUNCTION_0031( major, 50, 1 );
 	SL_LVLUP_VISUAL(major, (GET_SL_LEVEL(major) + 1), 1);
 	INCREASE_SL(major);
@@ -258,43 +241,37 @@ void IncreaseSL()
 
 void ReverseSL()
 {
-	Message_Window(MSG_2);
-	int major = Get_Number(2);
+	int major = Get_Number(2, MSG_2);
 	SL_LVLUP_VISUAL(major, 11, 1);
 	REVERSE_SL(major, 1);
 }
 
 void BreakSL()
 {
-	Message_Window(MSG_2);
-	int major = Get_Number(2);
+	int major = Get_Number(2, MSG_2);
 	SL_LVLUP_VISUAL(major, 12, 1);
 	BREAK_SL(major, 1);
 }
 
 void LevelUpSL()
 {
-	Message_Window(MSG_2);
-	int major = Get_Number(2);
-	Message_Window(MSG_2);
-	int minor = Get_Number(2);
-	Message_Window(MSG_2);
-	int oddity = Get_Number(2);
+	int major = Get_Number(2, MSG_2_Major);
+	int minor = Get_Number(2, MSG_2_Minor);
+	int oddity = Get_Number(2, MSG_2);
 	SL_LVLUP_VISUAL(major, minor, oddity);
 	EVT_FUNCTION_003D();
 }
 
 void AddSL()
 {
-	Message_Window(MSG_2);
-	int major = Get_Number(2);
+	int major = Get_Number(2, MSG_2);
 	EVT_FUNCTION_0016( major );
 	EVT_FUNCTION_0031( major, 0, 1 );
 }
 
 void Battles()
 {
-	int boss = SEL( BOSS_SEL1 );
+	int boss = FUNCTION_0025( BOSS_SEL1_Text, BOSS_SEL1, 0 );
 	switch (boss)
 	{
 		case 0:
@@ -316,7 +293,7 @@ void Battles()
 			CALL_BATTLE( 517, 0 );
 			break;
 		case 6:
-			int boss2 = SEL( BOSS_SEL2 );
+			int boss2 = FUNCTION_0025( BOSS_SEL2_Text, BOSS_SEL2, 0 );
 			switch (boss2)
 			{
 				case 0:

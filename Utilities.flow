@@ -7,17 +7,17 @@ void Message_Window(int messageNum)
     CLOSE_MSG_WIN();
 }
 
-int Get_Number(int digitNum)
+int Get_Number(int digitNum, int helpText)
 {
 	int digit = 0;
 	int n = 0;
 	_OpenNumMenu:
 	while (n < digitNum)
 	{
-		int select = SEL(Num_Menu);
+		int select = FUNCTION_0025( helpText, Num_Menu, 0);
 		if (select > 6)
 		{
-			select = (SEL(Num_Menu2) + 7);
+			select = FUNCTION_0025( helpText, Num_Menu2, 0) + 7;
 			if (select == 10)
 			{
 				goto _OpenNumMenu;
