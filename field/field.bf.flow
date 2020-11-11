@@ -108,18 +108,6 @@ void field_order_hook()
 				case 2:
 					CALL_FIELD( 8, 9, 1, 0 );
 					break;
-				case 3:
-					CALL_FIELD( 10, 1, 1, 0 );
-					break;
-				case 4:
-					CALL_FIELD( 10, 2, 1, 0 );
-					break;
-				case 5:
-					CALL_FIELD( 7, 1, 1, 0 );
-					break;
-				case 6:
-					CALL_FIELD( 9, 4, 1, 0 );
-					break;
 				case 7:
 					TOWN_MAP( 0 );
 					break;
