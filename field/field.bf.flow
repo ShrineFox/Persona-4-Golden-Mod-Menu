@@ -28,9 +28,12 @@ void order_party_hook()
 				}
 				break;
 			case 1:
-				ModMenuDisplay();
+				FUNCTION_007D();
 				break;
 			case 2:
+				ModMenuDisplay();
+				break;
+			case 3:
 				break;
 		}
 	}

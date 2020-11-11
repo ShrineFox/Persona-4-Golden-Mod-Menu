@@ -3,6 +3,7 @@
 
 [sel Square_Menu]
 [f 0 5 -258][f 2 1]Quick Travel[e]
+[f 0 5 -258][f 2 1]View Calendar[e]
 [f 0 5 -258][f 2 1]Mod Menu[e]
 [f 0 5 -258][f 2 1]Exit[e]
 
