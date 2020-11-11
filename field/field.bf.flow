@@ -85,7 +85,11 @@ void field_order_hook()
 			}
 		}
 	}
-	else if (FLD_FUNCTION_0022() != 7)
+	else if ( FLD_FUNCTION_0022() == 7 )
+	{
+		myhouse_order();
+	}
+	else
 	{
 		//Show town quicktravel menu if not at home or school
 		int street = FUNCTION_0025( Street_Text, Street, 0 );
