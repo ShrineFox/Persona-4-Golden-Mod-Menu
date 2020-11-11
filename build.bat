@@ -15,4 +15,8 @@ if not exist %OUTPUT_PATH%\field mkdir %OUTPUT_PATH%\field
 
 %PAKPACK% replace "%INPUT_PATH%\init_free.bin"   field/script/field.bf   "%OUTPUT_PATH%\field\field.bf"   "%OUTPUT_PATH%\init_free.bin"
 
+del /s /q "%INPUT_PATH%\extracted\*"
+rmdir /s /q "%INPUT_PATH%\extracted"
+del /s /q "%OUTPUT_PATH%\field\*"
+rmdir /s /q "%OUTPUT_PATH%\field"
 del "%OUTPUT_PATH%\field\field.bf"
