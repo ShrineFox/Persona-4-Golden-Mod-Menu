@@ -1,5 +1,8 @@
-import( "ModMenu.msg" );
-import( "Utilities.flow" );
+/*
+	REQUIRED DEPENDENCIES
+*/
+import( "ModMenu.msg" ); //Mod Menu strings
+import( "Utilities.flow" ); //Frequently reused Mod Menu operations
 
 void ModMenuDisplay()
 {

@@ -1,0 +1,35 @@
+void order_party_hook()
+{
+	int dungeon = FLD_FUNCTION_0002();
+	int time = GET_TIME_OF_DAY();
+	int fieldMajor = FLD_FUNCTION_0022();
+	
+	if (dungeon > 0 || ((time >= 3 && time <= 5) && ((fieldMajor >= 6 && fieldMajor <= 11) || (fieldMajor == 17 || fieldMajor == 18))))
+	{
+		//Prompt user to choose between mod menu or quick travel if in an appropriate area
+		int selection = FUNCTION_0025( Square_Menu_Text, Square_Menu, 0);
+		switch (selection)
+		{
+			case 0:
+				if ( FLD_FUNCTION_0002() > 0 )
+				{
+					dungeon_order();
+				}
+				else
+				{
+					field_order();
+				}
+				break;
+			case 1:
+				ModMenuDisplay();
+				break;
+			case 2:
+				break;
+		}
+	}
+	else
+	{
+		//Show mod menu by default if not in an area with quick travel options
+		ModMenuDisplay();
+	}
+}
