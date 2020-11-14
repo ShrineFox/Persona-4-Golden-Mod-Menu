@@ -52,30 +52,30 @@ void field_order_hook()
 		int school = FUNCTION_0025( School_Text, School, 0 );
 		if ( school != 8 )
 		{
-			OUTRO( 1, 5 );
+			OUTRO( 2, 5 );
 			OUTRO_SYNC();
 			switch (school)
 			{
 				case 0:
-					CALL_FIELD( 6, 1, 1, 0 );
+					CALL_FIELD( 6, 1, 0, 0 );
 					break;
 				case 1:
-					CALL_FIELD( 6, 2, 1, 0 );
+					CALL_FIELD( 6, 2, 0, 0 );
 					break;
 				case 2:
-					CALL_FIELD( 6, 3, 1, 0 );
+					CALL_FIELD( 6, 3, 0, 0 );
 					break;
 				case 3:
-					CALL_FIELD( 6, 4, 1, 0 );
+					CALL_FIELD( 6, 4, 0, 0 );
 					break;
 				case 4:
-					CALL_FIELD( 6, 5, 1, 0 );
+					CALL_FIELD( 6, 5, 0, 0 );
 					break;
 				case 5:
-					CALL_FIELD( 6, 6, 1, 0 );
+					CALL_FIELD( 6, 6, 0, 0 );
 					break;
 				case 6:
-					CALL_FIELD( 6, 14, 1, 0 );
+					CALL_FIELD( 6, 14, 0, 0 );
 					break;
 				case 7:
 					TOWN_MAP( 0 );
@@ -91,29 +91,83 @@ void field_order_hook()
 	}
 	else
 	{
-		//Show town quicktravel menu if not at home or school
-		int street = FUNCTION_0025( Street_Text, Street, 0 );
-		if ( street != 8 )
+		if (GET_TIME_OF_DAY() != 5)
 		{
-			OUTRO( 1, 5 );
-			OUTRO_SYNC();
-			switch (street)
+			//Show daytime town quicktravel menu if not at home or school
+			int street = FUNCTION_0025( Street_Text, Street, 0 );
+			if ( street != 7 )
 			{
-				case 0:
-					CALL_FIELD( 8, 1, 1, 0 );
-					break;
-				case 1:
-					CALL_FIELD( 8, 2, 1, 0 );
-					break;
-				case 2:
-					CALL_FIELD( 8, 9, 1, 0 );
-					break;
-				case 7:
-					TOWN_MAP( 0 );
-					break;
-				case 8:
-					break;
+				OUTRO( 2, 5 );
+				OUTRO_SYNC();
+				switch (street)
+				{
+					case 0:
+						CALL_FIELD( 8, 1, 2, 0 );
+						break;
+					case 1:
+						CALL_FIELD( 8, 2, 1, 0 );
+						break;
+					case 2:
+						DAIDARA_SHOP();
+						CALL_FIELD( 8, 2, 2, 0 );
+						break;
+					case 3:
+						SHIROKU_SHOP();
+						CALL_FIELD( 8, 2, 3, 0 );
+						break;
+					case 4:
+						VELVET_ROOM();
+						CALL_FIELD( 8, 2, 4, 0 );
+						break;
+					case 5:
+						CALL_FIELD( 8, 9, 0, 0 );
+						break;
+					case 6:
+						TOWN_MAP( 0 );
+						break;
+					case 7:
+						break;
+				}
 			}
 		}
+		else 
+		{
+			//Show daytime town quicktravel menu if not at home or school
+			int street = FUNCTION_0025( Street_Text, Street, 0 );
+			if ( street != 7 )
+			{
+				OUTRO( 2, 5 );
+				OUTRO_SYNC();
+				switch (street)
+				{
+					case 0:
+						CALL_FIELD( 8, 1, 2, 0 );
+						break;
+					case 1:
+						CALL_FIELD( 8, 2, 1, 0 );
+						break;
+					case 2:
+						SHIROKU_SHOP();
+						CALL_FIELD( 8, 2, 3, 0 );
+						break;
+					case 3:
+						VELVET_ROOM();
+						CALL_FIELD( 8, 2, 4, 0 );
+						break;
+					case 4:
+						CALL_FIELD( 8, 9, 0, 0 );
+						break;
+					case 5:
+						CALL_FIELD( 10, 2, 0, 0 );
+						break;
+					case 6:
+						CALL_FIELD( 7, 1, 0, 0 );
+						break;
+					case 7:
+						break;
+				}
+			}
+		}
+		
 	}
 }

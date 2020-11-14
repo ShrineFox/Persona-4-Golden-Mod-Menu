@@ -89,15 +89,18 @@ void Facilities()
 			break;
 		case 2:
 			DAIDARA_SHOP();
+			CALL_FIELD( 8, 2, 2, 0 );
 			break;
 		case 3:
 			SHIROKU_SHOP();
+			CALL_FIELD( 8, 2, 3, 0 );
 			break;
 		case 4:
 			JUNES_FOODCOURT();
 			break;
 		case 5:
 			VELVET_ROOM();
+			CALL_FIELD( 8, 2, 4, 0 );
 			break;
 		case 6:
 			break;
