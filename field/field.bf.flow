@@ -5,6 +5,7 @@ import( "../ModMenu.flow" );
 import ( "../Default.flow" ); //Mod Menu only (no QuickTravel)
 //import ( "../QuickTravel.flow" ); //Choose between Mod Menu or QuickTravel (default without this is Mod Menu)
 //import ( "../MobileCalendar.flow" ); //Same as above but includes "View calendar" option
+//import ( "../MobileCalendarNoModMenu.flow" ); //Same as above but does NOT include "Mod menu" option
 
 //EXTENSIONS
 import ( "../QuickTravelPlus.flow" ); //Extended QuickTravel locations for town/school

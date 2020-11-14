@@ -12,6 +12,11 @@
 [f 0 5 -258][f 2 1]Mod menu[e]
 [f 0 5 -258][f 2 1]Exit[e]
 
+[sel Square_Menu_NoModMenu]
+[f 0 5 -258][f 2 1]Quick travel[e]
+[f 0 5 -258][f 2 1]View calendar[e]
+[f 0 5 -258][f 2 1]Exit[e]
+
 [msg Mod_Menu_Text]
 [f 0 5 -258][f 2 1]P4G Mod Menu[n][f 1 1][e]
 
