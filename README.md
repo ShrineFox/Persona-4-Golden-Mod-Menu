@@ -1,6 +1,6 @@
 # Persona 4 Golden Mod Menu
 **Custom scripts for Persona 4 Golden that replace the square button function with a fully featured trainer**
-![Image of the menu ingame]https://i.imgur.com/0jyAq7M.gif)
+![Image of the menu ingame](https://i.imgur.com/0jyAq7M.gif)
 
 [See this mod's thread on Gamebanana](https://gamebanana.com/gamefiles/13256)!
 ## Notable Features
