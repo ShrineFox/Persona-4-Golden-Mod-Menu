@@ -2,9 +2,9 @@ import( "../build/input/extracted/field/script/field.bf" );
 import( "../ModMenu.flow" );
 
 //ALTERNATE MOD COMBINATIONS (enable only one)
-import ( "../Default.flow" ); //Mod Menu only (no QuickTravel)
-//import ( "../QuickTravel.flow" ); //Choose between Mod Menu or QuickTravel (default without this is Mod Menu)
-//import ( "../MobileCalendar.flow" ); //Same as above but includes "View calendar" option
+//import ( "../Default.flow" ); //Mod Menu only (no QuickTravel)
+//import ( "../QuickTravel.flow" ); //Choose between Mod Menu or QuickTravel
+import ( "../MobileCalendar.flow" ); //Same as above but includes "View calendar" option
 //import ( "../MobileCalendarNoModMenu.flow" ); //Same as above but does NOT include "Mod menu" option
 
 //EXTENSIONS
