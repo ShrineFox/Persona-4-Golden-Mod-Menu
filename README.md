@@ -1,20 +1,25 @@
 # Persona 4 Golden Mod Menu
 **Custom scripts for Persona 4 Golden that replace the square button function with a fully featured trainer**
-![Image of the menu ingame](https://i.imgur.com/PmpmzQt.png)
+![Image of the menu ingame](https://i.imgur.com/g8917Mf.gif)
+
+[See this mod's thread on Gamebanana](https://gamebanana.com/gamefiles/13256)!
 ## Notable Features
 - Choose a Field, Event, BGM Track, Dungeon or Facility to load
 - Toggle individual bitflags or entire ranges of them
 - Change the in-game date and time
 - Change your rank with any confidant
 - Play the credits sequence
-
 More features will be added in the future.
+## Optional Extensions
+- MobileCalendar (view the calendar from anywhere!)
+- QuickTravelPlus (extended quicktravel options in Yasogami High and around the town of Inaba)
 ## Usage
 You can use the [Mod Compendium](https://amicitia.github.io/post/modcompendium) to create modded archives containing the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases).
+You may prefer to use [Aemulus Package Manager](https://gamebanana.com/tools/6878) instead as it supports bin merging, which increases compatibility with other mods.
 ### Vita
-Using Henkaku and Vitashell on your Vita connsole, install the rePatch plugin. Then, simply create a mod.cpk containing the init_free.bin and place it in the game's rePatch folder along with the [mod.cpk support eboot](https://amicitia.github.io/post/p4g-mod-cpk). More descriptive instructions can be found [here](https://amicitia.miraheze.org/wiki/Persona_4_Golden#Modding).
+Using Henkaku and Vitashell on your Vita connsole, install the rePatch plugin. Then, create a mod.cpk containing the init_free.bin via the Mod Compendium and place it in the game's rePatch folder along with the [mod.cpk support eboot](https://amicitia.github.io/post/p4g-mod-cpk). More descriptive instructions can be found [here](https://amicitia.miraheze.org/wiki/Persona_4_Golden#Modding).
 ### PC
-Use the [latest p4gpc.modloader](https://amicitia.github.io/post/p4g-pc-modloader) with Reloaded II to launch P4G with mods. Point the Mod Compendium to your P4G game directory's "mods" folder and enable "PC Mode" to output the Mod Menu in combination with any other mods you may want to install.
+Use the [latest p4gpc.modloader](https://amicitia.github.io/post/p4g-pc-modloader) with Reloaded II to launch P4G with mods. Point the Mod Compendium or Aemulus to your P4G game directory's "mods" folder and enable "PC Mode" to output the Mod Menu in combination with any other mods you may want to install.
 Alternatively, you can just extract the init_free.bin from the zip to your "mods" folder directly like so: Steam\steamapps\common\Day\mods\data_e\init_free.bin
 ## Compiling
 1. Download the latest build of TGE's [AtlusScriptCompiler](https://ci.appveyor.com/project/TGEnigma/atlusscripttoolchain/build/artifacts) ([source](https://github.com/TGEnigma/AtlusScriptToolchain)), which you can use to compile the **.flow** and **.msg** scripts in this repository and recompile them into **.bf** format.
