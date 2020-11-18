@@ -9,3 +9,4 @@ import ( "../MobileCalendar.flow" ); //Same as above but includes "View calendar
 
 //EXTENSIONS
 import ( "../QuickTravelPlus.flow" ); //Extended QuickTravel locations for town/school
+import ( "../VRGameOverSkip.flow" ); //Skips velvet room scene after game over
