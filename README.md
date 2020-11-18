@@ -13,6 +13,7 @@ More features will be added in the future.
 ## Optional Extensions
 - MobileCalendar (view the calendar from anywhere!)
 - QuickTravelPlus (extended quicktravel options in Yasogami High and around the town of Inaba)
+- VRGameOverSkip (skips velvet room scene after game over) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13301))
 ## Usage
 You can use the [Mod Compendium](https://amicitia.github.io/post/modcompendium) to create modded archives containing the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases).
 You may prefer to use [Aemulus Package Manager](https://gamebanana.com/tools/6878) instead as it supports bin merging, which increases compatibility with other mods.
