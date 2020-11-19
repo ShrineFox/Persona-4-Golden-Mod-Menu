@@ -64,7 +64,8 @@ void order_party_hook()
 					generate_hangout_menu();
 					break;
 				case 2: //MobileCalendar
-					FUNCTION_007D();
+ 					FUNCTION_007D();
+ 					break;
 				case 3: //ModMenu
 					ModMenuDisplay();
 					break;
