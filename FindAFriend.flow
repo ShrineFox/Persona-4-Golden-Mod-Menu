@@ -36,7 +36,7 @@ int check_if_holiday()
 	// Get the month
 	int Month = GET_MONTH(); 
 	// Get the day (1-31)
-	int Day = GET_DAY();
+	int Day = GET_DAY_OF_MONTH();
 	
 	// Check if it is any of the single day/small holidays
 	if(DATE_CHK(4, 29) || DATE_CHK(5, 4) || DATE_CHK(5, 4) || DATE_CHK(5, 5) || DATE_CHK(7, 18) || DATE_CHK(9, 19) || DATE_CHK(9, 23) ||
@@ -72,7 +72,7 @@ void generate_hangout_menu()
     int SelectMask = 0;
 	
 	// Get the day from 0-6, Sunday-Saturday
-	int Day = FUNCTION_0035(); 
+	int Day = GET_DAY_OF_WEEK(); 
 	// Get the time of day from 0-5, early morning to evening
 	int TimeOfDay = GET_TIME_OF_DAY();
 	// Check if it is raining
@@ -184,7 +184,7 @@ void generate_hangout_menu()
 	
 	
     FUNCTION_0007( 14, 16 );
-    int Selection = FUNCTION_0025( HANGOUT_MSG, HANGOUT_SEL, SelectMask );
+    int Selection = ADV_SEL( HANGOUT_MSG, HANGOUT_SEL, SelectMask );
     
 	
 	// Cancel wasn't chosen

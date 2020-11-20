@@ -3,7 +3,7 @@ void field_order_hook()
 	if ( FLD_FUNCTION_0022() == 6 )
 	{
 		//Show expanded school quicktravel menu
-		int school = FUNCTION_0025( School_Text, School, 0 );
+		int school = ADV_SEL( School_Text, School, 0 );
 		if ( school != 8 )
 		{
 			OUTRO( 2, 5 );
@@ -48,7 +48,7 @@ void field_order_hook()
 		if (GET_TIME_OF_DAY() != 5)
 		{
 			//Show daytime town quicktravel menu if not at home or school
-			int street = FUNCTION_0025( Street_Text, Street, 0 );
+			int street = ADV_SEL( Street_Text, Street, 0 );
 			if ( street != 7 )
 			{
 				OUTRO( 2, 5 );
@@ -87,7 +87,7 @@ void field_order_hook()
 		else 
 		{
 			//Show daytime town quicktravel menu if not at home or school
-			int street = FUNCTION_0025( Street_Text, Street, 0 );
+			int street = ADV_SEL( Street_Text, Street, 0 );
 			if ( street != 7 )
 			{
 				OUTRO( 2, 5 );

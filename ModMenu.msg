@@ -5,6 +5,7 @@
 [f 0 5 -258][f 2 1]Quick travel[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
 [f 0 5 -258][f 2 1]View calendar[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Mod menu[e]
 [f 0 5 -258][f 2 1]Exit[e]
 
@@ -16,6 +17,7 @@
 [f 0 5 -258][f 2 1]Call Field[e]
 [f 0 5 -258][f 2 1]Call Event[e]
 [f 0 5 -258][f 2 1]Call Battle[e]
+[f 0 5 -258][f 2 1]Call Floor[e]
 [f 0 5 -258][f 2 1]Open Facility[e]
 [f 0 5 -258][f 2 1]Change Date[e]
 [f 0 5 -258][f 2 1]Misc[e]
