@@ -1,12 +1,82 @@
 import( "../build/input/extracted/field/script/field.bf" );
 import( "../ModMenu.flow" );
 
-//ALTERNATE MOD COMBINATIONS (enable only one)
-//import ( "../Default.flow" ); //Mod Menu only (no QuickTravel)
-//import ( "../QuickTravel.flow" ); //Choose between Mod Menu or QuickTravel
-import ( "../MobileCalendar.flow" ); //Same as above but includes "View calendar" option
-//import ( "../MobileCalendarNoModMenu.flow" ); //Same as above but does NOT include "Mod menu" option
-
 //EXTENSIONS
-import ( "../QuickTravelPlus.flow" ); //Extended QuickTravel locations for town/school
-import ( "../VRGameOverSkip.flow" ); //Skips velvet room scene after game over
+import ( "../FindAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
+import ( "../QuickTravelPlus.flow" ); //Extended QuickTravel locations for town/school (Comment out to disable)
+import ( "../VRGameOverSkip.flow" ); //Skips velvet room scene after game over (Comment out to disable)
+
+void order_party_hook()
+{
+	//Change these values to 1 to enable and 0 to disable
+	int ModMenu = 1; //Mod menu with many different debugging options
+	int QuickTravel = 1; //Normal square menu (enhanced with QuickTravelPlus)
+	int MobileCalendar = 1; //Quickly open Calendar
+	int FindAFriend = 1; //Fast travel to social link locations
+
+	//Just Mod menu (So it's not Mod menu and Exit)
+	if (ModMenu == 1 && QuickTravel == 0 && MobileCalendar == 0 && FindAFriend == 0)
+		ModMenuDisplay();
+	//Just QuickTravel (Only useful if you have QuickTravelPlus uncommented) (So it's not QuickTravel and Exit)
+	else if (ModMenu == 0 && QuickTravel == 1 && MobileCalendar == 0 && FindAFriend == 0)
+	{
+		if ( FLD_FUNCTION_0002() > 0)
+		{
+			dungeon_order();
+		}
+		else
+		{
+			field_order();
+		}
+	}
+	//Multiple options
+	else {
+		int dungeon = FLD_FUNCTION_0002();
+		int time = GET_TIME_OF_DAY();
+		int fieldMajor = FLD_FUNCTION_0022();
+		
+		if (dungeon > 0 || ((time >= 3 && time <= 5) && ((fieldMajor >= 6 && fieldMajor <= 11) || (fieldMajor == 17 || fieldMajor == 18))))
+		{
+			int SelectMask = 0;
+			if (QuickTravel == 0)
+				SelectMask = SelectMask + 1;
+			if ( FLD_FUNCTION_0002() > 0 || FindAFriend == 0)
+				SelectMask = SelectMask + 2;
+			if (MobileCalendar == 0)
+				SelectMask = SelectMask + 4;
+			if (ModMenu == 0)
+				SelectMask = SelectMask + 8;
+			//Prompt user to choose an option if in an appropriate area
+			int selection = FUNCTION_0025( Square_Menu_Text, Square_Menu, SelectMask);
+			switch (selection)
+			{
+				case 0: //QuickTravel
+					if ( FLD_FUNCTION_0002() > 0)
+					{
+						dungeon_order();
+					}
+					else
+					{
+						field_order();
+					}
+					break;
+				case 1: //FindAFriend
+					generate_hangout_menu();
+					break;
+				case 2: //MobileCalendar
+ 					FUNCTION_007D();
+ 					break;
+				case 3: //ModMenu
+					ModMenuDisplay();
+					break;
+				case 4: //Exit
+					break;
+			}
+		}
+		else if(ModMenu == 1)
+		{
+			//Show mod menu by default if not in an area with quick travel options
+			ModMenuDisplay();
+		}
+	}
+}

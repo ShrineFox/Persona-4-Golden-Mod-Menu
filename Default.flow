@@ -1,4 +1,0 @@
-void order_party_hook()
-{
-	ModMenuDisplay();
-}

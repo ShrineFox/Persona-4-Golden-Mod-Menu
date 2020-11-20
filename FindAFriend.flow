@@ -1,0 +1,312 @@
+// 
+// Imports
+// 
+
+import( "FindAFriend.msg");
+
+// 
+// Script-level variable definitions
+// 
+
+// 
+// Procedure declarations
+// 
+
+// Custom function to check if it's raining (based off of Nanako's dialogue so hopefully accurate)
+int check_if_raining()
+{	
+	// Check if it is any of the days
+	if(DATE_CHK( 8, 5) || DATE_CHK( 8, 6) || DATE_CHK( 8, 10) || DATE_CHK( 8, 11) || DATE_CHK( 9, 25) || DATE_CHK( 11, 3) || 
+	DATE_CHK( 4, 25) || DATE_CHK( 4, 26) || DATE_CHK( 4, 27) || DATE_CHK( 4, 28) || DATE_CHK( 5, 13) || DATE_CHK( 6, 1) || 
+	DATE_CHK( 6, 2) || DATE_CHK( 6, 3) || DATE_CHK( 6, 4) || DATE_CHK( 6, 20) || DATE_CHK( 6, 24) || DATE_CHK( 6, 25) || 
+	DATE_CHK( 6, 30) || DATE_CHK( 7, 1) || DATE_CHK( 7, 8) || DATE_CHK( 7, 25) || DATE_CHK( 9, 13) ||
+	DATE_CHK( 9, 26) || DATE_CHK( 9, 30) || DATE_CHK( 10, 1) || DATE_CHK( 10, 4) || DATE_CHK( 10, 5) || DATE_CHK( 10, 12) || 
+	DATE_CHK( 10, 22)  || DATE_CHK( 10, 25) || DATE_CHK( 11, 3) || DATE_CHK( 11, 4)) 
+	{	
+		// Variable that will store whether it is raining or not (1 is yes 0 is no)
+		return 1;
+	} else {
+		return 0;
+	}
+	return 0;
+}
+
+int check_if_holiday()
+{
+	// Get the month
+	int Month = GET_MONTH(); 
+	// Get the day (1-31)
+	int Day = GET_DAY();
+	
+	// Check if it is any of the single day/small holidays
+	if(DATE_CHK(4, 29) || DATE_CHK(5, 4) || DATE_CHK(5, 4) || DATE_CHK(5, 5) || DATE_CHK(7, 18) || DATE_CHK(9, 19) || DATE_CHK(9, 23) ||
+	DATE_CHK(10, 10) || DATE_CHK(10, 30) || DATE_CHK(10, 31) || DATE_CHK(11, 3) || DATE_CHK(11, 23) || DATE_CHK(12, 5) || DATE_CHK(12, 23) ||
+	DATE_CHK(2, 11))
+	{
+		// Variable that stores whether it is a holiday
+		return 1;
+	}
+	// Check if it is a long holiday like school breaks
+	else
+	{
+		if(Month == 7 && Day >= 27) {
+			return 1;
+		} else if(Month == 8) {
+			return 1;
+		} else if(Month == 12 && Day >= 26) {
+			return 1;
+		} else if(Month == 1 && Day <= 9) {
+			return 1;
+		} else if(Month == 3 && Day >= 18) {
+			return 1;
+		}
+	}
+	
+	// It is not a holiday	
+	return 0;
+}	
+
+void generate_hangout_menu()
+{	
+	// Variables that store the location of the messages and whatnot
+    int SelectMask = 0;
+	
+	// Get the day from 0-6, Sunday-Saturday
+	int Day = FUNCTION_0035(); 
+	// Get the time of day from 0-5, early morning to evening
+	int TimeOfDay = GET_TIME_OF_DAY();
+	// Check if it is raining
+	int IsRaining = check_if_raining();
+	//Check if it is a holiday
+	int IsHoliday = check_if_holiday();
+	
+	// Choose which people to exclude based on the day
+	// Adachi is only available on some specific dates
+	if (!(DATE_CHK(5, 13) || DATE_CHK(5, 20) || DATE_CHK(5, 23) || DATE_CHK(5, 25) || DATE_CHK(5, 27) || DATE_CHK(5, 30) || DATE_CHK(6, 5) ||
+		DATE_CHK(6, 10) || DATE_CHK(6, 11) || DATE_CHK(6, 26) || DATE_CHK(6, 28) || DATE_CHK(7, 2) || DATE_CHK(7, 4) || DATE_CHK(7, 5) ||
+		DATE_CHK(7, 12) || DATE_CHK(7, 14) || DATE_CHK(7, 24) || DATE_CHK(7, 25) || DATE_CHK(8, 23) || DATE_CHK(8, 25) || DATE_CHK(9, 1) ||
+		DATE_CHK(9, 19) || DATE_CHK(9, 20) || DATE_CHK(9, 21) || DATE_CHK(9, 23) || DATE_CHK(9, 24) || DATE_CHK(9, 27) || DATE_CHK(9, 30) ||
+		DATE_CHK(10, 6) || DATE_CHK(10, 12) || DATE_CHK(10, 21) || DATE_CHK(10, 24) || DATE_CHK(10, 26) || DATE_CHK(11, 1) || DATE_CHK(6, 15)))
+	{
+		SelectMask = SelectMask + 1;
+	// For whatever reason on this one day he's only available at night
+	} else if(DATE_CHK(6, 15) && TimeOfDay != 5)  {
+		SelectMask = SelectMask + 1;
+	}
+	// Adachi is available at day or night depending on what level you are with him
+	// Levelling up from 2 to 3, 3 to 4 and 4 to 5 is at night
+	else if (GET_SL_LEVEL( 31 ) >= 2 && GET_SL_LEVEL( 31 ) <= 4 && CHECK_IF_SL_LVLUP( 31 ) == 1) {
+		if(TimeOfDay != 5 ) {
+			SelectMask = SelectMask + 1;
+		}
+	// Levelling up from 5 to 6 is in the day
+	//} else if(!(GET_SL_LEVEL( 31 ) == 5 && TimeOfDay != 5 && CHECK_IF_SL_LVLUP( 31 ) == 1)) {
+		//SelectMask = SelectMask | 1;
+	//}
+	// All the other times you hangout in the day and don't hangout past rank 6
+	}else if(TimeOfDay == 5 || GET_SL_LEVEL( 31 ) >= 6) {
+		SelectMask = SelectMask + 1;
+	} 
+	
+	// Ai isn't available Monday, Tuesday, Saturday, Sunday and Holidays
+	if (Day == 1 || Day == 2 || Day == 6 || Day == 0 || TimeOfDay == 5 || IsRaining == 1 || IsHoliday == 1 || GET_SL_LEVEL( 21 ) == 10 || GET_SL_LEVEL( 22 ) == 10)
+		SelectMask = SelectMask + 2;
+	// Chie isn't available Friday and Sunday
+	if (Day == 0 || Day == 5 || TimeOfDay == 5 || IsRaining == 1 || GET_SL_LEVEL( 11 ) == 10 || GET_SL_LEVEL( 12 ) == 10)
+	{
+		SelectMask = SelectMask + 4;
+	}
+	// Ayane/Yumi isn't available Wednesday, Friday, Saturday, Sunday and Holiday
+	if (Day == 3 || Day == 5 || Day == 6 || Day == 0 || TimeOfDay == 5 || IsHoliday == 1 || GET_SL_LEVEL( 27 ) == 10 || GET_SL_LEVEL( 28 ) == 10)
+	{
+		SelectMask = SelectMask + 8;
+	}
+	// Eri isn't available Tuesday, Wednesday, Thursday, Sunday and Holidays
+	if (Day == 2 || Day == 3 || Day == 4 || Day == 0 || TimeOfDay == 5 || IsRaining == 1 || IsHoliday == 1 || GET_SL_LEVEL( 29 ) == 10)
+	{
+		SelectMask = SelectMask + 16;
+	}
+	// Hisano is only available on Sundays and Holidays
+	if (Day != 0 || IsRaining == 1 && IsHoliday == 0 || GET_SL_LEVEL( 19 ) == 10 || TimeOfDay == 5)
+	{
+		SelectMask = SelectMask + 32;
+	}
+	// Kanji isn't available Monday, Tuesday and Friday
+	if (Day == 1 || Day == 2 || Day == 5 || TimeOfDay == 5 || IsRaining == 1 || GET_SL_LEVEL( 10 ) == 10)
+	{
+		SelectMask = SelectMask + 64;
+	}
+	// Marie isn't available Monday, Tuesday, Thursday and Friday
+	if (Day == 1 || Day == 2 || Day == 4 || Day == 5 || TimeOfDay == 5 || IsRaining == 1 || GET_SL_LEVEL( 33 ) == 10 || GET_SL_LEVEL( 34 ) == 10)
+	{
+		SelectMask = SelectMask + 128;
+	}
+	// Naoki isn't available Friday, Saturday and Sunday
+	if (Day == 5 || Day == 6 || Day == 0 || TimeOfDay == 5 || IsRaining == 1 || GET_SL_LEVEL( 18 ) == 10)
+	{
+		SelectMask = SelectMask + 256;
+	}
+	// Naoto isn't available Thursday and Friday
+	if (Day == 4 || Day == 5 || TimeOfDay == 5 || IsRaining == 1 || GET_SL_LEVEL( 14 ) == 10 || GET_SL_LEVEL( 15 ) == 10)
+	{
+		SelectMask = SelectMask + 512;
+	}
+	// Rise isn't available Monday, Tuesday, Wednesday and Thursday
+	if (Day == 1 || Day == 2 || Day == 3 || Day == 4 || TimeOfDay == 5 || IsRaining == 1 || GET_SL_LEVEL( 3 ) == 10 || GET_SL_LEVEL( 4 ) == 10)
+	{
+		SelectMask = SelectMask + 1024;
+	}
+	// Sayoko isn't available Monday, Tuesday, Saturday, Sunday, Holidays, and in the day 
+	if (Day == 1 || Day == 2 || Day == 6 || Day == 0 || TimeOfDay != 5 || IsHoliday == 1 || GET_SL_LEVEL( 9 ) == 10)
+	{
+		SelectMask = SelectMask + 2048;
+	}
+	// Shu isn't available Monday, Wednesday, Friday, Sunday, Holidays and in the day
+	if (Day == 1 || Day == 3 || Day == 5 || Day == 0 || TimeOfDay != 5 || IsRaining == 1 || IsHoliday == 1 || GET_SL_LEVEL( 17 ) == 10)
+	{
+		SelectMask = SelectMask + 4096;
+	}
+	// Kou/Daisuke isn't available Monday, Wednesday, Friday, Sunday and Holidays
+	if (Day == 1 || Day == 3 || Day == 5 || Day == 0 || TimeOfDay == 5 || IsRaining == 1 || IsHoliday == 1 || GET_SL_LEVEL( 0x10 ) == 10)
+	{
+		SelectMask = SelectMask + 8192;
+	}
+	// Yoskue isn't available Tuesday and Wednesday
+	if (Day == 2 || Day == 3 || TimeOfDay == 5 || IsRaining == 1 || GET_SL_LEVEL( 7 ) == 10)
+	{
+		SelectMask = SelectMask + 16384;
+	}
+	// Yukiko isn't available Friday, Saturday and Sunday
+	if (Day == 0 || Day == 5 || Day == 6 || TimeOfDay == 5 || IsRaining == 1 || GET_SL_LEVEL( 5 ) == 10 || GET_SL_LEVEL( 6 ) == 10)
+	{
+		SelectMask = SelectMask + 32768;
+	}
+	
+	
+    FUNCTION_0007( 14, 16 );
+    int Selection = FUNCTION_0025( HANGOUT_MSG, HANGOUT_SEL, SelectMask );
+    
+	
+	// Cancel wasn't chosen
+    if ( Selection != 16 )
+    {
+        OUTRO( 1, 5 );
+        OUTRO_SYNC();
+		
+		// Teleport the player to the desired location depending on who they chose
+		switch(Selection) {
+			// Adachi
+			case 0:
+				// South Shopping District in the night
+				if( TimeOfDay == 5 ) { 
+					CALL_FIELD( 8, 2, 0, 0 );
+				// Junes in the day
+				} else {
+					CALL_FIELD( 9, 4, 0, 0 );
+				}									
+				break;
+			// Ai - Learning Building 1F
+			case 1:
+				CALL_FIELD( 6, 1, 1, 0 );
+				break;
+			// Chie
+			case 2:
+				// South Shopping District on Sundays
+				if( Day == 0 || IsHoliday == 1) { 
+					CALL_FIELD( 8, 2, 0, 0 );
+				// Roof on Weekdays
+				} else {
+					CALL_FIELD( 6, 14, 0, 0 );
+				}									
+				break;
+			// Ayane - Learning Building 2F, Yumi - Practice Building 1F (I'll default to practice building unless I can find a way to check which link you have)
+			case 3:
+				CALL_FIELD( 6, 2, 0, 0 );
+				break;
+			// Eri - South Shopping District
+			case 4:
+				CALL_FIELD( 8, 2, 0, 0 );
+				break;
+			// Hisano - Samegawa Riverbank
+			case 5:
+				CALL_FIELD( 10, 2, 0, 0 );
+				break;
+			// Kanji 
+			case 6:
+				// North Shopping District on Sundays
+				if( Day == 0 || IsHoliday == 1) { 
+					CALL_FIELD( 8, 1, 0, 0 );
+				// Practice Building 1F on Weekdays
+				} else {
+					CALL_FIELD( 6, 4, 0, 0 );
+				}									
+				break;
+			// Marie - South Shopping District
+			case 7:
+				CALL_FIELD( 8, 2, 0, 0 );
+				break;
+			// Naoki
+			case 8:
+				// North Shopping District on Sundays
+				if( Day == 0 || IsHoliday == 1) { 
+					CALL_FIELD( 8, 1, 0, 0 );
+				// Learning Building 1F on Weekdays
+				} else {
+					CALL_FIELD( 6, 1, 1, 0 );
+				}									
+				break;
+			// Naoto
+			case 9:
+				// Samegawa Flood Plain on Sundays
+				if( Day == 0 || IsHoliday == 1) { 
+					CALL_FIELD( 10, 1, 0, 0 );
+				// Learning Building 1F on Weekdays
+				} else {
+					CALL_FIELD( 6, 1, 1, 0 );
+				}									
+				break;
+			// Rise
+			case 10:
+				// South Shopping District on Sundays
+				if( Day == 0 || IsHoliday == 1) { 
+					CALL_FIELD( 8, 2, 0, 0 );
+				// Learning Building 1F on Weekdays
+				} else {
+					CALL_FIELD( 6, 1, 1, 0 );
+				}									
+				break;
+			// Sayoko - South Shopping District
+			case 11:
+				CALL_FIELD( 8, 2, 0, 0 );
+				break;
+			// Shu - South Shopping District
+			case 12:
+				CALL_FIELD( 8, 2, 0, 0 );
+				break;
+			// Kou/Daisuke - Learning Building 2F
+			case 13:
+				CALL_FIELD( 6, 2, 0, 0 );
+				break;
+			// Yoskue
+			case 14:
+				// Junes on Sundays
+				if( Day == 0 || IsHoliday == 1) { 
+					CALL_FIELD( 9, 4, 0, 0 );
+				// Learning Building 2F on Weekdays
+				} else {
+					CALL_FIELD( 6, 2, 0, 0 );
+				}									
+				break;
+			// Yukiko
+			case 15:
+				// South Shopping District on Sundays
+				if( Day == 0 || IsHoliday == 1) { 
+					CALL_FIELD( 8, 2, 0, 0 );
+				// Learning Building 1F on Weekdays
+				} else {
+					CALL_FIELD( 6, 1, 1, 0 );
+				}									
+				break;
+        }
+    }
+}
