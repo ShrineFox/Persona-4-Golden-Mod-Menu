@@ -13,6 +13,7 @@ void order_party_hook()
 	int QuickTravel = 1; //Normal square menu (enhanced with QuickTravelPlus)
 	int MobileCalendar = 1; //Quickly open Calendar
 	int FindAFriend = 1; //Fast travel to social link locations
+	int SaveAnywhere = 1; //Save anywhere
 
 	//Just Mod menu (So it's not Mod menu and Exit)
 	if (ModMenu == 1 && QuickTravel == 0 && MobileCalendar == 0 && FindAFriend == 0)
@@ -20,7 +21,7 @@ void order_party_hook()
 	//Just QuickTravel (Only useful if you have QuickTravelPlus uncommented) (So it's not QuickTravel and Exit)
 	else if (ModMenu == 0 && QuickTravel == 1 && MobileCalendar == 0 && FindAFriend == 0)
 	{
-		if ( FLD_FUNCTION_0002() > 0)
+		if ( GET_FLOOR_ID() > 0)
 		{
 			dungeon_order();
 		}
@@ -31,7 +32,7 @@ void order_party_hook()
 	}
 	//Multiple options
 	else {
-		int dungeon = FLD_FUNCTION_0002();
+		int dungeon = GET_FLOOR_ID();
 		int time = GET_TIME_OF_DAY();
 		int fieldMajor = FLD_FUNCTION_0022();
 		
@@ -40,18 +41,20 @@ void order_party_hook()
 			int SelectMask = 0;
 			if (QuickTravel == 0)
 				SelectMask = SelectMask + 1;
-			if ( FLD_FUNCTION_0002() > 0 || FindAFriend == 0)
+			if ( GET_FLOOR_ID() > 0 || FindAFriend == 0)
 				SelectMask = SelectMask + 2;
 			if (MobileCalendar == 0)
 				SelectMask = SelectMask + 4;
-			if (ModMenu == 0)
+			if (SaveAnywhere== 0)
 				SelectMask = SelectMask + 8;
+			if (ModMenu == 0)
+				SelectMask = SelectMask + 16;
 			//Prompt user to choose an option if in an appropriate area
-			int selection = FUNCTION_0025( Square_Menu_Text, Square_Menu, SelectMask);
+			int selection = ADV_SEL( Square_Menu_Text, Square_Menu, SelectMask);
 			switch (selection)
 			{
 				case 0: //QuickTravel
-					if ( FLD_FUNCTION_0002() > 0)
+					if ( GET_FLOOR_ID() > 0)
 					{
 						dungeon_order();
 					}
@@ -64,11 +67,15 @@ void order_party_hook()
 					generate_hangout_menu();
 					break;
 				case 2: //MobileCalendar
-					FUNCTION_007D();
-				case 3: //ModMenu
+					OPEN_CALENDAR();
+					break;
+				case 3: //SaveAnywhere
+					GET_LOCATIONID();
+					break;
+				case 4: //ModMenu
 					ModMenuDisplay();
 					break;
-				case 4: //Exit
+				case 5: //Exit
 					break;
 			}
 		}

@@ -6,7 +6,7 @@ import( "Utilities.flow" ); //Frequently reused Mod Menu operations
 
 void ModMenuDisplay()
 {
-	int selection = FUNCTION_0025(Mod_Menu_Text, Mod_Menu, 0);
+	int selection = ADV_SEL(Mod_Menu_Text, Mod_Menu, 0);
 	switch (selection)
 	{
 		case 0:
@@ -22,12 +22,15 @@ void ModMenuDisplay()
 			BattleSelect();
 			break;
 		case 4:
-			Facilities();
+			FloorSelect();
 			break;
 		case 5:
-			DateSelect();
+			Facilities();
 			break;
 		case 6:
+			DateSelect();
+			break;
+		case 7:
 			Misc();
 			break;
 	}
@@ -60,7 +63,7 @@ void EventSelect()
 
 void BattleSelect()
 {
-	int battle = FUNCTION_0025(BATTLE_SEL_Text, BATTLE_SEL, 0);
+	int battle = ADV_SEL(BATTLE_SEL_Text, BATTLE_SEL, 0);
 	if (battle == 0)
 	{
 		int major = Get_Number(3, MSG_3);
@@ -81,7 +84,7 @@ void DateSelect()
 
 void Facilities()
 {
-	int facility = FUNCTION_0025(Facility_Menu_Text, Facility_Menu, 0);
+	int facility = ADV_SEL(Facility_Menu_Text, Facility_Menu, 0);
 	switch (facility) 
 	{
 		case 0:
@@ -112,7 +115,7 @@ void Facilities()
 
 void Misc()
 {
-	int misc = FUNCTION_0025(Misc_Menu_Text, Misc_Menu, 0);
+	int misc = ADV_SEL(Misc_Menu_Text, Misc_Menu, 0);
 	switch (misc) 
 	{
 		case 0:
@@ -138,10 +141,20 @@ void Misc()
 	}
 }
 
+
 void AddParty()
 {
 	int major = Get_Number(1, MSG_1);
 	ADD_PARTY(major);
+}
+
+void FloorSelect()
+{
+	int major = Get_Number(3, MSG_3);
+	dng_set_npc();
+	OUTRO( 1, 10 );
+	OUTRO_SYNC();
+	CALL_FLOOR(major);
 }
 
 void SpawnNPC()
@@ -161,7 +174,7 @@ void CallDungeon()
 
 void Flag_Menu()
 {
-	int flag = FUNCTION_0025(Flag_Menu_Text, Flag_Menu, 0);
+	int flag = ADV_SEL(Flag_Menu_Text, Flag_Menu, 0);
 	switch (flag) 
 	{
 		case 0:
@@ -178,7 +191,7 @@ void Flag_Menu()
 void ToggleBit()
 {
 	int major = Get_Number(4, MSG_4);
-	int toggle = FUNCTION_0025(OnOff_Text, OnOff, 0);
+	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
 	if (toggle == 0)
 	{
 		BIT_ON(major);
@@ -194,7 +207,7 @@ void ToggleBitRange()
 	int major = Get_Number(4, MSG_4_Major);
 	int minor = Get_Number(4, MSG_4_Minor);
 	int i = major;
-	int toggle = FUNCTION_0025(OnOff_Text, OnOff, 0);
+	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
 	if (toggle == 0)
 	{
 		while (i <= minor)
@@ -215,7 +228,7 @@ void ToggleBitRange()
 
 void SL()
 {
-	int sl = FUNCTION_0025(SL_Menu_Text, SL_Menu, 0);
+	int sl = ADV_SEL(SL_Menu_Text, SL_Menu, 0);
 	switch (sl)
 	{
 		case 0:
@@ -278,7 +291,7 @@ void AddSL()
 
 void Battles()
 {
-	int boss = FUNCTION_0025( BOSS_SEL1_Text, BOSS_SEL1, 0 );
+	int boss = ADV_SEL( BOSS_SEL1_Text, BOSS_SEL1, 0 );
 	switch (boss)
 	{
 		case 0:
@@ -300,7 +313,7 @@ void Battles()
 			CALL_BATTLE( 517, 0 );
 			break;
 		case 6:
-			int boss2 = FUNCTION_0025( BOSS_SEL2_Text, BOSS_SEL2, 0 );
+			int boss2 = ADV_SEL( BOSS_SEL2_Text, BOSS_SEL2, 0 );
 			switch (boss2)
 			{
 				case 0:

@@ -9,15 +9,16 @@ void Message_Window(int messageNum)
 
 int Get_Number(int digitNum, int helpText)
 {
+	tryagain:
 	int digit = 0;
 	int n = 0;
 	_OpenNumMenu:
 	while (n < digitNum)
 	{
-		int select = FUNCTION_0025( helpText, Num_Menu, 0);
+		int select = ADV_SEL( helpText, Num_Menu, 0);
 		if (select > 6)
 		{
-			select = FUNCTION_0025( helpText, Num_Menu2, 0) + 7;
+			select = ADV_SEL( helpText, Num_Menu2, 0) + 7;
 			if (select == 10)
 			{
 				goto _OpenNumMenu;
@@ -27,5 +28,12 @@ int Get_Number(int digitNum, int helpText)
 		digit += select;
 		n += 1;
 	}
+	PRINT_DEBUG(0, digit, 0);
+	OPEN_MSG_WIN();
+    MSG( ConfirmNumber );
+	int confirm = SEL(YESNO_SEL);
+	CLOSE_MSG_WIN();
+	if (confirm == 1)
+		goto tryagain;
 	return(digit);
 }

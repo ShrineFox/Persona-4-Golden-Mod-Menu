@@ -65,3 +65,6 @@
 
 [msg MSG_5_Minor]
 [f 0 5 -258][f 2 1]5 Digits (Minor)[n][f 1 1][e]
+
+[msg ConfirmNumber]
+[f 0 5 -258][f 2 1]Confirm [f 2 4 0] as selection?[n][f 1 1][e]
