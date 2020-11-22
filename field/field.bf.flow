@@ -45,7 +45,6 @@ void order_party_hook()
 				SelectMask = SelectMask + 2;
 			if (!mobileCalendar)
 				SelectMask = SelectMask + 4;
-			if (SaveAnywhere== 0)
 			if (!saveAnywhere)
 				SelectMask = SelectMask + 8;
 			if (!modMenu)
