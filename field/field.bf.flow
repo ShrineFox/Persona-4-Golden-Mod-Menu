@@ -2,7 +2,7 @@ import( "../build/input/extracted/field/script/field.bf" );
 import( "../modMenu.flow" );
 
 //EXTENSIONS
-import ( "../findAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
+import ( "../FindAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
 import ( "../QuickTravelPlus.flow" ); //Extended quickTravel locations for town/school (Comment out to disable)
 import ( "../VRGameOverSkip.flow" ); //Skips velvet room scene after game over (Comment out to disable)
 
