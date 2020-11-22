@@ -1,25 +1,25 @@
 import( "../build/input/extracted/field/script/field.bf" );
-import( "../ModMenu.flow" );
+import( "../modMenu.flow" );
 
 //EXTENSIONS
-import ( "../FindAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
-import ( "../QuickTravelPlus.flow" ); //Extended QuickTravel locations for town/school (Comment out to disable)
+import ( "../findAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
+import ( "../QuickTravelPlus.flow" ); //Extended quickTravel locations for town/school (Comment out to disable)
 import ( "../VRGameOverSkip.flow" ); //Skips velvet room scene after game over (Comment out to disable)
 
 void order_party_hook()
 {
-	//Change these values to 1 to enable and 0 to disable
-	int ModMenu = 1; //Mod menu with many different debugging options
-	int QuickTravel = 1; //Normal square menu (enhanced with QuickTravelPlus)
-	int MobileCalendar = 1; //Quickly open Calendar
-	int FindAFriend = 1; //Fast travel to social link locations
-	int SaveAnywhere = 1; //Save anywhere
+	//Change these values to enable/disable
+	bool modMenu = true; //Mod menu with many different debugging options
+	bool quickTravel = true; //Normal square menu (enhanced with QuickTravelPlus)
+	bool mobileCalendar = true; //Quickly open Calendar
+	bool findAFriend = true; //Fast travel to social link locations
+	bool saveAnywhere = true; //Save anywhere
 
-	//Just Mod menu (So it's not Mod menu and Exit)
-	if (ModMenu == 1 && QuickTravel == 0 && MobileCalendar == 0 && FindAFriend == 0)
+	//Just Mod Menu (So it's not Mod Menu and Exit)
+	if (modMenu && !quickTravel && !mobileCalendar && !findAFriend)
 		ModMenuDisplay();
 	//Just QuickTravel (Only useful if you have QuickTravelPlus uncommented) (So it's not QuickTravel and Exit)
-	else if (ModMenu == 0 && QuickTravel == 1 && MobileCalendar == 0 && FindAFriend == 0)
+	else if (!modMenu && quickTravel && !mobileCalendar && !findAFriend)
 	{
 		if ( GET_FLOOR_ID() > 0)
 		{
@@ -31,23 +31,24 @@ void order_party_hook()
 		}
 	}
 	//Multiple options
-	else {
+	else 
+	{
 		int dungeon = GET_FLOOR_ID();
-		int time = GET_TIME_OF_DAY();
 		int fieldMajor = FLD_FUNCTION_0022();
 		
-		if (dungeon > 0 || ((time >= 3 && time <= 5) && ((fieldMajor >= 6 && fieldMajor <= 11) || (fieldMajor == 17 || fieldMajor == 18))))
+		if (dungeon > 0 || ((fieldMajor >= 6 && fieldMajor <= 11) || (fieldMajor == 17 || fieldMajor == 18)))
 		{
 			int SelectMask = 0;
-			if (QuickTravel == 0)
+			if (!quickTravel)
 				SelectMask = SelectMask + 1;
-			if ( GET_FLOOR_ID() > 0 || FindAFriend == 0)
+			if ( GET_FLOOR_ID() > 0 || !findAFriend)
 				SelectMask = SelectMask + 2;
-			if (MobileCalendar == 0)
+			if (!mobileCalendar)
 				SelectMask = SelectMask + 4;
 			if (SaveAnywhere== 0)
+			if (!saveAnywhere)
 				SelectMask = SelectMask + 8;
-			if (ModMenu == 0)
+			if (!modMenu)
 				SelectMask = SelectMask + 16;
 			//Prompt user to choose an option if in an appropriate area
 			int selection = ADV_SEL( Square_Menu_Text, Square_Menu, SelectMask);
@@ -70,7 +71,7 @@ void order_party_hook()
 					OPEN_CALENDAR();
 					break;
 				case 3: //SaveAnywhere
-					GET_LOCATIONID();
+					NS_SAVE();
 					break;
 				case 4: //ModMenu
 					ModMenuDisplay();
@@ -79,9 +80,9 @@ void order_party_hook()
 					break;
 			}
 		}
-		else if(ModMenu == 1)
+		else if(modMenu && GET_FLOOR_ID() == 0)
 		{
-			//Show mod menu by default if not in an area with quick travel options
+			//Show Mod Menu by default if not in an area with QuickTravel options
 			ModMenuDisplay();
 		}
 	}

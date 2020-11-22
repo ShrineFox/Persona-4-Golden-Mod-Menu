@@ -6,46 +6,57 @@ import( "Utilities.flow" ); //Frequently reused Mod Menu operations
 
 void ModMenuDisplay()
 {
-	int selection = ADV_SEL(Mod_Menu_Text, Mod_Menu, 0);
-	switch (selection)
+	while(true) 
 	{
-		case 0:
-			BGMSelect();
-			break;
-		case 1:
-			FieldSelect();
-			break;
-		case 2:
-			EventSelect();
-			break;
-		case 3:
-			BattleSelect();
-			break;
-		case 4:
-			FloorSelect();
-			break;
-		case 5:
-			Facilities();
-			break;
-		case 6:
-			DateSelect();
-			break;
-		case 7:
-			Misc();
-			break;
+		int selection = ADV_SEL(Mod_Menu_Text, Mod_Menu, 0);
+		switch (selection)
+		{
+			case 0:
+				BGMSelect();
+				break;
+			case 1:
+				FieldSelect();
+				break;
+			case 2:
+				EventSelect();
+				break;
+			case 3:
+				BattleSelect();
+				break;
+			case 4:
+				FloorSelect();
+				break;
+			case 5:
+				Facilities();
+				break;
+			case 6:
+				DateSelect();
+				break;
+			case 7:
+				Misc();
+				return;
+			case 8:
+				return;
+		}
 	}
 }
 
 void BGMSelect()
 {
 	int bgm = Get_Number(5, MSG_5);
+	if (bgm == -1)
+		return;
 	CALL_BGM(bgm);
 }
 
 void FieldSelect()
 {
 	int major = Get_Number(3, MSG_3_Major);
+	if (major == -1)
+		return;
 	int minor = Get_Number(3, MSG_3_Minor);
+	if (minor == -1)
+		return;
 	OUTRO(2, 5);
 	OUTRO_SYNC();
 	CALL_FIELD(major, minor, 0, 0);
@@ -54,7 +65,11 @@ void FieldSelect()
 void EventSelect()
 {
 	int major = Get_Number(3, MSG_3_Major);
+	if (major == -1)
+		return;
 	int minor = Get_Number(3, MSG_3_Minor);
+	if (minor == -1)
+		return;
 	OUTRO(2, 5);
 	OUTRO_SYNC();
 	CALL_EVENT(major, minor, 0);
@@ -67,6 +82,8 @@ void BattleSelect()
 	if (battle == 0)
 	{
 		int major = Get_Number(3, MSG_3);
+		if (major == -1)
+			return;
 		CALL_BATTLE(major, 0);
 	}
 	else if (battle == 1)
@@ -78,7 +95,11 @@ void BattleSelect()
 void DateSelect()
 {
 	int major = Get_Number(2, MSG_2_Major);
+	if (major == -1)
+		return;
 	int minor = Get_Number(2, MSG_2_Minor);
+	if (minor == -1)
+		return;
 	NEXT_DATE(major, minor, 0);
 }
 
@@ -137,7 +158,10 @@ void Misc()
 			CallDungeon();
 			break;
 		case 6:
+			ModMenuDisplay();
 			break;
+		case 7:
+			return;
 	}
 }
 
@@ -145,12 +169,16 @@ void Misc()
 void AddParty()
 {
 	int major = Get_Number(1, MSG_1);
+	if (major == -1)
+		return;
 	ADD_PARTY(major);
 }
 
 void FloorSelect()
 {
 	int major = Get_Number(3, MSG_3);
+	if (major == -1)
+		return;
 	dng_set_npc();
 	OUTRO( 1, 10 );
 	OUTRO_SYNC();
@@ -160,13 +188,19 @@ void FloorSelect()
 void SpawnNPC()
 {
 	int major = Get_Number(5, MSG_5);
+	if (major == -1)
+		return;
 	SPAWN_NPC(0, major);
 }
 
 void CallDungeon()
 {
 	int major = Get_Number(3, MSG_3_Major);
+	if (major == -1)
+		return;
 	int minor = Get_Number(3, MSG_3_Minor);
+	if (minor == -1)
+		return;
 	OUTRO(4, 10);
 	OUTRO_SYNC();
 	CALL_DUNGEON(major, minor);
@@ -191,6 +225,8 @@ void Flag_Menu()
 void ToggleBit()
 {
 	int major = Get_Number(4, MSG_4);
+	if (major == -1)
+		return;
 	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
 	if (toggle == 0)
 	{
@@ -205,7 +241,11 @@ void ToggleBit()
 void ToggleBitRange()
 {
 	int major = Get_Number(4, MSG_4_Major);
+	if (major == -1)
+		return;
 	int minor = Get_Number(4, MSG_4_Minor);
+	if (minor == -1)
+		return;
 	int i = major;
 	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
 	if (toggle == 0)
@@ -254,6 +294,8 @@ void SL()
 void IncreaseSL()
 {
 	int major = Get_Number(2, MSG_2);
+	if (major == -1)
+		return;
 	EVT_FUNCTION_0031( major, 50, 1 );
 	SL_LVLUP_VISUAL(major, (GET_SL_LEVEL(major) + 1), 1);
 	INCREASE_SL(major);
@@ -262,6 +304,8 @@ void IncreaseSL()
 void ReverseSL()
 {
 	int major = Get_Number(2, MSG_2);
+	if (major == -1)
+		return;
 	SL_LVLUP_VISUAL(major, 11, 1);
 	REVERSE_SL(major, 1);
 }
@@ -269,6 +313,8 @@ void ReverseSL()
 void BreakSL()
 {
 	int major = Get_Number(2, MSG_2);
+	if (major == -1)
+		return;
 	SL_LVLUP_VISUAL(major, 12, 1);
 	BREAK_SL(major, 1);
 }
@@ -276,8 +322,14 @@ void BreakSL()
 void LevelUpSL()
 {
 	int major = Get_Number(2, MSG_2_Major);
+	if (major == -1)
+		return;
 	int minor = Get_Number(2, MSG_2_Minor);
+	if (minor == -1)
+		return;
 	int oddity = Get_Number(2, MSG_2);
+	if (oddity == -1)
+		return;
 	SL_LVLUP_VISUAL(major, minor, oddity);
 	EVT_FUNCTION_003D();
 }
@@ -285,6 +337,8 @@ void LevelUpSL()
 void AddSL()
 {
 	int major = Get_Number(2, MSG_2);
+	if (major == -1)
+		return;
 	EVT_FUNCTION_0016( major );
 	EVT_FUNCTION_0031( major, 0, 1 );
 }
@@ -319,29 +373,33 @@ void Battles()
 				case 0:
 					CALL_BATTLE( 518, 0 );
 					break;
-				case 0:
+				case 1:
 					CALL_BATTLE( 519, 0 );
 					break;
-				case 0:
+				case 2:
 					CALL_BATTLE( 520, 0 );
 					break;
-				case 0:
+				case 3:
 					CALL_BATTLE( 521, 0 );
 					break;
-				case 0:
+				case 4:
 					CALL_BATTLE( 522, 0 );
 					break;
-				case 0:
+				case 5:
 					CALL_BATTLE( 523, 0 );
 					break;
-				case 0:
+				case 6:
 					CALL_BATTLE( 524, 0 );
 					break;
-				case 0:
+				case 7:
 					CALL_BATTLE( 525, 0 );
+					break;
+				case 8:
 					break;
 			}
 			break;
+		case 7:
+			return;
 	}
 }
 

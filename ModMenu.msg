@@ -20,7 +20,8 @@
 [f 0 5 -258][f 2 1]Call Floor[e]
 [f 0 5 -258][f 2 1]Open Facility[e]
 [f 0 5 -258][f 2 1]Change Date[e]
-[f 0 5 -258][f 2 1]Misc[e]
+[f 0 5 -258][f 2 1]More...[e]
+[f 0 5 -258][f 2 1]Exit[e]
 
 [msg Facility_Menu_Text]
 [f 0 5 -258][f 2 1]Facility Menu[n][f 1 1][e]
@@ -32,10 +33,10 @@
 [f 0 5 -258][f 2 1]Shiroku Shop[e]
 [f 0 5 -258][f 2 1]Junes Foodcourt[e]
 [f 0 5 -258][f 2 1]Velvet Room[e]
-[f 0 5 -258][f 2 1]Back[e]
+[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg Misc_Menu_Text]
-[f 0 5 -258][f 2 1]Miscellaneous[n][f 1 1][e]
+[f 0 5 -258][f 2 1]P4G Mod Menu (Page 2)[n][f 1 1][e]
 
 [sel Misc_Menu]
 [f 0 5 -258][f 2 1]Flag Edit[e]
@@ -44,7 +45,8 @@
 [f 0 5 -258][f 2 1]Spawn NPC[e]
 [f 0 5 -258][f 2 1]Social Links[e]
 [f 0 5 -258][f 2 1]Load Dungeon[e]
-[f 0 5 -258][f 2 1]Back[e]
+[f 0 5 -258][f 2 1]Go back...[e]
+[f 0 5 -258][f 2 1]Exit[e]
 
 [msg Flag_Menu_Text]
 [f 0 5 -258][f 2 1]Flag Menu[n][f 1 1][e]
@@ -52,7 +54,7 @@
 [sel Flag_Menu]
 [f 0 5 -258][f 2 1]Edit Flag[e]
 [f 0 5 -258][f 2 1]Mass Flag Edit[e]
-[f 0 5 -258][f 2 1]Back[e]
+[f 0 5 -258][f 2 1]Go back...[e]
 
 [sel OnOff]
 [f 0 5 -258][f 2 1]On[e]
@@ -67,7 +69,7 @@
 [f 0 5 -258][f 2 1]Break SL[e]
 [f 0 5 -258][f 2 1]Change SL[e]
 [f 0 5 -258][f 2 1]Add SL[e]
-[f 0 5 -258][f 2 1]Back[e]
+[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg BATTLE_SEL_Text]
 [f 0 5 -258][f 2 1]Battle Menu[n][f 1 1][e]
@@ -75,7 +77,7 @@
 [sel BATTLE_SEL]
 [f 0 5 -258][f 2 1]Manual Input[e]
 [f 0 5 -258][f 2 1]Boss Select[e]
-[f 0 5 -258][f 2 1]Back[e]
+[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg BOSS_SEL1_Text]
 [f 0 5 -258][f 2 1]Boss Select[n][f 1 1][e]
@@ -87,10 +89,11 @@
 [f 0 5 -258][f 2 1]Shadow Kanji[e]
 [f 0 5 -258][f 2 1]Shadow Teddie[e]
 [f 0 5 -258][f 2 1]Shadow Mitsuo[e]
-[f 0 5 -258][f 2 1]Next[e]
+[f 0 5 -258][f 2 1]More...[e]
+[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg BOSS_SEL2_Text]
-[f 0 5 -258][f 2 1]Boss Select[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Boss Select (Page 2)[n][f 1 1][e]
 
 [sel BOSS_SEL2]
 [f 0 5 -258][f 2 1]Shadow Naoto[e]
@@ -100,6 +103,7 @@
 [f 0 5 -258][f 2 1]Kusumi-no-Okami[e]
 [f 0 5 -258][f 2 1]Izanami[e]
 [f 0 5 -258][f 2 1]Margaret[e]
+[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg School_Text]
 [f 0 5 -258][f 2 1]Yasogami High[n][f 1 1][e]
@@ -113,7 +117,7 @@
 [f 0 5 -258][f 2 1]Class 2-2[e]
 [f 0 5 -258][f 2 1]Roof[e]
 [f 0 5 -258][f 2 1]Go into town[e]
-[f 0 5 -258][f 2 1]Back[e]
+[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg Street_Text]
 [f 0 5 -258][f 2 1]Town of Inaba[n][f 1 1][e]
@@ -126,7 +130,7 @@
 [f 0 5 -258][f 2 1]Velvet Room[e]
 [f 0 5 -258][f 2 1]Shrine[e]
 [f 0 5 -258][f 2 1]Go into town[e]
-[f 0 5 -258][f 2 1]Back[e]
+[f 0 5 -258][f 2 1]Go back...[e]
 
 [sel StreetNight]
 [f 0 5 -258][f 2 1]Shopping District, North[e]
@@ -136,4 +140,4 @@
 [f 0 5 -258][f 2 1]Shrine[e]
 [f 0 5 -258][f 2 1]Riverbank[e]
 [f 0 5 -258][f 2 1]Dojima Residence[e]
-[f 0 5 -258][f 2 1]Back[e]
+[f 0 5 -258][f 2 1]Go back...[e]
