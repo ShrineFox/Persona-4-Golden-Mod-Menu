@@ -183,15 +183,15 @@ void generate_hangout_menu()
 	}
 	
 	
-    FUNCTION_0007( 14, 16 );
+    SET_SEL_CHOICE_KEYBIND(14, 16);
     int Selection = ADV_SEL( HANGOUT_MSG, HANGOUT_SEL, SelectMask );
     
 	
 	// Cancel wasn't chosen
     if ( Selection != 16 )
     {
-        OUTRO( 1, 5 );
-        OUTRO_SYNC();
+        FADE( 1, 5 );
+        FADE_SYNC();
 		
 		// Teleport the player to the desired location depending on who they chose
 		switch(Selection) {

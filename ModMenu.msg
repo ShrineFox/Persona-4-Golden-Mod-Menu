@@ -45,6 +45,7 @@
 [f 0 5 -258][f 2 1]Spawn NPC[e]
 [f 0 5 -258][f 2 1]Social Links[e]
 [f 0 5 -258][f 2 1]Load Dungeon[e]
+[f 0 5 -258][f 2 1]Call Cutscene[e]
 [f 0 5 -258][f 2 1]Go back...[e]
 [f 0 5 -258][f 2 1]Exit[e]
 

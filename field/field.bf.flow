@@ -5,6 +5,7 @@ import( "../modMenu.flow" );
 import ( "../FindAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
 import ( "../QuickTravelPlus.flow" ); //Extended quickTravel locations for town/school (Comment out to disable)
 import ( "../VRGameOverSkip.flow" ); //Skips velvet room scene after game over (Comment out to disable)
+import ( "../DungeonTravel.flow" ); //Fast travel to any dungeon floor after their deadlines pass
 
 void order_party_hook()
 {
@@ -34,7 +35,8 @@ void order_party_hook()
 	else 
 	{
 		int dungeon = GET_FLOOR_ID();
-		int fieldMajor = FLD_FUNCTION_0022();
+		int fieldMajor = GET_FIELD_MAJOR();
+		
 		
 		if (dungeon > 0 || ((fieldMajor >= 6 && fieldMajor <= 11) || (fieldMajor == 17 || fieldMajor == 18)))
 		{
@@ -49,6 +51,9 @@ void order_party_hook()
 				SelectMask = SelectMask + 8;
 			if (!modMenu)
 				SelectMask = SelectMask + 16;
+			
+			// Enable shortcut to close
+			SET_SEL_CHOICE_KEYBIND( 14, 5 );
 			//Prompt user to choose an option if in an appropriate area
 			int selection = ADV_SEL( Square_Menu_Text, Square_Menu, SelectMask);
 			switch (selection)
