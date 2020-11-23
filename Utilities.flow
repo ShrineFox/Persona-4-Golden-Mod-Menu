@@ -11,11 +11,13 @@ int SelectDigit( int helpText )
 {
     while ( true )
     {
+		SET_SEL_CHOICE_KEYBIND(14, 6);
 		int digit = ADV_SEL( helpText, Num_Menu, 0);
 		if ( digit < 5 ) //0 through 4
 			return digit;
 		if ( digit == 5 )
         {
+			SET_SEL_CHOICE_KEYBIND(14, 5);
             digit = ADV_SEL( helpText, Num_Menu2, 0) + 5;
             if ( digit != 10 )
 				return digit; //5 through 9 or back
@@ -43,7 +45,7 @@ int Get_Number( int digitCount, int helpText )
 		number += digit;
     }
 	
-	PRINT_DEBUG(0, number, 0);
+	SET_MSG_VAR(0, number, 0);
 	OPEN_MSG_WIN();
 	MSG( ConfirmNumber );
 	int confirm = SEL(YESNO_SEL);

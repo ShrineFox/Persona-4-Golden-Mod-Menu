@@ -18,8 +18,8 @@ void dng_decease_hook()
             FLD_FUNCTION_0035();
             FLD_FUNCTION_0003();
             FUNCTION_0022( 34, 0 );
-            OUTRO( 1, 10 );
-            OUTRO_SYNC();
+            FADE( 1, 10 );
+            FADE_SYNC();
             
             if ( localVariable17 == 0 )
             {

@@ -1,13 +1,14 @@
 void field_order_hook()
 {
-	if ( FLD_FUNCTION_0022() == 6 )
+	if ( GET_FIELD_MAJOR() == 6 )
 	{
 		//Show expanded school quicktravel menu
+		SET_SEL_CHOICE_KEYBIND(14, 8);
 		int school = ADV_SEL( School_Text, School, 0 );
 		if (school < 8) 
 		{
-			OUTRO( 2, 5 );
-			OUTRO_SYNC();
+			FADE( 2, 5 );
+			FADE_SYNC();
 		}
 		switch (school)
 		{
@@ -39,7 +40,7 @@ void field_order_hook()
 				break;
 		}
 	}
-	else if ( FLD_FUNCTION_0022() == 7 )
+	else if ( GET_FIELD_MAJOR() == 7 )
 	{
 		myhouse_order();
 	}
@@ -47,12 +48,13 @@ void field_order_hook()
 	{
 		if (GET_TIME_OF_DAY() != 5)
 		{
+			SET_SEL_CHOICE_KEYBIND(14, 7);
 			//Show daytime town quicktravel menu if not at home or school
 			int street = ADV_SEL( Street_Text, Street, 0 );
 			if (street < 7) 
 			{
-				OUTRO( 2, 5 );
-				OUTRO_SYNC();
+				FADE( 2, 5 );
+				FADE_SYNC();
 			}
 			switch (street)
 			{
@@ -90,8 +92,8 @@ void field_order_hook()
 			int street = ADV_SEL( Street_Text, StreetNight, 0 );
 			if (street < 7) 
 			{
-				OUTRO( 2, 5 );
-				OUTRO_SYNC();
+				FADE( 2, 5 );
+				FADE_SYNC();
 			}
 			switch (street)
 			{
