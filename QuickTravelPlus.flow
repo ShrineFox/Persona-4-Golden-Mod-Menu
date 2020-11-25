@@ -49,6 +49,10 @@ void field_order_hook()
 		if (GET_TIME_OF_DAY() != 5)
 		{
 			SET_SEL_CHOICE_KEYBIND(14, 7);
+			int floor = GET_FLOOR_ID();
+			int fieldMajor = GET_FIELD_MAJOR();
+			int fieldMinor = GET_FIELD_MINOR();
+		
 			//Show daytime town quicktravel menu if not at home or school
 			int street = ADV_SEL( Street_Text, Street, 0 );
 			if (street < 7) 
@@ -66,15 +70,24 @@ void field_order_hook()
 					break;
 				case 2:
 					DAIDARA_SHOP();
-					CALL_FIELD( 8, 2, 2, 0 );
+					if (floor > 0 )
+						CALL_FLOOR(floor);
+					else
+						CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 					break;
 				case 3:
 					SHIROKU_SHOP();
-					CALL_FIELD( 8, 2, 3, 0 );
+					if (floor > 0 )
+						CALL_FLOOR(floor);
+					else
+						CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 					break;
 				case 4:
 					VELVET_ROOM();
-					CALL_FIELD( 8, 2, 4, 0 );
+					if (floor > 0 )
+						CALL_FLOOR(floor);
+					else
+						CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 					break;
 				case 5:
 					CALL_FIELD( 8, 9, 0, 0 );
@@ -89,6 +102,9 @@ void field_order_hook()
 		else 
 		{
 			//Show nighttime town quicktravel menu if not at home or school
+			int floor = GET_FLOOR_ID();
+			int fieldMajor = GET_FIELD_MAJOR();
+			int fieldMinor = GET_FIELD_MINOR();
 			int street = ADV_SEL( Street_Text, StreetNight, 0 );
 			if (street < 7) 
 			{
@@ -105,11 +121,17 @@ void field_order_hook()
 					break;
 				case 2:
 					SHIROKU_SHOP();
-					CALL_FIELD( 8, 2, 3, 0 );
+					if (floor > 0 )
+						CALL_FLOOR(floor);
+					else
+						CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 					break;
 				case 3:
 					VELVET_ROOM();
-					CALL_FIELD( 8, 2, 4, 0 );
+					if (floor > 0 )
+						CALL_FLOOR(floor);
+					else
+						CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 					break;
 				case 4:
 					CALL_FIELD( 8, 9, 0, 0 );
@@ -123,8 +145,6 @@ void field_order_hook()
 				case 7:
 					break;
 			}
-			
 		}
-		
 	}
 }

@@ -3,5 +3,5 @@ AtlusScriptCompiler\.log
 build/input/extracted/**
 *.bin
 build_local.bat
-
+build/output/**
 *.lnk
