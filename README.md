@@ -1,10 +1,10 @@
 # Persona 4 Golden Mod Menu
 **Custom scripts for Persona 4 Golden that replace the square button function with a fully featured trainer**
-![Image of the menu ingame](https://screenshots.gamebanana.com/img/ss/gamefiles/5fac440e3719b.jpg)
+![Image of the menu ingame](https://i.imgur.com/oW0nm48.png)
 
 [See this mod's thread on Gamebanana](https://gamebanana.com/gamefiles/13256)!
 ## Notable Features
-- Choose a Field, Event, BGM Track, Dungeon or Facility to load
+- Choose a Field, Dungeon Floor, Battle, Event, Cutscene, BGM Track, Dungeon or Facility to load
 - Toggle individual bitflags or entire ranges of them
 - Change the in-game date and time
 - Change your rank with any confidant
@@ -14,6 +14,9 @@ More features will be added in the future.
 - MobileCalendar (view the calendar from anywhere!)
 - QuickTravelPlus (extended quicktravel options in Yasogami High and around the town of Inaba)
 - VRGameOverSkip (skips velvet room scene after game over) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13301))
+- DungeonTravel (fast travel to any dungeon floor after deadline) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13356))
+- SaveAnywhere by [Tupelov](https://github.com/Tupelov) ([see mod release](https://gamebanana.com/gamefiles/13318))
+- FindAFriend by [AnimatedSwine37](https://gamebanana.com/members/1742760) ([see mod release](https://gamebanana.com/gamefiles/12921))
 ## Usage
 You can use the [Mod Compendium](https://amicitia.github.io/post/modcompendium) to create modded archives containing the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases).
 You may prefer to use [Aemulus Package Manager](https://gamebanana.com/tools/6878) instead as it supports bin merging, which increases compatibility with other mods.

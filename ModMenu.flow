@@ -142,29 +142,45 @@ int DateSelect()
 int Facilities()
 {
 	SET_SEL_CHOICE_KEYBIND(14, 6);
+	int floor = GET_FLOOR_ID();
+	int fieldMajor = GET_FIELD_MAJOR();
+	int fieldMinor = GET_FIELD_MINOR();
 	int facility = ADV_SEL(Facility_Menu_Text, Facility_Menu, 0);
 	switch (facility) 
 	{
 		case 0:
-			TV_STUDIO();
+			CALL_FIELD(20, 1, 0, 0);
 			return 0;
 		case 1:
 			TOWN_MAP(1);
 			return 0;
 		case 2:
 			DAIDARA_SHOP();
-			CALL_FIELD( 8, 2, 2, 0 );
+			if (floor > 0 )
+				CALL_FLOOR(floor);
+			else
+				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
 		case 3:
 			SHIROKU_SHOP();
-			CALL_FIELD( 8, 2, 3, 0 );
+			if (floor > 0 )
+				CALL_FLOOR(floor);
+			else
+				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
 		case 4:
-			JUNES_FOODCOURT();
+			VELVET_ROOM();
+			if (floor > 0 )
+				CALL_FLOOR(floor);
+			else
+				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
 		case 5:
-			VELVET_ROOM();
-			CALL_FIELD( 8, 2, 4, 0 );
+			JUNES_FOODCOURT();
+			if (floor > 0 )
+				CALL_FLOOR(floor);
+			else
+				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
 		case 6:
 			return -1;

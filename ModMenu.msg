@@ -31,8 +31,8 @@
 [f 0 5 -258][f 2 1]Town Map[e]
 [f 0 5 -258][f 2 1]Daidara's Shop[e]
 [f 0 5 -258][f 2 1]Shiroku Shop[e]
-[f 0 5 -258][f 2 1]Junes Foodcourt[e]
 [f 0 5 -258][f 2 1]Velvet Room[e]
+[f 0 5 -258][f 2 1]Junes Foodcourt[e]
 [f 0 5 -258][f 2 1]Go back...[e]
 
 [msg Misc_Menu_Text]
@@ -136,7 +136,7 @@
 [sel StreetNight]
 [f 0 5 -258][f 2 1]Shopping District, North[e]
 [f 0 5 -258][f 2 1]Shopping District, South[e]
-[f 0 5 -258][f 2 1]Shiroku Store[e]
+[f 0 5 -258][f 2 1]Shiroku Pub[e]
 [f 0 5 -258][f 2 1]Velvet Room[e]
 [f 0 5 -258][f 2 1]Shrine[e]
 [f 0 5 -258][f 2 1]Riverbank[e]
