@@ -115,12 +115,13 @@ int BattleSelect()
 		if (major == -1)
 			return -1;
 		CALL_BATTLE(major, 0);
+		return 0;
 	}
 	else if (battle == 1)
 	{
 		return Battles();
 	}
-	return 0;
+	return -1;
 }
 
 int DateSelect()
@@ -204,16 +205,16 @@ void Misc()
 			BAD_END_CREDITS();
 			break;
 		case 3:
-			SpawnNPC();
-			break;
-		case 4:
 			SL();
 			break;
-		case 5:
+		case 4:
 			CallDungeon();
 			break;
-		case 6:
+		case 5:
 			CutsceneSelect();
+			break;
+		case 6:
+			SFXSelect();
 			break;
 		case 7:
 			ModMenuDisplay();
@@ -223,6 +224,13 @@ void Misc()
 	}
 }
 
+void SFXSelect()
+{
+	int major = Get_Number(3, MSG_3);
+	if (major == -1)
+		return;
+	PLAY_SOUNDEFFECT(major);
+}
 
 void AddParty()
 {
@@ -431,6 +439,7 @@ void AddSL()
 
 int Battles()
 {
+	SET_SEL_CHOICE_KEYBIND(14, 8);
 	int boss = ADV_SEL( BOSS_SEL1_Text, BOSS_SEL1, 0 );
 	switch (boss)
 	{
@@ -453,39 +462,39 @@ int Battles()
 			CALL_BATTLE( 517, 0 );
 			break;
 		case 6:
-			SET_SEL_CHOICE_KEYBIND(14, 8);
+			CALL_BATTLE( 518, 0 );
+			break;
+		case 7:
+			SET_SEL_CHOICE_KEYBIND(14, 7);
 			int boss2 = ADV_SEL( BOSS_SEL2_Text, BOSS_SEL2, 0 );
 			switch (boss2)
 			{
 				case 0:
-					CALL_BATTLE( 518, 0 );
-					break;
-				case 1:
 					CALL_BATTLE( 519, 0 );
 					break;
-				case 2:
+				case 1:
 					CALL_BATTLE( 520, 0 );
 					break;
-				case 3:
+				case 2:
 					CALL_BATTLE( 521, 0 );
 					break;
-				case 4:
+				case 3:
 					CALL_BATTLE( 522, 0 );
 					break;
-				case 5:
+				case 4:
 					CALL_BATTLE( 523, 0 );
 					break;
-				case 6:
+				case 5:
 					CALL_BATTLE( 524, 0 );
 					break;
-				case 7:
+				case 6:
 					CALL_BATTLE( 525, 0 );
 					break;
-				case 8:
+				case 7:
 					break;
 			}
 			break;
-		case 7:
+		case 8:
 			return -1;
 	}
 	return 0;

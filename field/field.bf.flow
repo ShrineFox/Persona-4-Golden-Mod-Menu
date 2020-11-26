@@ -1,11 +1,14 @@
 import( "../build/input/extracted/field/script/field.bf" );
-import( "../modMenu.flow" );
+import( "../ModMenu.flow" );
 
 //EXTENSIONS
 import ( "../FindAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
 import ( "../QuickTravelPlus.flow" ); //Extended quickTravel locations for town/school (Comment out to disable)
 import ( "../VRGameOverSkip.flow" ); //Skips velvet room scene after game over (Comment out to disable)
 import ( "../DungeonTravel.flow" ); //Fast travel to any dungeon floor after their deadlines pass
+import ( "../ConsistentReaperField.flow" ); //Hooks field functions for consistent reaper 
+	//if used with DungeonTravel make sure to set ConsistentReaper bool to true in SelectFloor()
+	//also build dungeon.bf.flow with ConsistentReaper.flow uncommented in the imports
 
 void order_party_hook()
 {

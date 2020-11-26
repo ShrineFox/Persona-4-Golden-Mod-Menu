@@ -1,0 +1,78 @@
+// Hooks for consistent reaper
+void common_floor_change_hook()
+{
+    RESET_FLOOR();
+	
+	// If you say no to reaper chest, turn off reaper bits
+	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1)
+	{
+		SET_CNT( 999, 0 );
+		BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+		BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+	}
+}
+
+void backto_stair_hook()
+{
+    int var238 = GET_FLOOR_ID();
+    common_floor_change();
+    int var239 = 0;
+    
+    if ( var238 >= 20 && var238 < 40 )
+    {
+        var239 = 27;
+    }
+    else if ( var238 >= 40 && var238 < 60 || var238 >= 100 && var238 < 120 && BIT_CHK( 0 + 0x0400 + 0x0800 + 95 ) == 0 )
+    {
+        var239 = 25;
+    }
+    else if ( var238 >= 80 && var238 < 100 )
+    {
+        var239 = 26;
+    }
+    else if ( var238 >= 120 && var238 < 140 && BIT_CHK( 0 + 0x0400 + 0x0800 + 95 ) == 0 )
+    {
+        var239 = 0;
+        PLAY_SOUNDEFFECT( 705 );
+    }
+    else 
+    {
+        var239 = 24;
+    }
+
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 95 );
+    
+    if ( var239 != 0 )
+    {
+        FUNCTION_0023( 1, var239 );
+    }
+
+    FADE( 1, 10 );
+    FADE_SYNC();
+    
+    if ( var238 == 6 || var238 == 8 || var238 == 21 || var238 == 41 || var238 == 61 || var238 == 81 || var238 == 101 || var238 == 121 || var238 == 141 || var238 == 161 )
+    {
+		if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1)
+		{
+			SET_CNT( 999, 0 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+		}
+        CALL_DUNGEON( var238 - 1, 1 );
+    }
+    else if ( var238 == 123 )
+    {
+        
+        if ( GET_CNT( 29 ) <= var238 )
+        {
+            SET_CNT( 29, var238 );
+        }
+
+        CALL_DUNGEON( 120, 1 );
+    }
+    else 
+    {
+        GOTO_REL_FLOOR( -1 );
+    }
+
+}

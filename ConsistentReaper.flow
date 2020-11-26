@@ -1,0 +1,453 @@
+import("ConsistentReaper.msg");
+
+// Called whenever a treasure box spawns and determines what it is
+void dng_tbox_hook()
+{
+    int var11 = GET_FLOOR_ID();
+	// RNG function to get chest type?
+    int var12 = FLD_FUNCTION_0026();
+	
+	// Always reaper if bit is set unless locked chest
+	if (BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && var12 != 1)
+		var12 = 10;
+	
+    get_box_item_id();
+    
+    // Special chests
+    if ( var11 == 10 && sVar3 == 11262 && BIT_CHK( 0 + 0x0400 + 0x0800 + 619 ) == 0 )
+    {
+        box_open_010_1();
+    }
+    else if ( var11 == 10 && sVar3 == 11261 && BIT_CHK( 0 + 0x0400 + 0x0800 + 620 ) == 0 )
+    {
+        box_open_010_2();
+    }
+    else if ( var11 == 23 && sVar3 == 11262 && BIT_CHK( 0 + 0x0400 + 0x0800 + 644 ) == 0 )
+    {
+        box_open_023_1();
+    }
+    else if ( var11 == 23 && sVar3 == 11260 && BIT_CHK( 0 + 0x0400 + 0x0800 + 645 ) == 0 )
+    {
+        box_open_023_2();
+    }
+    else if ( var11 == 67 && sVar3 == 11261 && BIT_CHK( 0 + 0x0400 + 0x0800 + 708 ) == 0 )
+    {
+        box_open_067();
+    }
+    else if ( var11 == 84 && sVar3 == 11261 && BIT_CHK( 0 + 0x0400 + 0x0800 + 738 ) == 0 )
+    {
+        box_open_084();
+    }
+    else if ( var11 == 86 && sVar3 == 11261 && BIT_CHK( 0 + 0x0400 + 0x0800 + 737 ) == 0 )
+    {
+        box_open_086();
+    }
+    else if ( var11 == 161 && sVar3 == 11262 && BIT_CHK( 0 + 0x0400 + 0x0800 + 848 ) == 0 )
+    {
+        box_open_161_1();
+    }
+    else if ( var11 == 161 && sVar3 == 11261 && BIT_CHK( 0 + 0x0400 + 0x0800 + 849 ) == 0 )
+    {
+        box_open_161_2();
+    }
+    else if ( var11 == 161 && sVar3 == 11260 && BIT_CHK( 0 + 0x0400 + 0x0800 + 850 ) == 0 )
+    {
+        box_open_161_3();
+    }
+    else if ( var11 == 161 && sVar3 == 11259 && BIT_CHK( 0 + 0x0400 + 0x0800 + 851 ) == 0 )
+    {
+        box_open_161_4();
+    }
+    else if ( var11 > 160 && var12 == 8 || var12 == 9 )
+    {
+        tomb_enc_box();
+    }
+	// Regular chests
+    else if ( var12 == 10 )
+    {
+        // Reaper chest
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 8 ) == 0 && BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 )
+        {
+            death_box();
+        }
+		// Shadow trap chest
+        else 
+        {
+            encount_box();
+        }
+
+    }
+	// Locked chest
+    else if ( var12 == 1 )
+    {
+        rank_box();
+    }
+	// Regular chest
+    else 
+    {
+        no_rank_box();
+    }
+}
+
+void death_check_hook()
+{
+	// Get death count from 38
+    int var178 = GET_CNT( 38 );
+	
+    if ( GET_FLOOR_ID() < 160 && BIT_CHK( 0 + 0x0400 + 0x0800 + 8 ) == 0 )
+    {
+        // Reset back to 0 once the counter reaches 22
+		//(22 instead of 21 to skip the 13 -> 14 automatic changes)
+        if ( var178 >= 21 )
+        {
+            var178 = 0;
+        }
+		// Only increase counter again after beating reaper (Bit only turned back off after beating reaper)
+        else if (BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 0)
+        {
+			var178 = var178 + 1;
+        }
+
+		// Set death count to 38
+        SET_CNT( 38, var178 );
+        
+		// Turn on reaper bit after 21 chests are opened
+		//(Set to 21 instead of 13 since counter sets to 14 if at 13 in many different places)
+        if ( var178 == 13 && BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 0 )
+        {
+			// Set back to 0 so you'd need 21 more to trigger again
+			SET_CNT( 38, 14 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 46 );
+        }
+
+    }
+
+}
+
+void death_box_hook()
+{
+    int var180 = RNG( 1000 );
+    int var185 = 0;
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+    BIT_ON( 0 + 0x0400 + 0x0800 + 47 );
+    OPEN_MSG_WIN();
+    MSG( DEATH_WAIT );
+    MSG( DEATH_BOX );
+    SET_SEL_CHOICE_KEYBIND( 14, 1 );
+    int var179 = SEL( YESNO_SEL );
+    CLOSE_MSG_WIN();
+    int var183 = 0;
+    int var184 = 0;
+    int var181 = 0;
+    int var182 = 0;
+    
+    if ( var179 == 0 )
+    {
+        OPEN_MSG_WIN();
+        
+        if ( BIT_CHK( 0 + 52 ) == 1 )
+        {
+            var183 = FUNCTION_005C( 280, -40, 5, 30 );
+            MSG( DEATH_RISE );
+        }
+        else 
+        {
+            var183 = FUNCTION_005C( 280, -40, 8, 30 );
+            MSG( DEATH_KUMA );
+        }
+
+        FUNCTION_005D( var183 );
+        change_speaker();
+        MSG( DEATH_BOX_OPEN_OK );
+        SET_SEL_CHOICE_KEYBIND( 14, 1 );
+        var179 = SEL( YESNO_SEL );
+        CLOSE_MSG_WIN();
+        
+        if ( var179 == 0 )
+        {
+            itembox_open_anim();
+            OPEN_MSG_WIN();
+            MSG( DEATH_ENCOUNT );
+            CLOSE_MSG_WIN();
+            BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+            NS_WAIT( 10 );
+            var184 = CALL_BATTLE( 801, 0 );
+            
+            if ( var184 != 0 || gVar9 == 1 )
+            {
+                
+                if ( var184 == 1 )
+                {
+                    gVar9 = 0;
+                    dng_decease_2();
+                }
+                else if ( gVar9 == 1 )
+                {
+                    encount_trap();
+                }
+
+                return;
+            }
+
+            
+            if ( var180 >= 100 && FUNCTION_0052( 0 + 36 ) == 0 && GET_EQUIPMENT_ID( PartyUnit.Protagonist, 0 ) != 0 + 36 )
+            {
+                var181 = 0 + 36;
+            }
+            else if ( var180 >= 100 && (GET_PARTY_MEMBER_ID( 0 ) == 2 || GET_PARTY_MEMBER_ID( 1 ) == 2 || GET_PARTY_MEMBER_ID( 2 ) == 2) && GET_EQUIPMENT_ID( PartyUnit.Yosuke, 0 ) != 0 + 70 && FUNCTION_0052( 0 + 70 ) == 0 )
+            {
+                var181 = 0 + 70;
+            }
+            else if ( var180 >= 100 && (GET_PARTY_MEMBER_ID( 0 ) == 3 || GET_PARTY_MEMBER_ID( 1 ) == 3 || GET_PARTY_MEMBER_ID( 2 ) == 3) && GET_EQUIPMENT_ID( PartyUnit.Chie, 0 ) != 0 + 142 && FUNCTION_0052( 0 + 142 ) == 0 )
+            {
+                var181 = 0 + 142;
+            }
+            else if ( var180 >= 100 && (GET_PARTY_MEMBER_ID( 0 ) == 4 || GET_PARTY_MEMBER_ID( 1 ) == 4 || GET_PARTY_MEMBER_ID( 2 ) == 4) && GET_EQUIPMENT_ID( PartyUnit.Yukiko, 0 ) != 0 + 104 && FUNCTION_0052( 0 + 104 ) == 0 )
+            {
+                var181 = 0 + 104;
+            }
+            else if ( var180 >= 100 && (GET_PARTY_MEMBER_ID( 0 ) == 6 || GET_PARTY_MEMBER_ID( 1 ) == 6 || GET_PARTY_MEMBER_ID( 2 ) == 6) && GET_EQUIPMENT_ID( PartyUnit.Kanji, 0 ) != 0 + 175 && FUNCTION_0052( 0 + 175 ) == 0 )
+            {
+                var181 = 0 + 175;
+            }
+            else if ( var180 >= 100 && (GET_PARTY_MEMBER_ID( 0 ) == 8 || GET_PARTY_MEMBER_ID( 1 ) == 8 || GET_PARTY_MEMBER_ID( 2 ) == 8) && GET_EQUIPMENT_ID( PartyUnit.Teddie, 0 ) != 0 + 238 && FUNCTION_0052( 0 + 238 ) == 0 )
+            {
+                var181 = 0 + 238;
+            }
+            else if ( var180 >= 100 && (GET_PARTY_MEMBER_ID( 0 ) == 7 || GET_PARTY_MEMBER_ID( 1 ) == 7 || GET_PARTY_MEMBER_ID( 2 ) == 7) && GET_EQUIPMENT_ID( PartyUnit.Naoto, 0 ) != 0 + 197 && FUNCTION_0052( 0 + 197 ) == 0 )
+            {
+                var181 = 0 + 197;
+            }
+            else if ( var180 <= 900 )
+            {
+                var181 = 0x0100 + 162;
+            }
+            else 
+            {
+                var181 = 0x0200 + 95;
+            }
+
+            var182 = FUNCTION_0052( var181 ) + 1;
+            FUNCTION_0053( var181, var182 );
+            SET_MSG_VAR( 0, var181, 1 );
+            SET_MSG_VAR( 1, 1, 0 );
+            OPEN_MSG_WIN();
+            MSG( GET_ITEM_MES );
+            CLOSE_MSG_WIN();
+        }
+        else if ( var179 == 1 )
+        {
+            var185 = 1;
+        }
+
+    }
+    else if ( var179 == 1 )
+    {
+        var185 = 1;
+    }
+
+    // Selecting no
+    if ( var185 == 1 )
+    {
+		OPEN_MSG_WIN();
+		MSG( New_Death_Msg );
+		CLOSE_MSG_WIN();
+		SET_CNT(999, 1);
+        BIT_ON( 0 + 0x0400 + 0x0800 + 46 );
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+    }
+
+}
+
+void common_floor_change_hook()
+{
+    RESET_FLOOR();
+	// Turn off bits if they said no
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1  )
+	{
+		SET_CNT( 999, 0 );
+		BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+		BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+	}
+
+}
+
+void backto_stair_hook()
+{
+    int var238 = GET_FLOOR_ID();
+    common_floor_change();
+    int var239 = 0;
+    
+    if ( var238 >= 20 && var238 < 40 )
+    {
+        var239 = 27;
+    }
+    else if ( var238 >= 40 && var238 < 60 || var238 >= 100 && var238 < 120 && BIT_CHK( 0 + 0x0400 + 0x0800 + 95 ) == 0 )
+    {
+        var239 = 25;
+    }
+    else if ( var238 >= 80 && var238 < 100 )
+    {
+        var239 = 26;
+    }
+    else if ( var238 >= 120 && var238 < 140 && BIT_CHK( 0 + 0x0400 + 0x0800 + 95 ) == 0 )
+    {
+        var239 = 0;
+        PLAY_SOUNDEFFECT( 705 );
+    }
+    else 
+    {
+        var239 = 24;
+    }
+
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 95 );
+    
+    if ( var239 != 0 )
+    {
+        FUNCTION_0023( 1, var239 );
+    }
+
+    FADE( 1, 10 );
+    FADE_SYNC();
+    
+    if ( var238 == 6 || var238 == 8 || var238 == 21 || var238 == 41 || var238 == 61 || var238 == 81 || var238 == 101 || var238 == 121 || var238 == 141 || var238 == 161 )
+    {
+		int floor = var238 - 1;
+		if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && 
+			(GET_CNT( 999 ) == 1 || floor == 1 || floor == 5 || floor == 20
+			|| floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120
+			|| floor == 140 || floor == 160) )
+		{
+			SET_CNT( 999, 0 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+		}
+        CALL_DUNGEON( var238 - 1, 1 );
+    }
+    else if ( var238 == 123 )
+    {
+        
+        if ( GET_CNT( 29 ) <= var238 )
+        {
+            SET_CNT( 29, var238 );
+        }
+
+        CALL_DUNGEON( 120, 1 );
+    }
+    else 
+    {
+        GOTO_REL_FLOOR( -1 );
+    }
+
+}
+
+// Go Home item
+void dng_escape_hook()
+{
+    int var17 = GET_FLOOR_ID();
+    int var18 = GET_FLOOR_ID();
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 92 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 93 ) == 0 )
+    {
+        NS_WAIT( 10 );
+        PLAY_SOUNDEFFECT( 241 );
+        NS_WAIT( 10 );
+        OPEN_MSG_WIN();
+        MSG( ESCAPE_BAN );
+        CLOSE_MSG_WIN();
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+    }
+
+    
+    if ( FLD_FUNCTION_0036() == 1 && FLD_FUNCTION_0037() == 0 )
+    {
+        var18 = var18 + 1;
+    }
+
+    
+    if ( var17 >= 5 && var17 < 20 )
+    {
+        SET_CNT( 23, var18 );
+    }
+    else if ( var17 >= 20 && var17 < 40 )
+    {
+        SET_CNT( 24, var18 );
+    }
+    else if ( var17 >= 40 && var17 < 60 )
+    {
+        SET_CNT( 25, var18 );
+    }
+    else if ( var17 >= 60 && var17 < 80 )
+    {
+        SET_CNT( 26, var18 );
+    }
+    else if ( var17 >= 80 && var17 < 100 )
+    {
+        SET_CNT( 27, var18 );
+    }
+    else if ( var17 >= 100 && var17 < 120 )
+    {
+        SET_CNT( 28, var18 );
+    }
+    else if ( var17 >= 120 && var17 < 140 )
+    {
+        
+        if ( var17 != 121 && var17 != 122 && var17 != 129 )
+        {
+            SET_CNT( 29, var18 );
+        }
+
+    }
+    else if ( var17 >= 140 && var17 < 160 )
+    {
+        SET_CNT( 30, var18 );
+    }
+    else if ( var17 >= 160 && var17 < 180 )
+    {
+        SET_CNT( 37, var17 );
+    }
+
+    TRAESTO_VISUAL();
+    
+    if ( var17 > 5 && var17 < 20 )
+    {
+        CALL_DUNGEON( 5, 1 );
+    }
+    else if ( var17 > 20 && var17 < 40 )
+    {
+        CALL_DUNGEON( 20, 1 );
+    }
+    else if ( var17 > 40 && var17 < 60 )
+    {
+        CALL_DUNGEON( 40, 1 );
+    }
+    else if ( var17 > 60 && var17 < 80 )
+    {
+        CALL_DUNGEON( 60, 1 );
+    }
+    else if ( var17 > 80 && var17 < 100 )
+    {
+        CALL_DUNGEON( 80, 1 );
+    }
+    else if ( var17 > 100 && var17 < 120 )
+    {
+        CALL_DUNGEON( 100, 1 );
+    }
+    else if ( var17 > 120 && var17 < 140 )
+    {
+        CALL_DUNGEON( 120, 1 );
+    }
+    else if ( var17 > 140 && var17 < 160 )
+    {
+        CALL_DUNGEON( 140, 1 );
+    }
+    else if ( var17 > 160 && var17 < 180 )
+    {
+        CALL_DUNGEON( 160, 1 );
+    }
+
+}
