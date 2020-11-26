@@ -1,7 +1,7 @@
 void dng_decease_hook()
 {
     int localVariable17 = GET_FLOOR_ID();
-    int localVariable18 = FUNCTION_0021( 34 );
+    int localVariable18 = GET_CNT( 34 );
     SHOW_DATE( 0 );
     SHOW_DATE( 1 );
     int localVariable16 = 0;
@@ -16,8 +16,8 @@ void dng_decease_hook()
         if ( localVariable16 == 0 )
         {
             FLD_FUNCTION_0035();
-            FLD_FUNCTION_0003();
-            FUNCTION_0022( 34, 0 );
+            RESET_FLOOR();
+            SET_CNT( 34, 0 );
             FADE( 1, 10 );
             FADE_SYNC();
             

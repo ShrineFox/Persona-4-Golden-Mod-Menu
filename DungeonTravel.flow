@@ -99,13 +99,13 @@ void helper_order_hook()
             if ( var33 >= 1 && var33 <= 2 && GET_FLOOR_ID() < 160 )
             {
                 
-                if ( GET_EQUIPMENT_ID( PartyUnit.Protagonist, 3 ) != FUNCTION_0021( 242 ) && GET_EQUIPMENT_ID( PartyUnit.Protagonist, 3 ) != 1792 + 0 )
+                if ( GET_EQUIPMENT_ID( PartyUnit.Protagonist, 3 ) != GET_CNT( 242 ) && GET_EQUIPMENT_ID( PartyUnit.Protagonist, 3 ) != 1792 + 0 )
                 {
                     CLOSE_MSG_WIN();
                 }
                 COStalk_SYSSET();
                 
-                if ( FUNCTION_0021( 249 ) >= 5 )
+                if ( GET_CNT( 249 ) >= 5 )
                 {
                     CLOSE_MSG_WIN();
                 }
@@ -293,6 +293,7 @@ void init_sel_mask_hook()
 
 void SelectFloor()
 {
+	bool ConsitentReaper = true;
 	int floor = GET_FLOOR_ID();
 	int EntranceFloor;
 	int FloorText;
@@ -334,10 +335,10 @@ void SelectFloor()
 		FloorText = NanakoFloors1;
 	}
 	// Adachi
-	else if (floor >= 121 && floor < 127)
+	else if (floor >= 120 && floor < 130)
 	{
-		EntranceFloor = 121;
-		FloorText = AdachiFloors;
+		EntranceFloor = 120;
+		FloorText = AdachiFloors1;
 	}
 	
 	int switchFloor = GET_FLOOR_ID() - EntranceFloor;
@@ -403,14 +404,20 @@ void SelectFloor()
 				CLOSE_MSG_WIN();
 				return;
 			}
-			else if (selection != 6 || FloorText == AdachiFloors)
+			else if (selection != 6)
 				selected = true;
+				
+			if (FloorText == AdachiFloors1 && selection > 0)
+				selection = selection + 2;
 		}
 		else
 		{
 			// Close shortcuts
 			switch (FloorText)
 			{
+				case AdachiFloors1:
+					SET_SEL_CHOICE_KEYBIND( 14, 3 );
+					break;
 				case YukikoFloors1:
 					SET_SEL_CHOICE_KEYBIND( 14, 4 );
 					break;
@@ -431,6 +438,18 @@ void SelectFloor()
 			
 			switch (FloorText)
 			{
+				case AdachiFloors1:
+					if (selection == 3)
+					{
+						CLOSE_MSG_WIN();
+						return;
+					}
+					else if (selection != 2)
+					{
+						selection = selection + 8;
+						selected = true;
+					}
+					break;
 				case YukikoFloors1:
 					if (selection == 4)
 					{
@@ -487,12 +506,29 @@ void SelectFloor()
 	CLOSE_MSG_WIN();
 	
 	int nextFloor = selection + EntranceFloor;
+
+	common_floor_change();
+	
+	if (ConsitentReaper && ( nextFloor == 5 || nextFloor == 20 || nextFloor == 40 || nextFloor == 60 || nextFloor == 80 || nextFloor == 100 || nextFloor == 120 || nextFloor == 140 || nextFloor == 160 ))
+	{
+		if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1)
+		{
+			SET_CNT( 999, 0 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+		}
+	}
+	
 	FADE( 1, 10 );
 	FADE_SYNC();
-	if (nextFloor > switchFloor)
+	
+	if (nextFloor == 7 || nextFloor == 13 || nextFloor == 31 || nextFloor == 51 || nextFloor == 70 
+		|| nextFloor == 89 || nextFloor == 110 || nextFloor == 129)
+	{
 		CALL_DUNGEON(nextFloor, 0);
+	}
 	else
-		CALL_DUNGEON(nextFloor, 1);
+		GOTO_REL_FLOOR( nextFloor - floor );
 }
 
 // Returns true if it's pass the deadlines
@@ -532,7 +568,7 @@ bool BeatDungeon()
 		return CHECK_TIME_SPAN(11, 21, 3, 30);
 	}
 	// Adachi
-	else if (floor >= 121 && floor < 127)
+	else if (floor >= 120 && floor < 130)
 	{
 		return CHECK_TIME_SPAN(12, 25, 3, 30);
 	}

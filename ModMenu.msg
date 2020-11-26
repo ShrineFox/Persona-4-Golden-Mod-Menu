@@ -1,3 +1,6 @@
+[msg playsfx]
+[f 0 5 -258][f 2 1]SFX index: [f 2 4 0][n][f 1 1][e]
+
 [msg Square_Menu_Text]
 [f 0 5 -258][f 2 1]What will you do?[n][f 1 1][e]
 
@@ -42,10 +45,10 @@
 [f 0 5 -258][f 2 1]Flag Edit[e]
 [f 0 5 -258][f 2 1]Add Party Members[e]
 [f 0 5 -258][f 2 1]Play Credits[e]
-[f 0 5 -258][f 2 1]Spawn NPC[e]
 [f 0 5 -258][f 2 1]Social Links[e]
 [f 0 5 -258][f 2 1]Load Dungeon[e]
 [f 0 5 -258][f 2 1]Call Cutscene[e]
+[f 0 5 -258][f 2 1]Call SFX[e]
 [f 0 5 -258][f 2 1]Go back...[e]
 [f 0 5 -258][f 2 1]Exit[e]
 
@@ -88,6 +91,7 @@
 [f 0 5 -258][f 2 1]Shadow Chie[e]
 [f 0 5 -258][f 2 1]Shadow Yukiko[e]
 [f 0 5 -258][f 2 1]Shadow Kanji[e]
+[f 0 5 -258][f 2 1]Shadow Rise[e]
 [f 0 5 -258][f 2 1]Shadow Teddie[e]
 [f 0 5 -258][f 2 1]Shadow Mitsuo[e]
 [f 0 5 -258][f 2 1]More...[e]
