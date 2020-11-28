@@ -158,28 +158,52 @@ int Facilities()
 		case 2:
 			DAIDARA_SHOP();
 			if (floor > 0 )
-				CALL_FLOOR(floor);
+			{
+				if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
+				|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
+					CALL_DUNGEON(floor, 0);
+				else
+					CALL_FLOOR(floor);
+			}
 			else
 				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
 		case 3:
 			SHIROKU_SHOP();
 			if (floor > 0 )
-				CALL_FLOOR(floor);
+			{
+				if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
+				|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
+					CALL_DUNGEON(floor, 0);
+				else
+					CALL_FLOOR(floor);
+			}
 			else
 				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
 		case 4:
 			VELVET_ROOM();
 			if (floor > 0 )
-				CALL_FLOOR(floor);
+			{
+				if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
+				|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
+					CALL_DUNGEON(floor, 0);
+				else
+					CALL_FLOOR(floor);
+			}
 			else
 				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
 		case 5:
 			JUNES_FOODCOURT();
 			if (floor > 0 )
-				CALL_FLOOR(floor);
+			{
+				if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
+				|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
+					CALL_DUNGEON(floor, 0);
+				else
+					CALL_FLOOR(floor);
+			}
 			else
 				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
@@ -242,9 +266,14 @@ void AddParty()
 	// Only reload floor mid-dungeon (not entrances) to get party member in
 	if (floor > 1 && floor != 2 && floor != 3 && floor != 5 && floor != 20 && floor != 40 && floor != 60 && floor != 80 && floor != 100 && floor != 120 && floor != 140 && floor != 160)
 	{
+		dng_set_npc();
 		FADE( 1, 10 );
 		FADE_SYNC();
-		CALL_FLOOR(floor);
+		if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
+		|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
+			CALL_DUNGEON(floor, 0);
+		else
+			CALL_FLOOR(floor);
 	}
 }
 
@@ -262,7 +291,13 @@ void CutsceneSelect()
 	FADE(2, 5);
 	FADE_SYNC();
 	if (floor > 0 )
-		CALL_FLOOR(floor);
+	{
+		if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
+		|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
+			CALL_DUNGEON(floor, 0);
+		else
+			CALL_FLOOR(floor);
+	}
 	else
 		CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 }
@@ -291,7 +326,7 @@ void CallDungeon()
 	int major = Get_Number(3, MSG_3_Major);
 	if (major == -1)
 		return;
-	int minor = Get_Number(3, MSG_3_Minor);
+	int minor = Get_Number(4, MSG_4);
 	if (minor == -1)
 		return;
 	FADE(4, 10);
