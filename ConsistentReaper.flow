@@ -147,16 +147,16 @@ void death_box_hook()
         
         if ( BIT_CHK( 0 + 52 ) == 1 )
         {
-            var183 = FUNCTION_005C( 280, -40, 5, 30 );
+            var183 = NAVI_BU_OPEN( 280, -40, 5, 30 );
             MSG( DEATH_RISE );
         }
         else 
         {
-            var183 = FUNCTION_005C( 280, -40, 8, 30 );
+            var183 = NAVI_BU_OPEN( 280, -40, 8, 30 );
             MSG( DEATH_KUMA );
         }
 
-        FUNCTION_005D( var183 );
+        NAVI_BU_CLOSE( var183 );
         change_speaker();
         MSG( DEATH_BOX_OPEN_OK );
         SET_SEL_CHOICE_KEYBIND( 14, 1 );

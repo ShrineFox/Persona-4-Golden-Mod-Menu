@@ -291,7 +291,7 @@ void CallDungeon()
 	int major = Get_Number(3, MSG_3_Major);
 	if (major == -1)
 		return;
-	int minor = Get_Number(3, MSG_3_Minor);
+	int minor = Get_Number(4, MSG_4);
 	if (minor == -1)
 		return;
 	FADE(4, 10);

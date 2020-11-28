@@ -5,7 +5,8 @@ import( "../ModMenu.flow" );
 import ( "../FindAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
 import ( "../QuickTravelPlus.flow" ); //Extended quickTravel locations for town/school (Comment out to disable)
 import ( "../VRGameOverSkip.flow" ); //Skips velvet room scene after game over (Comment out to disable)
-import ( "../DungeonTravel.flow" ); //Fast travel to any dungeon floor after their deadlines pass
+import ( "../DungeonOptions.flow" ); //Fast travel to any dungeon floor after their deadlines pass
+	//and organize party on any floor (Comment out to disable)
 import ( "../ConsistentReaperField.flow" ); //Hooks field functions for consistent reaper 
 	//if used with DungeonTravel make sure to set ConsistentReaper bool to true in SelectFloor()
 	//also build dungeon.bf.flow with ConsistentReaper.flow uncommented in the imports
@@ -48,7 +49,7 @@ void order_party_hook()
 				SelectMask = SelectMask + 1;
 			if ( GET_FLOOR_ID() > 0 || !findAFriend)
 				SelectMask = SelectMask + 2;
-			if (!mobileCalendar)
+			if (!mobileCalendar || dungeon > 0)
 				SelectMask = SelectMask + 4;
 			if (!saveAnywhere)
 				SelectMask = SelectMask + 8;

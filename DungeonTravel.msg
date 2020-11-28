@@ -1,12 +1,10 @@
 [msg SelectFloorsMsg]
 [f 0 5 -258][f 2 1]Which floor?[e]
 
-[msg Blank]
-[f 0 5 -258][f 2 1]What will you do?[e]
-
 [sel ENTRANCE_SEL_HOOK]
 [f 0 5 -258][f 2 1]Return to the entrance[e]
 [f 0 5 -258][f 2 1]Select floor[e]
+[f 0 5 -258][f 2 1]Organize party[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel DUNGEON_SEL_HOOK]
@@ -18,6 +16,7 @@
 [f 0 5 -258][f 2 1]Return to previous floor[e]
 [f 0 5 -258][f 2 1]Return to entrance[e]
 [f 0 5 -258][f 2 1]Select floor[e]
+[f 0 5 -258][f 2 1]Organize party[e]
 [f 0 5 -258][f 2 1]Nothing[e]
 
 
@@ -136,16 +135,18 @@
 
 [sel AdachiFloors1]
 [f 0 5 -258][f 2 1]Desolate Bedroom[e]
+[f 0 5 -258][f 2 1]Magatsu Inaba (1)[e]
+[f 0 5 -258][f 2 1]Magatsu Inaba (2)[e]
 [f 0 5 -258][f 2 1]Magatsu Mandala World 1[e]
 [f 0 5 -258][f 2 1]Magatsu Mandala World 2[e]
 [f 0 5 -258][f 2 1]Magatsu Mandala World 3[e]
-[f 0 5 -258][f 2 1]Magatsu Mandala World 4[e]
-[f 0 5 -258][f 2 1]Magatsu Mandala World 5[e]
 [f 0 5 -258][f 2 1]Next[e]
 [f 0 5 -258][f 2 1]Close[e]
 
 [sel AdachiFloors2]
+[f 0 5 -258][f 2 1]Magatsu Mandala World 4[e]
+[f 0 5 -258][f 2 1]Magatsu Mandala World 5[e]
 [f 0 5 -258][f 2 1]Magatsu Mandala World 6[e]
-[f 0 5 -258][f 2 1]Magatsu Inaba[e]
+[f 0 5 -258][f 2 1]Magatsu Inaba (Boss Floor)[e]
 [f 0 5 -258][f 2 1]Back[e]
 [f 0 5 -258][f 2 1]Close[e]
