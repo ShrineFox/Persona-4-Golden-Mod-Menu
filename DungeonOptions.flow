@@ -11,6 +11,7 @@
 
 import ("OrganizeParty.flow");
 import( "DungeonTravel.flow" );
+import( "GohoM.flow" );
 
 // 
 // Script-level variable definitions
@@ -91,9 +92,10 @@ void helper_order_hook()
     
     if ( 1 )
     {
+		SET_MSG_VAR(1, GET_ITEM(790), 0);
 		// Sets mask
         SET_MASK( sVar1 );
-        SET_SEL_CHOICE_KEYBIND( 14, 9 );
+        SET_SEL_CHOICE_KEYBIND( 14, 10 );
         var33 = SEL( DUNGEON_SEL_HOOK );
 		
         if ( var33 == 0 )
@@ -165,16 +167,24 @@ void helper_order_hook()
         else if ( var33 == 7 )
         {
 			CLOSE_MSG_WIN();
+			NAVI_BU_CLOSE( sVar7 );
 			SelectFloor();
             goto _101;
         }
 		else if ( var33 == 8 )
 		{
 			CLOSE_MSG_WIN();
+			NAVI_BU_CLOSE( sVar7 );
 			OrganizeParty();
             goto _101;
 		}
-		else if ( var33 == 9 ) 
+		else if ( var33 == 9 )
+		{
+			CLOSE_MSG_WIN();
+			use_gohom();
+            goto _101;
+		}
+		else if ( var33 == 10 ) 
         {
 			goto _101;
         }
@@ -303,6 +313,8 @@ void init_sel_mask_hook()
 	// Hide floor select
 	if (showFloorSelect == false)
 		sVar1 = sVar1 + 0x80;
+	else
+		sVar1 = sVar1 + 0x200;
 	if (EnableOrganizeParty() == false)
 		sVar1 = sVar1 + 0x100;
 }

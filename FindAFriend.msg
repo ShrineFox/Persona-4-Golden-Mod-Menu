@@ -19,3 +19,6 @@
 [f 0 5 -258][f 2 1]Yosuke[e]
 [f 0 5 -258][f 2 1]Yukiko[e]
 [f 0 5 -258][f 2 1]Cancel[e]
+
+[msg NoFriends]
+[f 0 5 -258][f 2 1]No friends are available to[n]travel to or rank up.[n][f 1 1][e]

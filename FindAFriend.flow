@@ -183,6 +183,14 @@ void generate_hangout_menu()
 	}
 	
 	
+	if (SelectMask == 65535)
+	{
+		OPEN_MSG_WIN();
+		MSG(NoFriends);
+		CLOSE_MSG_WIN();
+		return;
+	}
+	
     SET_SEL_CHOICE_KEYBIND(14, 16);
     int Selection = ADV_SEL( HANGOUT_MSG, HANGOUT_SEL, SelectMask );
     
