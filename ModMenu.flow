@@ -8,7 +8,7 @@ void ModMenuDisplay()
 {
 	while(true) 
 	{
-		SET_SEL_CHOICE_KEYBIND(14, 6);
+		SET_SEL_CHOICE_KEYBIND(14, 3);
 		int selection = ADV_SEL(Mod_Menu_Text, Mod_Menu, 0);
 		switch (selection)
 		{
@@ -18,29 +18,14 @@ void ModMenuDisplay()
 				else
 					return;
 			case 1:
-				if (Facilities() == -1)
+				if (PlayerMenuDisplay() == -1)
 					break;
 				else
 					return;
 			case 2:
-				if (DateSelect() == -1)
-					break;
-				else
-					return;
-			case 3:
-				if (ChangeYen() == -1)
-					break;
-				else
-					return;
-			case 4:
-				if (ChangeItem() == -1)
-					break;
-				else
-					return;
-			case 5:
-				Misc();
+				Flag_Menu();
 				return;
-			case 6:
+			case 3:
 				return;
 		}
 	}
@@ -60,17 +45,17 @@ int CallMenuDisplay()
 		switch (selection)
 		{
 			case 0:
-				if (BGMSelect() == -1)
-					break;
-				else
-					return 0;
-			case 1:
 				if (FieldSelect() == -1)
 					break;
 				else
 					return 0;
-			case 2:
+			case 1:
 				if (EventSelect() == -1)
+					break;
+				else
+					return 0;
+			case 2:
+				if (Facilities() == -1)
 					break;
 				else
 					return 0;
@@ -85,11 +70,17 @@ int CallMenuDisplay()
 				else
 					return 0;
 			case 5:
-				if (CallMenuDisplay2() == -1)
+				if (CallDungeon() == -1)
 					break;
 				else
 					return 0;
 			case 6:
+				if (CallMenuDisplay2() == -1)
+					break;
+				else
+					return 0;
+			case 7:
+				ModMenuDisplay();
 				return 0;
 		}
 	}
@@ -101,7 +92,7 @@ int CallMenuDisplay2()
 	while(true) 
 	{
 		SET_SEL_CHOICE_KEYBIND(14, 4);
-		int selection = ADV_SEL(Call_Menu_Text, Call_Menu_2, 0);
+		int selection = ADV_SEL(Call_Menu_Text_2, Call_Menu_2, 0);
 		switch (selection)
 		{
 			case 0:
@@ -110,21 +101,61 @@ int CallMenuDisplay2()
 				else
 					return 0;
 			case 1:
-				if (SFXSelect() == -1)
-					break;
-				else
-					return 0;
+				BAD_END_CREDITS();
+				break;
 			case 2:
-				if (CallDungeon() == -1)
+				if (BGMSelect() == -1)
 					break;
 				else
 					return 0;
 			case 3:
-				if (CallMenuDisplay() == -1)
+				if (SFXSelect() == -1)
 					break;
 				else
 					return 0;
 			case 4:
+				if (CallMenuDisplay() == -1)
+					break;
+				else
+					return 0;
+			case 5:
+				return 0;
+		}
+	}
+	return -1;
+}
+
+int PlayerMenuDisplay()
+{
+	while(true) 
+	{
+		SET_SEL_CHOICE_KEYBIND(14, 5);
+		int selection = ADV_SEL(Player_Menu_Text, Player_Menu, 0);
+		switch (selection)
+		{
+			case 0:
+				if (DateSelect() == -1)
+					break;
+				else
+					return 0;
+			case 1:
+				if (ChangeYen() == -1)
+					break;
+				else
+					return 0;
+			case 2:
+				if (ChangeItem() == -1)
+					break;
+				else
+					return 0;
+			case 3:
+				SL();
+				break;
+			case 4:
+				AddParty();
+				break;
+			case 5:
+				ModMenuDisplay();
 				return 0;
 		}
 	}
@@ -335,32 +366,6 @@ int Facilities()
 	return -1;
 }
 
-void Misc()
-{
-	SET_SEL_CHOICE_KEYBIND(14, 5);
-	int misc = ADV_SEL(Misc_Menu_Text, Misc_Menu, 0);
-	switch (misc) 
-	{
-		case 0:
-			Flag_Menu();
-			break;
-		case 1:
-			AddParty();
-			break;
-		case 2:
-			BAD_END_CREDITS();
-			break;
-		case 3:
-			SL();
-			break;
-		case 4:
-			ModMenuDisplay();
-			break;
-		case 5:
-			return;
-	}
-}
-
 int SFXSelect()
 {
 	int major = Get_Number(3, MSG_3);
@@ -453,17 +458,21 @@ int CallDungeon()
 
 void Flag_Menu()
 {
-	int flag = ADV_SEL(Flag_Menu_Text, Flag_Menu, 0);
-	switch (flag) 
+	while(true)
 	{
-		case 0:
-			ToggleBit();
-			break;
-		case 1:
-			ToggleBitRange();
-			break;
-		case 2:
-			break;
+		int flag = ADV_SEL(Flag_Menu_Text, Flag_Menu, 0);
+		switch (flag) 
+		{
+			case 0:
+				ToggleBit();
+				break;
+			case 1:
+				ToggleBitRange();
+				break;
+			case 2:
+				ModMenuDisplay();
+				return;
+		}
 	}
 }
 
@@ -513,27 +522,30 @@ void ToggleBitRange()
 
 void SL()
 {
-	SET_SEL_CHOICE_KEYBIND(14, 5);
-	int sl = ADV_SEL(SL_Menu_Text, SL_Menu, 0);
-	switch (sl)
+	while(true)
 	{
-		case 0:
-			IncreaseSL();
-			break;
-		case 1:
-			ReverseSL();
-			break;
-		case 2:
-			BreakSL();
-			break;
-		case 3:
-			LevelUpSL();
-			break;
-		case 4:
-			AddSL();
-			break;
-		case 5:
-			break;
+		SET_SEL_CHOICE_KEYBIND(14, 5);
+		int sl = ADV_SEL(SL_Menu_Text, SL_Menu, 0);
+		switch (sl)
+		{
+			case 0:
+				IncreaseSL();
+				break;
+			case 1:
+				ReverseSL();
+				break;
+			case 2:
+				BreakSL();
+				break;
+			case 3:
+				LevelUpSL();
+				break;
+			case 4:
+				AddSL();
+				break;
+			case 5:
+				return;
+		}
 	}
 }
 
