@@ -12,6 +12,7 @@ if not exist %OUTPUT_PATH%\field mkdir %OUTPUT_PATH%\field
 %PAKPACK% unpack "%INPUT_PATH%\init_free.bin"   %INPUT_PATH%\extracted
 
 %COMPILER% .\field\field.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\field\field.bf" -Hook
+%COMPILER% .\dungeon\dungeon.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\field\script\dungeon.bf" -Hook
 
 %PAKPACK% replace "%INPUT_PATH%\init_free.bin"   field/script/field.bf   "%OUTPUT_PATH%\field\field.bf"   "%OUTPUT_PATH%\init_free.bin"
 
@@ -20,3 +21,4 @@ rmdir /s /q "%INPUT_PATH%\extracted"
 del /s /q "%OUTPUT_PATH%\field\*"
 rmdir /s /q "%OUTPUT_PATH%\field"
 del "%OUTPUT_PATH%\field\field.bf"
+del "%OUTPUT_PATH%\field\script\dungeon.bf"
