@@ -14,7 +14,7 @@ More features will be added in the future.
 - DungeonOptions (fast travel to any dungeon floor after deadline, use goho-ms, organize party) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13356))
 - SaveAnywhere by [Tupelov](https://github.com/Tupelov) ([see mod release](https://gamebanana.com/gamefiles/13318))
 - FindAFriend by [AnimatedSwine37](https://gamebanana.com/members/1742760) ([see mod release](https://gamebanana.com/gamefiles/12921))
-- ConsistentReaper by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13301))
+- ConsistentReaper by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13381))
 ## Usage
 You can use the [Mod Compendium](https://amicitia.github.io/post/modcompendium) to merge the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases) with other mods.
 You may prefer to use [Aemulus Package Manager](https://gamebanana.com/tools/6878) instead as it supports bin merging, which increases compatibility with other mods.  
