@@ -4,7 +4,7 @@
 [See this mod's thread on Gamebanana](https://gamebanana.com/gamefiles/13256)!
 ## Notable Features
 - **Call Menu**: Using IDs, call a Field, Dungeon Floor, Battle, Event, Cutscene, BGM/SFX Track, Dungeon or Facility to load
-- **Player Menu**: Change date/time, Confidant ranks, give yen/items, manage party members
+- **Player Menu**: Change date/time, Social Link ranks, give yen/items, manage party members
 - **Flags**: Toggle individual bitflags or entire ranges of them
 More features will be added in the future.
 ## Optional Extensions
