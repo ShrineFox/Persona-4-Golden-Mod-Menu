@@ -12,6 +12,14 @@
 [f 0 5 -258][f 2 1]Mod menu[e]
 [f 0 5 -258][f 2 1]Exit[e]
 
+[sel Square_Menu_Dng]
+[f 0 5 -258][f 2 1]Dungeon options[e]
+[f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]View calendar[e]
+[f 0 5 -258][f 2 1]Save[e]
+[f 0 5 -258][f 2 1]Mod menu[e]
+[f 0 5 -258][f 2 1]Exit[e]
+
 [msg Mod_Menu_Text]
 [f 0 5 -258][f 2 1]P4G Mod Menu[n][f 1 1][e]
 

@@ -59,7 +59,11 @@ void order_party_hook()
 			// Enable shortcut to close
 			SET_SEL_CHOICE_KEYBIND( 14, 5 );
 			//Prompt user to choose an option if in an appropriate area
-			int selection = ADV_SEL( Square_Menu_Text, Square_Menu, SelectMask);
+			int selection = 0;
+			if ( GET_FLOOR_ID() > 0)
+				selection = ADV_SEL( Square_Menu_Text, Square_Menu_Dng, SelectMask);
+			else
+				selection = ADV_SEL( Square_Menu_Text, Square_Menu, SelectMask);
 			switch (selection)
 			{
 				case 0: //QuickTravel
