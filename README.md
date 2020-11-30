@@ -1,6 +1,6 @@
 # Persona 4 Golden Mod Menu
 **Custom scripts for Persona 4 Golden that replace the square button function with a fully featured trainer**  
-![Image of the menu ingame](https://i.imgur.com/A3f5iSU.gif)  
+![Image of the menu ingame](https://i.imgur.com/4f0qmJ0.gif)  
 [See this mod's thread on Gamebanana](https://gamebanana.com/gamefiles/13256)!
 ## Notable Features
 - **Call Menu**: Using IDs, call a Field, Dungeon Floor, Battle, Event, Cutscene, BGM/SFX Track, Dungeon or Facility to load
