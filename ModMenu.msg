@@ -29,6 +29,32 @@
 [f 0 5 -258][f 2 1]Flags[e]
 [f 0 5 -258][f 2 1]Exit[e]
 
+[sel ModPartySel]
+[f 0 5 -258][f 2 1]Yosuke[e]
+[f 0 5 -258][f 2 1]Chie[e]
+[f 0 5 -258][f 2 1]Yukiko[e]
+[f 0 5 -258][f 2 1]Kanji[e]
+[f 0 5 -258][f 2 1]Naoto[e]
+[f 0 5 -258][f 2 1]Teddie[e]
+[f 0 5 -258][f 2 1]Quit[e]
+
+[sel ModOptionSel]
+[f 0 5 -258][f 2 1]Add member[e]
+[f 0 5 -258][f 2 1]Remove member[e]
+[f 0 5 -258][f 2 1]Cancel[e]
+
+[msg ModSelectMemberMsg]
+[f 0 5 -258][f 2 1]Add which member?[e]
+
+[msg ModReplaceMemberMsg]
+[f 0 5 -258][f 2 1]Replace which member?[e]
+
+[msg ModRemoveMemberMsg]
+[f 0 5 -258][f 2 1]Remove which member?[e]
+
+[msg ModOptionMsg]
+[f 0 5 -258][f 2 1]What will you do?[e]
+
 [msg Call_Menu_Text]
 [f 0 5 -258][f 2 1]Call Menu[n][f 1 1][e]
 
@@ -61,6 +87,7 @@
 [f 0 5 -258][f 2 1]Change Yen[e]
 [f 0 5 -258][f 2 1]Change Items[e]
 [f 0 5 -258][f 2 1]Social Links[e]
+[f 0 5 -258][f 2 1]Social Stats[e]
 [f 0 5 -258][f 2 1]Party Members[e]
 [f 0 5 -258][f 2 1]Go back...[e]
 
@@ -88,6 +115,25 @@
 [sel OnOff]
 [f 0 5 -258][f 2 1]On[e]
 [f 0 5 -258][f 2 1]Off[e]
+
+[sel PlusOrMinus]
+[f 0 5 -258][f 2 1]+[e]
+[f 0 5 -258][f 2 1]-[e]
+
+[msg Operation]
+[f 0 5 -258][f 2 1]Which sign?[n][f 1 1][e]
+
+[msg SS_Menu_Text]
+[f 0 5 -258][f 2 1]Social Stats Menu[n][f 1 1][e]
+
+[sel SS_Menu]
+[f 0 5 -258][f 2 1]Courage[e]
+[f 0 5 -258][f 2 1]Knowledge[e]
+[f 0 5 -258][f 2 1]Diligence[e]
+[f 0 5 -258][f 2 1]Understanding[e]
+[f 0 5 -258][f 2 1]Expression[e]
+[f 0 5 -258][f 2 1]Max all stats[e]
+[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg SL_Menu_Text]
 [f 0 5 -258][f 2 1]Social Link Menu[n][f 1 1][e]
