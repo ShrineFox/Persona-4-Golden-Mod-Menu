@@ -8,7 +8,7 @@ import ( "../VRGameOverSkip.flow" ); //Skips velvet room scene after game over (
 import ( "../DungeonOptions.flow" ); //Fast travel to any dungeon floor after their deadlines pass
 	//and organize party on any floor (Comment out to disable)
 import ( "../ConsistentReaperField.flow" ); //Hooks field functions for consistent reaper 
-	//if used with DungeonTravel make sure to set ConsistentReaper bool to true in SelectFloor()
+	//if used with DungeonTravel make sure to set ConsistentReaper bool to true in SelectFloor() (DungeonTravel.flow) and use_gohom (GohoM.flow)
 	//also build dungeon.bf.flow with ConsistentReaper.flow uncommented in the imports
 
 void order_party_hook()

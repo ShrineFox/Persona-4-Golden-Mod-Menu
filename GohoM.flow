@@ -1,0 +1,137 @@
+import("GohoM.msg");
+
+void use_gohom()
+{
+	bool ConsistentReaper = true;
+	if (GET_ITEM(790) == 0)
+	{
+		NAVI_BU_CLOSE( sVar7 );
+		sVar7 = NAVI_BU_OPEN( 280, -40, sVar8, sVar9 + 3 );
+		OPEN_MSG_WIN();
+		
+		if (sVar8 == 5)
+		{
+			MSG(NoMoreRise);
+		}
+		else
+		{
+			MSG(NoMoreTeddie);
+		}
+		CLOSE_MSG_WIN();
+		return;
+	}
+    int var17 = GET_FLOOR_ID();
+    int var18 = GET_FLOOR_ID();
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 92 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 93 ) == 0 )
+    {
+        NS_WAIT( 10 );
+        PLAY_SOUNDEFFECT( 241 );
+        NS_WAIT( 10 );
+        OPEN_MSG_WIN();
+        MSG( ESCAPE_BAN );
+        CLOSE_MSG_WIN();
+    }
+    else if ( GET_CNT( 38 ) == 13 && !ConsistentReaper)
+    {
+        SET_CNT( 38, 14 );
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+    }
+	else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1 && ConsistentReaper)
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+    }
+	
+	
+	SET_ITEM(790, GET_ITEM(790) - 1);
+    
+    if ( FLD_FUNCTION_0036() == 1 && FLD_FUNCTION_0037() == 0 )
+    {
+        var18 = var18 + 1;
+    }
+
+    
+    if ( var17 >= 5 && var17 < 20 )
+    {
+        SET_CNT( 23, var18 );
+    }
+    else if ( var17 >= 20 && var17 < 40 )
+    {
+        SET_CNT( 24, var18 );
+    }
+    else if ( var17 >= 40 && var17 < 60 )
+    {
+        SET_CNT( 25, var18 );
+    }
+    else if ( var17 >= 60 && var17 < 80 )
+    {
+        SET_CNT( 26, var18 );
+    }
+    else if ( var17 >= 80 && var17 < 100 )
+    {
+        SET_CNT( 27, var18 );
+    }
+    else if ( var17 >= 100 && var17 < 120 )
+    {
+        SET_CNT( 28, var18 );
+    }
+    else if ( var17 >= 120 && var17 < 140 )
+    {
+        
+        if ( var17 != 121 && var17 != 122 && var17 != 129 )
+        {
+            SET_CNT( 29, var18 );
+        }
+
+    }
+    else if ( var17 >= 140 && var17 < 160 )
+    {
+        SET_CNT( 30, var18 );
+    }
+    else if ( var17 >= 160 && var17 < 180 )
+    {
+        SET_CNT( 37, var17 );
+    }
+
+    TRAESTO_VISUAL();
+    
+    if ( var17 > 5 && var17 < 20 )
+    {
+        CALL_DUNGEON( 5, 1 );
+    }
+    else if ( var17 > 20 && var17 < 40 )
+    {
+        CALL_DUNGEON( 20, 1 );
+    }
+    else if ( var17 > 40 && var17 < 60 )
+    {
+        CALL_DUNGEON( 40, 1 );
+    }
+    else if ( var17 > 60 && var17 < 80 )
+    {
+        CALL_DUNGEON( 60, 1 );
+    }
+    else if ( var17 > 80 && var17 < 100 )
+    {
+        CALL_DUNGEON( 80, 1 );
+    }
+    else if ( var17 > 100 && var17 < 120 )
+    {
+        CALL_DUNGEON( 100, 1 );
+    }
+    else if ( var17 > 120 && var17 < 140 )
+    {
+        CALL_DUNGEON( 120, 1 );
+    }
+    else if ( var17 > 140 && var17 < 160 )
+    {
+        CALL_DUNGEON( 140, 1 );
+    }
+    else if ( var17 > 160 && var17 < 180 )
+    {
+        CALL_DUNGEON( 160, 1 );
+    }
+
+}

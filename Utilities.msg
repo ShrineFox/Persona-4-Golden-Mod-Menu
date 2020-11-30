@@ -49,6 +49,15 @@
 [msg MSG_4_Major]
 [f 0 5 -258][f 2 1]4 Digits (Major)[n][f 1 1][e]
 
+[msg MSG_4_Item]
+[f 0 5 -258][f 2 1]4 Digits (Item)[n][f 1 1][e]
+
+[msg InvalidItem]
+[f 0 5 -258][f 2 1]Invalid number! Choose value under 2560.[n][f 1 1][e]
+
+[msg MSG_2_Item]
+[f 0 5 -258][f 2 1]2 Digits (#Items)[n][f 1 1][e]
+
 [msg MSG_5_Major]
 [f 0 5 -258][f 2 1]5 Digits (Major)[n][f 1 1][e]
 
@@ -67,5 +76,11 @@
 [msg MSG_5_Minor]
 [f 0 5 -258][f 2 1]5 Digits (Minor)[n][f 1 1][e]
 
+[msg MSG_7]
+[f 0 5 -258][f 2 1]7 Digits (Yen)[n][f 1 1][e]
+
 [msg ConfirmNumber]
 [f 0 5 -258][f 2 1]Confirm [f 2 4 0] as selection?[n][f 1 1][e]
+
+[msg ConfirmItem]
+[f 0 5 -258][f 2 1]Selected item: [f 2 5 3 -1 0] × [f 2 4 1][n]Confirm?[e]

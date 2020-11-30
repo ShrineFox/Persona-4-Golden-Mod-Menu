@@ -6,6 +6,48 @@ import( "Utilities.flow" ); //Frequently reused Mod Menu operations
 
 void ModMenuDisplay()
 {
+	while(true) 
+	{
+		SET_SEL_CHOICE_KEYBIND(14, 6);
+		int selection = ADV_SEL(Mod_Menu_Text, Mod_Menu, 0);
+		switch (selection)
+		{
+			case 0:
+				if (CallMenuDisplay() == -1)
+					break;
+				else
+					return;
+			case 1:
+				if (Facilities() == -1)
+					break;
+				else
+					return;
+			case 2:
+				if (DateSelect() == -1)
+					break;
+				else
+					return;
+			case 3:
+				if (ChangeYen() == -1)
+					break;
+				else
+					return;
+			case 4:
+				if (ChangeItem() == -1)
+					break;
+				else
+					return;
+			case 5:
+				Misc();
+				return;
+			case 6:
+				return;
+		}
+	}
+}
+
+int CallMenuDisplay()
+{
 	// Disable Call Battle if not inside dungeon since it softlocks
 	int mask = 8;
 	int floor = GET_FLOOR_ID();
@@ -13,52 +55,119 @@ void ModMenuDisplay()
 		mask = 0;
 	while(true) 
 	{
-		SET_SEL_CHOICE_KEYBIND(14, 8);
-		int selection = ADV_SEL(Mod_Menu_Text, Mod_Menu, mask);
+		SET_SEL_CHOICE_KEYBIND(14, 6);
+		int selection = ADV_SEL(Call_Menu_Text, Call_Menu_1, mask);
 		switch (selection)
 		{
 			case 0:
 				if (BGMSelect() == -1)
 					break;
 				else
-					return;
+					return 0;
 			case 1:
 				if (FieldSelect() == -1)
 					break;
 				else
-					return;
+					return 0;
 			case 2:
 				if (EventSelect() == -1)
 					break;
 				else
-					return;
+					return 0;
 			case 3:
 				if (BattleSelect() == -1)
 					break;
 				else
-					return;
+					return 0;
 			case 4:
 				if (FloorSelect() == -1)
 					break;
 				else
-					return;
+					return 0;
 			case 5:
-				if (Facilities() == -1)
+				if (CallMenuDisplay2() == -1)
 					break;
 				else
-					return;
+					return 0;
 			case 6:
-				if (DateSelect() == -1)
-					break;
-				else
-					return;
-			case 7:
-				Misc();
-				return;
-			case 8:
-				return;
+				return 0;
 		}
 	}
+	return -1;
+}
+
+int CallMenuDisplay2()
+{
+	while(true) 
+	{
+		SET_SEL_CHOICE_KEYBIND(14, 4);
+		int selection = ADV_SEL(Call_Menu_Text, Call_Menu_2, 0);
+		switch (selection)
+		{
+			case 0:
+				if (CutsceneSelect() == -1)
+					break;
+				else
+					return 0;
+			case 1:
+				if (SFXSelect() == -1)
+					break;
+				else
+					return 0;
+			case 2:
+				if (CallDungeon() == -1)
+					break;
+				else
+					return 0;
+			case 3:
+				if (CallMenuDisplay() == -1)
+					break;
+				else
+					return 0;
+			case 4:
+				return 0;
+		}
+	}
+	return -1;
+}
+
+int ChangeYen()
+{
+	int new_yen = Get_Number(7, MSG_7);
+	if (new_yen == -1)
+		return -1;
+	int reset = 0 - ADD_YEN(0);
+	ADD_YEN(reset);
+	ADD_YEN(new_yen);
+	return 0;
+}
+
+int ChangeItem()
+{
+	tryagain:
+	int item = Get_Number(4, MSG_4_Item);
+	if (item == -1)
+		return -1;
+	if (item > 2559)
+	{
+		OPEN_MSG_WIN();
+		MSG( InvalidItem );
+		CLOSE_MSG_WIN();
+		goto tryagain;
+	}
+	SET_MSG_VAR(0, item, 1);
+	SET_MSG_VAR(1, GET_ITEM(item), 0);
+	OPEN_MSG_WIN();
+	MSG( ConfirmItem );
+	int confirm = SEL(YESNO_SEL);
+	CLOSE_MSG_WIN();
+	if (confirm == 1)
+		return -1;
+	int numItems = Get_Number(2, MSG_2_Item);
+	if (numItems == -1)
+		return -1;
+	SET_ITEM(item, numItems);
+	return 0;
 }
 
 int BGMSelect()
@@ -142,7 +251,7 @@ int DateSelect()
 
 int Facilities()
 {
-	SET_SEL_CHOICE_KEYBIND(14, 6);
+	SET_SEL_CHOICE_KEYBIND(14, 7);
 	int floor = GET_FLOOR_ID();
 	int fieldMajor = GET_FIELD_MAJOR();
 	int fieldMinor = GET_FIELD_MINOR();
@@ -182,7 +291,7 @@ int Facilities()
 				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
 		case 4:
-			VELVET_ROOM();
+			SHIROKU_PUB();
 			if (floor > 0 )
 			{
 				if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
@@ -195,7 +304,7 @@ int Facilities()
 				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
 		case 5:
-			JUNES_FOODCOURT();
+			VELVET_ROOM();
 			if (floor > 0 )
 			{
 				if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
@@ -208,6 +317,19 @@ int Facilities()
 				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
 			return 0;
 		case 6:
+			JUNES_FOODCOURT();
+			if (floor > 0 )
+			{
+				if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
+				|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
+					CALL_DUNGEON(floor, 0);
+				else
+					CALL_FLOOR(floor);
+			}
+			else
+				CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
+			return 0;
+		case 7:
 			return -1;
 	}
 	return -1;
@@ -215,7 +337,7 @@ int Facilities()
 
 void Misc()
 {
-	SET_SEL_CHOICE_KEYBIND(14, 8);
+	SET_SEL_CHOICE_KEYBIND(14, 5);
 	int misc = ADV_SEL(Misc_Menu_Text, Misc_Menu, 0);
 	switch (misc) 
 	{
@@ -232,28 +354,20 @@ void Misc()
 			SL();
 			break;
 		case 4:
-			CallDungeon();
-			break;
-		case 5:
-			CutsceneSelect();
-			break;
-		case 6:
-			SFXSelect();
-			break;
-		case 7:
 			ModMenuDisplay();
 			break;
-		case 8:
+		case 5:
 			return;
 	}
 }
 
-void SFXSelect()
+int SFXSelect()
 {
 	int major = Get_Number(3, MSG_3);
 	if (major == -1)
-		return;
+		return -1;
 	PLAY_SOUNDEFFECT(major);
+	return 0;
 }
 
 void AddParty()
@@ -277,18 +391,18 @@ void AddParty()
 	}
 }
 
-void CutsceneSelect()
+int CutsceneSelect()
 {
 	int floor = GET_FLOOR_ID();
 	int fieldMajor = GET_FIELD_MAJOR();
 	int fieldMinor = GET_FIELD_MINOR();
 	int major = Get_Number(2, MSG_2_Major);
 	if (major == -1)
-		return;
+		return -1;
 	STOP_BGM( 0 );
 	PLAY_CUTSCENE(major);
 	FUNCTION_0065();
-	FADE(2, 5);
+	FADE(1, 10);
 	FADE_SYNC();
 	if (floor > 0 )
 	{
@@ -300,17 +414,19 @@ void CutsceneSelect()
 	}
 	else
 		CALL_FIELD(fieldMajor, fieldMinor, 0, 0);
+	return 0;
 }
 
-void FloorSelect()
+int FloorSelect()
 {
 	int major = Get_Number(3, MSG_3);
 	if (major == -1)
-		return;
+		return -1;
 	dng_set_npc();
 	FADE( 1, 10 );
 	FADE_SYNC();
 	CALL_FLOOR(major);
+	return 0;
 }
 
 void SpawnNPC()
@@ -321,17 +437,18 @@ void SpawnNPC()
 	SPAWN_NPC(0, major);
 }
 
-void CallDungeon()
+int CallDungeon()
 {
 	int major = Get_Number(3, MSG_3_Major);
 	if (major == -1)
-		return;
+		return -1;
 	int minor = Get_Number(4, MSG_4);
 	if (minor == -1)
-		return;
+		return -1;
 	FADE(4, 10);
 	FADE_SYNC();
 	CALL_DUNGEON(major, minor);
+	return 0;
 }
 
 void Flag_Menu()

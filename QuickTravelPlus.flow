@@ -3,8 +3,35 @@ void field_order_hook()
 	if ( GET_FIELD_MAJOR() == 6 )
 	{
 		//Show expanded school quicktravel menu
+		// Set mask
+		int minor = GET_FIELD_MINOR();
+		int schoolMask = 0;
+		switch (minor)
+		{
+			case 1:
+				schoolMask = schoolMask + 1;
+				break;
+			case 2:
+				schoolMask = schoolMask + 2;
+				break;
+			case 3:
+				schoolMask = schoolMask + 4;
+				break;
+			case 4:
+				schoolMask = schoolMask + 8;
+				break;
+			case 5:
+				schoolMask = schoolMask + 16;
+				break;
+			case 6:
+				schoolMask = schoolMask + 32;
+				break;
+			case 14:
+				schoolMask = schoolMask + 64;
+				break;
+		}
 		SET_SEL_CHOICE_KEYBIND(14, 8);
-		int school = ADV_SEL( School_Text, School, 0 );
+		int school = ADV_SEL( School_Text, School, schoolMask );
 		if (school < 8) 
 		{
 			FADE( 2, 5 );
@@ -54,7 +81,21 @@ void field_order_hook()
 			int fieldMinor = GET_FIELD_MINOR();
 		
 			//Show daytime town quicktravel menu if not at home or school
-			int street = ADV_SEL( Street_Text, Street, 0 );
+			// Set mask
+			int streetMask = 0;
+			switch (fieldMinor)
+			{
+				case 1:
+					streetMask = streetMask + 1;
+					break;
+				case 2:
+					streetMask = streetMask + 2;
+					break;
+				case 9:
+					streetMask = streetMask + 32;
+					break;
+			}
+			int street = ADV_SEL( Street_Text, Street, streetMask );
 			if (street < 7) 
 			{
 				FADE( 2, 5 );
@@ -105,7 +146,27 @@ void field_order_hook()
 			int floor = GET_FLOOR_ID();
 			int fieldMajor = GET_FIELD_MAJOR();
 			int fieldMinor = GET_FIELD_MINOR();
-			int street = ADV_SEL( Street_Text, StreetNight, 0 );
+			// Set mask
+			int streetMask = 0;
+			switch (fieldMinor)
+			{
+				case 1:
+					if (fieldMajor == 8)
+						streetMask = streetMask + 1;
+					else
+						streetMask = streetMask + 64;
+					break;
+				case 2:
+					if (fieldMajor == 8)
+						streetMask = streetMask + 2;
+					else
+						streetMask = streetMask + 32;
+					break;
+				case 9:
+					streetMask = streetMask + 16;
+					break;
+			}
+			int street = ADV_SEL( Street_Text, StreetNight, streetMask );
 			if (street < 7) 
 			{
 				FADE( 2, 5 );
@@ -120,7 +181,7 @@ void field_order_hook()
 					CALL_FIELD( 8, 2, 1, 0 );
 					break;
 				case 2:
-					SHIROKU_SHOP();
+					SHIROKU_PUB();
 					if (floor > 0 )
 						CALL_FLOOR(floor);
 					else
