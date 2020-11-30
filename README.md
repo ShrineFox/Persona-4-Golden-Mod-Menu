@@ -1,25 +1,24 @@
 # Persona 4 Golden Mod Menu
-**Custom scripts for Persona 4 Golden that replace the square button function with a fully featured trainer**
-![Image of the menu ingame](https://i.imgur.com/oW0nm48.png)
-
+**Custom scripts for Persona 4 Golden that replace the square button function with a fully featured trainer**  
+![Image of the menu ingame](https://i.imgur.com/A3f5iSU.gif)  
 [See this mod's thread on Gamebanana](https://gamebanana.com/gamefiles/13256)!
 ## Notable Features
-- Choose a Field, Dungeon Floor, Battle, Event, Cutscene, BGM Track, Dungeon or Facility to load
-- Toggle individual bitflags or entire ranges of them
-- Change the in-game date and time
-- Change your rank with any confidant
-- Play the credits sequence
+- **Call Menu**: Using IDs, call a Field, Dungeon Floor, Battle, Event, Cutscene, BGM/SFX Track, Dungeon or Facility to load
+- **Player Menu**: Change date/time, Confidant ranks, give yen/items, manage party members
+- **Flags**: Toggle individual bitflags or entire ranges of them
 More features will be added in the future.
 ## Optional Extensions
 - MobileCalendar (view the calendar from anywhere!)
 - QuickTravelPlus (extended quicktravel options in Yasogami High and around the town of Inaba)
 - VRGameOverSkip (skips velvet room scene after game over) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13301))
-- DungeonTravel (fast travel to any dungeon floor after deadline) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13356))
+- DungeonOptions (fast travel to any dungeon floor after deadline, use goho-ms, organize party) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13356))
 - SaveAnywhere by [Tupelov](https://github.com/Tupelov) ([see mod release](https://gamebanana.com/gamefiles/13318))
 - FindAFriend by [AnimatedSwine37](https://gamebanana.com/members/1742760) ([see mod release](https://gamebanana.com/gamefiles/12921))
+- ConsistentReaper by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13301))
 ## Usage
-You can use the [Mod Compendium](https://amicitia.github.io/post/modcompendium) to create modded archives containing the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases).
-You may prefer to use [Aemulus Package Manager](https://gamebanana.com/tools/6878) instead as it supports bin merging, which increases compatibility with other mods.
+You can use the [Mod Compendium](https://amicitia.github.io/post/modcompendium) to merge the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases) with other mods.
+You may prefer to use [Aemulus Package Manager](https://gamebanana.com/tools/6878) instead as it supports bin merging, which increases compatibility with other mods.  
+**You can easily download a [precompiled version of any combination of extensions here](https://shrinefox.com/MenuCreator)**.
 ### Vita
 Using Henkaku and Vitashell on your Vita connsole, install the rePatch plugin. Then, create a mod.cpk containing the init_free.bin via the Mod Compendium and place it in the game's rePatch folder along with the [mod.cpk support eboot](https://amicitia.github.io/post/p4g-mod-cpk). More descriptive instructions can be found [here](https://amicitia.miraheze.org/wiki/Persona_4_Golden#Modding).
 ### PC
