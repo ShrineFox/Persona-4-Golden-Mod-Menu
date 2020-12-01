@@ -12,6 +12,7 @@
 import ("OrganizeParty.flow");
 import( "DungeonTravel.flow" );
 import( "GohoM.flow" );
+import( "Fox.flow" );
 
 // 
 // Script-level variable definitions
@@ -95,7 +96,7 @@ void helper_order_hook()
 		SET_MSG_VAR(1, GET_ITEM(790), 0);
 		// Sets mask
         SET_MASK( sVar1 );
-        SET_SEL_CHOICE_KEYBIND( 14, 10 );
+        SET_SEL_CHOICE_KEYBIND( 14, 11 );
         var33 = SEL( DUNGEON_SEL_HOOK );
 		
         if ( var33 == 0 )
@@ -184,7 +185,14 @@ void helper_order_hook()
 			use_gohom();
             goto _101;
 		}
-		else if ( var33 == 10 ) 
+		else if ( var33 == 10 )
+		{
+			CLOSE_MSG_WIN();
+			NAVI_BU_CLOSE( sVar7 );
+			use_fox();
+            goto _101;
+		}
+		else if ( var33 == 11 ) 
         {
 			goto _101;
         }
@@ -317,6 +325,8 @@ void init_sel_mask_hook()
 		sVar1 = sVar1 + 0x200;
 	if (EnableOrganizeParty() == false)
 		sVar1 = sVar1 + 0x100;
+	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 9 ) == 0 )
+		sVar1 = sVar1 + 0x400;
 }
 
 void tomb_jump_hook()

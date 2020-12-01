@@ -89,6 +89,7 @@
 [f 0 5 -258][f 2 1]Social Links[e]
 [f 0 5 -258][f 2 1]Social Stats[e]
 [f 0 5 -258][f 2 1]Party Members[e]
+[f 0 5 -258][f 2 1]Refill HP/SP[e]
 [f 0 5 -258][f 2 1]Go back...[e]
 
 [msg Facility_Menu_Text]

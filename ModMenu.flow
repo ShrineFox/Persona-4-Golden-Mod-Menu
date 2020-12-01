@@ -37,7 +37,7 @@ void RemoveParty()
 	while (index < 9)
 	{
 		RM_PARTY(index);
-		index = index + 1;
+		index++;
 	}
 }
 
@@ -139,7 +139,7 @@ int PlayerMenuDisplay()
 {
 	while(true) 
 	{
-		SET_SEL_CHOICE_KEYBIND(14, 6);
+		SET_SEL_CHOICE_KEYBIND(14, 7);
 		int selection = ADV_SEL(Player_Menu_Text, Player_Menu, 0);
 		switch (selection)
 		{
@@ -168,11 +168,33 @@ int PlayerMenuDisplay()
 				PartyChoice();
 				return 0;
 			case 6:
+				RefillHPSP();
+				break;
+			case 7:
 				ModMenuDisplay();
 				return 0;
 		}
 	}
 	return -1;
+}
+
+void RefillHPSP()
+{
+	FUNCTION_006D( 5, 9 );
+    FADE( 1, 5 );
+    FUNCTION_0024( 0, 255, 0 );
+    FADE_SYNC();
+	int index = 1;
+	while (index < 9)
+	{
+		int hp = GET_TOT_HP(index);
+		int sp = GET_TOT_SP(index);
+		SET_HP(index, hp);
+		SET_SP(index, sp);
+		index++;
+	}
+	FUNCTION_0015( 15 );
+    FADE_SYNC();
 }
 
 int ChangeYen()
