@@ -6,3 +6,4 @@
 
 [msg NoMoreTeddie [Teddie]]
 [f 0 5 -258][f 2 1]Wahhh... Sensei, your Goho-M[n]stash is looking bear![n][f 1 1][e]
+
