@@ -18,7 +18,7 @@
 [f 0 5 -258][f 2 1]Select floor[e]
 [f 0 5 -258][f 2 1]Organize party[e]
 [f 0 5 -258][f 2 1]Goho-M × [f 2 4 1][e]
-[f 0 5 -258][f 2 1]Talk to Fox[e]
+[f 0 5 -258][f 2 1]Call the fox[e]
 [f 0 5 -258][f 2 1]Nothing[e]
 
 

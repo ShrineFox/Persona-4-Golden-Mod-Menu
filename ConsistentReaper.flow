@@ -356,7 +356,7 @@ void dng_escape_hook()
         MSG( ESCAPE_BAN );
         CLOSE_MSG_WIN();
     }
-    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1 )
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 )
     {
         BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
         BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );

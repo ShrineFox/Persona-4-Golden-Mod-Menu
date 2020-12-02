@@ -38,7 +38,7 @@ void use_gohom()
         BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
         BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
     }
-	else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1 && ConsistentReaper)
+	else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && ConsistentReaper)
     {
         BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
         BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
