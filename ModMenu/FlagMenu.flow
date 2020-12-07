@@ -1,0 +1,164 @@
+int Flag_Menu()
+{
+	while(true)
+	{
+		SET_SEL_CHOICE_KEYBIND(14, 10);
+		SET_SEL_CHOICE_KEYBIND(15, 11);
+		int flag = ADV_SEL(Flag_Menu_Text, Flag_Menu, 0);
+		switch (flag) 
+		{
+			case 0:
+				ToggleBit();
+				return 0;
+			case 1:
+				ToggleBitRange();
+				return 0;
+			case 2:
+				KillQuests();
+				return 0;
+			case 3:
+				ReviveQuests();
+				return 0;
+			case 10:
+				return -1;
+			case 11:
+				return 0;
+		}
+	}
+	return 0;
+}
+
+void ToggleBit()
+{
+	int major = Get_Number(4, MSG_4);
+	if (major == -1)
+		return;
+	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
+	if (toggle == 0)
+	{
+		BIT_ON(major);
+	}
+	else
+	{
+		BIT_OFF(major);
+	}
+}
+
+void ToggleBitRange()
+{
+	int major = Get_Number(4, MSG_4_Major);
+	if (major == -1)
+		return;
+	int minor = Get_Number(4, MSG_4_Minor);
+	if (minor == -1)
+		return;
+	int i = major;
+	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
+	if (toggle == 0)
+	{
+		while (i <= minor)
+		{
+			BIT_ON(i);
+			i++;
+		}
+	}
+	else
+	{
+		while (i <= minor)
+		{
+			BIT_OFF(i);
+			i++;
+		}
+	}
+}
+
+void KillQuests()
+{
+	int var149 = 0 + 0x0100;
+	_1208:
+	
+	if ( 1 )
+	{
+		BIT_ON( var149 );
+		var149 = var149 + 1;
+		
+		if ( var149 > 0 + 447 )
+		{
+			goto _1209;
+		}
+
+		goto _1208;
+	}
+
+	_1209:
+	var149 = 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 768;
+	_1212:
+	
+	if ( 1 )
+	{
+		BIT_ON( var149 );
+		var149 = var149 + 1;
+		
+		if ( var149 > 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 863 )
+		{
+			goto _1213;
+		}
+
+		goto _1212;
+	}
+
+	_1213:
+	BIT_OFF( 0 + 306 );
+	BIT_OFF( 0 + 307 );
+	BIT_OFF( 0 + 308 );
+	BIT_OFF( 0 + 309 );
+	BIT_OFF( 0 + 310 );
+	BIT_OFF( 0 + 370 );
+	BIT_OFF( 0 + 371 );
+	BIT_OFF( 0 + 372 );
+	BIT_OFF( 0 + 373 );
+	BIT_OFF( 0 + 374 );
+	BIT_OFF( 0 + 434 );
+	BIT_OFF( 0 + 435 );
+	BIT_OFF( 0 + 436 );
+	BIT_OFF( 0 + 437 );
+	BIT_OFF( 0 + 438 );
+}
+
+void ReviveQuests()
+{
+	int var149 = 0 + 0x0100;
+	_1216:
+	
+	if ( 1 )
+	{
+		BIT_OFF( var149 );
+		var149 = var149 + 1;
+		
+		if ( var149 > 0 + 447 )
+		{
+			goto _1217;
+		}
+
+		goto _1216;
+	}
+
+	_1217:
+	var149 = 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 768;
+	_1220:
+	
+	if ( 1 )
+	{
+		BIT_OFF( var149 );
+		var149 = var149 + 1;
+		
+		if ( var149 > 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 863 )
+		{
+			goto _1221;
+		}
+
+		goto _1220;
+	}
+
+	_1221:
+}

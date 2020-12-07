@@ -1,24 +1,15 @@
-[msg playsfx]
-[f 0 5 -258][f 2 1]SFX index: [f 2 4 0][n][f 1 1][e]
-
 [msg Square_Menu_Text]
 [f 0 5 -258][f 2 1]What will you do?[n][f 1 1][e]
 
 [sel Square_Menu]
 [f 0 5 -258][f 2 1]Quick travel[e]
-[f 0 5 -258][f 2 1]Hangout with a friend[e]
-[f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Mod menu[e]
-[f 0 5 -258][f 2 1]Exit[e]
 
 [sel Square_Menu_Dng]
 [f 0 5 -258][f 2 1]Dungeon options[e]
-[f 0 5 -258][f 2 1]Hangout with a friend[e]
-[f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Mod menu[e]
-[f 0 5 -258][f 2 1]Exit[e]
 
 [msg Mod_Menu_Text]
 [f 0 5 -258][f 2 1]P4G Mod Menu[n][f 1 1][e]
@@ -27,7 +18,6 @@
 [f 0 5 -258][f 2 1]Call Menu[e]
 [f 0 5 -258][f 2 1]Player Menu[e]
 [f 0 5 -258][f 2 1]Flags[e]
-[f 0 5 -258][f 2 1]Exit[e]
 
 [sel ModPartySel]
 [f 0 5 -258][f 2 1]Yosuke[e]
@@ -56,7 +46,7 @@
 [f 0 5 -258][f 2 1]What will you do?[e]
 
 [msg Call_Menu_Text]
-[f 0 5 -258][f 2 1]Call Menu[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Call Menu (Page 1)[n][f 1 1][e]
 
 [sel Call_Menu_1]
 [f 0 5 -258][f 2 1]Call Field[e]
@@ -64,46 +54,54 @@
 [f 0 5 -258][f 2 1]Call Facility[e]
 [f 0 5 -258][f 2 1]Call Battle[e]
 [f 0 5 -258][f 2 1]Call Floor[e]
-[f 0 5 -258][f 2 1]Call Dungeon[e]
-[f 0 5 -258][f 2 1]More...[e]
-[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg Call_Menu_Text_2]
 [f 0 5 -258][f 2 1]Call Menu (Page 2)[n][f 1 1][e]
 
 [sel Call_Menu_2]
+[f 0 5 -258][f 2 1]Call Dungeon[e]
 [f 0 5 -258][f 2 1]Call Cutscene[e]
 [f 0 5 -258][f 2 1]Play Credits[e]
 [f 0 5 -258][f 2 1]Call BGM[e]
 [f 0 5 -258][f 2 1]Call SFX[e]
-[f 0 5 -258][f 2 1]Go back...[e]
-[f 0 5 -258][f 2 1]Exit[e]
 
-[msg Player_Menu_Text]
-[f 0 5 -258][f 2 1]Player Menu[n][f 1 1][e]
+[msg Player_Menu_Text_1]
+[f 0 5 -258][f 2 1]Player Menu (Page 1)[n][f 1 1][e]
 
-[sel Player_Menu]
+[msg Player_Menu_Text_2]
+[f 0 5 -258][f 2 1]Player Menu (Page 2)[n][f 1 1][e]
+
+[sel Player_Menu_1]
+[f 0 5 -258][f 2 1]Change Name[e]
 [f 0 5 -258][f 2 1]Change Date[e]
 [f 0 5 -258][f 2 1]Change Yen[e]
 [f 0 5 -258][f 2 1]Change Items[e]
+
+[sel Player_Menu_2]
 [f 0 5 -258][f 2 1]Social Links[e]
 [f 0 5 -258][f 2 1]Social Stats[e]
 [f 0 5 -258][f 2 1]Party Members[e]
 [f 0 5 -258][f 2 1]Refill HP/SP[e]
-[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg Facility_Menu_Text]
-[f 0 5 -258][f 2 1]Facility Menu[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Facility Menu (Page 1)[n][f 1 1][e]
 
-[sel Facility_Menu]
+[msg Facility_Menu_Text_2]
+[f 0 5 -258][f 2 1]Facility Menu (Page 2)[n][f 1 1][e]
+
+[sel Facility_Menu_1]
 [f 0 5 -258][f 2 1]TV Studio[e]
 [f 0 5 -258][f 2 1]Town Map[e]
 [f 0 5 -258][f 2 1]Daidara's Shop[e]
 [f 0 5 -258][f 2 1]Shiroku Shop[e]
 [f 0 5 -258][f 2 1]Shiroku Pub[e]
+
+[sel Facility_Menu_2]
 [f 0 5 -258][f 2 1]Velvet Room[e]
 [f 0 5 -258][f 2 1]Junes Foodcourt[e]
-[f 0 5 -258][f 2 1]Go back...[e]
+[f 0 5 -258][f 2 1]Crocofur[e]
+[f 0 5 -258][f 2 1]Book Shop[e]
+[f 0 5 -258][f 2 1]Produce Shop[e]
 
 [msg Flag_Menu_Text]
 [f 0 5 -258][f 2 1]Flag Menu[n][f 1 1][e]
@@ -111,7 +109,8 @@
 [sel Flag_Menu]
 [f 0 5 -258][f 2 1]Edit Flag[e]
 [f 0 5 -258][f 2 1]Mass Flag Edit[e]
-[f 0 5 -258][f 2 1]Go back...[e]
+[f 0 5 -258][f 2 1]Complete All Quests[e]
+[f 0 5 -258][f 2 1]Renew All Quests[e]
 
 [sel OnOff]
 [f 0 5 -258][f 2 1]On[e]
@@ -134,7 +133,6 @@
 [f 0 5 -258][f 2 1]Understanding[e]
 [f 0 5 -258][f 2 1]Expression[e]
 [f 0 5 -258][f 2 1]Max all stats[e]
-[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg SL_Menu_Text]
 [f 0 5 -258][f 2 1]Social Link Menu[n][f 1 1][e]
@@ -145,7 +143,6 @@
 [f 0 5 -258][f 2 1]Break SL[e]
 [f 0 5 -258][f 2 1]Change SL[e]
 [f 0 5 -258][f 2 1]Add SL[e]
-[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg BATTLE_SEL_Text]
 [f 0 5 -258][f 2 1]Battle Menu[n][f 1 1][e]
@@ -153,10 +150,9 @@
 [sel BATTLE_SEL]
 [f 0 5 -258][f 2 1]Manual Input[e]
 [f 0 5 -258][f 2 1]Boss Select[e]
-[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg BOSS_SEL1_Text]
-[f 0 5 -258][f 2 1]Boss Select[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Boss Select (Page 1)[n][f 1 1][e]
 
 [sel BOSS_SEL1]
 [f 0 5 -258][f 2 1]Shadow Yosuke[e]
@@ -166,8 +162,6 @@
 [f 0 5 -258][f 2 1]Shadow Rise[e]
 [f 0 5 -258][f 2 1]Shadow Teddie[e]
 [f 0 5 -258][f 2 1]Shadow Mitsuo[e]
-[f 0 5 -258][f 2 1]More...[e]
-[f 0 5 -258][f 2 1]Go back...[e]
 
 [msg BOSS_SEL2_Text]
 [f 0 5 -258][f 2 1]Boss Select (Page 2)[n][f 1 1][e]
@@ -180,41 +174,4 @@
 [f 0 5 -258][f 2 1]Kusumi-no-Okami[e]
 [f 0 5 -258][f 2 1]Izanami[e]
 [f 0 5 -258][f 2 1]Margaret[e]
-[f 0 5 -258][f 2 1]Go back...[e]
 
-[msg School_Text]
-[f 0 5 -258][f 2 1]Yasogami High[n][f 1 1][e]
-
-[sel School]
-[f 0 5 -258][f 2 1]Classroom Building, 1F[e]
-[f 0 5 -258][f 2 1]Classroom Building, 2F[e]
-[f 0 5 -258][f 2 1]Classroom Building, 3F[e]
-[f 0 5 -258][f 2 1]Practice Building, 1F[e]
-[f 0 5 -258][f 2 1]Practice Building, 2F[e]
-[f 0 5 -258][f 2 1]Class 2-2[e]
-[f 0 5 -258][f 2 1]Roof[e]
-[f 0 5 -258][f 2 1]Go into town[e]
-[f 0 5 -258][f 2 1]Go back...[e]
-
-[msg Street_Text]
-[f 0 5 -258][f 2 1]Town of Inaba[n][f 1 1][e]
-
-[sel Street]
-[f 0 5 -258][f 2 1]Shopping District, North[e]
-[f 0 5 -258][f 2 1]Shopping District, South[e]
-[f 0 5 -258][f 2 1]Daidara Metalworks[e]
-[f 0 5 -258][f 2 1]Shiroku Store[e]
-[f 0 5 -258][f 2 1]Velvet Room[e]
-[f 0 5 -258][f 2 1]Shrine[e]
-[f 0 5 -258][f 2 1]Go into town[e]
-[f 0 5 -258][f 2 1]Go back...[e]
-
-[sel StreetNight]
-[f 0 5 -258][f 2 1]Shopping District, North[e]
-[f 0 5 -258][f 2 1]Shopping District, South[e]
-[f 0 5 -258][f 2 1]Shiroku Pub[e]
-[f 0 5 -258][f 2 1]Velvet Room[e]
-[f 0 5 -258][f 2 1]Shrine[e]
-[f 0 5 -258][f 2 1]Riverbank[e]
-[f 0 5 -258][f 2 1]Dojima Residence[e]
-[f 0 5 -258][f 2 1]Go back...[e]

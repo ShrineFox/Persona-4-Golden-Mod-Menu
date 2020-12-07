@@ -1,0 +1,419 @@
+import ( "QuickTravelPlus.msg" );
+void field_order_hook()
+{
+	bool calendar = true;
+	bool friend = true;
+
+	if ( GET_FIELD_MAJOR() == 6 )
+	{
+		//Show expanded school quicktravel menu
+		SchoolOrder(calendar, friend);
+	}
+	// Dojima's Residence
+	else if ( GET_FIELD_MAJOR() == 7 )
+	{
+		if (GET_TIME_OF_DAY() == 5 && GET_FIELD_MINOR() == 1)
+		{
+			NightOrder(calendar, friend);
+		}
+		else
+			myhouse_order();
+	}
+	else if ( GET_FIELD_MAJOR() == 8 )
+	{
+		if (GET_TIME_OF_DAY() != 5)
+		{
+			StreetOrder(calendar, friend);
+		}
+		else 
+		{
+			NightOrder(calendar, friend);
+		}
+	}
+	// Junes
+	else if ( GET_FIELD_MAJOR() == 9 )
+	{
+		gms_order();
+	}
+	// Riverbank
+	else if ( GET_FIELD_MAJOR() == 10 )
+	{
+		if (GET_TIME_OF_DAY() != 5)
+			embank_order();
+		else
+			NightOrder(calendar, friend);
+	}
+	// Okina
+	else if ( GET_FIELD_MAJOR() == 11 )
+	{
+		station_order();
+	}
+	// Closed school
+	else if ( GET_FIELD_MAJOR() == 17 )
+	{
+		schoolroad_order();
+	}
+	// Snow mountain
+	else if ( GET_FIELD_MAJOR() == 18 )
+	{
+		snowmt_order();
+	}
+}
+
+void StreetOrder(bool calendar, bool friend)
+{
+	
+	int floor = GET_FLOOR_ID();
+	int fieldMajor = GET_FIELD_MAJOR();
+	int fieldMinor = GET_FIELD_MINOR();
+
+	//Show daytime town quicktravel menu if not at home or school
+	// Set mask
+	int streetMask = 0;
+	int shoppingMask = 0;
+	switch (fieldMinor)
+	{
+		case 1:
+			shoppingMask = shoppingMask + 1;
+			break;
+		case 2:
+			shoppingMask = shoppingMask + 2;
+			break;
+		case 9:
+			streetMask = streetMask + 2;
+			break;
+	}
+	if (!calendar)
+		streetMask = streetMask + 8;
+	int hangoutMask = hangout_mask();
+	if (!friend || hangoutMask == 65535)
+		streetMask = streetMask + 16;
+	begin:
+	SET_SEL_CHOICE_KEYBIND(14, 5);
+	int street = ADV_SEL( Street_Text, Street, streetMask );
+	if (street == 1 || street == 2) 
+	{
+		FADE( 2, 5 );
+		FADE_SYNC();
+	}
+	switch (street)
+	{
+		case 0:
+			SET_SEL_CHOICE_KEYBIND(14, 5);
+			int shopping = ADV_SEL( Street_Text, ShoppingDistrictDay, shoppingMask );
+			if (shopping < 4) 
+			{
+				FADE( 2, 5 );
+				FADE_SYNC();
+			}
+			switch (shopping)
+			{
+				case 0:
+					if (GET_FIELD_MAJOR() == 8 && GET_FIELD_MINOR() == 9)
+						CALL_FIELD( 8, 1, 2, 0 );
+					else
+						CALL_FIELD( 8, 1, 0, 0 );
+					break;
+				case 1:
+					if (GET_FIELD_MAJOR() == 8)
+						CALL_FIELD( 8, 2, 1, 0 );
+					else
+						CALL_FIELD( 8, 2, 0, 0 );
+					break;
+				case 2:
+					DAIDARA_SHOP();
+					CALL_FIELD(8, 2, 2, 0 );
+					break;
+				case 3:
+					SHIROKU_SHOP();
+					CALL_FIELD(8, 2, 3, 0);
+					break;
+				case 4:
+					call_velvet_room();
+					break;
+				case 5:
+					goto begin;
+			}
+			break;
+		case 1:
+			CALL_FIELD( 8, 9, 0, 0 );
+			break;
+		case 2:
+			TOWN_MAP( 1 );
+			break;
+		case 3:
+			OPEN_CALENDAR();
+			break;
+		case 4:
+			generate_hangout_menu(hangoutMask);
+			break;
+		case 5:
+			break;
+	}
+}
+
+void SchoolOrder(bool calendar, bool friend)
+{
+	// Set mask
+	int minor = GET_FIELD_MINOR();
+	int schoolMask = 12;
+	int classMask = 0;
+	switch (minor)
+	{
+		case 1:
+			classMask = classMask + 1;
+			break;
+		case 2:
+			classMask = classMask + 2;
+			break;
+		case 3:
+			classMask = classMask + 4;
+			break;
+		case 4:
+			schoolMask = schoolMask - 6;
+			break;
+		case 5:
+			schoolMask = schoolMask - 2;
+			break;
+		case 6:
+			schoolMask = schoolMask + 16;
+			break;
+		case 14:
+			classMask = classMask + 8;
+			break;
+	}
+	if (!calendar)
+		schoolMask = schoolMask + 64;
+	int hangoutMask = hangout_mask();
+	if (!friend || hangoutMask == 65535)
+		schoolMask = schoolMask + 128;
+	begin:
+	SET_SEL_CHOICE_KEYBIND(14, 8);
+	int school = ADV_SEL( School_Text, School, schoolMask );
+	if (school > 1 && school < 6) 
+	{
+		FADE( 2, 5 );
+		FADE_SYNC();
+	}
+	switch (school)
+	{
+		case 0:
+			SET_SEL_CHOICE_KEYBIND(14, 4);
+			int classroom = ADV_SEL( School_Text, ClassroomBuilding, classMask );
+			if (classroom < 4) 
+			{
+				FADE( 2, 5 );
+				FADE_SYNC();
+			}
+			switch (classroom)
+			{
+				case 0:
+					CALL_FIELD( 6, 1, 0, 0 );
+					break;
+				case 1:
+					CALL_FIELD( 6, 2, 0, 0 );
+					break;
+				case 2:
+					CALL_FIELD( 6, 3, 0, 0 );
+					break;
+				case 3:
+					CALL_FIELD( 6, 14, 0, 0 );
+					break;
+				case 4:
+					goto begin;
+			}
+			break;
+		case 1:
+			SET_SEL_CHOICE_KEYBIND(14, 2);
+			int practice = ADV_SEL( School_Text, PracticeBuilding, 0 );
+			if (practice < 2) 
+			{
+				FADE( 2, 5 );
+				FADE_SYNC();
+			}
+			switch (practice)
+			{
+				case 0:
+					CALL_FIELD( 6, 4, 0, 0 );
+					break;
+				case 1:
+					CALL_FIELD( 6, 5, 0, 0 );
+					break;
+				case 2:
+					goto begin;
+			}
+			break;
+		case 2:
+			CALL_FIELD( 6, 4, 0, 0 );
+			break;
+		case 3:
+			CALL_FIELD( 6, 5, 0, 0 );
+			break;
+		case 4:
+			CALL_FIELD( 6, 6, 0, 0 );
+			break;
+		case 5:
+			TOWN_MAP( 0 );
+			break;
+		case 6:
+			OPEN_CALENDAR();
+			break;
+		case 7:
+			generate_hangout_menu(hangoutMask);
+			break;
+		case 8:
+			break;
+	}
+}
+
+void NightOrder(bool calendar, bool friend)
+{
+	// Set mask
+	int major = GET_FIELD_MAJOR();
+	int minor = GET_FIELD_MINOR();
+	int nightMask = 0;
+	int streetMask = 0;
+	switch (minor)
+	{
+		case 1:
+			if (major == 8)
+				streetMask = streetMask + 1;
+			break;
+		case 2:
+			if (major == 8)
+				streetMask = streetMask + 2;
+			else if (major == 10)
+				nightMask = nightMask + 4;
+			break;
+		case 9:
+			if (major == 8)
+				nightMask = nightMask + 2;
+			break;
+			
+	}
+	if (!calendar)
+		nightMask = nightMask + 16;
+	int hangoutMask = hangout_mask();
+	if (!friend || hangoutMask == 65535)
+		nightMask = nightMask + 32;
+	begin:
+	SET_SEL_CHOICE_KEYBIND( 14, 6 );
+	int street = ADV_SEL( Street_Text, StreetNight, nightMask );
+	if (street > 0 && street < 4) 
+	{
+		FADE( 2, 5 );
+		FADE_SYNC();
+	}
+	switch (street)
+	{
+		case 0:
+			SET_SEL_CHOICE_KEYBIND(14, 4);
+			int shopping = ADV_SEL( Street_Text, ShoppingDistrict, streetMask );
+			if (shopping < 3) 
+			{
+				FADE( 2, 5 );
+				FADE_SYNC();
+			}
+			switch (shopping)
+			{
+				case 0:
+					if (GET_FIELD_MAJOR() == 8 && GET_FIELD_MINOR() == 9)
+						CALL_FIELD( 8, 1, 2, 0 );
+					else
+						CALL_FIELD( 8, 1, 0, 0 );
+					break;
+				case 1:
+					if (GET_FIELD_MAJOR() == 8)
+						CALL_FIELD( 8, 2, 1, 0 );
+					else
+						CALL_FIELD( 8, 2, 0, 0 );
+					break;
+				case 2:
+					SHIROKU_PUB();
+					CALL_FIELD(8, 2, 3, 0);
+					break;
+				case 3:
+					call_velvet_room();
+					break;
+				case 4:
+					goto begin;
+			}
+			break;
+		case 1:
+			CALL_FIELD( 8, 9, 0, 0 );
+			break;
+		case 2:
+			CALL_FIELD( 10, 2, 0, 0 );
+			break;
+		case 3:
+			if (GET_FIELD_MAJOR() == 7 && GET_FIELD_MINOR() == 1)
+				CALL_FIELD( 7, 2, 0, 0 );
+			else
+				CALL_FIELD( 7, 1, 0, 0 );
+			break;
+		case 4:
+			OPEN_CALENDAR();
+			break;
+		case 5:
+			generate_hangout_menu(hangoutMask);
+			break;
+		case 6:
+			break;
+	}
+}
+
+void call_velvet_room()
+{
+    if ( GET_TIME_OF_DAY() == 5 )
+    {
+        BIT_OFF( 0 + 0x0400 + 704 );
+        BIT_OFF( 0 + 0x0400 + 705 );
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 704 ) == 1 && BIT_CHK( 0 + 0x0400 + 705 ) == 0 && BIT_CHK( 0 + 0x0400 + 532 ) == 0 && BIT_CHK( 0 + 87 ) == 0 && BIT_CHK( 0 + 0x0400 + 706 ) == 0 )
+    {
+		FADE( 2, 5 );
+		FADE_SYNC();
+        OPEN_MSG_WIN();
+        MSG( MSG_MARIE_VELVET_IN );
+        CLOSE_MSG_WIN();
+    }
+
+    PLAY_SOUNDEFFECT( 700 );
+    FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
+    NS_WAIT( 15 );
+    FADE( 1, 10 );
+    FUNCTION_0024( 255, 255, 255 );
+    FADE_SYNC();
+    BIT_ON( 0 + 0x0400 + 655 );
+    
+    if ( BIT_CHK( 0 + 0x0400 + 518 ) == 1 )
+    {
+        BIT_ON( 0 + 0x0400 + 1010 );
+    }
+    
+    if ( BIT_CHK( 0 + 0x0400 + 704 ) == 1 || BIT_CHK( 0 + 0x0400 + 705 ) == 1 )
+    {
+        BIT_ON( 0 + 0x0400 + 641 );
+    }
+
+    VELVET_ROOM();
+    BIT_OFF( 0 + 0x0400 + 655 );
+    BIT_OFF( 0 + 0x0400 + 719 );
+    
+    if ( BIT_CHK( 0 + 0x0400 + 704 ) == 1 || BIT_CHK( 0 + 0x0400 + 705 ) == 1 )
+    {
+        BIT_OFF( 0 + 0x0400 + 641 );
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 704 ) == 1 && BIT_CHK( 0 + 0x0400 + 705 ) == 0 && BIT_CHK( 0 + 0x0400 + 532 ) == 0 && BIT_CHK( 0 + 87 ) == 0 && BIT_CHK( 0 + 0x0400 + 706 ) == 0 )
+    {
+        BIT_OFF( 0 + 0x0400 + 704 );
+        BIT_ON( 0 + 0x0400 + 705 );
+    }
+	
+	CALL_FIELD( 8, 2, 4, 0 );
+
+}

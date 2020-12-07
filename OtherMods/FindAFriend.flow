@@ -66,8 +66,8 @@ int check_if_holiday()
 	return 0;
 }	
 
-void generate_hangout_menu()
-{	
+int hangout_mask()
+{
 	// Variables that store the location of the messages and whatnot
     int SelectMask = 0;
 	
@@ -182,14 +182,19 @@ void generate_hangout_menu()
 		SelectMask = SelectMask + 32768;
 	}
 	
-	
-	if (SelectMask == 65535)
-	{
-		OPEN_MSG_WIN();
-		MSG(NoFriends);
-		CLOSE_MSG_WIN();
-		return;
-	}
+	return SelectMask;
+}
+
+void generate_hangout_menu(int SelectMask)
+{	
+	// Get the day from 0-6, Sunday-Saturday
+	int Day = GET_DAY_OF_WEEK(); 
+	// Get the time of day from 0-5, early morning to evening
+	int TimeOfDay = GET_TIME_OF_DAY();
+	// Check if it is raining
+	int IsRaining = check_if_raining();
+	//Check if it is a holiday
+	int IsHoliday = check_if_holiday();
 	
     SET_SEL_CHOICE_KEYBIND(14, 16);
     int Selection = ADV_SEL( HANGOUT_MSG, HANGOUT_SEL, SelectMask );

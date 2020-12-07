@@ -1,15 +1,16 @@
-import( "../build/input/extracted/field/script/field.bf" );
-import( "../ModMenu.flow" );
+import( "../build/input/init_free/field/script/field.bf" );
+import( "../ModMenu/ModMenu.flow" );
 
 //EXTENSIONS
-import ( "../FindAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
-import ( "../QuickTravelPlus.flow" ); //Extended quickTravel locations for town/school (Comment out to disable)
-import ( "../VRGameOverSkip.flow" ); //Skips velvet room scene after game over (Comment out to disable)
-import ( "../DungeonOptions.flow" ); //Fast travel to any dungeon floor after their deadlines pass
+import ( "../OtherMods/FindAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
+import ( "../OtherMods/QuickTravelPlus.flow" ); //Extended quickTravel locations for town/school (Comment out to disable)
+import ( "../OtherMods/VRGameOverSkip.flow" ); //Skips velvet room scene after game over (Comment out to disable)
+import ( "../OtherMods/DungeonOptions/DungeonOptions.flow" ); //Fast travel to any dungeon floor after their deadlines pass
 	//and organize party on any floor (Comment out to disable)
-import ( "../ConsistentReaperField.flow" ); //Hooks field functions for consistent reaper 
+import ( "../OtherMods/ConsistentReaperField.flow" ); //Hooks field functions for consistent reaper 
 	//if used with DungeonTravel make sure to set ConsistentReaper bool to true in SelectFloor() (DungeonTravel.flow) and use_gohom (GohoM.flow)
 	//also build dungeon.bf.flow with ConsistentReaper.flow uncommented in the imports
+import ( "../OtherMods/MobileCalendar.flow" );
 
 void order_party_hook()
 {
@@ -24,7 +25,7 @@ void order_party_hook()
 	if (modMenu && !quickTravel && !mobileCalendar && !findAFriend)
 		ModMenuDisplay();
 	//Just QuickTravel (Only useful if you have QuickTravelPlus uncommented) (So it's not QuickTravel and Exit)
-	else if (!modMenu && quickTravel && !mobileCalendar && !findAFriend)
+	else if (!modMenu && quickTravel)
 	{
 		if ( GET_FLOOR_ID() > 0)
 		{
@@ -47,17 +48,13 @@ void order_party_hook()
 			int SelectMask = 0;
 			if (!quickTravel)
 				SelectMask = SelectMask + 1;
-			if ( GET_FLOOR_ID() > 0 || !findAFriend)
-				SelectMask = SelectMask + 2;
-			if (!mobileCalendar || dungeon > 0)
-				SelectMask = SelectMask + 4;
 			if (!saveAnywhere)
-				SelectMask = SelectMask + 8;
+				SelectMask = SelectMask + 2;
 			if (!modMenu)
-				SelectMask = SelectMask + 16;
+				SelectMask = SelectMask + 4;
 			
 			// Enable shortcut to close
-			SET_SEL_CHOICE_KEYBIND( 14, 5 );
+			SET_SEL_CHOICE_KEYBIND( 14, 3 );
 			//Prompt user to choose an option if in an appropriate area
 			int selection = 0;
 			if ( GET_FLOOR_ID() > 0)
@@ -76,19 +73,13 @@ void order_party_hook()
 						field_order();
 					}
 					break;
-				case 1: //FindAFriend
-					generate_hangout_menu();
-					break;
-				case 2: //MobileCalendar
-					OPEN_CALENDAR();
-					break;
-				case 3: //SaveAnywhere
+				case 1: //SaveAnywhere
 					NS_SAVE();
 					break;
-				case 4: //ModMenu
+				case 2: //ModMenu
 					ModMenuDisplay();
 					break;
-				case 5: //Exit
+				case 3: //Exit
 					break;
 			}
 		}

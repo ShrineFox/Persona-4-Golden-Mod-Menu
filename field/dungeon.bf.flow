@@ -11,4 +11,4 @@
 
 //import( "../build/input/field/script/dungeon.bf" ); // Using vanilla dungeon.bf as base
 import( "../build/input/field/script/r_dungeon.bf" ); // Using rudiger's dungeon text fixes dungeon.bf as base
-import( "../ConsistentReaper.flow" );
+import( "../OtherMods/ConsistentReaper.flow" );
