@@ -11,18 +11,27 @@ int SelectDigit( int helpText )
 {
     while ( true )
     {
-		SET_SEL_CHOICE_KEYBIND(14, 6);
+		SET_SEL_CHOICE_KEYBIND(10, 10);
+		SET_SEL_CHOICE_KEYBIND(11, 10);
+		SET_SEL_CHOICE_KEYBIND(14, 11);
 		int digit = ADV_SEL( helpText, Num_Menu, 0);
 		if ( digit < 5 ) //0 through 4
 			return digit;
-		if ( digit == 5 )
+		if ( digit == 10 )
         {
-			SET_SEL_CHOICE_KEYBIND(14, 5);
+			SET_SEL_CHOICE_KEYBIND(10, 10);
+			SET_SEL_CHOICE_KEYBIND(11, 10);
+			SET_SEL_CHOICE_KEYBIND(14, 11);
             digit = ADV_SEL( helpText, Num_Menu2, 0) + 5;
-            if ( digit != 10 )
+            if ( digit < 10 )
 				return digit; //5 through 9 or back
+			else if (digit == 16)
+			{	
+				digit = -1; //exit
+				break;
+			}
         }
-		else if (digit == 6)
+		else if (digit == 11)
 		{
 			digit = -1; //exit
 			break;

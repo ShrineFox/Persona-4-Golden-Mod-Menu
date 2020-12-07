@@ -1,0 +1,759 @@
+import ( "MobileCalendar.msg" );
+
+void school_order_hook()
+{
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
+	int var54 = 327;
+	int var55 = SCHOOL_SEL_HOOK;
+	int var57 = 0;
+	
+	if ( GET_FIELD_MINOR() == 1 )
+	{
+		var57 = var57 + 1;
+	}
+	else if ( GET_FIELD_MINOR() == 2 || GET_FIELD_MINOR() == 6 )
+	{
+		var57 = var57 + 2;
+	}
+	else if ( GET_FIELD_MINOR() == 4 || GET_FIELD_MINOR() == 5 )
+	{
+		var57 = var57 + 8;
+	}
+	else if ( GET_FIELD_MINOR() == 3 || GET_FIELD_MINOR() == 14 )
+	{
+		var57 = var57 + 4;
+	}
+
+	
+	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 0 ) == 0 )
+	{
+		var57 = var57 + 0x80;
+	}
+
+	if (!calendar)
+		var57 = var57 + 32;
+	int hangoutMask = hangout_mask();
+	if (!friend || hangoutMask == 65535)
+		var57 = var57 + 64;
+	
+	SET_SEL_CHOICE_KEYBIND( 14, 7 );
+	int var56 = ADV_SEL( var54, var55, var57 );
+	
+	if ( var56 != 6 )
+	{
+		FADE( 1, 5 );
+		FADE_SYNC();
+		
+		if ( var56 == 0 )
+		{
+			CALL_FIELD( 6, 1, 1, 0 );
+		}
+		else if ( var56 == 1 )
+		{
+			CALL_FIELD( 6, 2, 0, 0 );
+		}
+		else if ( var56 == 2 )
+		{
+			CALL_FIELD( 6, 14, 0, 0 );
+		}
+		else if ( var56 == 3 )
+		{
+			CALL_FIELD( 6, 4, 0, 0 );
+		}
+		else if ( var56 == 4 )
+		{
+			TOWN_MAP( 0 );
+		}
+		else if ( var56 == 5 )
+		{
+			OPEN_CALENDAR();
+		}
+		else if ( var56 == 6 )
+		{
+			generate_hangout_menu(hangoutMask);
+		}
+		else if ( var56 == 8 )
+		{
+			TV_STUDIO();
+		}
+
+	}
+}
+
+
+void myhouse_order_hook()
+{
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
+
+    int var58 = 327;
+    int var59 = MYHOME_SEL_HOOK;
+    int var61 = 0;
+    
+    if ( GET_FIELD_MINOR() == 1 )
+    {
+        
+        if ( GET_TIME_OF_DAY() == 5 )
+        {
+            var61 = var61 + 1 + 2 + 4 + 8;
+        }
+        else 
+        {
+            var61 = var61 + 1 + 2 + 8 + 0x10 + 0x20 + 0x40;
+        }
+
+    }
+    else if ( GET_FIELD_MINOR() == 2 )
+    {
+        var61 = var61 + 1 + 4 + 0x10 + 0x20 + 0x40 + 0x80;
+    }
+    else if ( GET_FIELD_MINOR() == 3 )
+    {
+        var61 = var61 + 2 + 4 + 0x10 + 0x20 + 0x40 + 0x80;
+    }
+
+	if (!calendar)
+		var61 = var61 + 256;
+	int hangoutMask = hangout_mask();
+	if (!friend || hangoutMask == 65535)
+		var61 = var61 + 512;
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 0 ) == 0 )
+    {
+        var61 = var61 + 0x0800;
+    }
+
+    SET_SEL_CHOICE_KEYBIND( 14, 10 );
+    int var60 = ADV_SEL( var58, var59, var61 );
+    
+    if ( var60 == 0 )
+    {
+        PLAY_SOUNDEFFECT( 173 );
+        FADE( 1, 5 );
+        FADE_SYNC();
+        CALL_FIELD( 7, 2, 1, 0 );
+        return;
+    }
+    else if ( var60 == 1 )
+    {
+        into_myroom();
+        return;
+    }
+    else if ( var60 == 2 )
+    {
+        FADE( 1, 5 );
+        FADE_SYNC();
+        TOWN_MAP( 5 );
+        return;
+    }
+    else if ( var60 == 3 )
+    {
+        getout_myhome();
+        return;
+    }
+    else if ( var60 == 4 )
+    {
+        FADE( 1, 5 );
+        FADE_SYNC();
+        CALL_FIELD( 8, 2, 0, 0 );
+        return;
+    }
+    else if ( var60 == 5 )
+    {
+        call_go2shrine();
+        return;
+    }
+    else if ( var60 == 6 )
+    {
+        call_go2beach();
+        return;
+    }
+    else if ( var60 == 7 )
+    {
+        entrance_into_myhome();
+        return;
+    }
+	else if (var60 == 8)
+		OPEN_CALENDAR();
+	else if (var60 == 9)
+		generate_hangout_menu(hangoutMask);
+    else if ( var60 == 11 )
+    {
+        FADE( 1, 5 );
+        FADE_SYNC();
+        TV_STUDIO();
+        return;
+    }
+
+}
+
+
+void street_order_hook()
+{
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
+
+    int var62 = 0;
+    int var63 = 0;
+    int var65 = 0;
+    int var64 = 0;
+    
+    if ( GET_TIME_OF_DAY() == 5 )
+    {
+        var62 = 327;
+        var63 = SEL_NIGHT_PLACE_HOOK;
+        var65 = 0;
+        sel_mask_night_play();
+        var65 = sVar136;
+        SET_SEL_CHOICE_KEYBIND( 14, 8 );
+        var64 = ADV_SEL( var62, var63, var65 );
+        
+        if ( var64 == 0 )
+        {
+            call_go2street();
+        }
+        else if ( var64 == 1 )
+        {
+            
+            if ( GET_FIELD_MINOR() == 2 || GET_FIELD_MINOR() == 13 )
+            {
+                call_street_02();
+            }
+            else if ( GET_FIELD_MINOR() == 9 || GET_FIELD_MINOR() == 14 )
+            {
+                call_shrine2street();
+            }
+
+        }
+        else if ( var64 == 2 )
+        {
+            call_street_01();
+        }
+        else if ( var64 == 3 )
+        {
+            call_street2shrine();
+        }
+        else if ( var64 == 4 )
+        {
+            call_go2beach();
+        }
+        else if ( var64 == 5 )
+        {
+            call_go2home();
+        }
+		else if ( var64 == 6 )
+			OPEN_CALENDAR();
+		else if ( var64 == 7 )
+			generate_hangout_menu(hangout_mask());
+
+        return;
+    }
+    else 
+    {
+        var62 = 327;
+        var63 = STREET_SEL_HOOK;
+        var65 = 0;
+        
+        if ( GET_FIELD_MINOR() == 1 || GET_FIELD_MINOR() == 12 )
+        {
+            var65 = var65 + 1;
+        }
+        else if ( GET_FIELD_MINOR() == 2 || GET_FIELD_MINOR() == 13 )
+        {
+            var65 = var65 + 2;
+            
+            if ( DATE_CHK( 4, 11 ) )
+            {
+                var65 = var65 + 1 + 4;
+            }
+
+        }
+        else if ( GET_FIELD_MINOR() == 9 || GET_FIELD_MINOR() == 14 )
+        {
+            var65 = var65 + 4;
+        }
+
+		if (!calendar)
+			var65 = var65 + 16;
+		int hangoutMask = hangout_mask();
+		if (!friend || hangoutMask == 65535)
+			var65 = var65 + 32;
+        SET_SEL_CHOICE_KEYBIND( 14, 6 );
+        var64 = ADV_SEL( var62, var63, var65 );
+        
+        if ( var64 != 6 )
+        {
+            
+            if ( var64 == 0 )
+            {
+                
+                if ( GET_FIELD_MINOR() == 2 || GET_FIELD_MINOR() == 13 )
+                {
+                    call_street_02();
+                }
+                else if ( GET_FIELD_MINOR() == 9 || GET_FIELD_MINOR() == 14 )
+                {
+                    call_shrine2street();
+                }
+
+                return;
+            }
+            else if ( var64 == 1 )
+            {
+                call_street_01();
+                return;
+            }
+            else if ( var64 == 2 )
+            {
+                call_street2shrine();
+                return;
+            }
+            else if ( var64 == 3 )
+            {
+                
+                if ( DATE_CHK( 4, 11 ) == 1 )
+                {
+                    OPEN_MSG_WIN();
+                    MSG( TEST_STOP_0411 );
+                    CLOSE_MSG_WIN();
+                }
+                else if ( GET_MONTH() == 4 && GET_DAY_OF_MONTH() == 17 )
+                {
+                    OPEN_MSG_WIN();
+                    MSG( GOINTO_HOME_STOP );
+                    SET_SEL_CHOICE_KEYBIND( 14, 1 );
+                    var64 = SEL( YESNO_SEL );
+                    CLOSE_MSG_WIN();
+                    
+                    if ( var64 == 0 )
+                    {
+                        FADE( 1, 10 );
+                        FADE_SYNC();
+                        eve_0417_afterschool();
+                    }
+
+                }
+                else 
+                {
+                    FADE( 1, 5 );
+                    FADE_SYNC();
+                    TOWN_MAP( 1 );
+                }
+
+                return;
+            }
+			else if ( var64 == 4 )
+				OPEN_CALENDAR();
+			else if ( var64 == 5 )
+				generate_hangout_menu(hangoutMask);
+
+        }
+
+        return;
+    }
+
+}
+
+
+void night_place_order_exit_hook()
+{
+    sel_mask_night_play();
+    int var137 = sVar136;
+    MSG( EXIT_NIGHT_STREET_OK );
+    SET_SEL_CHOICE_KEYBIND( 14, 8 );
+    SET_MASK( var137 );
+    int var138 = SEL( SEL_NIGHT_PLACE_HOOK );
+    
+    if ( var138 == 0 )
+    {
+        CLOSE_MSG_WIN();
+        call_go2street();
+    }
+    else if ( var138 == 1 )
+    {
+        CLOSE_MSG_WIN();
+        
+        if ( GET_FIELD_MINOR() == 2 || GET_FIELD_MINOR() == 13 )
+        {
+            call_street_02();
+        }
+        else if ( GET_FIELD_MINOR() == 9 || GET_FIELD_MINOR() == 14 )
+        {
+            call_shrine2street();
+        }
+
+    }
+    else if ( var138 == 2 )
+    {
+        CLOSE_MSG_WIN();
+        call_street_01();
+    }
+    else if ( var138 == 3 )
+    {
+        CLOSE_MSG_WIN();
+        call_street2shrine();
+    }
+    else if ( var138 == 4 )
+    {
+        CLOSE_MSG_WIN();
+        call_go2beach();
+    }
+    else if ( var138 == 5 )
+    {
+        CLOSE_MSG_WIN();
+        call_go2home();
+    }
+	else if ( var138 == 6 )
+    {
+        OPEN_CALENDAR();
+    }
+	else if ( var138 == 7 )
+		generate_hangout_menu(hangout_mask());
+    else 
+    {
+        CLOSE_MSG_WIN();
+    }
+
+}
+
+
+void sel_mask_night_play_hook()
+{
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
+	
+    int var139 = 0;
+    sVar136 = 0;
+    
+    if ( GET_FIELD_MAJOR() == 8 )
+    {
+        var139 = var139 + 1;
+        
+        if ( GET_FIELD_MINOR() == 1 || GET_FIELD_MINOR() == 12 )
+        {
+            var139 = var139 + 2;
+            
+            if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 178 ) == 1 )
+            {
+                var139 = var139 + 4 + 8;
+            }
+
+        }
+        else if ( GET_FIELD_MINOR() == 2 || GET_FIELD_MINOR() == 13 )
+        {
+            var139 = var139 + 4;
+            
+            if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 178 ) == 1 )
+            {
+                var139 = var139 + 2 + 8;
+            }
+
+        }
+        else if ( GET_FIELD_MINOR() == 9 || GET_FIELD_MINOR() == 14 )
+        {
+            var139 = var139 + 8;
+        }
+
+    }
+    else if ( GET_FIELD_MAJOR() == 10 )
+    {
+        var139 = var139 + 2 + 4 + 8 + 0x10;
+    }
+
+	if (!calendar)
+		sVar136 = sVar136 + 64;
+	int hangoutMask = hangout_mask();
+	if (!friend || hangoutMask == 65535)
+		sVar136 = sVar136 + 128;
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 178 );
+    sVar136 = var139;
+}
+
+void gms_order_hook()
+{
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
+	
+	int var66 = 327;
+	int var67 = GMS_SEL_HOOK;
+	int var69 = 0;
+	
+	if (!calendar)
+		var69 = var69 + 4;
+	int hangoutMask = hangout_mask();
+	if (!friend || hangoutMask == 65535)
+		var69 = var69 + 8;
+
+	SET_SEL_CHOICE_KEYBIND( 14, 4 );
+	int var68 = ADV_SEL( var66, var67, var69 );
+	
+	if ( var68 == 0 )
+	{
+		BIT_OFF( 0 + 0x0400 + 0x0800 + 185 );
+		elevator_to_foodcourt();
+		return;
+	}
+	else if (var68 == 1)
+	{
+		FADE( 1, 5 );
+		FADE_SYNC();
+		TOWN_MAP( 2 );
+		return;
+	}
+	else if (var68 == 2)
+		OPEN_CALENDAR();
+	else if (var68 == 3)
+		generate_hangout_menu(hangoutMask);
+}
+
+
+void embank_order_hook()
+{
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
+	
+	int var70 = 0;
+	int var71 = 0;
+	int var73 = 0;
+	int var72 = 0;
+	
+	if ( GET_TIME_OF_DAY() == 5 )
+	{
+		var70 = 327;
+		var71 = SEL_EMBANK_NIGHT_HOOK;
+		var73 = 0;
+		
+		if (!calendar)
+			var73 = var73 + 8;
+		int hangoutMask = hangout_mask();
+		if (!friend || hangoutMask == 65535)
+			var73 = var73 + 16;
+		
+		SET_SEL_CHOICE_KEYBIND( 14, 5 );
+		var72 = ADV_SEL( var70, var71, var73 );
+		
+		if ( var72 == 0 )
+		{
+			call_go2street();
+		}
+		else if ( var72 == 1 )
+		{
+			call_go2shrine();
+		}
+		else if ( var72 == 2 )
+		{
+			call_go2home();
+		}
+		else if ( var72 == 3 )
+		{
+			OPEN_CALENDAR();
+		}
+		else if (var72 == 4)
+			generate_hangout_menu(hangoutMask);
+
+		return;
+	}
+	else 
+	{
+		var70 = 327;
+		var71 = SEL_EMBANK_HOOK;
+		var73 = 0;
+		
+		if (!calendar)
+			var73 = var73 + 8;
+		int hangoutMask = hangout_mask();
+		if (!friend || hangoutMask == 65535)
+			var73 = var73 + 16;
+		
+		if ( GET_FIELD_MINOR() == 1 )
+		{
+			var73 = var73 + 1;
+		}
+		else if ( GET_FIELD_MINOR() == 2 )
+		{
+			var73 = var73 + 2;
+		}
+
+		SET_SEL_CHOICE_KEYBIND( 14, 5 );
+		var72 = ADV_SEL( var70, var71, var73 );
+		
+		if ( var72 != 5 )
+		{
+			
+			if ( var72 == 0 )
+			{
+				FADE( 1, 5 );
+				FADE_SYNC();
+				CALL_FIELD( 10, 1, 1, 0 );
+				return;
+			}
+			else if ( var72 == 1 )
+			{
+				FADE( 1, 5 );
+				FADE_SYNC();
+				CALL_FIELD( 10, 2, 0, 0 );
+				return;
+			}
+			else if ( var72 == 2 )
+			{
+				FADE( 1, 5 );
+				FADE_SYNC();
+				TOWN_MAP( 3 );
+				return;
+			}
+			else if (var72 == 3)
+				OPEN_CALENDAR();
+			else if (var72 == 4)
+				generate_hangout_menu(hangoutMask);
+		}
+
+	}
+}
+
+
+void station_order_hook()
+{
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
+	
+    int var74 = 327;
+    int var75 = STATION_SEL_HOOK;
+    int var77 = 0;
+    int var76 = 0;
+	
+	if (!calendar)
+		var77 = var77 + 2;
+	int hangoutMask = hangout_mask();
+	if (!friend || hangoutMask == 65535)
+		var77 = var77 + 4;
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 336 ) == 1 )
+    {
+        OPEN_MSG_WIN();
+        MSG( MSG_EXIT_STATION_NANPA );
+        CLOSE_MSG_WIN();
+    }
+    else 
+    {
+        SET_SEL_CHOICE_KEYBIND( 14, 3 );
+        var76 = ADV_SEL( var74, var75, var77 );
+        
+        if ( var76 == 0 )
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 172 );
+            BIT_OFF( 0 + 0x0400 + 0x0800 + 171 );
+            FADE( 1, 5 );
+            FADE_SYNC();
+            
+            if ( GET_CNT( 169 ) != 0 )
+            {
+                
+                if ( DATE_CHK( 3, 20 ) == 1 )
+                {
+                    SET_CNT( 169, 0 );
+                    FUNCTION_006B( -1 );
+                    FUNCTION_006B( 1 );
+                }
+                else 
+                {
+                    SET_CNT( 169, 0 );
+                    FUNCTION_006B( -1 );
+                }
+
+            }
+
+            
+            if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 176 ) == 1 )
+            {
+                CALL_FIELD( 7, 1, 5, 0 );
+            }
+            else 
+            {
+                BIT_OFF( 0 + 0x0400 + 0x0800 + 172 );
+                TOWN_MAP( 6 );
+            }
+
+        }
+		else if ( var76 == 1)
+			OPEN_CALENDAR();
+		else if (var76 == 2)
+			generate_hangout_menu(hangoutMask);
+
+    }
+
+}
+
+
+void schoolroad_order_hook()
+{
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
+
+	int var78 = 327;
+	int var79 = SCHOOLROAD_SEL_HOOK;
+	int var81 = 0;
+	
+	if (!calendar)
+		var81 = var81 + 2;
+	int hangoutMask = hangout_mask();
+	if (!friend || hangoutMask == 65535)
+		var81 = var81 + 4;
+
+	SET_SEL_CHOICE_KEYBIND( 14, 3 );
+	int var80 = ADV_SEL( var78, var79, var81 );
+	
+	if ( var80 == 0 )
+	{
+		FADE( 1, 5 );
+		FADE_SYNC();
+		TOWN_MAP( 4 );
+		return;
+	}
+	else if ( var80 == 1 )
+		OPEN_CALENDAR();
+	else if (var80 == 2)
+		generate_hangout_menu(hangoutMask);
+}
+
+
+void snowmt_order_hook()
+{
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
+
+	int var82 = 327;
+	int var83 = SNOWMOUNTAIN_SEL_HOOK;
+	int var85 = 0;
+	
+	if (!calendar)
+		var85 = var85 + 4;
+	int hangoutMask = hangout_mask();
+	if (!friend || hangoutMask == 65535)
+		var85 = var85 + 8;
+
+	SET_SEL_CHOICE_KEYBIND( 14, 4 );
+	int var84 = ADV_SEL( var82, var83, var85 );
+	
+	if ( var84 != 4 )
+	{
+		
+		if ( var84 == 0 )
+		{
+			snowmt_to_lodge();
+			return;
+		}
+		else if ( var84 == 1 )
+		{
+			FADE( 1, 5 );
+			FADE_SYNC();
+			TOWN_MAP( 7 );
+			return;
+		}
+		else if ( var84 == 2 )
+			OPEN_CALENDAR();
+		else if ( var84 == 3 )
+			generate_hangout_menu(hangoutMask);
+	}
+
+}

@@ -23,9 +23,9 @@ void entrance_jump_hook()
 {
     int var29 = GET_FLOOR_ID();
 	int mask = 0;
-	if (EnableOrganizeParty() == false)
+	if (!EnableOrganizeParty() || !BIT_CHK(6424))
 		mask = mask + 4;
-	if (BeatDungeon() == false)
+	if (!BeatDungeon() || !BIT_CHK(6424))
 		mask = mask + 2;
     FUNCTION_0023( 0, 3 );
     SET_SEL_CHOICE_KEYBIND( 14, 3 );
@@ -212,8 +212,11 @@ void helper_order_hook()
 
 void init_sel_mask_hook()
 {
-	bool fox = true;
-	bool showFloorSelect = BeatDungeon();
+	bool showFox = true;
+	bool showFloorSelect = true;
+	bool showGohom = true;
+	bool showOrganizeParty = true;
+	showFloorSelect = showFloorSelect && BeatDungeon();
     int var34 = GET_FLOOR_ID();
     sVar0 = 0;
     sVar2 = 63;
@@ -320,13 +323,13 @@ void init_sel_mask_hook()
     }
 	
 	// Hide floor select
-	if (showFloorSelect == false)
+	if (!showFloorSelect || !BIT_CHK(6424))
 		sVar1 = sVar1 + 0x80;
-	else
+	else if (!showGohom || showFloorSelect || !BIT_CHK(6424))
 		sVar1 = sVar1 + 0x200;
-	if (EnableOrganizeParty() == false)
+	if (!EnableOrganizeParty() || !showOrganizeParty || !BIT_CHK(6424))
 		sVar1 = sVar1 + 0x100;
-	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 9 ) == 0 || !fox)
+	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 9 ) == 0 || !showFox || !BIT_CHK(6424))
 		sVar1 = sVar1 + 0x400;
 }
 
@@ -336,7 +339,7 @@ void tomb_jump_hook()
     int var25 = 0;
     var24 = var24 + 1 + 4 + 8;
     var24 = var24 + 0x20;
-	if (EnableOrganizeParty() == false)
+	if (!EnableOrganizeParty() || !BIT_CHK(6424))
 		var24 = var24 + 2;
     FUNCTION_0023( 0, 3 );
     SET_SEL_CHOICE_KEYBIND( 14, 6 );
@@ -408,7 +411,7 @@ void liqueur_jump_hook()
 {
     FUNCTION_0023( 0, 3 );
 	int mask = 0;
-	if (EnableOrganizeParty() == false)
+	if (!EnableOrganizeParty() || !BIT_CHK(6424))
 		mask = mask + 2;
     SET_SEL_CHOICE_KEYBIND( 14, 1 );
     int var26 = ADV_SEL( 15, LIQUEUR_SEL_HOOK, mask );

@@ -1,0 +1,41 @@
+/*
+	REQUIRED DEPENDENCIES
+*/
+import( "ModMenu.msg" ); //Mod Menu strings
+import( "CallMenu.flow" );
+import( "PlayerMenu.flow" );
+import( "FlagMenu.flow" );
+import( "Utilities.flow" ); //Frequently reused Mod Menu operations
+
+int ModMenuDisplay()
+{
+	while(true) 
+	{
+		SET_SEL_CHOICE_KEYBIND(14, 10);
+		SET_SEL_CHOICE_KEYBIND(15, 11);
+		int selection = ADV_SEL(Mod_Menu_Text, Mod_Menu, 0);
+		switch (selection)
+		{
+			case 0:
+				if (CallMenuDisplay() == -1)
+					break;
+				else
+					return 0;
+			case 1:
+				if (PlayerMenuDisplay() == -1)
+					break;
+				else
+					return 0;
+			case 2:
+				if (Flag_Menu() == -1)
+					break;
+				else
+					return 0;
+			case 10:
+				return -1;
+			case 11:
+				return 0;
+		}
+	}
+	return -1;
+}

@@ -1,0 +1,75 @@
+
+// 
+// FlowScript decompiled by AtlusScriptLib by TGE (2017)
+// In the unfortunate case of any bugs, please report them back to me.
+// 
+
+
+// 
+// Imports
+// 
+
+import( "../build/input/field/pack/fd010_002/f010.bf" );
+import( "f010.bf.msg" );
+
+// 
+// Procedure declarations
+// 
+
+void up_embankment_hook()
+{
+    int var3 = 0;
+    
+    if ( GET_TIME_OF_DAY() == 5 )
+    {
+        NightOrder(32);
+
+    }
+    else 
+    {
+        FADE( 1, 5 );
+        FADE_SYNC();
+        FUNCTION_0023( 1, 24 );
+        CALL_FIELD( 10, 1, 1, 0 );
+    }
+
+}
+
+void NightOrder(int mask)
+{
+	SET_SEL_CHOICE_KEYBIND(14, 7);
+	int street = ADV_SEL( Street_Text, StreetNight, mask );
+	if (street < 7) 
+	{
+		FADE( 2, 5 );
+		FADE_SYNC();
+	}
+	switch (street)
+	{
+		case 0:
+			CALL_FIELD( 8, 1, 0, 0 );
+			break;
+		case 1:
+			CALL_FIELD( 8, 2, 1, 0 );
+			break;
+		case 2:
+			SHIROKU_PUB();
+			CALL_FIELD(8, 2, 3, 0);
+			break;
+		case 3:
+			VELVET_ROOM();
+			CALL_FIELD(8, 2, 4, 0);
+			break;
+		case 4:
+			CALL_FIELD( 8, 9, 0, 0 );
+			break;
+		case 5:
+			CALL_FIELD( 10, 2, 0, 0 );
+			break;
+		case 6:
+			CALL_FIELD( 7, 1, 0, 0 );
+			break;
+		case 7:
+			break;
+	}
+}

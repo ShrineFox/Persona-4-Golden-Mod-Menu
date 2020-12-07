@@ -18,7 +18,7 @@ import( "DungeonTravel.msg" );
 
 void SelectFloor()
 {
-	bool ConsitentReaper = true;
+	bool ConsitentReaper = BIT_CHK(6428);
 	int floor = GET_FLOOR_ID();
 	int EntranceFloor;
 	int FloorText;
@@ -120,96 +120,35 @@ void SelectFloor()
 	{
 		if (firstPage == true)
 		{	
-			SET_SEL_CHOICE_KEYBIND( 14, 7 );
-			selection = ADV_SEL(SelectFloorsMsg, FloorText, selectMask1);
+			SET_SEL_CHOICE_KEYBIND( 14, 11 );
+			SET_SEL_CHOICE_KEYBIND( 10, 12 );
+			SET_SEL_CHOICE_KEYBIND( 11, 12 );
+			selection = ADV_SEL(SelectFloorsMsg1, FloorText, selectMask1);
 			firstPage = false;
 			
-			if (selection == 7)
+			if (selection == 11)
 			{
 				CLOSE_MSG_WIN();
 				return;
 			}
-			else if (selection != 6)
+			else if (selection < 6)
 				selected = true;
 		}
 		else
 		{
-			// Close shortcuts
-			switch (FloorText)
-			{
-				case YukikoFloors1:
-					SET_SEL_CHOICE_KEYBIND( 14, 4 );
-					break;
-				case KanjiFloors1:
-				case RiseFloors1:
-					SET_SEL_CHOICE_KEYBIND( 14, 7 );
-					break;
-				case MitsuoFloors1:
-				case NanakoFloors1:
-					SET_SEL_CHOICE_KEYBIND( 14, 6 );
-					break;
-				case NaotoFloors1:
-				case AdachiFloors1:
-					SET_SEL_CHOICE_KEYBIND( 14, 5 );
-					break;
-			}
-			selection = ADV_SEL(SelectFloorsMsg, FloorText + 1, selectMask2);
+			SET_SEL_CHOICE_KEYBIND( 14, 11 );
+			SET_SEL_CHOICE_KEYBIND( 10, 12 );
+			SET_SEL_CHOICE_KEYBIND( 11, 12 );
+			selection = ADV_SEL(SelectFloorsMsg2, FloorText + 1, selectMask2 ) + 6;
 			firstPage = true;
 			
-			switch (FloorText)
+			if (selection == 17)
 			{
-				case YukikoFloors1:
-					if (selection == 4)
-					{
-						CLOSE_MSG_WIN();
-						return;
-					}
-					else if (selection != 3)
-					{
-						selection = selection + 6;
-						selected = true;
-					}
-					break;
-				case KanjiFloors1:
-				case RiseFloors1:
-					if (selection == 7)
-					{
-						CLOSE_MSG_WIN();
-						return;
-					}
-					else if (selection != 6)
-					{
-						selection = selection + 6;
-						selected = true;
-					}
-					break;
-				case MitsuoFloors1:
-				case NanakoFloors1:
-					if (selection == 6)
-					{
-						CLOSE_MSG_WIN();
-						return;
-					}
-					else if (selection != 5)
-					{
-						selection = selection + 6;
-						selected = true;
-					}
-					break;
-				case AdachiFloors1:
-				case NaotoFloors1:
-					if (selection == 5)
-					{
-						CLOSE_MSG_WIN();
-						return;
-					}
-					else if (selection != 4)
-					{
-						selection = selection + 6;
-						selected = true;
-					}
-					break;
+				CLOSE_MSG_WIN();
+				return;
 			}
+			else if (selection < 12)
+				selected = true;
 		}
 	}
 	CLOSE_MSG_WIN();

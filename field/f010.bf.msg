@@ -1,0 +1,12 @@
+[sel StreetNight]
+[f 0 5 -258][f 2 1]Shopping District, North[e]
+[f 0 5 -258][f 2 1]Shopping District, South[e]
+[f 0 5 -258][f 2 1]Shiroku Pub[e]
+[f 0 5 -258][f 2 1]Velvet Room[e]
+[f 0 5 -258][f 2 1]Shrine[e]
+[f 0 5 -258][f 2 1]Riverbank[e]
+[f 0 5 -258][f 2 1]Go back home[e]
+[f 0 5 -258][f 2 1]Cancel[e]
+
+[msg Street_Text]
+[f 0 5 -258][f 2 1]Town of Inaba[n][f 1 1][e]

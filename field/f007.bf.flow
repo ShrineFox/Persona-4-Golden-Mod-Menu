@@ -1,0 +1,85 @@
+
+// 
+// FlowScript decompiled by AtlusScriptLib by TGE (2017)
+// In the unfortunate case of any bugs, please report them back to me.
+// 
+
+
+// 
+// Imports
+// 
+
+import( "../build/input/field/pack/fd007_001/f007.bf" );
+import( "f007.bf.msg" );
+
+// 
+// Script-level variable definitions
+// 
+
+void call_lmap_hook()
+{
+    int var12 = 0;
+    
+    if ( GET_TIME_OF_DAY() == 5 )
+    {
+        NightOrder(0);
+        return;
+    }
+    else 
+    {
+        OPEN_MSG_WIN();
+        MSG( EXIT_HOME_OK );
+        SET_SEL_CHOICE_KEYBIND( 14, 1 );
+        var12 = SEL( YESNO_SEL );
+        CLOSE_MSG_WIN();
+        
+        if ( var12 == 0 )
+        {
+            FADE( 1, 5 );
+            FADE_SYNC();
+            TOWN_MAP( 5 );
+        }
+
+        return;
+    }
+
+}
+
+void NightOrder(int mask)
+{
+	SET_SEL_CHOICE_KEYBIND(14, 7);
+	int street = ADV_SEL( Street_Text, StreetNight, mask );
+	if (street < 7) 
+	{
+		FADE( 2, 5 );
+		FADE_SYNC();
+	}
+	switch (street)
+	{
+		case 0:
+			CALL_FIELD( 8, 1, 0, 0 );
+			break;
+		case 1:
+			CALL_FIELD( 8, 2, 1, 0 );
+			break;
+		case 2:
+			SHIROKU_PUB();
+			CALL_FIELD(8, 2, 3, 0);
+			break;
+		case 3:
+			VELVET_ROOM();
+			CALL_FIELD(8, 2, 4, 0);
+			break;
+		case 4:
+			CALL_FIELD( 8, 9, 0, 0 );
+			break;
+		case 5:
+			CALL_FIELD( 10, 2, 0, 0 );
+			break;
+		case 6:
+			CALL_FIELD( 7, 2, 0, 0 );
+			break;
+		case 7:
+			break;
+	}
+}

@@ -1,0 +1,94 @@
+void dng_decease_hook()
+{
+    int var17 = GET_FLOOR_ID();
+    int var18 = GET_CNT( 34 );
+    SHOW_DATE( 0 );
+	//If VRGameOverSkip enabled
+	if (!BIT_CHK(6427))
+	{
+		CALL_EVENT( 450, 2, 0 );
+	}
+    SHOW_DATE( 1 );
+    int var16 = 0;
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 0x0400 + 12 ) != 1 && var17 > 0 || var18 > 0 )
+    {
+        OPEN_MSG_WIN();
+        MSG( RETRY_CHECK );
+        var16 = SEL( RETRY_SEL );
+        CLOSE_MSG_WIN();
+        
+        if ( var16 == 0 )
+        {
+            FLD_FUNCTION_0035();
+            RESET_FLOOR();
+            SET_CNT( 34, 0 );
+            FADE( 1, 10 );
+            FADE_SYNC();
+            
+            if ( var17 == 0 )
+            {
+                
+                if ( var18 == 513 )
+                {
+                    var17 = 7;
+                }
+                else if ( var18 == 514 || var18 == 526 )
+                {
+                    var17 = 13;
+                }
+                else if ( var18 == 515 || var18 == 527 )
+                {
+                    var17 = 31;
+                }
+                else if ( var18 == 516 || var18 == 517 || var18 == 528 )
+                {
+                    var17 = 51;
+                }
+                else if ( var18 == 518 || var18 == 529 )
+                {
+                    var17 = 70;
+                }
+                else if ( var18 == 519 || var18 == 530 )
+                {
+                    var17 = 89;
+                }
+                else if ( var18 == 520 || var18 == 531 || var18 == 525 )
+                {
+                    var17 = 110;
+                }
+                else if ( var18 == 521 || var18 == 522 )
+                {
+                    var17 = 129;
+                }
+                else if ( var18 == 523 || var18 == 533 )
+                {
+                    var17 = 149;
+                }
+                else if ( var18 == 535 || var18 == 534 )
+                {
+                    var17 = 170;
+                }
+
+                CALL_DUNGEON( var17, 0 );
+            }
+            else if ( FLD_FUNCTION_003B() == 1 )
+            {
+                CALL_DUNGEON( var17, 1023 );
+            }
+            else if ( var17 == 122 )
+            {
+                CALL_DUNGEON( var17, 0 );
+            }
+            else 
+            {
+                CALL_FLOOR( var17 );
+            }
+
+            return;
+        }
+
+    }
+
+    SOFT_RESET();
+}
