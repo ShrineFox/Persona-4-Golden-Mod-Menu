@@ -5,11 +5,13 @@
 [f 0 5 -258][f 2 1]Quick travel[e]
 [f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Mod menu[e]
+[f 0 5 -258][f 2 1]Options[e]
 
 [sel Square_Menu_Dng]
 [f 0 5 -258][f 2 1]Dungeon options[e]
 [f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Mod menu[e]
+[f 0 5 -258][f 2 1]Options[e]
 
 [msg Mod_Menu_Text]
 [f 0 5 -258][f 2 1]P4G Mod Menu[n][f 1 1][e]
@@ -111,6 +113,7 @@
 [f 0 5 -258][f 2 1]Mass Flag Edit[e]
 [f 0 5 -258][f 2 1]Complete All Quests[e]
 [f 0 5 -258][f 2 1]Renew All Quests[e]
+[f 0 5 -258][f 2 1]Toggle Menu Options[e]
 
 [sel OnOff]
 [f 0 5 -258][f 2 1]On[e]

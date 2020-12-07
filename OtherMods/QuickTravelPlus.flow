@@ -1,18 +1,24 @@
 import ( "QuickTravelPlus.msg" );
 void field_order_hook()
 {
-	bool calendar = true;
-	bool friend = true;
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
+	bool plus = BIT_CHK(6422);
 
 	if ( GET_FIELD_MAJOR() == 6 )
 	{
-		//Show expanded school quicktravel menu
-		SchoolOrder(calendar, friend);
+		if (plus)
+		{
+			//Show expanded school quicktravel menu
+			SchoolOrder(calendar, friend);
+		}
+		else
+			school_order();
 	}
 	// Dojima's Residence
 	else if ( GET_FIELD_MAJOR() == 7 )
 	{
-		if (GET_TIME_OF_DAY() == 5 && GET_FIELD_MINOR() == 1)
+		if (GET_TIME_OF_DAY() == 5 && GET_FIELD_MINOR() == 1 && plus)
 		{
 			NightOrder(calendar, friend);
 		}
@@ -21,14 +27,19 @@ void field_order_hook()
 	}
 	else if ( GET_FIELD_MAJOR() == 8 )
 	{
-		if (GET_TIME_OF_DAY() != 5)
+		if (plus)
 		{
-			StreetOrder(calendar, friend);
+			if (GET_TIME_OF_DAY() != 5)
+			{
+				StreetOrder(calendar, friend);
+			}
+			else 
+			{
+				NightOrder(calendar, friend);
+			}
 		}
-		else 
-		{
-			NightOrder(calendar, friend);
-		}
+		else
+			street_order();
 	}
 	// Junes
 	else if ( GET_FIELD_MAJOR() == 9 )
@@ -38,7 +49,7 @@ void field_order_hook()
 	// Riverbank
 	else if ( GET_FIELD_MAJOR() == 10 )
 	{
-		if (GET_TIME_OF_DAY() != 5)
+		if (GET_TIME_OF_DAY() != 5 || !plus)
 			embank_order();
 		else
 			NightOrder(calendar, friend);

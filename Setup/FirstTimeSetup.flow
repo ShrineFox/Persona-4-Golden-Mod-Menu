@@ -1,0 +1,91 @@
+import("FirstTimeSetup.msg");
+
+void FirstTimeSetup()
+{
+	//Introduction
+	OPEN_MSG_WIN();
+	MSG( SquareMenuConfig );
+	CLOSE_MSG_WIN();
+	
+	//Marks first time setup as complete
+	BIT_ON(6420);
+	
+	//Enable "Options" in menu for later configuration
+	BIT_ON(6429);
+	
+	//Set all menu option values to 0
+	for (int i = 0; i < 8; i++)
+	{
+		BIT_OFF(6421 + i);
+	}
+	
+	//Toggle options until done
+	MenuOptions();
+}
+
+void MenuOptions()
+{
+	//First time setup for Custom Square Menu
+	if (!BIT_CHK(6420))
+	{
+		FirstTimeSetup();
+	}
+	else
+	{
+		//Toggle options until done
+		bool done = false;
+		while(!done)
+		{
+			//Set message variables for menu options
+			for (int i = 0; i < 8; i++)
+			{
+				SET_MSG_VAR(i, BIT_CHK(6421 + i), 0);
+			}
+			SET_SEL_CHOICE_KEYBIND( 14, 8 );
+			SET_SEL_CHOICE_KEYBIND( 15, 8 );
+			//Toggle selection or read more about it
+			int selection = ADV_SEL(SquareMenuOptions_Text, SquareMenuOptions, 0);
+			if (selection != 8)
+			{
+				ToggleOption(selection);
+			}
+			else
+			{
+				done = true;
+				OPEN_MSG_WIN();
+				MSG(OptionsToggle);
+				SET_SEL_CHOICE_KEYBIND(14, 1);
+				int toggle = SEL(YESNO_SEL);
+				if (toggle == 1)
+				{
+					BIT_ON(6429);
+				}
+				else
+				{
+					BIT_OFF(6429);
+				}
+				CLOSE_MSG_WIN();
+			}
+		}
+	}
+}
+
+void ToggleOption(int selection)
+{
+	OPEN_MSG_WIN();
+	MSG( ModMenu_About + selection );
+	SET_SEL_CHOICE_KEYBIND(14, 2);
+	int sel = SEL(ToggleMenu);
+	switch (sel)
+	{
+		case 0: //on
+			BIT_ON(6421 + selection);
+			break;
+		case 1: //off
+			BIT_OFF(6421 + selection);
+			break;
+		case 2: //back
+			break;
+	}
+	CLOSE_MSG_WIN();
+}

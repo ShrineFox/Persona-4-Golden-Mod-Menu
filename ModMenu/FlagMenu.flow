@@ -19,6 +19,9 @@ int Flag_Menu()
 			case 3:
 				ReviveQuests();
 				return 0;
+			case 4:
+				ToggleMenuOptions();
+				return 0;
 			case 10:
 				return -1;
 			case 11:
@@ -26,6 +29,19 @@ int Flag_Menu()
 		}
 	}
 	return 0;
+}
+
+void ToggleMenuOptions()
+{
+	int toggle = SEL(OnOff);
+	if (toggle == 0)
+	{
+		BIT_ON(6429);
+	}
+	else
+	{
+		BIT_OFF(6429);
+	}
 }
 
 void ToggleBit()

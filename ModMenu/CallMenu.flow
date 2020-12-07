@@ -144,6 +144,8 @@ int EventSelect()
 
 void ReturnToPrevLoc(int floor, int fieldMajor, int fieldMinor)
 {
+	FADE(2, 5);
+	FADE_SYNC();
 	if (floor > 0 )
 	{
 		if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
@@ -168,9 +170,17 @@ int Facilities()
 		SET_SEL_CHOICE_KEYBIND(14, 11);
 		SET_SEL_CHOICE_KEYBIND(15, 12);
 		int facility = ADV_SEL(Facility_Menu_Text, Facility_Menu_1, 0);
+		if (facility < 5 && facility > 0)
+		{
+			FADE(2, 5);
+			FADE_SYNC();
+		}
 		switch (facility) 
 		{
 			case 0:
+				CLD_FUNCTION_0001();
+				CLD_FUNCTION_0002();
+				CLD_FUNCTION_0003();
 				CALL_FIELD(20, 1, 0, 0);
 				return 0;
 			case 1:
@@ -219,6 +229,11 @@ int Facilities2()
 		SET_SEL_CHOICE_KEYBIND(14, 11);
 		SET_SEL_CHOICE_KEYBIND(15, 12);
 		int facility = ADV_SEL(Facility_Menu_Text_2, Facility_Menu_2, 0);
+		if (facility < 5)
+		{
+			FADE(2, 5);
+			FADE_SYNC();
+		}
 		switch (facility) 
 		{
 			case 0:
@@ -271,6 +286,8 @@ int BattleSelect()
 		int major = Get_Number(3, MSG_3);
 		if (major == -1)
 			return -1;
+		FADE(2, 5);
+		FADE_SYNC();
 		CALL_BATTLE(major, 0);
 		return 0;
 	}

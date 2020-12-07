@@ -1,0 +1,54 @@
+import( "../build/input/scheduler/scheduler_04.bf" );
+import( "../Setup/FirstTimeSetup.flow" );
+
+void sdl04_10_PM_D_hook()
+{
+	MenuOptions();
+	
+	//Normal NewGame Stuff Below
+    SHOW_DATE( 0 );
+    FUNCTION_0097();
+    STOP_BGM( 0 );
+    PLAY_CUTSCENE( 1 );
+    FUNCTION_0065();
+    CALL_EVENT( 101, 1, 0 );
+    FUNCTION_0051();
+    CALL_EVENT( 102, 1, 0 );
+    PLAY_CUTSCENE( 2 );
+    FUNCTION_0065();
+    BIT_ON( 0 + 190 );
+    BIT_ON( 0 + 188 );
+    BIT_ON( 0 + 186 );
+    BIT_ON( 0 + 184 );
+    BIT_ON( 0 + 182 );
+    BIT_ON( 0 + 180 );
+    BIT_ON( 0 + 199 );
+    BIT_ON( 0 + 190 );
+    BIT_ON( 0 + 188 );
+    BIT_ON( 0 + 186 );
+    BIT_ON( 0 + 184 );
+    BIT_ON( 0 + 182 );
+    BIT_ON( 0 + 180 );
+    BIT_ON( 0 + 159 );
+    BIT_ON( 0 + 158 );
+    BIT_ON( 0 + 156 );
+    BIT_ON( 0 + 155 );
+    BIT_ON( 0 + 153 );
+    BIT_ON( 0 + 152 );
+    BIT_ON( 0 + 150 );
+    BIT_ON( 0 + 149 );
+    BIT_ON( 0 + 147 );
+    BIT_ON( 0 + 201 );
+    BIT_ON( 0 + 200 );
+    BIT_ON( 0 + 194 );
+    BIT_ON( 0 + 193 );
+    BIT_ON( 0 + 196 );
+    BIT_ON( 0 + 84 );
+    BIT_ON( 0 + 83 );
+    BIT_ON( 0 + 85 );
+    BIT_ON( 0 + 0x0400 + 594 );
+    BIT_ON( 0 + 55 );
+    BIT_ON( 0 + 31 );
+    SHOW_DATE( 1 );
+    BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 113 );
+}

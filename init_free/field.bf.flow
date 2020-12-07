@@ -1,5 +1,6 @@
 import( "../build/input/init_free/field/script/field.bf" );
 import( "../ModMenu/ModMenu.flow" );
+import( "../Setup/FirstTimeSetup.flow" );
 
 //EXTENSIONS
 import ( "../OtherMods/FindAFriend.flow" ); //Fast travel to social link locations (Unneccessary to comment out)
@@ -14,18 +15,27 @@ import ( "../OtherMods/MobileCalendar.flow" );
 
 void order_party_hook()
 {
-	//Change these values to enable/disable
-	bool modMenu = true; //Mod menu with many different debugging options
+	//BIT_ON(6420) //Disable First Time Setup
+	//BIT_OFF(6421) //Disable Mod Menu
+	bool modMenu = BIT_CHK(6421); //Mod menu with many different debugging options
 	bool quickTravel = true; //Normal square menu (enhanced with QuickTravelPlus)
-	bool mobileCalendar = true; //Quickly open Calendar
-	bool findAFriend = true; //Fast travel to social link locations
-	bool saveAnywhere = true; //Save anywhere
+	bool mobileCalendar = BIT_CHK(6423); //Quickly open Calendar
+	bool findAFriend = BIT_CHK(6425); //Fast travel to social link locations
+	bool saveAnywhere = BIT_CHK(6426); //Save anywhere
+	//BIT_OFF(6429) //Disable Options
+	bool options = BIT_CHK(6429); //Custom Square Menu configuration
+	
+	//First Time Setup
+	if (!BIT_CHK(6420))
+	{
+		MenuOptions();
+	}
 
 	//Just Mod Menu (So it's not Mod Menu and Exit)
-	if (modMenu && !quickTravel && !mobileCalendar && !findAFriend)
+	if (modMenu && !quickTravel && !mobileCalendar && !findAFriend && !options)
 		ModMenuDisplay();
 	//Just QuickTravel (Only useful if you have QuickTravelPlus uncommented) (So it's not QuickTravel and Exit)
-	else if (!modMenu && quickTravel)
+	else if (!modMenu && quickTravel && !options)
 	{
 		if ( GET_FLOOR_ID() > 0)
 		{
@@ -52,9 +62,12 @@ void order_party_hook()
 				SelectMask = SelectMask + 2;
 			if (!modMenu)
 				SelectMask = SelectMask + 4;
+			if (!options)
+				SelectMask = SelectMask + 8;
 			
 			// Enable shortcut to close
-			SET_SEL_CHOICE_KEYBIND( 14, 3 );
+			SET_SEL_CHOICE_KEYBIND( 14, 10 );
+			SET_SEL_CHOICE_KEYBIND( 15, 10 );
 			//Prompt user to choose an option if in an appropriate area
 			int selection = 0;
 			if ( GET_FLOOR_ID() > 0)
@@ -79,7 +92,10 @@ void order_party_hook()
 				case 2: //ModMenu
 					ModMenuDisplay();
 					break;
-				case 3: //Exit
+				case 3:
+					MenuOptions();
+					break;
+				case 10: //Exit
 					break;
 			}
 		}

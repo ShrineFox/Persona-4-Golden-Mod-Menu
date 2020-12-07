@@ -2,8 +2,8 @@ import ( "MobileCalendar.msg" );
 
 void school_order_hook()
 {
-	bool calendar = true;
-	bool friend = true;
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
 	int var54 = 327;
 	int var55 = SCHOOL_SEL_HOOK;
 	int var57 = 0;
@@ -84,8 +84,8 @@ void school_order_hook()
 
 void myhouse_order_hook()
 {
-	bool calendar = true;
-	bool friend = true;
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
 
     int var58 = 327;
     int var59 = MYHOME_SEL_HOOK;
@@ -191,8 +191,8 @@ void myhouse_order_hook()
 
 void street_order_hook()
 {
-	bool calendar = true;
-	bool friend = true;
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
 
     int var62 = 0;
     int var63 = 0;
@@ -420,8 +420,8 @@ void night_place_order_exit_hook()
 
 void sel_mask_night_play_hook()
 {
-	bool calendar = true;
-	bool friend = true;
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
 	
     int var139 = 0;
     sVar136 = 0;
@@ -472,8 +472,8 @@ void sel_mask_night_play_hook()
 
 void gms_order_hook()
 {
-	bool calendar = true;
-	bool friend = true;
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
 	
 	int var66 = 327;
 	int var67 = GMS_SEL_HOOK;
@@ -510,8 +510,8 @@ void gms_order_hook()
 
 void embank_order_hook()
 {
-	bool calendar = true;
-	bool friend = true;
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
 	
 	int var70 = 0;
 	int var71 = 0;
@@ -614,8 +614,8 @@ void embank_order_hook()
 
 void station_order_hook()
 {
-	bool calendar = true;
-	bool friend = true;
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
 	
     int var74 = 327;
     int var75 = STATION_SEL_HOOK;
@@ -687,8 +687,8 @@ void station_order_hook()
 
 void schoolroad_order_hook()
 {
-	bool calendar = true;
-	bool friend = true;
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
 
 	int var78 = 327;
 	int var79 = SCHOOLROAD_SEL_HOOK;
@@ -719,8 +719,8 @@ void schoolroad_order_hook()
 
 void snowmt_order_hook()
 {
-	bool calendar = true;
-	bool friend = true;
+	bool calendar = BIT_CHK(6423);
+	bool friend = BIT_CHK(6425);
 
 	int var82 = 327;
 	int var83 = SNOWMOUNTAIN_SEL_HOOK;

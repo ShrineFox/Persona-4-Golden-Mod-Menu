@@ -3,12 +3,26 @@ void common_floor_change_hook()
 {
     RESET_FLOOR();
 	
-	// If you say no to reaper chest, turn off reaper bits
-	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1)
+	//If ConsistentReaper enabled
+	if (BIT_CHK(6428))
 	{
-		SET_CNT( 999, 0 );
-		BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
-		BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+		// Turn off bits if they said no
+		if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1  )
+		{
+			SET_CNT( 999, 0 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+		}
+	}
+	else 
+	{
+		//Original Functionality
+		if ( GET_CNT( 38 ) == 13 )
+		{
+			SET_CNT( 38, 14 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+		}
 	}
 }
 
@@ -52,7 +66,7 @@ void backto_stair_hook()
     
     if ( var238 == 6 || var238 == 8 || var238 == 21 || var238 == 41 || var238 == 61 || var238 == 81 || var238 == 101 || var238 == 121 || var238 == 141 || var238 == 161 )
     {
-		if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1)
+		if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) && BIT_CHK(6428))
 		{
 			SET_CNT( 999, 0 );
 			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );

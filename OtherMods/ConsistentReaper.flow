@@ -8,7 +8,7 @@ void dng_tbox_hook()
     int var12 = FLD_FUNCTION_0026();
 	
 	// Always reaper if bit is set unless locked chest
-	if (BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && var12 != 1)
+	if (BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && var12 != 1 && BIT_CHK(6428))
 		var12 = 10;
 	
     get_box_item_id();
@@ -116,10 +116,12 @@ void death_check_hook()
         if ( var178 == 13 && BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 0 )
         {
 			// Set back to 0 so you'd need 21 more to trigger again
-			SET_CNT( 38, 14 );
+			if (BIT_CHK(6428))
+				SET_CNT( 38, 14 );
             BIT_ON( 0 + 0x0400 + 0x0800 + 46 );
         }
-
+		else if (!BIT_CHK(6428))
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
     }
 
 }
@@ -249,10 +251,14 @@ void death_box_hook()
     // Selecting no
     if ( var185 == 1 )
     {
-		OPEN_MSG_WIN();
-		MSG( New_Death_Msg );
-		CLOSE_MSG_WIN();
-		SET_CNT(999, 1);
+		//If ConsistentReaper enabled
+		if (BIT_CHK(6428))
+		{
+			OPEN_MSG_WIN();
+			MSG( New_Death_Msg );
+			CLOSE_MSG_WIN();
+			SET_CNT(999, 1);
+		}
         BIT_ON( 0 + 0x0400 + 0x0800 + 46 );
         BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
     }
@@ -262,12 +268,26 @@ void death_box_hook()
 void common_floor_change_hook()
 {
     RESET_FLOOR();
-	// Turn off bits if they said no
-    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1  )
+	//If ConsistentReaper enabled
+	if (BIT_CHK(6428))
 	{
-		SET_CNT( 999, 0 );
-		BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
-		BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+		// Turn off bits if they said no
+		if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1  )
+		{
+			SET_CNT( 999, 0 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+		}
+	}
+	else 
+	{
+		//Original Functionality
+		if ( GET_CNT( 38 ) == 13 )
+		{
+			SET_CNT( 38, 14 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+			BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+		}
 	}
 
 }
@@ -312,15 +332,19 @@ void backto_stair_hook()
     
     if ( var238 == 6 || var238 == 8 || var238 == 21 || var238 == 41 || var238 == 61 || var238 == 81 || var238 == 101 || var238 == 121 || var238 == 141 || var238 == 161 )
     {
-		int floor = var238 - 1;
-		if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && 
-			(GET_CNT( 999 ) == 1 || floor == 1 || floor == 5 || floor == 20
-			|| floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120
-			|| floor == 140 || floor == 160) )
+		//If ConsistentReaper enabled
+		if (BIT_CHK(6428))
 		{
-			SET_CNT( 999, 0 );
-			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
-			BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+			int floor = var238 - 1;
+			if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && 
+				(GET_CNT( 999 ) == 1 || floor == 1 || floor == 5 || floor == 20
+				|| floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120
+				|| floor == 140 || floor == 160) )
+			{
+				SET_CNT( 999, 0 );
+				BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+				BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+			}
 		}
         CALL_DUNGEON( var238 - 1, 1 );
     }
@@ -356,11 +380,28 @@ void dng_escape_hook()
         MSG( ESCAPE_BAN );
         CLOSE_MSG_WIN();
     }
-    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 )
-    {
-        BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
-        BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
-    }
+    else 
+	{
+		//If ConsistentReaper enabled
+		if (BIT_CHK(6428))
+		{
+			if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 )
+			{
+				BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+				BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+			}
+		}
+		else
+		{
+			//Original Functionality
+			if ( GET_CNT( 38 ) == 13 )
+			{
+				SET_CNT( 38, 14 );
+				BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
+				BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+			}
+		}
+	}
 
     
     if ( FLD_FUNCTION_0036() == 1 && FLD_FUNCTION_0037() == 0 )
