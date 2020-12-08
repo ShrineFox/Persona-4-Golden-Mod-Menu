@@ -18,6 +18,7 @@ void order_party_hook()
 	// Uncomment to enable options without setup
 	//BIT_ON(6420); //Disable First Time Setup
 	//BIT_OFF(6421); //Disable Mod Menu
+	//BIT_ON(6421); //Mod Menu
 	//BIT_ON(6422); // QuickTravelPlus
 	//BIT_ON(6423); // MobileCalendar
 	//BIT_ON(6424); // DungeonOptions
