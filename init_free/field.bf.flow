@@ -17,7 +17,7 @@ void order_party_hook()
 {
 	// Uncomment to enable options without setup
 	//BIT_ON(6420); //Disable First Time Setup
-	//BIT_OFF(6421) //Disable Mod Menu
+	//BIT_OFF(6421); //Disable Mod Menu
 	//BIT_ON(6422); // QuickTravelPlus
 	//BIT_ON(6423); // MobileCalendar
 	//BIT_ON(6424); // DungeonOptions
@@ -32,6 +32,10 @@ void order_party_hook()
 	bool saveAnywhere = BIT_CHK(6426); //Save anywhere
 	//BIT_OFF(6429); //Disable Options
 	bool options = BIT_CHK(6429); //Custom Square Menu configuration
+	//BIT_OFF(6430); //Disable Fox (DungeonOptions)
+	//BIT_OFF(6431); //Disable Floor Select (DungeonOptions)
+	//BIT_OFF(6432); //Disable Goho-M (DungeonOptions)
+	//BIT_OFF(6433); //Disable Organize Party (DungeonOptions)
 	
 	//First Time Setup
 	if (!BIT_CHK(6420))

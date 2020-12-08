@@ -9,7 +9,7 @@ if not exist %INPUT_PATH% mkdir %INPUT_PATH%
 if not exist %OUTPUT_PATH% mkdir %OUTPUT_PATH%
 if not exist %OUTPUT_PATH%\field mkdir %OUTPUT_PATH%\field
 if not exist %OUTPUT_PATH%\field\pack mkdir %OUTPUT_PATH%\field\pack
-if not exist %OUTPUT_PATH%\field\pack mkdir %OUTPUT_PATH%\scheduler
+if not exist %OUTPUT_PATH%\scheduler mkdir %OUTPUT_PATH%\scheduler
 
 %PAKPACK% unpack "%INPUT_PATH%\init_free.bin"
 %PAKPACK% unpack "%INPUT_PATH%\field\pack\fd007_001.arc"

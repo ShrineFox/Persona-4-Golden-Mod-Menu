@@ -4,4 +4,5 @@ build/input/extracted/**
 *.bin
 build_local.bat
 build/output/**
+build/input/**
 *.lnk

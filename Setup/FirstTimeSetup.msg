@@ -1,7 +1,7 @@
 [msg SquareMenuConfig[Square Menu Setup]]
 [f 0 5 -258][f 2 1]Thanks for trying the Custom Square Menu mod!
 [n]Please choose which features you'd like to use.
-[n]You can still change these settings later.[f 1 1][e]
+[n]You can always change these settings later.[f 1 1][e]
 
 [sel ToggleMenu]
 [f 0 5 -258][f 2 1]On[e]
@@ -27,7 +27,7 @@
 [f 0 5 -258][f 2 1]Done[e]
 
 [msg OptionsToggle]
-[f 0 5 -258][f 2 1]Turn off Options selection?[f 1 1][e]
+[f 0 5 -258][f 2 1]Hide Options menu from Square Menu?[f 1 1][e]
 
 [msg ModMenu_About[Mod Menu (Sierra/ShrineFox)]]
 [f 0 5 -258][f 2 1]Call fields, events, battles, BGM, SFX etc. from
@@ -67,3 +67,33 @@
 [f 0 5 -258][f 2 1]Guarantees a Reaper encounter after every 22 chests
 [n]you open while dungeon crawling. Normally, there's
 [n]only a small chance of an encounter.[f 1 1][e]
+
+[msg DungeonOptions_Text]
+[f 0 5 -258][f 2 1]Dungeon Options[f 1 1][e]
+
+[sel DungeonOptions]
+[f 0 5 -258][f 2 1]Show Fox: [f 2 4 0][e]
+[f 0 5 -258][f 2 1]Show Floor Select: [f 2 4 1][e]
+[f 0 5 -258][f 2 1]Show Goho-M: [f 2 4 2][e]
+[f 0 5 -258][f 2 1]Show Organize Party: [f 2 4 3][e]
+[f 0 5 -258][f 2 1]Done[e]
+
+[msg ShowFox_About[Fox Option (Tekka)]]
+[f 0 5 -258][f 2 1]Adds the option to purchase healing from
+[n]the fox at any point while dungeon crawling
+[n]without having to leave the floor.[f 1 1][e]
+
+[msg FloorSelect_About[Floor Select (Tekka)]]
+[f 0 5 -258][f 2 1]Adds an option to instantly go to
+[n]any floor in the dungeon while exploring it.
+[n]Activates after the dungeon's deadline.[f 1 1][e]
+
+[msg GohoM_About[Goho-M Option (Tekka)]]
+[f 0 5 -258][f 2 1]Adds an option to instantly use
+[n]a Goho-M from your inventory to exit the
+[n]dungeon with ease.[f 1 1][e]
+
+[msg OrganizeParty_About[Organize Party (Tekka)]]
+[f 0 5 -258][f 2 1]Adds an option to swap party members
+[n]on the fly while dungeon crawling. Reloads the
+[n]floor you're currently on.[f 1 1][e]
