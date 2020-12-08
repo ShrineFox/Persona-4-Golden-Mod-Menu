@@ -15,14 +15,22 @@ import ( "../OtherMods/MobileCalendar.flow" );
 
 void order_party_hook()
 {
-	//BIT_ON(6420) //Disable First Time Setup
+	// Uncomment to enable options without setup
+	//BIT_ON(6420); //Disable First Time Setup
 	//BIT_OFF(6421) //Disable Mod Menu
+	//BIT_ON(6422); // QuickTravelPlus
+	//BIT_ON(6423); // MobileCalendar
+	//BIT_ON(6424); // DungeonOptions
+	//BIT_ON(6425); // Find a Friend
+	//BIT_ON(6426); // Save Anywhere
+	//BIT_ON(6427); // Game over skip
+	//BIT_ON(6428); //Reap-Balanced Encounters
 	bool modMenu = BIT_CHK(6421); //Mod menu with many different debugging options
 	bool quickTravel = true; //Normal square menu (enhanced with QuickTravelPlus)
 	bool mobileCalendar = BIT_CHK(6423); //Quickly open Calendar
 	bool findAFriend = BIT_CHK(6425); //Fast travel to social link locations
 	bool saveAnywhere = BIT_CHK(6426); //Save anywhere
-	//BIT_OFF(6429) //Disable Options
+	//BIT_OFF(6429); //Disable Options
 	bool options = BIT_CHK(6429); //Custom Square Menu configuration
 	
 	//First Time Setup

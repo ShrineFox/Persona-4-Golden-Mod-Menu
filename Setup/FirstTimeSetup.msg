@@ -8,6 +8,10 @@
 [f 0 5 -258][f 2 1]Off[e]
 [f 0 5 -258][f 2 1]Back...[e]
 
+[sel YesNo]
+[f 0 5 -258][f 2 1]Yes[e]
+[f 0 5 -258][f 2 1]No[e]
+
 [msg SquareMenuOptions_Text]
 [f 0 5 -258][f 2 1]Square Menu Options[f 1 1][e]
 

@@ -55,7 +55,7 @@ void MenuOptions()
 				OPEN_MSG_WIN();
 				MSG(OptionsToggle);
 				SET_SEL_CHOICE_KEYBIND(14, 1);
-				int toggle = SEL(YESNO_SEL);
+				int toggle = SEL(YesNo);
 				if (toggle == 1)
 				{
 					BIT_ON(6429);

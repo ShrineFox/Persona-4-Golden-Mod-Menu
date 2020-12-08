@@ -40,10 +40,13 @@ void school_order_hook()
 	SET_SEL_CHOICE_KEYBIND( 14, 7 );
 	int var56 = ADV_SEL( var54, var55, var57 );
 	
-	if ( var56 != 6 )
+	if ( var56 != 7 )
 	{
-		FADE( 1, 5 );
-		FADE_SYNC();
+		if ( var56 != 5 || var56 != 6 )
+		{
+			FADE( 1, 5 );
+			FADE_SYNC();
+		}
 		
 		if ( var56 == 0 )
 		{
@@ -206,6 +209,7 @@ void street_order_hook()
         var65 = 0;
         sel_mask_night_play();
         var65 = sVar136;
+		
         SET_SEL_CHOICE_KEYBIND( 14, 8 );
         var64 = ADV_SEL( var62, var63, var65 );
         
@@ -462,10 +466,10 @@ void sel_mask_night_play_hook()
     }
 
 	if (!calendar)
-		sVar136 = sVar136 + 64;
+		var139 = var139 + 64;
 	int hangoutMask = hangout_mask();
 	if (!friend || hangoutMask == 65535)
-		sVar136 = sVar136 + 128;
+		var139 = var139 + 128;
     BIT_OFF( 0 + 0x0400 + 0x0800 + 178 );
     sVar136 = var139;
 }
