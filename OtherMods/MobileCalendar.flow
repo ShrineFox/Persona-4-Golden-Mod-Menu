@@ -40,10 +40,13 @@ void school_order_hook()
 	SET_SEL_CHOICE_KEYBIND( 14, 7 );
 	int var56 = ADV_SEL( var54, var55, var57 );
 	
-	if ( var56 != 6 )
+	if ( var56 != 7 )
 	{
-		FADE( 1, 5 );
-		FADE_SYNC();
+		if ( var56 != 5 || var56 != 6 )
+		{
+			FADE( 1, 5 );
+			FADE_SYNC();
+		}
 		
 		if ( var56 == 0 )
 		{
