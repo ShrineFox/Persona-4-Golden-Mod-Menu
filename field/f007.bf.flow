@@ -22,7 +22,29 @@ void call_lmap_hook()
     
     if ( GET_TIME_OF_DAY() == 5 )
     {
-        NightOrder(0);
+		if (!BIT_CHK(6422))
+		{
+			OPEN_MSG_WIN();
+			MSG( MSG_HOME_EXIT_NIGHT );
+			SET_SEL_CHOICE_KEYBIND( 14, 3 );
+			var12 = SEL( SEL_HOME_EXIT_NIGHT );
+			CLOSE_MSG_WIN();
+			
+			if ( var12 == 0 )
+			{
+				call_go2street();
+			}
+			else if ( var12 == 1 )
+			{
+				call_go2shrine();
+			}
+			else if ( var12 == 2 )
+			{
+				call_go2beach();
+			}
+		}
+		else
+			NightOrder(0);
         return;
     }
     else 
@@ -47,8 +69,12 @@ void call_lmap_hook()
 
 void NightOrder(int mask)
 {
+	OPEN_MSG_WIN();
+	MSG( MSG_HOME_EXIT_NIGHT );
 	SET_SEL_CHOICE_KEYBIND(14, 7);
-	int street = ADV_SEL( Street_Text, StreetNight, mask );
+	SET_MASK(mask);
+	int street = SEL( StreetNight );
+	CLOSE_MSG_WIN();
 	if (street < 7) 
 	{
 		FADE( 2, 5 );

@@ -22,7 +22,29 @@ void up_embankment_hook()
     
     if ( GET_TIME_OF_DAY() == 5 )
     {
-        NightOrder(32);
+		if (!BIT_CHK(6422))
+		{
+			OPEN_MSG_WIN();
+			MSG( MSG_EMBANK_EXIT_NIGHT );
+			SET_SEL_CHOICE_KEYBIND( 14, 3 );
+			var3 = SEL( SEL_EMBANK_NIGHT );
+			CLOSE_MSG_WIN();
+			
+			if ( var3 == 0 )
+			{
+				call_go2street();
+			}
+			else if ( var3 == 1 )
+			{
+				call_go2shrine();
+			}
+			else if ( var3 == 2 )
+			{
+				call_go2home();
+			}
+		}
+		else
+			NightOrder(32);
 
     }
     else 
@@ -37,8 +59,12 @@ void up_embankment_hook()
 
 void NightOrder(int mask)
 {
+	OPEN_MSG_WIN();
+	MSG( MSG_EMBANK_EXIT_NIGHT );
 	SET_SEL_CHOICE_KEYBIND(14, 7);
-	int street = ADV_SEL( Street_Text, StreetNight, mask );
+	SET_MASK(mask);
+	int street = SEL( StreetNight );
+	CLOSE_MSG_WIN();
 	if (street < 7) 
 	{
 		FADE( 2, 5 );

@@ -7,6 +7,3 @@
 [f 0 5 -258][f 2 1]Riverbank[e]
 [f 0 5 -258][f 2 1]Go back home[e]
 [f 0 5 -258][f 2 1]Cancel[e]
-
-[msg Street_Text]
-[f 0 5 -258][f 2 1]Town of Inaba[n][f 1 1][e]
