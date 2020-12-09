@@ -170,11 +170,15 @@ void SelectFloor()
 	FADE( 1, 10 );
 	FADE_SYNC();
 	
-	if (nextFloor == 7 || nextFloor == 13 || nextFloor == 31 || nextFloor == 51 || nextFloor == 70 
+	if ( (nextFloor == 7 && floor < 7) || nextFloor == 13 || nextFloor == 31 || nextFloor == 51 || nextFloor == 70 
 		|| nextFloor == 89 || nextFloor == 110 || nextFloor == 122 || nextFloor == 129)
 	{
 		CALL_DUNGEON(nextFloor, 0);
 	}
+	else if ( nextFloor == 5 || (nextFloor == 7 && floor > 7) || nextFloor == 20 || nextFloor == 40 || nextFloor == 60 || nextFloor == 80 || nextFloor == 100 || nextFloor == 120 )
+    {
+        CALL_DUNGEON( nextFloor, 1 );
+    }
 	else
 		GOTO_REL_FLOOR( nextFloor - floor );
 }

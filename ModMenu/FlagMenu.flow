@@ -20,6 +20,10 @@ int Flag_Menu()
 				ReviveQuests();
 				return 0;
 			case 4:
+				BIT_OFF( 0 + 0x0400 + 0x0800 + 2 );
+				BIT_OFF( 2750 );
+				return 0;
+			case 5:
 				ToggleMenuOptions();
 				return 0;
 			case 10:

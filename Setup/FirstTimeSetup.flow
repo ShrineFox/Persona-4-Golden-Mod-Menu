@@ -4,7 +4,7 @@ void FirstTimeSetup()
 {
 	//Introduction
 	OPEN_MSG_WIN();
-	MSG( SquareMenuConfig );
+	HELP_MSG( SquareMenuConfig );
 	CLOSE_MSG_WIN();
 	
 	//Marks first time setup as complete

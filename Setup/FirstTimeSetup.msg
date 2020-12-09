@@ -1,5 +1,6 @@
-[msg SquareMenuConfig[Square Menu Setup]]
-[f 0 5 -258][f 2 1]Thanks for trying the Custom Square Menu mod!
+[msg SquareMenuConfig]
+[f 0 5 -258][f 2 1][f 0 1 1]Square Menu Setup[n]
+[f 0 1 0]Thanks for trying the Custom Square Menu mod!
 [n]Please choose which features you'd like to use.
 [n]You can always change these settings later.[f 1 1][e]
 
