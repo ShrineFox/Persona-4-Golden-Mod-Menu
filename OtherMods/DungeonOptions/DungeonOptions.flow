@@ -212,10 +212,10 @@ void helper_order_hook()
 
 void init_sel_mask_hook()
 {
-	bool showFox = true;
-	bool showFloorSelect = true;
-	bool showGohom = true;
-	bool showOrganizeParty = true;
+    bool showFox = BIT_CHK(6430);
+    bool showFloorSelect = BIT_CHK(6431);
+    bool showGohom = BIT_CHK(6432);
+    bool showOrganizeParty = BIT_CHK(6433);
 	showFloorSelect = showFloorSelect && BeatDungeon();
     int var34 = GET_FLOOR_ID();
     sVar0 = 0;
