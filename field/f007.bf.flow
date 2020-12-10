@@ -86,7 +86,7 @@ void NightOrder(int mask)
 			CALL_FIELD( 8, 1, 0, 0 );
 			break;
 		case 1:
-			CALL_FIELD( 8, 2, 1, 0 );
+			CALL_FIELD( 8, 2, 0, 0 );
 			break;
 		case 2:
 			SHIROKU_PUB();
