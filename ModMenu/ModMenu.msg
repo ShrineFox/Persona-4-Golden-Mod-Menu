@@ -78,6 +78,7 @@
 [f 0 5 -258][f 2 1]Change Date[e]
 [f 0 5 -258][f 2 1]Change Yen[e]
 [f 0 5 -258][f 2 1]Change Items[e]
+[f 0 5 -258][f 2 1]Loop Current Day[e]
 
 [sel Player_Menu_2]
 [f 0 5 -258][f 2 1]Social Links[e]
