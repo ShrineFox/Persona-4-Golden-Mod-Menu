@@ -20,10 +20,12 @@ int Flag_Menu()
 				ReviveQuests();
 				return 0;
 			case 4:
-				BIT_OFF( 0 + 0x0400 + 0x0800 + 2 );
-				BIT_OFF( 2750 );
+				TurnOffTiredFlags();
 				return 0;
 			case 5:
+				UnlockMap();
+				return 0;
+			case 6:
 				ToggleMenuOptions();
 				return 0;
 			case 10:
@@ -33,6 +35,27 @@ int Flag_Menu()
 		}
 	}
 	return 0;
+}
+
+void TurnOffTiredFlags()
+{
+	BIT_OFF( 0 + 0x0400 + 0x0800 + 2 );
+	BIT_OFF( 2750 );
+}
+
+void UnlockMap()
+{
+	BIT_ON( 0 + 0x0400 + 0x0800 + 173 );
+	BIT_OFF( 0 + 0x0400 + 0x0800 + 176 );
+	BIT_ON( 0 + 0x0400 + 0x0800 + 174 );
+	SET_CNT( 62, 3 );
+	BIT_OFF( 0 + 0x0400 + 0x0800 + 181 );
+	BIT_ON( 0 + 0x0400 + 0x0800 + 180 );
+	SET_CNT( 63, 3 );
+	BIT_ON( 0 + 0x0400 + 0x0800 + 179 );
+	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 85 );
+	BIT_OFF( 0 + 0x0400 + 0x0800 + 177 );
+	BIT_ON( 0 + 0x0400 + 0x0800 + 175 );
 }
 
 void ToggleMenuOptions()

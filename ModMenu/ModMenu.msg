@@ -114,6 +114,7 @@
 [f 0 5 -258][f 2 1]Complete All Quests[e]
 [f 0 5 -258][f 2 1]Renew All Quests[e]
 [f 0 5 -258][f 2 1]Turn Off Tired Flags[e]
+[f 0 5 -258][f 2 1]Unlock Entire Town Map[e]
 [f 0 5 -258][f 2 1]Toggle Menu Options[e]
 
 [sel OnOff]
