@@ -325,7 +325,7 @@ void init_sel_mask_hook()
 	// Hide floor select
 	if (!showFloorSelect || !BIT_CHK(6424))
 		sVar1 = sVar1 + 0x80;
-	else if (!showGohom || showFloorSelect || !BIT_CHK(6424))
+	if (!showGohom || showFloorSelect || !BIT_CHK(6424))
 		sVar1 = sVar1 + 0x200;
 	if (!EnableOrganizeParty() || !showOrganizeParty || !BIT_CHK(6424))
 		sVar1 = sVar1 + 0x100;
