@@ -102,7 +102,7 @@ void StreetOrder(bool calendar, bool friend)
 	begin:
 	SET_SEL_CHOICE_KEYBIND(14, 5);
 	int street = ADV_SEL( Street_Text, Street, streetMask );
-	if (street == 1 || street == 2) 
+	if (street == 1) 
 	{
 		FADE( 2, 5 );
 		FADE_SYNC();
@@ -150,7 +150,34 @@ void StreetOrder(bool calendar, bool friend)
 			CALL_FIELD( 8, 9, 0, 0 );
 			break;
 		case 2:
-			TOWN_MAP( 1 );
+			if ( DATE_CHK( 4, 11 ) == 1 )
+			{
+				OPEN_MSG_WIN();
+				MSG( TEST_STOP_0411 );
+				CLOSE_MSG_WIN();
+			}
+			else if ( GET_MONTH() == 4 && GET_DAY_OF_MONTH() == 17 )
+			{
+				OPEN_MSG_WIN();
+				MSG( GOINTO_HOME_STOP );
+				SET_SEL_CHOICE_KEYBIND( 14, 1 );
+				int var64 = SEL( YESNO_SEL );
+				CLOSE_MSG_WIN();
+				
+				if ( var64 == 0 )
+				{
+					FADE( 1, 10 );
+					FADE_SYNC();
+					eve_0417_afterschool();
+				}
+
+			}
+			else 
+			{
+				FADE( 1, 5 );
+				FADE_SYNC();
+				TOWN_MAP( 1 );
+			}
 			break;
 		case 3:
 			OPEN_CALENDAR();

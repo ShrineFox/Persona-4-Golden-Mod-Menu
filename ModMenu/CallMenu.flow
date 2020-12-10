@@ -410,18 +410,6 @@ int SFXSelect()
 	int major = Get_Number(3, MSG_3);
 	if (major == -1)
 		return -1;
-	int minor = Get_Number(3, MSG_3);
-	if (minor == -1)
-		return -1;
-	while (major != minor)
-	{
-		SET_MSG_VAR(0, major, 0);
-		OPEN_MSG_WIN();
-		MSG(test);
-		CLOSE_MSG_WIN();
-		PLAY_SOUNDEFFECT(major);
-		major = major + 1;
-	}
 	return 0;
 }
 

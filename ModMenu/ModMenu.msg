@@ -79,9 +79,6 @@
 [f 0 5 -258][f 2 1]Change Yen[e]
 [f 0 5 -258][f 2 1]Change Items[e]
 
-[msg test]
-[f 0 5 -258][f 2 1][f 2 4 0][f 1 1][e]
-
 [sel Player_Menu_2]
 [f 0 5 -258][f 2 1]Social Links[e]
 [f 0 5 -258][f 2 1]Social Stats[e]
