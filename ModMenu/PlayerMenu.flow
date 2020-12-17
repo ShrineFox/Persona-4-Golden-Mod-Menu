@@ -27,6 +27,9 @@ int PlayerMenuDisplay()
 					break;
 				else
 					return 0;
+			case 4:
+				LoopCurrentDay();
+				break;
 			case 10:
 				if (PlayerMenuDisplay2() == -1)
 					break;
@@ -85,6 +88,11 @@ int PlayerMenuDisplay2()
 		}
 	}
 	return -1;
+}
+
+void LoopCurrentDay()
+{
+	NEXT_DATE(GET_MONTH(), GET_DAY_OF_MONTH(), 0);
 }
 
 void Rename()
@@ -307,77 +315,90 @@ void RefillHPSP()
 
 int PartyChoice()
 {
-	int index = 0;
-	int numMembers = 0;
-	int removeMask = 63;
-	int addMask = 0;
-	
-	while (index < 3)
+	int option = 0;
+	bool changed = false;
+	while (option != 2)
 	{
-		int id = GET_PARTY_MEMBER_ID(index);
-		if (id > 1)
+		int index = 0;
+		int numMembers = 0;
+		int removeMask = 63;
+		int addMask = 0;
+		
+		while (index < 3)
 		{
-			switch (id)
+			int id = GET_PARTY_MEMBER_ID(index);
+			if (id > 1)
 			{
-				case 2:
-					removeMask = removeMask - 1;
-					addMask = addMask + 1;
-					break;
-				case 3:
-					removeMask = removeMask - 2;
-					addMask = addMask + 2;
-					break;
-				case 4:
-					removeMask = removeMask - 4;
-					addMask = addMask + 4;
-					break;
-				case 6:
-					removeMask = removeMask - 8;
-					addMask = addMask + 8;
-					break;
-				case 7:
-					removeMask = removeMask - 0x10;
-					addMask = addMask + 0x10;
-					break;
-				case 8:
-					removeMask = removeMask - 0x20;
-					addMask = addMask + 0x20;
-					break;
+				switch (id)
+				{
+					case 2:
+						removeMask = removeMask - 1;
+						addMask = addMask + 1;
+						break;
+					case 3:
+						removeMask = removeMask - 2;
+						addMask = addMask + 2;
+						break;
+					case 4:
+						removeMask = removeMask - 4;
+						addMask = addMask + 4;
+						break;
+					case 6:
+						removeMask = removeMask - 8;
+						addMask = addMask + 8;
+						break;
+					case 7:
+						removeMask = removeMask - 0x10;
+						addMask = addMask + 0x10;
+						break;
+					case 8:
+						removeMask = removeMask - 0x20;
+						addMask = addMask + 0x20;
+						break;
+				}
+				numMembers = numMembers + 1;
 			}
-			numMembers = numMembers + 1;
-		}
-		index = index + 1;
-	}
-	
-	int optionMask = 0;
-	if (numMembers == 0)
-		optionMask = optionMask + 2;
-	SET_SEL_CHOICE_KEYBIND( 14, 2 );
-	int option = ADV_SEL(ModOptionMsg, ModOptionSel, optionMask);
-	
-	if (option == 0)
-	{
-		int addedMember = ModChooseMember(ModSelectMemberMsg, addMask);
-		if (addedMember == -1)
-			return -1;
-		if (numMembers == 3)
-		{
-			int replacedMember = ModChooseMember(ModReplaceMemberMsg, removeMask);
-			if (replacedMember == -1)
-				return -1;
-			RM_PARTY(replacedMember);
+			index = index + 1;
 		}
 		
-		ADD_PARTY(addedMember);
+		int optionMask = 0;
+		if (numMembers == 0)
+			optionMask = optionMask + 2;
+		SET_SEL_CHOICE_KEYBIND( 14, 2 );
+		option = ADV_SEL(ModOptionMsg, ModOptionSel, optionMask);
+		
+		if (option == 0)
+		{
+			int replacedMember = 0;
+			int addedMember = ModChooseMember(ModSelectMemberMsg, addMask);
+			if (addedMember != -1)
+			{
+				if (numMembers == 3)
+				{
+					replacedMember = ModChooseMember(ModReplaceMemberMsg, removeMask);
+					if (replacedMember != -1)
+						RM_PARTY(replacedMember);
+				}
+				
+				if (replacedMember != -1)
+				{
+					ADD_PARTY(addedMember);
+					changed = true;
+				}
+			}
+		}
+		else if (option == 1)
+		{
+			int removedMember = ModChooseMember(ModRemoveMemberMsg, removeMask);
+			if (removedMember != -1)
+			{
+				RM_PARTY(removedMember);
+				changed = true;
+			}
+		}
 	}
-	else if (option == 1)
-	{
-		int removedMember = ModChooseMember(ModRemoveMemberMsg, removeMask);
-		if (removedMember == -1)
-			return -1;
-		RM_PARTY(removedMember);
-	}
-	else
+
+	if (!changed)
 		return -1;
 
 	// Reload floor

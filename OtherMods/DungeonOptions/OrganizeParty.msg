@@ -5,12 +5,12 @@
 [f 0 5 -258][f 2 1]Kanji[e]
 [f 0 5 -258][f 2 1]Naoto[e]
 [f 0 5 -258][f 2 1]Teddie[e]
-[f 0 5 -258][f 2 1]Quit[e]
+[f 0 5 -258][f 2 1]Cancel[e]
 
 [sel OptionSel]
 [f 0 5 -258][f 2 1]Add member[e]
 [f 0 5 -258][f 2 1]Remove member[e]
-[f 0 5 -258][f 2 1]Cancel[e]
+[f 0 5 -258][f 2 1]Finish[e]
 
 [msg SelectMemberMsg]
 [f 0 5 -258][f 2 1]Add which member?[e]

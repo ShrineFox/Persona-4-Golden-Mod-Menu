@@ -11,6 +11,7 @@
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel DUNGEON_SEL_HOOK]
+[f 0 5 -258][f 2 1]Strategize[e]
 [f 0 5 -258][f 2 1]Talk to the others[e]
 [f 0 5 -258][f 2 1]Talk to Teddie[e]
 [f 0 5 -258][f 2 1]Talk to Rise[e]
@@ -19,11 +20,17 @@
 [f 0 5 -258][f 2 1]Return to previous floor[e]
 [f 0 5 -258][f 2 1]Return to entrance[e]
 [f 0 5 -258][f 2 1]Select floor[e]
-[f 0 5 -258][f 2 1]Organize party[e]
 [f 0 5 -258][f 2 1]Goho-M × [f 2 4 1][e]
 [f 0 5 -258][f 2 1]Call the fox[e]
 [f 0 5 -258][f 2 1]Nothing[e]
 
+[sel Strategize]
+[f 0 5 -258][f 2 1]Talk to the others[e]
+[f 0 5 -258][f 2 1]Talk to Teddie[e]
+[f 0 5 -258][f 2 1]Talk to Rise[e]
+[f 0 5 -258][f 2 1]Change battle tactics[e]
+[f 0 5 -258][f 2 1]Organize party[e]
+[f 0 5 -258][f 2 1]Never mind[e]
 
 [sel YukikoFloors1]
 [f 0 5 -258][f 2 1]Yukiko's Castle, Gate[e]

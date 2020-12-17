@@ -2,167 +2,179 @@ import("OrganizeParty.msg");
 
 void OrganizeParty()
 {
-	int index = 0;
-	int numMembers = 0;
-	int removeMask = 63;
-	int addMask = 0;
-	int availableMembers = 0;
-	bool yosuke = false;
-	bool chie = false;
-	bool yukiko = false;
-	bool kanji = false;
-	bool naoto = false;
-	bool teddie = false;
-	// Set masks based on dates first
-	if (CHECK_TIME_SPAN(4,10,4,17) == 1)
+	int option = 0;
+	bool changed = false;
+	while (option != 2)
 	{
-		addMask = addMask + 1;
-		yosuke = true
-	}
-	else
-		availableMembers = availableMembers + 1;
-	
-	if (CHECK_TIME_SPAN(4,10,4,18) == 1)
-	{
-		addMask = addMask + 2;
-		chie = true;
-	}
-	else
-		availableMembers = availableMembers + 1;
-	
-	if (CHECK_TIME_SPAN(4,10,4,30) == 1)
-	{
-		addMask = addMask + 4;
-		yukiko = true;
-	}
-	else
-		availableMembers = availableMembers + 1;
-	
-	if (CHECK_TIME_SPAN(4,10,6,5) == 1)
-	{
-		addMask = addMask + 8;
-		kanji = true;
-	}
-	else
-		availableMembers = availableMembers + 1;
-	
-	if (CHECK_TIME_SPAN(4,10,10,6) == 1)
-	{
-		addMask = addMask + 0x10;
-		naoto = true;
-	}
-	else
-		availableMembers = availableMembers + 1;
-	
-	if (CHECK_TIME_SPAN(4,10,7,10) == 1)
-	{
-		addMask = addMask + 0x20;
-		teddie = true;
-	}
-	else
-		availableMembers = availableMembers + 1;
-	
-	while (index < 3)
-	{
-		int id = GET_PARTY_MEMBER_ID(index);
-		if (id > 1)
+		int index = 0;
+		int numMembers = 0;
+		int removeMask = 63;
+		int addMask = 0;
+		int availableMembers = 0;
+		bool yosuke = false;
+		bool chie = false;
+		bool yukiko = false;
+		bool kanji = false;
+		bool naoto = false;
+		bool teddie = false;
+		// Set masks based on dates first
+		if (CHECK_TIME_SPAN(4,10,4,17) == 1)
 		{
-			switch (id)
-			{
-				case 2:
-					if (!yosuke)
-					{
-						removeMask = removeMask - 1;
-						addMask = addMask + 1;
-					}
-					break;
-				case 3:
-					if (!chie)
-					{
-						removeMask = removeMask - 2;
-						addMask = addMask + 2;
-					}
-					break;
-				case 4:
-					if (!yukiko)
-					{
-						removeMask = removeMask - 4;
-						addMask = addMask + 4;
-					}
-					break;
-				case 6:
-					if (!kanji)
-					{
-						removeMask = removeMask - 8;
-						addMask = addMask + 8;
-					}
-					break;
-				case 7:
-					if (!naoto)
-					{
-						removeMask = removeMask - 0x10;
-						addMask = addMask + 0x10;
-					}
-					break;
-				case 8:
-					if (!teddie)
-					{
-						removeMask = removeMask - 0x20;
-						addMask = addMask + 0x20;
-					}
-					break;
-			}
-			numMembers = numMembers + 1;
+			addMask = addMask + 1;
+			yosuke = true
 		}
-		index = index + 1;
-	}
-	
-	int optionMask = 0;
-	if (numMembers == 0)
-		optionMask = optionMask + 2;
-	if (availableMembers - numMembers == 0)
-		optionMask = optionMask + 1;
-	SET_SEL_CHOICE_KEYBIND( 14, 2 );
-	int option = ADV_SEL(OptionMsg, OptionSel, optionMask);
-	
-	if (option == 0)
-	{
-		int addedMember = ChooseMember(SelectMemberMsg, addMask);
-		if (addedMember == -1)
-			return;
-		if (numMembers == 3)
+		else
+			availableMembers = availableMembers + 1;
+		
+		if (CHECK_TIME_SPAN(4,10,4,18) == 1)
 		{
-			int replacedMember = ChooseMember(ReplaceMemberMsg, removeMask);
-			if (replacedMember == -1)
-				return;
-			RM_PARTY(replacedMember);
+			addMask = addMask + 2;
+			chie = true;
+		}
+		else
+			availableMembers = availableMembers + 1;
+		
+		if (CHECK_TIME_SPAN(4,10,4,30) == 1)
+		{
+			addMask = addMask + 4;
+			yukiko = true;
+		}
+		else
+			availableMembers = availableMembers + 1;
+		
+		if (CHECK_TIME_SPAN(4,10,6,5) == 1)
+		{
+			addMask = addMask + 8;
+			kanji = true;
+		}
+		else
+			availableMembers = availableMembers + 1;
+		
+		if (CHECK_TIME_SPAN(4,10,10,6) == 1)
+		{
+			addMask = addMask + 0x10;
+			naoto = true;
+		}
+		else
+			availableMembers = availableMembers + 1;
+		
+		if (CHECK_TIME_SPAN(4,10,7,10) == 1)
+		{
+			addMask = addMask + 0x20;
+			teddie = true;
+		}
+		else
+			availableMembers = availableMembers + 1;
+		
+		while (index < 3)
+		{
+			int id = GET_PARTY_MEMBER_ID(index);
+			if (id > 1)
+			{
+				switch (id)
+				{
+					case 2:
+						if (!yosuke)
+						{
+							removeMask = removeMask - 1;
+							addMask = addMask + 1;
+						}
+						break;
+					case 3:
+						if (!chie)
+						{
+							removeMask = removeMask - 2;
+							addMask = addMask + 2;
+						}
+						break;
+					case 4:
+						if (!yukiko)
+						{
+							removeMask = removeMask - 4;
+							addMask = addMask + 4;
+						}
+						break;
+					case 6:
+						if (!kanji)
+						{
+							removeMask = removeMask - 8;
+							addMask = addMask + 8;
+						}
+						break;
+					case 7:
+						if (!naoto)
+						{
+							removeMask = removeMask - 0x10;
+							addMask = addMask + 0x10;
+						}
+						break;
+					case 8:
+						if (!teddie)
+						{
+							removeMask = removeMask - 0x20;
+							addMask = addMask + 0x20;
+						}
+						break;
+				}
+				numMembers = numMembers + 1;
+			}
+			index = index + 1;
 		}
 		
-		ADD_PARTY(addedMember);
+		int optionMask = 0;
+		if (numMembers == 0)
+			optionMask = optionMask + 2;
+		if (availableMembers - numMembers == 0)
+			optionMask = optionMask + 1;
+		SET_SEL_CHOICE_KEYBIND( 14, 2 );
+		option = ADV_SEL(OptionMsg, OptionSel, optionMask);
+		
+		if (option == 0)
+		{
+			int replacedMember = 0;
+			int addedMember = ChooseMember(SelectMemberMsg, addMask);
+			if (addedMember != -1)
+			{
+				if (numMembers == 3)
+				{
+					replacedMember = ChooseMember(ReplaceMemberMsg, removeMask);
+					if (replacedMember != -1)
+						RM_PARTY(replacedMember);
+				}
+				if (replacedMember != -1)
+				{
+					ADD_PARTY(addedMember);
+					changed = true;
+				}
+			}
+		}
+		else if (option == 1)
+		{
+			int removedMember = ChooseMember(RemoveMemberMsg, removeMask);
+			if (removedMember != -1)
+			{
+				RM_PARTY(removedMember);
+				changed = true;
+			}
+		}
 	}
-	else if (option == 1)
-	{
-		int removedMember = ChooseMember(RemoveMemberMsg, removeMask);
-		if (removedMember == -1)
-			return;
-		RM_PARTY(removedMember);
-	}
-	else
-		return;
 
 	// Reload floor
-	int floor = GET_FLOOR_ID();
-	// Only reload floor mid-dungeon (not entrances) to get party member in
-	if (floor > 1 && floor != 2 && floor != 3 && floor != 5 && floor != 20 && floor != 40 && floor != 60 && floor != 80 && floor != 100 && floor != 120 && floor != 140 && floor != 160)
+	if (changed)
 	{
-		dng_set_npc();
-		FADE( 1, 10 );
-		FADE_SYNC();
-		if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
-		|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
-			CALL_DUNGEON(floor, 0);
-		else
-			CALL_FLOOR(floor);
+		int floor = GET_FLOOR_ID();
+		// Only reload floor mid-dungeon (not entrances) to get party member in
+		if (floor > 1 && floor != 2 && floor != 3 && floor != 5 && floor != 20 && floor != 40 && floor != 60 && floor != 80 && floor != 100 && floor != 120 && floor != 140 && floor != 160)
+		{
+			dng_set_npc();
+			FADE( 1, 10 );
+			FADE_SYNC();
+			if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
+			|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
+				CALL_DUNGEON(floor, 0);
+			else
+				CALL_FLOOR(floor);
+		}
 	}
 }
 
