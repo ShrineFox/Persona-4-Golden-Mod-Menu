@@ -174,14 +174,11 @@ void helper_order_hook()
 		// Select dungeon floor
         else if ( var33 == 8 )
         {
-			CLOSE_MSG_WIN();
-			NAVI_BU_CLOSE( sVar7 );
 			SelectFloor();
             goto _101;
         }
 		else if ( var33 == 9 )
 		{
-			CLOSE_MSG_WIN();
 			use_gohom();
             goto _101;
 		}
@@ -267,8 +264,6 @@ void StrategizeMenu()
 	
 	else if ( selection == 4 )
 	{
-		CLOSE_MSG_WIN();
-		NAVI_BU_CLOSE( sVar7 );
 		OrganizeParty();
 		return;
 	}
@@ -401,11 +396,12 @@ void init_sel_mask_hook()
 	// Keep Return to previous floor/entrance hidden if floor select is shown
     if ( FLD_FUNCTION_0037() == 1 && showFloorSelect == false)
     {
-        // Unmask previous floor or entrance
+        // Unmask entrance
         if ( var34 == 6 || var34 == 21 || var34 == 41 || var34 == 61 || var34 == 81 || var34 == 101 || var34 == 121 || var34 == 123 || var34 == 141 || var34 == 161 )
         {
             sVar1 = sVar1 - 128;
         }
+		// Unmask floor
         else 
         {
             sVar1 = sVar1 - 64;
@@ -417,7 +413,10 @@ void init_sel_mask_hook()
 	if (!showFloorSelect || !BIT_CHK(6424))
 		sVar1 = sVar1 + 256;
 	// Hide Goho-M
-	if (!showGohom || showFloorSelect || !BIT_CHK(6424))
+	if (!showGohom || showFloorSelect || !BIT_CHK(6424) ||
+		( FLD_FUNCTION_0037() == 1 && 
+		( var34 == 6 || var34 == 21 || var34 == 41 || var34 == 61 || var34 == 81 || var34 == 101 
+		|| var34 == 121 || var34 == 123 || var34 == 141 || var34 == 161 )))
 		sVar1 = sVar1 + 512;
 	// Hide OrganizeParty
 	if (!EnableOrganizeParty() || !showOrganizeParty || !BIT_CHK(6424))

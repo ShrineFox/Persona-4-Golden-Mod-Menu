@@ -1,9 +1,17 @@
 import("OrganizeParty.msg");
 
+int first;
+int second;
+int third;
+int currentFirst;
+int currentSecond;
+int currentThird;
+
 void OrganizeParty()
 {
+	GetOriginalParty();
+	int floor = GET_FLOOR_ID();
 	int option = 0;
-	bool changed = false;
 	while (option != 2)
 	{
 		int index = 0;
@@ -21,7 +29,7 @@ void OrganizeParty()
 		if (CHECK_TIME_SPAN(4,10,4,17) == 1)
 		{
 			addMask = addMask + 1;
-			yosuke = true
+			yosuke = true;
 		}
 		else
 			availableMembers = availableMembers + 1;
@@ -127,7 +135,21 @@ void OrganizeParty()
 		if (availableMembers - numMembers == 0)
 			optionMask = optionMask + 1;
 		SET_SEL_CHOICE_KEYBIND( 14, 2 );
-		option = ADV_SEL(OptionMsg, OptionSel, optionMask);
+		if (floor > 1 && floor != 2 && floor != 3 && floor != 5 && floor != 20 && floor != 40 && floor != 60 && floor != 80 && floor != 100 && floor != 120 && floor != 140 && floor != 160)
+		{
+			if (sVar8 == 5)
+			{
+				MSG(OptionMsgRise);
+			}
+			else
+			{
+				MSG(OptionMsgTeddie);
+			}
+			SET_MASK(optionMask);
+			option = SEL(OptionSel);
+		}
+		else
+			option = ADV_SEL(OptionMsg, OptionSel, optionMask);
 		
 		if (option == 0)
 		{
@@ -144,7 +166,6 @@ void OrganizeParty()
 				if (replacedMember != -1)
 				{
 					ADD_PARTY(addedMember);
-					changed = true;
 				}
 			}
 		}
@@ -154,35 +175,229 @@ void OrganizeParty()
 			if (removedMember != -1)
 			{
 				RM_PARTY(removedMember);
-				changed = true;
 			}
 		}
 	}
 
 	// Reload floor
-	if (changed)
-	{
-		int floor = GET_FLOOR_ID();
+	if (!CheckParty())
+	{		
 		// Only reload floor mid-dungeon (not entrances) to get party member in
 		if (floor > 1 && floor != 2 && floor != 3 && floor != 5 && floor != 20 && floor != 40 && floor != 60 && floor != 80 && floor != 100 && floor != 120 && floor != 140 && floor != 160)
 		{
-			dng_set_npc();
-			FADE( 1, 10 );
-			FADE_SYNC();
-			if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
-			|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
-				CALL_DUNGEON(floor, 0);
+			if (sVar8 == 5)
+			{
+				MSG(ConfirmPartyRise);
+			}
 			else
-				CALL_FLOOR(floor);
+			{
+				MSG(ConfirmPartyTeddie);
+			}
+			
+			SET_SEL_CHOICE_KEYBIND( 14, 1 );
+			int confirm = SEL(YesNo);
+			if (confirm == 0)
+			{
+				dng_set_npc();
+				FADE( 1, 10 );
+				FADE_SYNC();
+				
+				if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
+				|| floor == 89 || floor == 110 || || floor == 122 || floor == 129 || floor == 170)
+					CALL_DUNGEON(floor, 0);
+				else
+					CALL_FLOOR(floor);
+
+			}
+			else
+			{
+				if (currentFirst)
+					RM_PARTY(currentFirst);
+				if (currentSecond)
+					RM_PARTY(currentSecond);
+				if (currentThird)
+					RM_PARTY(currentThird);
+				if (first)
+					ADD_PARTY(first);
+				if (second)
+					ADD_PARTY(second);
+				if (third)
+					ADD_PARTY(third);
+			}
 		}
 	}
+}
+
+void GetOriginalParty()
+{
+	int index = 0;
+	while (index < 3)
+	{
+		int id = GET_PARTY_MEMBER_ID(index);
+		if (id > 1)
+		{
+			switch (id)
+			{
+				case 2:
+					if (index == 0)
+						first = 2;
+					else if (index == 1)
+						second = 2;
+					else
+						third = 2;
+					break;
+				case 3:
+					if (index == 0)
+						first = 3;
+					else if (index == 1)
+						second = 3;
+					else
+						third = 3;
+					break;
+				case 4:
+					if (index == 0)
+						first = 4;
+					else if (index == 1)
+						second = 4;
+					else
+						third = 4;
+					break;
+				case 6:
+					if (index == 0)
+						first = 6;
+					else if (index == 1)
+						second = 6;
+					else
+						third = 6;
+					break;
+				case 7:
+					if (index == 0)
+						first = 7;
+					else if (index == 1)
+						second = 7;
+					else
+						third = 7;
+					break;
+				case 8:
+					if (index == 0)
+						first = 8;
+					else if (index == 1)
+						second = 8;
+					else
+						third = 8;
+					break;
+			}
+		}
+		else
+		{
+			if (index == 0)
+				first = 0;
+			else if (index == 1)
+				second = 0;
+			else
+				third = 0;
+		}
+		index = index + 1;
+	}
+}
+
+bool CheckParty()
+{
+	int index = 0;
+	while (index < 3)
+	{
+		int id = GET_PARTY_MEMBER_ID(index);
+		if (id > 1)
+		{
+			switch (id)
+			{
+				case 2:
+					if (index == 0)
+						currentFirst = 2;
+					else if (index == 1)
+						currentSecond = 2;
+					else
+						currentThird = 2;
+					break;
+				case 3:
+					if (index == 0)
+						currentFirst = 3;
+					else if (index == 1)
+						currentSecond = 3;
+					else
+						currentThird = 3;
+					break;
+				case 4:
+					if (index == 0)
+						currentFirst = 4;
+					else if (index == 1)
+						currentSecond = 4;
+					else
+						currentThird = 4;
+					break;
+				case 6:
+					if (index == 0)
+						currentFirst = 6;
+					else if (index == 1)
+						currentSecond = 6;
+					else
+						currentThird = 6;
+					break;
+				case 7:
+					if (index == 0)
+						currentFirst = 7;
+					else if (index == 1)
+						currentSecond = 7;
+					else
+						currentThird = 7;
+					break;
+				case 8:
+					if (index == 0)
+						currentFirst = 8;
+					else if (index == 1)
+						currentSecond = 8;
+					else
+						currentThird = 8;
+					break;
+			}
+		}
+		else
+		{
+			if (index == 0)
+				currentFirst = 0;
+			else if (index == 1)
+				currentSecond = 0;
+			else
+				currentThird = 0;
+		}
+		index = index + 1;
+	}
+	if (first == currentFirst && second == currentSecond && third == currentThird)
+		return true;
+	return false;
 }
 
 int ChooseMember(int text, int mask)
 {
 	SET_SEL_CHOICE_KEYBIND( 14, 6 );
 	int member;
-	int selection = ADV_SEL(text, PartySel, mask);
+	int selection;
+	int floor = GET_FLOOR_ID();
+	if (floor > 1 && floor != 2 && floor != 3 && floor != 5 && floor != 20 && floor != 40 && floor != 60 && floor != 80 && floor != 100 && floor != 120 && floor != 140 && floor != 160)
+	{
+		if (sVar8 == 5)
+		{
+			MSG(text + 1);
+		}
+		else
+		{
+			MSG(text + 2);
+		}
+		SET_MASK(mask);
+		selection = SEL(PartySel);
+	}
+	else
+		selection = ADV_SEL(text, PartySel, mask);
 	switch (selection)
 	{
 		case 0:

@@ -7,8 +7,6 @@ void use_gohom()
 	{
 		NAVI_BU_CLOSE( sVar7 );
 		sVar7 = NAVI_BU_OPEN( 280, -40, sVar8, sVar9 + 3 );
-		OPEN_MSG_WIN();
-		
 		if (sVar8 == 5)
 		{
 			MSG(NoMoreRise);
@@ -20,6 +18,22 @@ void use_gohom()
 		CLOSE_MSG_WIN();
 		return;
 	}
+	
+	if (sVar8 == 5)
+	{
+		MSG(ConfirmGohomRise);
+	}
+	else
+	{
+		MSG(ConfirmGohomTeddie);
+	}
+	SET_SEL_CHOICE_KEYBIND( 14, 1 );
+	int confirm = SEL(YesNo);
+	CLOSE_MSG_WIN();
+	
+	if (confirm == 1)
+		return;
+	
     int var17 = GET_FLOOR_ID();
     int var18 = GET_FLOOR_ID();
     

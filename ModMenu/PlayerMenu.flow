@@ -315,8 +315,8 @@ void RefillHPSP()
 
 int PartyChoice()
 {
+	GetOriginalParty();
 	int option = 0;
-	bool changed = false;
 	while (option != 2)
 	{
 		int index = 0;
@@ -365,64 +365,87 @@ int PartyChoice()
 		if (numMembers == 0)
 			optionMask = optionMask + 2;
 		SET_SEL_CHOICE_KEYBIND( 14, 2 );
-		option = ADV_SEL(ModOptionMsg, ModOptionSel, optionMask);
+		option = ADV_SEL(OptionMsg, OptionSel, optionMask);
 		
 		if (option == 0)
 		{
 			int replacedMember = 0;
-			int addedMember = ModChooseMember(ModSelectMemberMsg, addMask);
+			int addedMember = ModChooseMember(SelectMemberMsg, addMask);
 			if (addedMember != -1)
 			{
 				if (numMembers == 3)
 				{
-					replacedMember = ModChooseMember(ModReplaceMemberMsg, removeMask);
+					replacedMember = ModChooseMember(ReplaceMemberMsg, removeMask);
 					if (replacedMember != -1)
 						RM_PARTY(replacedMember);
 				}
-				
 				if (replacedMember != -1)
 				{
 					ADD_PARTY(addedMember);
-					changed = true;
 				}
 			}
 		}
 		else if (option == 1)
 		{
-			int removedMember = ModChooseMember(ModRemoveMemberMsg, removeMask);
+			int removedMember = ModChooseMember(RemoveMemberMsg, removeMask);
 			if (removedMember != -1)
 			{
 				RM_PARTY(removedMember);
-				changed = true;
 			}
 		}
 	}
 
-	if (!changed)
-		return -1;
-
 	// Reload floor
 	int floor = GET_FLOOR_ID();
-	// Only reload floor mid-dungeon (not entrances) to get party member in
-	if (floor > 1 && floor != 2 && floor != 3 && floor != 5 && floor != 20 && floor != 40 && floor != 60 && floor != 80 && floor != 100 && floor != 120 && floor != 140 && floor != 160)
-	{
-		dng_set_npc();
-		FADE( 1, 10 );
-		FADE_SYNC();
-		if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
-		|| floor == 89 || floor == 110 || || floor == 122 || floor == 129)
-			CALL_DUNGEON(floor, 0);
-		else
-			CALL_FLOOR(floor);
+	if (!CheckParty())
+	{		
+		// Only reload floor mid-dungeon (not entrances) to get party member in
+		if (floor > 1 && floor != 2 && floor != 3 && floor != 5 && floor != 20 && floor != 40 && floor != 60 && floor != 80 && floor != 100 && floor != 120 && floor != 140 && floor != 160)
+		{
+			OPEN_MSG_WIN();
+			MSG(Reload);
+			SET_SEL_CHOICE_KEYBIND( 14, 1 );
+			int confirm = SEL(YesNo);
+			CLOSE_MSG_WIN();
+			if (confirm == 0)
+			{
+				dng_set_npc();
+				FADE( 1, 10 );
+				FADE_SYNC();
+				
+				if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
+				|| floor == 89 || floor == 110 || || floor == 122 || floor == 129 || floor == 170)
+					CALL_DUNGEON(floor, 0);
+				else
+					CALL_FLOOR(floor);
+				return 0;
+			}
+			else
+			{
+				if (currentFirst)
+					RM_PARTY(currentFirst);
+				if (currentSecond)
+					RM_PARTY(currentSecond);
+				if (currentThird)
+					RM_PARTY(currentThird);
+				if (first)
+					ADD_PARTY(first);
+				if (second)
+					ADD_PARTY(second);
+				if (third)
+					ADD_PARTY(third);
+			}
+		}
 	}
-	return 0;
+
+	return -1;
 }
 
 int ModChooseMember(int text, int mask)
 {
 	SET_SEL_CHOICE_KEYBIND( 14, 6 );
 	int member;
-	int selection = ADV_SEL(text, ModPartySel, mask);
+	int selection = ADV_SEL(text, PartySel, mask);
 	switch (selection)
 	{
 		case 0:

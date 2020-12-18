@@ -1,8 +1,11 @@
-[msg SelectFloorsMsg1]
-[f 0 5 -258][f 2 1]Which floor? (Page 1)[e]
+[msg SelectFloorsMsg]
+[f 0 5 -258][f 2 1]Which floor?[e]
 
-[msg SelectFloorsMsg2]
-[f 0 5 -258][f 2 1]Which floor? (Page 2)[e]
+[msg SelectFloorsMsgRise [Rise]]
+[f 0 5 -258][f 2 1]Which floor?[e]
+
+[msg SelectFloorsMsgTeddie [Teddie]]
+[f 0 5 -258][f 2 1]Which floor?[e]
 
 [sel ENTRANCE_SEL_HOOK]
 [f 0 5 -258][f 2 1]Return to the entrance[e]
@@ -39,11 +42,13 @@
 [f 0 5 -258][f 2 1]Yukiko's Castle 3F[e]
 [f 0 5 -258][f 2 1]Yukiko's Castle 4F[e]
 [f 0 5 -258][f 2 1]Yukiko's Castle 5F[e]
+[f 0 5 -258][f 2 1]Next[e]
 
 [sel YukikoFloors2]
 [f 0 5 -258][f 2 1]Yukiko's Castle 6F[e]
 [f 0 5 -258][f 2 1]Yukiko's Castle 7F[e]
 [f 0 5 -258][f 2 1]Yukiko's Castle 8F[e]
+[f 0 5 -258][f 2 1]Previous[e]
 
 [sel KanjiFloors1]
 [f 0 5 -258][f 2 1]Bathhouse, Changing Area[e]
@@ -52,6 +57,7 @@
 [f 0 5 -258][f 2 1]Steamy Bathhouse, Bath #3[e]
 [f 0 5 -258][f 2 1]Steamy Bathhouse, Bath #4[e]
 [f 0 5 -258][f 2 1]Steamy Bathhouse, Bath #5[e]
+[f 0 5 -258][f 2 1]Next[e]
 
 [sel KanjiFloors2]
 [f 0 5 -258][f 2 1]Steamy Bathhouse, Bath #6[e]
@@ -60,6 +66,7 @@
 [f 0 5 -258][f 2 1]Steamy Bathhouse, Bath #9[e]
 [f 0 5 -258][f 2 1]Steamy Bathhouse, Bath #10[e]
 [f 0 5 -258][f 2 1]Steamy Bathhouse, Bath #11[e]
+[f 0 5 -258][f 2 1]Previous[e]
 
 [sel RiseFloors1]
 [f 0 5 -258][f 2 1]Marukyu Striptease Seats[e]
@@ -68,6 +75,7 @@
 [f 0 5 -258][f 2 1]Marakyu Striptease 3F[e]
 [f 0 5 -258][f 2 1]Marakyu Striptease 4F[e]
 [f 0 5 -258][f 2 1]Marakyu Striptease 5F[e]
+[f 0 5 -258][f 2 1]Next[e]
 
 [sel RiseFloors2]
 [f 0 5 -258][f 2 1]Marakyu Striptease 6F[e]
@@ -76,6 +84,7 @@
 [f 0 5 -258][f 2 1]Marakyu Striptease 9F[e]
 [f 0 5 -258][f 2 1]Marakyu Striptease 10F[e]
 [f 0 5 -258][f 2 1]Marakyu Striptease 11F[e]
+[f 0 5 -258][f 2 1]Previous[e]
 
 [sel MitsuoFloors1]
 [f 0 5 -258]Void Quest Title Screen[f 2 1][e]
@@ -84,6 +93,7 @@
 [f 0 5 -258][f 2 1]Void Quest Chapter 3[e]
 [f 0 5 -258][f 2 1]Void Quest Chapter 4[e]
 [f 0 5 -258][f 2 1]Void Quest Chapter 5[e]
+[f 0 5 -258][f 2 1]Next[e]
 
 [sel MitsuoFloors2]
 [f 0 5 -258][f 2 1]Void Quest Chapter 6[e]
@@ -91,6 +101,7 @@
 [f 0 5 -258][f 2 1]Void Quest Chapter 8[e]
 [f 0 5 -258][f 2 1]Void Quest Chapter 9[e]
 [f 0 5 -258][f 2 1]Void Quest End Game[e]
+[f 0 5 -258][f 2 1]Previous[e]
 
 [sel NaotoFloors1]
 [f 0 5 -258]Secret Laboratory Entrance[f 2 1][e]
@@ -99,12 +110,14 @@
 [f 0 5 -258][f 2 1]Secret Laboratory B3F[e]
 [f 0 5 -258][f 2 1]Secret Laboratory B4F[e]
 [f 0 5 -258][f 2 1]Secret Laboratory B5F[e]
+[f 0 5 -258][f 2 1]Next[e]
 
 [sel NaotoFloors2]
 [f 0 5 -258][f 2 1]Secret Laboratory B6F[e]
 [f 0 5 -258][f 2 1]Secret Laboratory B7F[e]
 [f 0 5 -258][f 2 1]Secret Laboratory B8F[e]
 [f 0 5 -258][f 2 1]Secret Laboratory B9F[e]
+[f 0 5 -258][f 2 1]Previous[e]
 
 [sel NanakoFloors1]
 [f 0 5 -258]Heaven, Pearly Gates[f 2 1][e]
@@ -113,6 +126,7 @@
 [f 0 5 -258][f 2 1]Heaven Paradise #3[e]
 [f 0 5 -258][f 2 1]Heaven Paradise #4[e]
 [f 0 5 -258][f 2 1]Heaven Paradise #5[e]
+[f 0 5 -258][f 2 1]Next[e]
 
 [sel NanakoFloors2]
 [f 0 5 -258][f 2 1]Heaven Paradise #6[e]
@@ -120,6 +134,7 @@
 [f 0 5 -258][f 2 1]Heaven Paradise #8[e]
 [f 0 5 -258][f 2 1]Heaven Paradise #9[e]
 [f 0 5 -258][f 2 1]Heaven Paradise #10[e]
+[f 0 5 -258][f 2 1]Previous[e]
 
 [sel AdachiFloors1]
 [f 0 5 -258][f 2 1]Desolate Bedroom[e]
@@ -128,9 +143,11 @@
 [f 0 5 -258][f 2 1]Magatsu Mandala World 1[e]
 [f 0 5 -258][f 2 1]Magatsu Mandala World 2[e]
 [f 0 5 -258][f 2 1]Magatsu Mandala World 3[e]
+[f 0 5 -258][f 2 1]Next[e]
 
 [sel AdachiFloors2]
 [f 0 5 -258][f 2 1]Magatsu Mandala World 4[e]
 [f 0 5 -258][f 2 1]Magatsu Mandala World 5[e]
 [f 0 5 -258][f 2 1]Magatsu Mandala World 6[e]
 [f 0 5 -258][f 2 1]Magatsu Inaba (Boss Floor)[e]
+[f 0 5 -258][f 2 1]Previous[e]

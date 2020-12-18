@@ -22,46 +22,54 @@ void SelectFloor()
 	int floor = GET_FLOOR_ID();
 	int EntranceFloor;
 	int FloorText;
+	int prev;
 	// Get the entrance floor and floor text based on current floor
 	// Yukiko
 	if (floor >= 5 && floor < 14)
 	{
+		prev = 3;
 		EntranceFloor = 5;
 		FloorText = YukikoFloors1;
 	}
 	// Kanji
 	else if (floor >= 20 && floor < 32)
 	{
+		prev = 6;
 		EntranceFloor = 20;
 		FloorText = KanjiFloors1;
 	}
 	// Rise
 	else if (floor >= 40 && floor < 52)
 	{
+		prev = 6;
 		EntranceFloor = 40;
 		FloorText = RiseFloors1;
 	}
 	// Mitsuo
 	else if (floor >= 60 && floor < 71)
 	{
+		prev = 5;
 		EntranceFloor = 60;
 		FloorText = MitsuoFloors1;
 	}
 	// Naoto
 	else if (floor >= 80 && floor < 90)
 	{
+		prev = 4;
 		EntranceFloor = 80;
 		FloorText = NaotoFloors1;
 	}
 	// Nanako
 	else if (floor >= 100 && floor < 111)
 	{
+		prev = 5;
 		EntranceFloor = 100;
 		FloorText = NanakoFloors1;
 	}
 	// Adachi
 	else if (floor >= 120 && floor < 130)
 	{
+		prev = 4;
 		EntranceFloor = 120;
 		FloorText = AdachiFloors1;
 	}
@@ -116,19 +124,39 @@ void SelectFloor()
 	int selection;
 	bool selected = false;
 	bool firstPage = true;
+	
+	if (!if ( floor == 5 || floor == 20 || floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120 || floor == 140 || floor == 160 ))
+	{
+		if (sVar8 == 5)
+		{
+			MSG(SelectFloorsMsgRise);
+		}
+		else
+		{
+			MSG(SelectFloorsMsgTeddie);
+		}
+	}
+
 	while (selected == false)
 	{
 		if (firstPage == true)
 		{	
 			SET_SEL_CHOICE_KEYBIND( 14, 11 );
-			SET_SEL_CHOICE_KEYBIND( 10, 12 );
-			SET_SEL_CHOICE_KEYBIND( 11, 12 );
-			selection = ADV_SEL(SelectFloorsMsg1, FloorText, selectMask1);
+			SET_SEL_CHOICE_KEYBIND( 10, 6 );
+			SET_SEL_CHOICE_KEYBIND( 11, 6 );
+			if ( floor == 5 || floor == 20 || floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120 || floor == 140 || floor == 160 )
+				selection = ADV_SEL(SelectFloorsMsg, FloorText, selectMask1);
+			else
+			{
+				SET_MASK(selectMask1);
+				selection = SEL(FloorText);
+			}
 			firstPage = false;
 			
 			if (selection == 11)
 			{
 				CLOSE_MSG_WIN();
+				NAVI_BU_CLOSE( sVar7 );
 				return;
 			}
 			else if (selection < 6)
@@ -137,21 +165,30 @@ void SelectFloor()
 		else
 		{
 			SET_SEL_CHOICE_KEYBIND( 14, 11 );
-			SET_SEL_CHOICE_KEYBIND( 10, 12 );
-			SET_SEL_CHOICE_KEYBIND( 11, 12 );
-			selection = ADV_SEL(SelectFloorsMsg2, FloorText + 1, selectMask2 ) + 6;
+			SET_SEL_CHOICE_KEYBIND( 10, prev );
+			SET_SEL_CHOICE_KEYBIND( 11, prev );
+			if ( floor == 5 || floor == 20 || floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120 || floor == 140 || floor == 160 )
+				selection = ADV_SEL(SelectFloorsMsg, FloorText + 1, selectMask2 ) + 6;
+			else
+			{
+				SET_MASK(selectMask2);
+				selection = SEL(FloorText + 1) + 6;
+			}
 			firstPage = true;
 			
 			if (selection == 17)
 			{
 				CLOSE_MSG_WIN();
+				NAVI_BU_CLOSE( sVar7 );
 				return;
 			}
-			else if (selection < 12)
+			else if (selection < (prev + 6))
 				selected = true;
 		}
 	}
+
 	CLOSE_MSG_WIN();
+	NAVI_BU_CLOSE( sVar7 );
 	
 	int nextFloor = selection + EntranceFloor;
 
