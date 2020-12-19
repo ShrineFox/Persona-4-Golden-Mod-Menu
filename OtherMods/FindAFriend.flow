@@ -37,10 +37,14 @@ void generate_hangout_menu()
 
     // Set all of the message variables based on whether the link is ready to level up
     SET_MSG_VAR(0, 621 + CHECK_IF_SL_LVLUP(31), 6);
-
     SET_MSG_VAR(1, 621 + (CHECK_IF_SL_LVLUP(21) || CHECK_IF_SL_LVLUP(22)), 6);
     SET_MSG_VAR(2, 621 + (CHECK_IF_SL_LVLUP(11) || CHECK_IF_SL_LVLUP(12)), 6);
-    SET_MSG_VAR(3, 621 + (CHECK_IF_SL_LVLUP(27) || CHECK_IF_SL_LVLUP(25)), 6);
+   
+    // If you try to check if Ayane will level up when Yumi is the S.link for the save the game crashes
+    if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0) {
+        SET_MSG_VAR(3, 621 + (CHECK_IF_SL_LVLUP(27) || CHECK_IF_SL_LVLUP(28)), 6);
+    }
+
     SET_MSG_VAR(4, 621 + CHECK_IF_SL_LVLUP(29), 6);
     SET_MSG_VAR(5, 621 + CHECK_IF_SL_LVLUP(19), 6);
     SET_MSG_VAR(6, 621 + CHECK_IF_SL_LVLUP(10), 6);
@@ -53,6 +57,11 @@ void generate_hangout_menu()
     SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(16), 6);
     SET_MSG_VAR(14, 621 + CHECK_IF_SL_LVLUP(7), 6);
     SET_MSG_VAR(15, 621 + (CHECK_IF_SL_LVLUP(5) || CHECK_IF_SL_LVLUP(6)), 6);
+
+    // If you try to check if Yumi will level up when Ayane is the S.link for the save the game crashes
+    if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0) {
+        SET_MSG_VAR(3, 621, 6);
+    }
 
     // Set message variables for the level of each s link
     SET_MSG_VAR(16, GET_SL_LEVEL(31), 0);
@@ -75,14 +84,18 @@ void generate_hangout_menu()
         SET_MSG_VAR(18, GET_SL_LEVEL(12), 0);
     }
 
-    if (GET_SL_LEVEL(27) >= GET_SL_LEVEL(25))
-    {
-        SET_MSG_VAR(19, GET_SL_LEVEL(27), 0);
+    // Game crashes if you try to set the message variable when it's not > 0 for Ayane
+    if(GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0) {
+        if (GET_SL_LEVEL(27) >= GET_SL_LEVEL(28))
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(27), 0);
+        }
+        else
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(28), 0);
+        }
     }
-    else
-    {
-        SET_MSG_VAR(19, GET_SL_LEVEL(25), 0);
-    }
+
     SET_MSG_VAR(20, GET_SL_LEVEL(29), 0);
     SET_MSG_VAR(21, GET_SL_LEVEL(19), 0);
     SET_MSG_VAR(22, GET_SL_LEVEL(10), 0);
@@ -128,7 +141,19 @@ void generate_hangout_menu()
         SET_MSG_VAR(31, GET_SL_LEVEL(6), 0);
     }
 
-    SET_SEL_CHOICE_KEYBIND(14, 17);
+    // Game crashes if you try to set the message variable when it's not > 0 for Yumi
+    if(GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0) {
+        if (GET_SL_LEVEL(25) >= GET_SL_LEVEL(26))
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(25), 0);
+        }
+        else
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(26), 0);
+        }
+    }
+
+    SET_SEL_CHOICE_KEYBIND(14, 18);
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
 
     // Field major and minor to make sure you can't tp to the current location
@@ -137,7 +162,7 @@ void generate_hangout_menu()
 
 _choiceLoop:
     // Cancel or see more wasn't chosen
-    if (localVariable56 < 16)
+    if (localVariable56 < 17)
     {
 
         // Teleport the player to the desired location depending on who they chose
@@ -193,8 +218,23 @@ _choiceLoop:
                 CALL_FIELD(6, 1, 5, 0);
             }
             break;
-        // Chie
+        // Ayane - Learning Building 2F
         case 2:
+            if (fieldMajor == 6 && fieldMinor == 2)
+            {
+                OPEN_MSG_WIN();
+                MSG(AYANE_ALREADY_HERE);
+                CLOSE_MSG_WIN();
+            }
+            else
+            {
+                FADE(1, 5);
+                FADE_SYNC();
+                CALL_FIELD(6, 2, 0, 0);
+            }
+            break;
+        // Chie
+        case 3:
             // South Shopping District on Sundays
             if (isHoliday == 1)
             {
@@ -226,21 +266,6 @@ _choiceLoop:
                     FADE_SYNC();
                     CALL_FIELD(6, 14, 1, 0);
                 }
-            }
-            break;
-        // Ayane/Yumi - Learning Building 2F
-        case 3:
-            if (fieldMajor == 6 && fieldMinor == 2)
-            {
-                OPEN_MSG_WIN();
-                MSG(CULTURAL_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(6, 2, 0, 0);
             }
             break;
         // Eri - South Shopping District
@@ -543,13 +568,28 @@ _choiceLoop:
                 }
             }
             break;
+        // Yumi - Learning Building 2F
+        case 16:
+            if (fieldMajor == 6 && fieldMinor == 2)
+            {
+                OPEN_MSG_WIN();
+                MSG(YUMI_ALREADY_HERE);
+                CLOSE_MSG_WIN();
+            }
+            else
+            {
+                FADE(1, 5);
+                FADE_SYNC();
+                CALL_FIELD(6, 2, 0, 0);
+            }
+            break;
         }
         // See more was chosen
     }
-    else if (localVariable56 == 16)
+    else if (localVariable56 == 17)
     {
         // Generate another menu
-        SET_SEL_CHOICE_KEYBIND(14, 17);
+        SET_SEL_CHOICE_KEYBIND(14, 18);
         // If you're on page one go to two and vice versa
         if (localVariable120 == 0)
         {
@@ -570,7 +610,7 @@ void generate_selection_mask()
 {
     pageOneMask = 0; // First list
     // All characters removed (subtracting from this adds them back to the second list)
-    pageTwoMask = 65535; // Second list
+    pageTwoMask = 131071; // Second list
 
     // Count how many people were removed from the list so I can decide whether to make a second page
     numSelectionsRemoved = 0;
@@ -580,7 +620,7 @@ void generate_selection_mask()
     int adachiState = 1;
     int aiState = 1;
     int chieState = 1;
-    int culturalState = 1;
+    int ayaneState = 1;
     int eriState = 1;
     int hisanoState = 1;
     int kanjiState = 1;
@@ -593,6 +633,7 @@ void generate_selection_mask()
     int kouState = 1;
     int yosukeState = 1;
     int yukikoState = 1;
+    int yumiState = 1;
     int localVariable116 = 1;
 
     int timeOfDay;
@@ -614,19 +655,19 @@ void generate_selection_mask()
         numSelectionsRemoved = numSelectionsRemoved + 1;
         aiState = 0;
     }
-    // Chie isn't available Friday and Sunday
-    if (BIT_CHK(0 + 0x0400 + 459) == 0 || GET_SL_LEVEL(11) >= 10 || GET_SL_LEVEL(12) >= 10 || timeOfDay == 5)
+    // Ayane isn't available Wednesday, Friday, Saturday, Sunday and Holiday
+    if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(27) >= 10 || GET_SL_LEVEL(28) >= 10 || (GET_SL_LEVEL(27) <= 0 && GET_SL_LEVEL(28) <= 0) || timeOfDay == 5)
     {
         pageOneMask = pageOneMask + 4;
         numSelectionsRemoved = numSelectionsRemoved + 1;
-        chieState = 0;
+        ayaneState = 0;
     }
-    // Ayane/Yumi isn't available Wednesday, Friday, Saturday, Sunday and Holiday
-    if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(27) >= 10 || GET_SL_LEVEL(28) >= 10 || timeOfDay == 5)
+    // Chie isn't available Friday and Sunday
+    if (BIT_CHK(0 + 0x0400 + 459) == 0 || GET_SL_LEVEL(11) >= 10 || GET_SL_LEVEL(12) >= 10 || timeOfDay == 5)
     {
         pageOneMask = pageOneMask + 8;
         numSelectionsRemoved = numSelectionsRemoved + 1;
-        culturalState = 0;
+        chieState = 0;
     }
     // Eri isn't available Tuesday, Wednesday, Thursday, Sunday and Holidays
     if (BIT_CHK(0 + 0x0400 + 1641) == 0 || BIT_CHK(0 + 0x0400 + 476) == 0 || GET_SL_LEVEL(29) >= 10 || timeOfDay == 5)
@@ -712,20 +753,41 @@ void generate_selection_mask()
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yukikoState = 0;
     }
+    // Yumi isn't available Wednesday, Friday, Saturday, Sunday and Holiday
+    if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(25) >= 10 || GET_SL_LEVEL(26) >= 10 || (GET_SL_LEVEL(25) <= 0 && GET_SL_LEVEL(26) <= 0) || timeOfDay == 5)
+    {
+        pageOneMask = pageOneMask + 65536;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        yumiState = 0;
+    }
+
 
     // Decide whether a second page is needed THIS WOULD BE SO MUCH EASIER WITH AN ARRAY AND A LOOP AHHHHH
-    if (numSelectionsRemoved < 9)
+    if (numSelectionsRemoved < 10)
     {
         // local58 is all characters removed (subtracting from this adds them back to the second list)
-        // Yukiko
-        if (yukikoState == 1)
+        // Yumi
+        if (yumiState == 1)
         {
             // Remove from list 1
-            pageOneMask = pageOneMask + 32768;
+            pageOneMask = pageOneMask + 65536;
             // Add to list 2
-            pageTwoMask = pageTwoMask - 32768;
+            pageTwoMask = pageTwoMask - 65536;
             // Increment the count
             numSelectionsRemoved = numSelectionsRemoved + 1;
+        }
+        // Yukiko
+        if (numSelectionsRemoved < 10) 
+        {
+            if (yukikoState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 32768;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 32768;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
         }
         // Yosuke
         if (numSelectionsRemoved < 10)
@@ -835,7 +897,7 @@ void generate_selection_mask()
     }
     else
     {
-        pageOneMask = pageOneMask + 65536;
+        pageOneMask = pageOneMask + 131072;
     }
 }
 

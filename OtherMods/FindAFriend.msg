@@ -4,8 +4,8 @@
 [sel HANGOUT_SEL]
 [f 0 5 -258][f 2 1]Adachi (Lvl [f 2 4 16][f 2 4 0])[e]
 [f 0 5 -258][f 2 1]Ai (Lvl [f 2 4 17][f 2 4 1])[e]
+[f 0 5 -258][f 2 1]Ayane (Lvl [f 2 4 19][f 2 4 3])[e]
 [f 0 5 -258][f 2 1]Chie (Lvl [f 2 4 18][f 2 4 2])[e]
-[f 0 5 -258][f 2 1]Cultural (Ayane/Yumi) (Lvl [f 2 4 19][f 2 4 3])[e]
 [f 0 5 -258][f 2 1]Eri (Lvl [f 2 4 20][f 2 4 4])[e]
 [f 0 5 -258][f 2 1]Hisano (Lvl [f 2 4 21][f 2 4 5])[e]
 [f 0 5 -258][f 2 1]Kanji (Lvl [f 2 4 22][f 2 4 6])[e]
@@ -18,6 +18,7 @@
 [f 0 5 -258][f 2 1]Sports (Kou/Daisuke) (Lvl [f 2 4 29][f 2 4 13])[e]
 [f 0 5 -258][f 2 1]Yosuke (Lvl [f 2 4 30][f 2 4 14])[e]
 [f 0 5 -258][f 2 1]Yukiko (Lvl [f 2 4 31][f 2 4 15])[e]
+[f 0 5 -258][f 2 1]Yumi (Lvl [f 2 4 19][f 2 4 3])[e]
 [f 0 5 -258][f 2 1]Others...[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
@@ -30,8 +31,11 @@
 [msg CHIE_ALREADY_HERE]
 [f 0 5 -258][f 2 1]Chie is already nearby.[n][f 1 1][e]
 
-[msg CULTURAL_ALREADY_HERE]
-[f 0 5 -258][f 2 1]Ayane/Yumi is already nearby.[n][f 1 1][e]
+[msg AYANE_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Ayane is already nearby.[n][f 1 1][e]
+
+[msg YUMI_ALREADY_HERE]
+[f 0 5 -258][f 2 1]Yumi is already nearby.[n][f 1 1][e]
 
 [msg BUS_ALREADY_HERE]
 [f 0 5 -258][f 2 1]The bus stop is already nearby.[n][f 1 1][e]
