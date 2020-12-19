@@ -87,7 +87,10 @@ void ToggleOption(int startMsg, int startFlag, int selection)
 		case 0: //on
 			BIT_ON(startFlag + selection);
 			if(selection == 3)
+			{
+				CLOSE_MSG_WIN();
 				DungeonOptionsToggle();
+			}
 			break;
 		case 1: //off
 			BIT_OFF(startFlag + selection);
