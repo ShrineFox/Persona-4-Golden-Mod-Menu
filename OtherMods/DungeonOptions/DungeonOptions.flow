@@ -29,8 +29,12 @@ void entrance_jump_hook()
 		mask = mask + 4;
 	if (!BeatDungeon() || !BIT_CHK(6424))
 		mask = mask + 2;
+	if (!BIT_CHK(6426))
+		mask = mask + 4;
     FUNCTION_0023( 0, 3 );
-    SET_SEL_CHOICE_KEYBIND( 14, 3 );
+    SET_SEL_CHOICE_KEYBIND( 14, 4 );
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
     int var27 = ADV_SEL( 15, ENTRANCE_SEL_HOOK, mask );
     
     if ( var27 == 0 )
@@ -56,6 +60,15 @@ void entrance_jump_hook()
     {
 		OrganizeParty();
     }
+	else if ( var27 == 3 )
+		NS_SAVE();
+	else if ( var27 == 18 )
+	{
+		MenuOptions();
+		options = true;
+	}
+	else
+		selected = false;
 
 }
 
@@ -98,7 +111,9 @@ void helper_order_hook()
 		SET_MSG_VAR(1, GET_ITEM(790), 0);
 		// Sets mask
         SET_MASK( sVar1 );
-        SET_SEL_CHOICE_KEYBIND( 14, 11 );
+		if (!BIT_CHK(6421))
+			SET_SEL_CHOICE_KEYBIND(12, 18);
+        SET_SEL_CHOICE_KEYBIND( 14, 12 );
         var33 = SEL( DUNGEON_SEL_HOOK );
 		
 		if ( var33 == 0 )
@@ -189,10 +204,26 @@ void helper_order_hook()
 			use_fox();
             goto _101;
 		}
-		else if ( var33 == 11 ) 
+		else if ( var33 == 11 )
+		{
+			CLOSE_MSG_WIN();
+			NAVI_BU_CLOSE( sVar7 );
+			NS_SAVE();
+            goto _101;
+		}
+		else if ( var33 == 12 ) 
         {
+			selected = false;
 			goto _101;
         }
+		else if ( var33 == 18 )
+		{
+			CLOSE_MSG_WIN();
+			NAVI_BU_CLOSE( sVar7 );
+			MenuOptions();
+			options = true;
+			return;
+		}
 		
         goto _100;
     }
@@ -424,6 +455,8 @@ void init_sel_mask_hook()
 	// Hide Call Fox
 	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 9 ) == 0 || !showFox || !BIT_CHK(6424))
 		sVar1 = sVar1 + 1024;
+	if ( !BIT_CHK(6426) )
+		sVar1 = sVar1 + 2048;
 }
 
 void tomb_jump_hook()
@@ -434,8 +467,12 @@ void tomb_jump_hook()
     var24 = var24 + 0x20;
 	if (!EnableOrganizeParty() || !BIT_CHK(6424))
 		var24 = var24 + 2;
+	if (!BIT_CHK(6426))
+		var24 = var24 + 64;
     FUNCTION_0023( 0, 3 );
-    SET_SEL_CHOICE_KEYBIND( 14, 6 );
+    SET_SEL_CHOICE_KEYBIND( 14, 7 );
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
     int var23 = ADV_SEL( 12, TOMB_SEL_HOOK, var24 );
     
     if ( var23 == 0 || var23 == 2 || var23 == 3 || var23 == 4 )
@@ -497,6 +534,15 @@ void tomb_jump_hook()
     {
 		OrganizeParty();
     }
+	else if ( var23 == 6 )
+		NS_SAVE();
+	else if ( var23 == 18 )
+	{
+		MenuOptions();
+		options = true;
+	}
+	else
+		selected = false;
 
 }
 
@@ -506,7 +552,11 @@ void liqueur_jump_hook()
 	int mask = 0;
 	if (!EnableOrganizeParty() || !BIT_CHK(6424))
 		mask = mask + 2;
-    SET_SEL_CHOICE_KEYBIND( 14, 1 );
+	if (!BIT_CHK(6426))
+		mask = mask + 4;
+    SET_SEL_CHOICE_KEYBIND( 14, 3 );
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
     int var26 = ADV_SEL( 15, LIQUEUR_SEL_HOOK, mask );
     
     if ( var26 == 0 )
@@ -515,5 +565,165 @@ void liqueur_jump_hook()
     }
 	else if (var26 == 1)
 		OrganizeParty();
+	else if (var26 == 2)
+		NS_SAVE();
+	else if ( var26 == 18 )
+	{
+		MenuOptions();
+		options = true;
+	}
+	else
+		selected = false;
+
+}
+
+void studio_jump_hook()
+{
+    int var22 = 0;
+    int var21 = 0;
+    
+    if ( DATE_CHK( 2, 13 ) == 1 || DATE_CHK( 3, 20 ) == 1 )
+    {
+        var21 = var21 + 0x10;
+        var21 = var21 + 1;
+        var21 = var21 + 2 + 4;
+    }
+    else 
+    {
+        var21 = var21 + 1 + 2 + 4;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 0 ) == 0 )
+    {
+        var21 = var21 + 128;
+    }
+
+	if (!BIT_CHK(6426))
+		var21 = var21 + 32;
+
+    FUNCTION_0023( 0, 3 );
+    SET_SEL_CHOICE_KEYBIND( 14, 6 );
+	if (!BIT_CHK(6421))SET_SEL_CHOICE_KEYBIND(12, 18);
+    int var20 = ADV_SEL( 3, SHOP_SEL_HOOK, var21 );
+    
+    if ( var20 == 0 || var20 == 1 || var20 == 2 || var20 == 3 )
+    {
+        FADE( 1, 10 );
+        
+        if ( var20 == 3 )
+        {
+            FUNCTION_0024( 255, 255, 255 );
+        }
+
+        FADE_SYNC();
+        FLD_FUNCTION_0024();
+        
+        if ( var20 == 0 )
+        {
+            BIT_OFF( 0 + 0x0400 + 0x0800 + 2 );
+            CALL_DUNGEON( 160, 0 );
+            return;
+        }
+        else if ( var20 == 1 )
+        {
+            DAIDARA_SHOP();
+        }
+        else if ( var20 == 2 )
+        {
+            SHIROKU_SHOP();
+        }
+        else if ( var20 == 3 )
+        {
+            var22 = 1;
+            VELVET_ROOM();
+            BIT_OFF( 0 + 0x0400 + 719 );
+        }
+
+        CALL_DUNGEON( 1, var22 );
+    }
+    else if ( var20 == 4 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 6 ) == 0 )
+        {
+            HELP_MSG( 4 );
+        }
+
+        OPEN_MSG_WIN();
+        MSG( RETURN_HOME_OK );
+        SET_SEL_CHOICE_KEYBIND( 14, 1 );
+        var20 = SEL( YESNO_SEL );
+        CLOSE_MSG_WIN();
+        
+        if ( var20 == 0 )
+        {
+            
+            if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 6 ) == 0 )
+            {
+                BIT_ON( 0 + 0x0400 + 0x0800 + 6 );
+            }
+
+            OPEN_MSG_WIN();
+            
+            if ( CHECK_TIME_SPAN( 4, 1, 7, 9 ) == 1 )
+            {
+                MSG( KUMA_BYE_1 );
+            }
+            else if ( CHECK_TIME_SPAN( 11, 6, 12, 7 ) == 1 )
+            {
+                
+                if ( BIT_CHK( 0 + 22 ) == 0 )
+                {
+                    MSG( KUMA_BYE_3 );
+                }
+                else if ( BIT_CHK( 0 + 22 ) == 1 )
+                {
+                    MSG( KUMA_BYE_4 );
+                }
+
+            }
+            else 
+            {
+                MSG( KUMA_BYE_2 );
+            }
+
+            CLOSE_MSG_WIN();
+            FADE( 1, 10 );
+            FADE_SYNC();
+            out_tv_world();
+            TV_STUDIO();
+        }
+
+    }
+	else if ( var20 == 5 )
+		NS_SAVE();
+	else if ( var20 == 6 )
+		selected = false;
+    else if ( var20 == 7 )
+    {
+        SET_SEL_CHOICE_KEYBIND( 14, 2 );
+        var20 = ADV_SEL( 502, 503, 0 );
+        
+        if ( var20 == 0 )
+        {
+            FADE( 1, 10 );
+            FUNCTION_0024( 255, 255, 255 );
+            FADE_SYNC();
+            CALL_DUNGEON( 159, 0 );
+        }
+        else if ( var20 == 1 )
+        {
+            FADE( 1, 10 );
+            FADE_SYNC();
+            CALL_DUNGEON( 160, 0 );
+        }
+
+    }
+	else if ( var20 == 18 )
+	{
+		MenuOptions();
+		options = true;
+	}
 
 }

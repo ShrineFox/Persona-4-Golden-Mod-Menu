@@ -6,6 +6,7 @@
 [f 0 5 -258][f 2 1]Go into town[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 [f 0 5 -258][f 2 1]Go home[e]
 
@@ -16,6 +17,7 @@
 [f 0 5 -258][f 2 1]Leave the shopping district[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel SEL_NIGHT_PLACE_HOOK]
@@ -27,6 +29,7 @@
 [f 0 5 -258][f 2 1]Go back home[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel MYHOME_SEL_HOOK]
@@ -40,6 +43,7 @@
 [f 0 5 -258][f 2 1]Go back home[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 [f 0 5 -258][f 2 1]Skip forward in time[e]
 
@@ -49,6 +53,7 @@
 [f 0 5 -258][f 2 1]Go into town[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel SEL_EMBANK_NIGHT_HOOK]
@@ -57,6 +62,7 @@
 [f 0 5 -258][f 2 1]Go back home[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel GMS_SEL_HOOK]
@@ -64,18 +70,21 @@
 [f 0 5 -258][f 2 1]Go into town[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel STATION_SEL_HOOK]
 [f 0 5 -258][f 2 1]Go back to Inaba[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel SCHOOLROAD_SEL_HOOK]
 [f 0 5 -258][f 2 1]Go into town[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel SNOWMOUNTAIN_SEL_HOOK]
@@ -83,4 +92,5 @@
 [f 0 5 -258][f 2 1]Go into town[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]

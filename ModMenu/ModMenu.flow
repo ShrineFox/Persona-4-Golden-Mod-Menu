@@ -7,13 +7,23 @@ import( "PlayerMenu.flow" );
 import( "FlagMenu.flow" );
 import( "Utilities.flow" ); //Frequently reused Mod Menu operations
 
+bool selected;
+bool options;
+
 int ModMenuDisplay()
 {
+	int mask = 0;
+	if ( GET_FLOOR_ID() == 0)
+		mask = mask + 16;
+	else
+		mask = mask + 8;
 	while(true) 
 	{
-		SET_SEL_CHOICE_KEYBIND(14, 10);
-		SET_SEL_CHOICE_KEYBIND(15, 11);
-		int selection = ADV_SEL(Mod_Menu_Text, Mod_Menu, 0);
+		selected = true;
+		options = false;
+		SET_SEL_CHOICE_KEYBIND(14, 18);
+		SET_SEL_CHOICE_KEYBIND(15, 18);
+		int selection = ADV_SEL(Mod_Menu_Text, Mod_Menu, mask);
 		switch (selection)
 		{
 			case 0:
@@ -31,9 +41,24 @@ int ModMenuDisplay()
 					break;
 				else
 					return 0;
-			case 10:
+			case 3:
+				field_order();
+				if (options)
+					return -1;
+				if (selected)
+					return 0;
+				break;
+			case 4:
+				dungeon_order();
+				if (options)
+					return -1;
+				if (selected)
+					return 0;
+				break;
+			case 5:
+				MenuOptions();
 				return -1;
-			case 11:
+			case 18:
 				return 0;
 		}
 	}

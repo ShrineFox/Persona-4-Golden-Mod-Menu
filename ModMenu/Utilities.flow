@@ -57,6 +57,7 @@ int Get_Number( int digitCount, int helpText )
 	SET_MSG_VAR(0, number, 0);
 	OPEN_MSG_WIN();
 	MSG( ConfirmNumber );
+	SET_SEL_CHOICE_KEYBIND(14, 1);
 	int confirm = SEL(YESNO_SEL);
 	CLOSE_MSG_WIN();
 	if (confirm == 1)

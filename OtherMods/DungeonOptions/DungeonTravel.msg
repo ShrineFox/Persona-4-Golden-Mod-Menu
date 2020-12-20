@@ -11,6 +11,7 @@
 [f 0 5 -258][f 2 1]Return to the entrance[e]
 [f 0 5 -258][f 2 1]Select floor[e]
 [f 0 5 -258][f 2 1]Organize party[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel DUNGEON_SEL_HOOK]
@@ -25,7 +26,18 @@
 [f 0 5 -258][f 2 1]Select floor[e]
 [f 0 5 -258][f 2 1]Goho-M × [f 2 4 1][e]
 [f 0 5 -258][f 2 1]Call the fox[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Nothing[e]
+
+[sel SHOP_SEL_HOOK]
+[f 0 5 -258][f 2 1]Go to Marie[e]
+[f 0 5 -258][f 2 1]Daidara[e]
+[f 0 5 -258][f 2 1]Shiroku Store[e]
+[f 0 5 -258][f 2 1]Velvet Room[e]
+[f 0 5 -258][f 2 1]Go back home[e]
+[f 0 5 -258][f 2 1]Save[e]
+[f 0 5 -258][f 2 1]Cancel[e]
+[f 0 5 -258][f 2 1]Debug Mode[e]
 
 [sel Strategize]
 [f 0 5 -258][f 2 1]Talk to the others[e]

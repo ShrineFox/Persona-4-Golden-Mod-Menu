@@ -10,6 +10,7 @@
 [f 0 5 -258][f 2 1]Go into town[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel ClassroomBuilding]
@@ -33,6 +34,7 @@
 [f 0 5 -258][f 2 1]Leave the shopping district[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel ShoppingDistrictDay]
@@ -50,6 +52,7 @@
 [f 0 5 -258][f 2 1]Go back home[e]
 [f 0 5 -258][f 2 1]View calendar[e]
 [f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel ShoppingDistrict]
@@ -85,6 +88,7 @@
 [msg MSG_0320_GO_HOME_COMU_NO2]
 [f 0 5 -258][f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]
 [f 0 5 -258][f 2 1]> You have yet to speak with some of[n]the people who are close to you.[n][f 1 1][e]
+
 
 [msg MSG_0320_RETURN_HOME2]
 [f 0 5 -258][f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]

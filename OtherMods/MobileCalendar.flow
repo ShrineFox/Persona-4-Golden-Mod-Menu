@@ -4,6 +4,7 @@ void school_order_hook()
 {
 	bool calendar = BIT_CHK(6423);
 	bool friend = BIT_CHK(6425);
+	bool save = BIT_CHK(6426);
 	int var54 = 327;
 	int var55 = SCHOOL_SEL_HOOK;
 	int var57 = 0;
@@ -28,7 +29,7 @@ void school_order_hook()
 	
 	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 0 ) == 0 )
 	{
-		var57 = var57 + 0x100;
+		var57 = var57 + 512;
 	}
 
 	if (!calendar)
@@ -37,12 +38,15 @@ void school_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         var57 = var57 + 64;
-	
-	SET_SEL_CHOICE_KEYBIND( 14, 7 );
+	if (!save)
+		var57 = var57 + 128;
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
+	SET_SEL_CHOICE_KEYBIND( 14, 8 );
 	int var56 = ADV_SEL( var54, var55, var57 );
-	if ( var56 != 7 )
+	if ( var56 != 8 )
 	{
-		if ( var56 != 5 && var56 != 6 )
+		if ( var56 != 5 && var56 != 6 && var56 != 7 && var56 != 18 )
 		{
 			FADE( 1, 5 );
 			FADE_SYNC();
@@ -76,11 +80,24 @@ void school_order_hook()
 		{
 			generate_hangout_menu();
 		}
-		else if ( var56 == 8 )
+		else if ( var56 == 7 )
+		{
+			NS_SAVE();
+		}
+		else if ( var56 == 9 )
 		{
 			TV_STUDIO();
 		}
+		else if ( var56 == 18 )
+		{
+			MenuOptions();
+			options = true;
+		}
 
+	}
+	else
+	{
+		selected = false;
 	}
 }
 
@@ -89,7 +106,7 @@ void myhouse_order_hook()
 {
 	bool calendar = BIT_CHK(6423);
 	bool friend = BIT_CHK(6425);
-
+	bool save = BIT_CHK(6426);
     int var58 = 327;
     int var59 = MYHOME_SEL_HOOK;
     int var61 = 0;
@@ -122,13 +139,16 @@ void myhouse_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         var61 = var61 + 512;
-    
+    if (!save)
+		var61 = var61 + 1024;
     if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 0 ) == 0 )
     {
-        var61 = var61 + 0x0800;
+        var61 = var61 + 0x1000;
     }
 
-    SET_SEL_CHOICE_KEYBIND( 14, 10 );
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
+    SET_SEL_CHOICE_KEYBIND( 14, 11 );
     int var60 = ADV_SEL( var58, var59, var61 );
     
     if ( var60 == 0 )
@@ -182,13 +202,22 @@ void myhouse_order_hook()
 		OPEN_CALENDAR();
 	else if (var60 == 9)
 		generate_hangout_menu();
-    else if ( var60 == 11 )
+	else if (var60 == 10)
+		NS_SAVE();
+	else if (var60 == 11)
+		selected = false;
+    else if ( var60 == 12 )
     {
         FADE( 1, 5 );
         FADE_SYNC();
         TV_STUDIO();
         return;
     }
+	else if ( var60 == 18 )
+	{
+		MenuOptions();
+		options = true;
+	}
 
 }
 
@@ -197,7 +226,7 @@ void street_order_hook()
 {
 	bool calendar = BIT_CHK(6423);
 	bool friend = BIT_CHK(6425);
-
+	bool save = BIT_CHK(6426);
     int var62 = 0;
     int var63 = 0;
     int var65 = 0;
@@ -211,7 +240,9 @@ void street_order_hook()
         sel_mask_night_play();
         var65 = sVar136;
 		
-        SET_SEL_CHOICE_KEYBIND( 14, 8 );
+		if (!BIT_CHK(6421))
+			SET_SEL_CHOICE_KEYBIND(12, 18);
+        SET_SEL_CHOICE_KEYBIND( 14, 9 );
         var64 = ADV_SEL( var62, var63, var65 );
         
         if ( var64 == 0 )
@@ -251,6 +282,15 @@ void street_order_hook()
 			OPEN_CALENDAR();
 		else if ( var64 == 7 )
 			generate_hangout_menu();
+		else if ( var64 == 8 )
+			NS_SAVE();
+		else if ( var64 == 18 )
+		{
+			MenuOptions();
+			options = true;
+		}
+		else
+			selected = false;
 
         return;
     }
@@ -285,10 +325,14 @@ void street_order_hook()
 		generate_selection_mask();
 		if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
 			var65 = var65 + 32;
-        SET_SEL_CHOICE_KEYBIND( 14, 6 );
+		if (!save)
+			var65 = var65 + 64;
+		if (!BIT_CHK(6421))
+			SET_SEL_CHOICE_KEYBIND(12, 18);
+        SET_SEL_CHOICE_KEYBIND( 14, 7 );
         var64 = ADV_SEL( var62, var63, var65 );
         
-        if ( var64 != 6 )
+        if ( var64 != 7 )
         {
             
             if ( var64 == 0 )
@@ -353,8 +397,16 @@ void street_order_hook()
 				OPEN_CALENDAR();
 			else if ( var64 == 5 )
 				generate_hangout_menu();
-
+			else if ( var64 == 6 )
+				NS_SAVE();
+			else if ( var64 == 18 )
+			{
+				MenuOptions();
+				options = true;
+			}
         }
+		else
+			selected = false;
 
         return;
     }
@@ -367,7 +419,9 @@ void night_place_order_exit_hook()
     sel_mask_night_play();
     int var137 = sVar136;
     MSG( EXIT_NIGHT_STREET_OK );
-    SET_SEL_CHOICE_KEYBIND( 14, 8 );
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
+    SET_SEL_CHOICE_KEYBIND( 14, 9 );
     SET_MASK( var137 );
     int var138 = SEL( SEL_NIGHT_PLACE_HOOK );
     
@@ -412,12 +466,27 @@ void night_place_order_exit_hook()
     }
 	else if ( var138 == 6 )
     {
+		CLOSE_MSG_WIN();
         OPEN_CALENDAR();
     }
 	else if ( var138 == 7 )
+	{
+		CLOSE_MSG_WIN();
 		generate_hangout_menu();
+	}
+	else if ( var138 == 8 )
+	{
+		CLOSE_MSG_WIN();
+		NS_SAVE();
+	}
+	else if ( var138 == 18 )
+	{
+		MenuOptions();
+		options = true;
+	}
     else 
     {
+		selected = false;
         CLOSE_MSG_WIN();
     }
 
@@ -428,7 +497,7 @@ void sel_mask_night_play_hook()
 {
 	bool calendar = BIT_CHK(6423);
 	bool friend = BIT_CHK(6425);
-	
+	bool save = BIT_CHK(6426);
     int var139 = 0;
     sVar136 = 0;
     
@@ -473,6 +542,8 @@ void sel_mask_night_play_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         var139 = var139 + 128;
+	if (!save)
+		var139 = var139 + 256;
     BIT_OFF( 0 + 0x0400 + 0x0800 + 178 );
     sVar136 = var139;
 }
@@ -481,7 +552,7 @@ void gms_order_hook()
 {
 	bool calendar = BIT_CHK(6423);
 	bool friend = BIT_CHK(6425);
-	
+	bool save = BIT_CHK(6426);
 	int var66 = 327;
 	int var67 = GMS_SEL_HOOK;
 	int var69 = 0;
@@ -492,8 +563,11 @@ void gms_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         var69 = var69 + 8;
-
-	SET_SEL_CHOICE_KEYBIND( 14, 4 );
+	if (!save)
+		var69 = var69 + 16;
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
+	SET_SEL_CHOICE_KEYBIND( 14, 5 );
 	int var68 = ADV_SEL( var66, var67, var69 );
 	
 	if ( var68 == 0 )
@@ -513,6 +587,15 @@ void gms_order_hook()
 		OPEN_CALENDAR();
 	else if (var68 == 3)
 		generate_hangout_menu();
+	else if (var68 == 4)
+		NS_SAVE();
+	else if ( var68 == 18 )
+	{
+		MenuOptions();
+		options = true;
+	}
+	else
+		selected = false;
 }
 
 
@@ -520,7 +603,7 @@ void embank_order_hook()
 {
 	bool calendar = BIT_CHK(6423);
 	bool friend = BIT_CHK(6425);
-	
+	bool save = BIT_CHK(6426);
 	int var70 = 0;
 	int var71 = 0;
 	int var73 = 0;
@@ -539,7 +622,9 @@ void embank_order_hook()
 		if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
 			var73 = var73 + 16;
 		
-		SET_SEL_CHOICE_KEYBIND( 14, 5 );
+		if (!BIT_CHK(6421))
+			SET_SEL_CHOICE_KEYBIND(12, 18);
+		SET_SEL_CHOICE_KEYBIND( 14, 6 );
 		var72 = ADV_SEL( var70, var71, var73 );
 		
 		if ( var72 == 0 )
@@ -560,6 +645,15 @@ void embank_order_hook()
 		}
 		else if (var72 == 4)
 			generate_hangout_menu();
+		else if (var72 == 5)
+			NS_SAVE();
+		else if ( var72 == 18 )
+		{
+			MenuOptions();
+			options = true;
+		}
+		else
+			selected = false;
 
 		return;
 	}
@@ -575,7 +669,8 @@ void embank_order_hook()
 		generate_selection_mask();
 		if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
 			var73 = var73 + 16;
-		
+		if (!save)
+			var73 = var73 + 32;
 		if ( GET_FIELD_MINOR() == 1 )
 		{
 			var73 = var73 + 1;
@@ -585,10 +680,12 @@ void embank_order_hook()
 			var73 = var73 + 2;
 		}
 
-		SET_SEL_CHOICE_KEYBIND( 14, 5 );
+		if (!BIT_CHK(6421))
+			SET_SEL_CHOICE_KEYBIND(12, 18);
+		SET_SEL_CHOICE_KEYBIND( 14, 6 );
 		var72 = ADV_SEL( var70, var71, var73 );
 		
-		if ( var72 != 5 )
+		if ( var72 != 6 )
 		{
 			
 			if ( var72 == 0 )
@@ -616,7 +713,16 @@ void embank_order_hook()
 				OPEN_CALENDAR();
 			else if (var72 == 4)
 				generate_hangout_menu();
+			else if (var72 == 5)
+				NS_SAVE();
+			else if ( var72 == 18 )
+			{
+				MenuOptions();
+				options = true;
+			}
 		}
+		else
+			selected = false;
 
 	}
 }
@@ -626,7 +732,7 @@ void station_order_hook()
 {
 	bool calendar = BIT_CHK(6423);
 	bool friend = BIT_CHK(6425);
-	
+	bool save = BIT_CHK(6426);
     int var74 = 327;
     int var75 = STATION_SEL_HOOK;
     int var77 = 0;
@@ -638,7 +744,8 @@ void station_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         var77 = var77 + 4;
-    
+    if (!save)
+		var77 = var77 + 8;
     if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 336 ) == 1 )
     {
         OPEN_MSG_WIN();
@@ -647,7 +754,9 @@ void station_order_hook()
     }
     else 
     {
-        SET_SEL_CHOICE_KEYBIND( 14, 3 );
+		if (!BIT_CHK(6421))
+			SET_SEL_CHOICE_KEYBIND(12, 18);
+        SET_SEL_CHOICE_KEYBIND( 14, 4 );
         var76 = ADV_SEL( var74, var75, var77 );
         
         if ( var76 == 0 )
@@ -690,6 +799,15 @@ void station_order_hook()
 			OPEN_CALENDAR();
 		else if (var76 == 2)
 			generate_hangout_menu();
+		else if (var76 == 3)
+			NS_SAVE();
+		else if ( var76 == 18 )
+		{
+			MenuOptions();
+			options = true;
+		}
+		else
+			selected = false;
 
     }
 
@@ -700,7 +818,7 @@ void schoolroad_order_hook()
 {
 	bool calendar = BIT_CHK(6423);
 	bool friend = BIT_CHK(6425);
-
+	bool save = BIT_CHK(6426);
 	int var78 = 327;
 	int var79 = SCHOOLROAD_SEL_HOOK;
 	int var81 = 0;
@@ -711,8 +829,11 @@ void schoolroad_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         var81 = var81 + 4;
-
-	SET_SEL_CHOICE_KEYBIND( 14, 3 );
+	if (!save)
+		var81 = var81 + 8;
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
+	SET_SEL_CHOICE_KEYBIND( 14, 4 );
 	int var80 = ADV_SEL( var78, var79, var81 );
 	
 	if ( var80 == 0 )
@@ -726,6 +847,15 @@ void schoolroad_order_hook()
 		OPEN_CALENDAR();
 	else if (var80 == 2)
 		generate_hangout_menu();
+	else if (var80 == 3)
+		NS_SAVE();
+	else if ( var80 == 18 )
+	{
+		MenuOptions();
+		options = true;
+	}
+	else
+		selected = false;
 }
 
 
@@ -733,7 +863,7 @@ void snowmt_order_hook()
 {
 	bool calendar = BIT_CHK(6423);
 	bool friend = BIT_CHK(6425);
-
+	bool save = BIT_CHK(6426);
 	int var82 = 327;
 	int var83 = SNOWMOUNTAIN_SEL_HOOK;
 	int var85 = 0;
@@ -744,11 +874,14 @@ void snowmt_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         var85 = var85 + 8;
-
-	SET_SEL_CHOICE_KEYBIND( 14, 4 );
+	if (!save)
+		var85 = var85 + 16;
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
+	SET_SEL_CHOICE_KEYBIND( 14, 5 );
 	int var84 = ADV_SEL( var82, var83, var85 );
 	
-	if ( var84 != 4 )
+	if ( var84 != 5 )
 	{
 		
 		if ( var84 == 0 )
@@ -767,6 +900,15 @@ void snowmt_order_hook()
 			OPEN_CALENDAR();
 		else if ( var84 == 3 )
 			generate_hangout_menu();
+		else if (var84 == 4)
+			NS_SAVE();
+		else if ( var84 == 18 )
+		{
+			MenuOptions();
+			options = true;
+		}
 	}
+	else
+		selected = false;
 
 }

@@ -25,6 +25,9 @@
 [msg MSG_2]
 [f 0 5 -258][f 2 1]2 Digits[n][f 1 1][e]
 
+[msg MSG_2_Day]
+[f 0 5 -258][f 2 1]2 Digits (Day)[n][f 1 1][e]
+
 [msg MSG_3]
 [f 0 5 -258][f 2 1]3 Digits[n][f 1 1][e]
 
@@ -77,7 +80,11 @@
 [f 0 5 -258][f 2 1]7 Digits (Yen)[n][f 1 1][e]
 
 [msg ConfirmNumber]
-[f 0 5 -258][f 2 1]Confirm [f 2 4 0] as selection?[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Confirm [f 2 4 0] as selection?[n][e]
+
+[sel ConfirmCancel]
+[f 0 5 -258][f 2 1]Confirm[e]
+[f 0 5 -258][f 2 1]Cancel[e]
 
 [msg ConfirmItem]
-[f 0 5 -258][f 2 1]Selected item: [f 2 5 3 -1 0] × [f 2 4 1][n]Confirm?[e]
+[f 0 5 -258][f 2 1]Selected item: [f 2 5 3 -1 0] × [f 2 4 1][e]

@@ -106,10 +106,12 @@ void Rename()
 
 int DateSelect()
 {
-	int major = Get_Number(2, MSG_2_Major);
+	int major = ChooseMonth();
 	if (major == -1)
 		return -1;
-	int minor = Get_Number(2, MSG_2_Minor);
+	else if (major == 0)
+		return 0;
+	int minor = Get_Number(2, MSG_2_Day);
 	if (minor == -1)
 		return -1;
 	NEXT_DATE(major, minor, 0);
@@ -119,6 +121,76 @@ int DateSelect()
 	FADE_SYNC();
 	TV_STUDIO();
 	return 0;
+}
+
+int ChooseMonth()
+{
+	int page = 1;
+	int month;
+	while (true)
+	{
+		if (page == 1)
+		{
+			SET_SEL_CHOICE_KEYBIND(15, 18);
+			SET_SEL_CHOICE_KEYBIND(14, 17);
+			SET_SEL_CHOICE_KEYBIND(10, 15);
+			SET_SEL_CHOICE_KEYBIND(11, 15);
+			month = ADV_SEL(Month_Text1, Months1, 0);
+			switch (month)
+			{
+				case 0:
+					return 1;
+				case 1:
+					return 2;
+				case 2:
+					return 3;
+				case 3:
+					return 4;
+				case 4:
+					return 5;
+				case 5:
+					return 6;
+				case 15:
+					page = 2;
+					break;
+				case 17:
+					return -1;
+				case 18:
+					return 0;
+			}
+		}
+		else if (page == 2)
+		{
+			SET_SEL_CHOICE_KEYBIND(15, 18);
+			SET_SEL_CHOICE_KEYBIND(14, 17);
+			SET_SEL_CHOICE_KEYBIND(10, 15);
+			SET_SEL_CHOICE_KEYBIND(11, 15);
+			month = ADV_SEL(Month_Text2, Months2, 0);
+			switch (month)
+			{
+				case 0:
+					return 7;
+				case 1:
+					return 8;
+				case 2:
+					return 9;
+				case 3:
+					return 10;
+				case 4:
+					return 11;
+				case 5:
+					return 12;
+				case 15:
+					page = 1;
+					break;
+				case 17:
+					return -1;
+				case 18:
+					return 0;
+			}
+		}
+	}
+	return -1;
 }
 
 int ChangeItem()
@@ -138,7 +210,7 @@ int ChangeItem()
 	SET_MSG_VAR(1, GET_ITEM(item), 0);
 	OPEN_MSG_WIN();
 	MSG( ConfirmItem );
-	int confirm = SEL(YESNO_SEL);
+	int confirm = SEL(ConfirmCancel);
 	CLOSE_MSG_WIN();
 	if (confirm == 1)
 		return -1;
@@ -170,20 +242,30 @@ int SL()
 		switch (sl)
 		{
 			case 0:
-				IncreaseSL();
-				break;
+				if (IncreaseSL())
+					break;
+				else
+					return 0;
 			case 1:
-				ReverseSL();
-				break;
+				if (ReverseSL())
+					break;
+				else
+					return 0;
 			case 2:
-				BreakSL();
-				break;
+				if (BreakSL())
+					break;
+				else
+					return 0;
 			case 3:
-				LevelUpSL();
-				break;
+				if (LevelUpSL())
+					break;
+				else
+					return 0;
 			case 4:
-				AddSL();
-				break;
+				if (AddSL())
+					break;
+				else
+					return 0;
 			case 10:
 				return -1;
 			case 11:
@@ -193,56 +275,233 @@ int SL()
 	return 0;
 }
 
-void IncreaseSL()
+int ChooseSL()
 {
-	int major = Get_Number(2, MSG_2);
+	int page = 1;
+	int selection;
+	while(true)
+	{
+		if (page == 1)
+		{
+			SET_SEL_CHOICE_KEYBIND(15, 18);
+			SET_SEL_CHOICE_KEYBIND(14, 17);
+			SET_SEL_CHOICE_KEYBIND(10, 15);
+			SET_SEL_CHOICE_KEYBIND(11, 16);
+			selection = ADV_SEL(SL_SEL_Text1, SocialLinkSel1, 0);
+			switch (selection)
+			{
+				case 0:
+					return 31;
+				case 1:
+					return 32;
+				case 2:
+					return 21;
+				case 3:
+					return 22;
+				case 4:
+					return 27;
+				case 5:
+					return 28;
+				case 6:
+					return 11;
+				case 7:
+					return 12;
+				case 8:
+					return 8;
+				case 15:
+					page = 4;
+					break;
+				case 16:
+					page = 2;
+					break;
+				case 17:
+					return -1;
+				case 18:
+					return 0;
+			}
+		}
+		else if (page == 2)
+		{
+			SET_SEL_CHOICE_KEYBIND(15, 18);
+			SET_SEL_CHOICE_KEYBIND(14, 17);
+			SET_SEL_CHOICE_KEYBIND(10, 15);
+			SET_SEL_CHOICE_KEYBIND(11, 16);
+			selection = ADV_SEL(SL_SEL_Text2, SocialLinkSel2, 0);
+			switch (selection)
+			{
+				case 0:
+					return 29;
+				case 1:
+					return 16;
+				case 2:
+					return 17;
+				case 3:
+					return 13;
+				case 4:
+					return 19;
+				case 5:
+					return 1;
+				case 6:
+					return 10;
+				case 7:
+					return 20;
+				case 8:
+					return 33;
+				case 15:
+					page = 1;
+					break;
+				case 16:
+					page = 3;
+					break;
+				case 17:
+					return -1;
+				case 18:
+					return 0;
+			}
+		}
+		else if (page == 3)
+		{
+			SET_SEL_CHOICE_KEYBIND(15, 18);
+			SET_SEL_CHOICE_KEYBIND(14, 17);
+			SET_SEL_CHOICE_KEYBIND(10, 15);
+			SET_SEL_CHOICE_KEYBIND(11, 16);
+			selection = ADV_SEL(SL_SEL_Text3, SocialLinkSel3, 0);
+			switch (selection)
+			{
+				case 0:
+					return 34;
+				case 1:
+					return 18;
+				case 2:
+					return 14;
+				case 3:
+					return 15;
+				case 4:
+					return 2;
+				case 5:
+					return 3;
+				case 6:
+					return 4;
+				case 7:
+					return 9;
+				case 8:
+					return 23;
+				case 15:
+					page = 2;
+					break;
+				case 16:
+					page = 4;
+					break;
+				case 17:
+					return -1;
+				case 18:
+					return 0;
+			}
+		}
+		else
+		{
+			SET_SEL_CHOICE_KEYBIND(15, 18);
+			SET_SEL_CHOICE_KEYBIND(14, 17);
+			SET_SEL_CHOICE_KEYBIND(10, 15);
+			SET_SEL_CHOICE_KEYBIND(11, 16);
+			selection = ADV_SEL(SL_SEL_Text4, SocialLinkSel4, 0);
+			switch (selection)
+			{
+				case 0:
+					return 30;
+				case 1:
+					return 24;
+				case 2:
+					return 7;
+				case 3:
+					return 5;
+				case 4:
+					return 6;
+				case 5:
+					return 25;
+				case 6:
+					return 26;
+				case 15:
+					page = 3;
+					break;
+				case 16:
+					page = 1;
+					break;
+				case 17:
+					return -1;
+				case 18:
+					return 0;
+			}
+		}
+	}
+	return -1;
+}
+
+int IncreaseSL()
+{
+	int major = ChooseSL();
 	if (major == -1)
-		return;
+		return 1;
+	else if (major == 0)
+		return 0;
 	EVT_FUNCTION_0031( major, 50, 1 );
 	SL_LVLUP_VISUAL(major, (GET_SL_LEVEL(major) + 1), 1);
 	INCREASE_SL(major);
+	return 1;
 }
 
-void ReverseSL()
+int ReverseSL()
 {
-	int major = Get_Number(2, MSG_2);
+	int major = ChooseSL();
 	if (major == -1)
-		return;
+		return 1;
+	else if (major == 0)
+		return 0;
 	SL_LVLUP_VISUAL(major, 11, 1);
 	REVERSE_SL(major, 1);
+	return 1;
 }
 
-void BreakSL()
+int BreakSL()
 {
-	int major = Get_Number(2, MSG_2);
+	int major = ChooseSL();
 	if (major == -1)
-		return;
+		return 1;
+	else if (major == 0)
+		return 0;
 	SL_LVLUP_VISUAL(major, 12, 1);
 	BREAK_SL(major, 1);
+	return 1;
 }
 
-void LevelUpSL()
+int LevelUpSL()
 {
-	int major = Get_Number(2, MSG_2_Major);
+	int major = ChooseSL();
 	if (major == -1)
-		return;
+		return 1;
+	else if (major == 0)
+		return 0;
 	int minor = Get_Number(2, MSG_2_Minor);
 	if (minor == -1)
-		return;
+		return 1;
 	int oddity = Get_Number(2, MSG_2);
 	if (oddity == -1)
-		return;
+		return 1;
 	SL_LVLUP_VISUAL(major, minor, oddity);
 	EVT_FUNCTION_003D();
+	return 1;
 }
 
-void AddSL()
+int AddSL()
 {
-	int major = Get_Number(2, MSG_2);
+	int major = ChooseSL();
 	if (major == -1)
-		return;
+		return 1;
+	else if (major == 0)
+		return 0;
 	EVT_FUNCTION_0016( major );
 	EVT_FUNCTION_0031( major, 0, 1 );
+	return 1;
 }
 
 int SS()

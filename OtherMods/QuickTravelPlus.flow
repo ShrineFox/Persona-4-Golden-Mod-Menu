@@ -4,13 +4,14 @@ void field_order_hook()
 	bool calendar = BIT_CHK(6423);
 	bool friend = BIT_CHK(6425);
 	bool plus = BIT_CHK(6422);
+	bool save = BIT_CHK(6426);
 
 	if ( GET_FIELD_MAJOR() == 6 )
 	{
 		if (plus)
 		{
 			//Show expanded school quicktravel menu
-			SchoolOrder(calendar, friend);
+			SchoolOrder(calendar, friend, save);
 		}
 		else
 			school_order();
@@ -20,7 +21,7 @@ void field_order_hook()
 	{
 		if (GET_TIME_OF_DAY() == 5 && GET_FIELD_MINOR() == 1 && plus)
 		{
-			NightOrder(calendar, friend);
+			NightOrder(calendar, friend, save);
 		}
 		else
 			myhouse_order();
@@ -31,11 +32,11 @@ void field_order_hook()
 		{
 			if (GET_TIME_OF_DAY() != 5)
 			{
-				StreetOrder(calendar, friend);
+				StreetOrder(calendar, friend, save);
 			}
 			else 
 			{
-				NightOrder(calendar, friend);
+				NightOrder(calendar, friend, save);
 			}
 		}
 		else
@@ -52,7 +53,7 @@ void field_order_hook()
 		if (GET_TIME_OF_DAY() != 5 || !plus)
 			embank_order();
 		else
-			NightOrder(calendar, friend);
+			NightOrder(calendar, friend, save);
 	}
 	// Okina
 	else if ( GET_FIELD_MAJOR() == 11 )
@@ -71,7 +72,7 @@ void field_order_hook()
 	}
 }
 
-void StreetOrder(bool calendar, bool friend)
+void StreetOrder(bool calendar, bool friend, bool save)
 {
 	
 	int floor = GET_FLOOR_ID();
@@ -100,8 +101,12 @@ void StreetOrder(bool calendar, bool friend)
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         streetMask = streetMask + 16;
+	if (!save)
+		streetMask = streetMask + 32;
 	begin:
-	SET_SEL_CHOICE_KEYBIND(14, 5);
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
+	SET_SEL_CHOICE_KEYBIND(14, 6);
 	int street = ADV_SEL( Street_Text, Street, streetMask );
 	if (street == 1) 
 	{
@@ -187,11 +192,19 @@ void StreetOrder(bool calendar, bool friend)
 			generate_hangout_menu();
 			break;
 		case 5:
+			NS_SAVE();
+			break;
+		case 6:
+			selected = false;
+			break;
+		case 18:
+			MenuOptions();
+			options = true;
 			break;
 	}
 }
 
-void SchoolOrder(bool calendar, bool friend)
+void SchoolOrder(bool calendar, bool friend, bool save)
 {
 	// Set mask
 	int minor = GET_FIELD_MINOR();
@@ -227,8 +240,12 @@ void SchoolOrder(bool calendar, bool friend)
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         schoolMask = schoolMask + 128;
+	if (!save)
+		schoolMask = schoolMask + 256;
 	begin:
-	SET_SEL_CHOICE_KEYBIND(14, 8);
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
+	SET_SEL_CHOICE_KEYBIND(14, 9);
 	int school = ADV_SEL( School_Text, School, schoolMask );
 	if (school > 1 && school < 6) 
 	{
@@ -302,11 +319,19 @@ void SchoolOrder(bool calendar, bool friend)
 			generate_hangout_menu();
 			break;
 		case 8:
+			NS_SAVE();
+			break;
+		case 9:
+			selected = false;
+			break;
+		case 18:
+			MenuOptions();
+			options = true;
 			break;
 	}
 }
 
-void NightOrder(bool calendar, bool friend)
+void NightOrder(bool calendar, bool friend, bool save)
 {
 	// Set mask
 	int major = GET_FIELD_MAJOR();
@@ -337,8 +362,12 @@ void NightOrder(bool calendar, bool friend)
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 17 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
         nightMask = nightMask + 32;
+	if (!save)
+		nightMask = nightMask + 64;
 	begin:
-	SET_SEL_CHOICE_KEYBIND( 14, 6 );
+	if (!BIT_CHK(6421))
+		SET_SEL_CHOICE_KEYBIND(12, 18);
+	SET_SEL_CHOICE_KEYBIND( 14, 7 );
 	int street = ADV_SEL( Street_Text, StreetNight, nightMask );
 	if (street > 0 && street < 4) 
 	{
@@ -399,6 +428,14 @@ void NightOrder(bool calendar, bool friend)
 			generate_hangout_menu();
 			break;
 		case 6:
+			NS_SAVE();
+			break;
+		case 7:
+			selected = false;
+			break;
+		case 18:
+			MenuOptions();
+			options = true;
 			break;
 	}
 }

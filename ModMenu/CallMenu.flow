@@ -410,6 +410,7 @@ int SFXSelect()
 	int major = Get_Number(3, MSG_3);
 	if (major == -1)
 		return -1;
+	PLAY_SOUNDEFFECT(major);
 	return 0;
 }
 

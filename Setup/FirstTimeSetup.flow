@@ -45,7 +45,7 @@ void MenuOptions()
 			//Set message variables for menu options
 			for (int i = 0; i < 8; i++)
 			{
-				SET_MSG_VAR(i, BIT_CHK(6421 + i), 0);
+				SET_MSG_VAR(i, 619 + BIT_CHK(6421 + i), 6);
 			}
 			SET_SEL_CHOICE_KEYBIND( 14, 8 );
 			SET_SEL_CHOICE_KEYBIND( 15, 8 );
@@ -58,19 +58,12 @@ void MenuOptions()
 			else
 			{
 				done = true;
-				OPEN_MSG_WIN();
-				MSG(OptionsToggle);
-				SET_SEL_CHOICE_KEYBIND(14, 1);
-				int toggle = SEL(YesNo);
-				if (toggle == 1)
+				if (!BIT_CHK(6421))
 				{
-					BIT_ON(6429);
+					OPEN_MSG_WIN();
+					MSG(OptionsWarning);
+					CLOSE_MSG_WIN();
 				}
-				else
-				{
-					BIT_OFF(6429);
-				}
-				CLOSE_MSG_WIN();
 			}
 		}
 	}
@@ -117,7 +110,7 @@ void DungeonOptionsToggle()
 		//Set message variables for menu options
 		for (int i = 0; i < 4; i++)
 		{
-			SET_MSG_VAR(i, BIT_CHK(6430 + i), 0);
+			SET_MSG_VAR(i, 619 + BIT_CHK(6430 + i), 6);
 		}
 		SET_SEL_CHOICE_KEYBIND( 14, 4 );
 		SET_SEL_CHOICE_KEYBIND( 15, 4 );

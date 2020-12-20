@@ -3,13 +3,11 @@
 
 [sel Square_Menu]
 [f 0 5 -258][f 2 1]Quick travel[e]
-[f 0 5 -258][f 2 1]Save[e]
-[f 0 5 -258][f 2 1]Mod menu[e]
+[f 0 5 -258][f 2 1]Mod Menu[e]
 [f 0 5 -258][f 2 1]Options[e]
 
 [sel Square_Menu_Dng]
 [f 0 5 -258][f 2 1]Dungeon options[e]
-[f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Mod menu[e]
 [f 0 5 -258][f 2 1]Options[e]
 
@@ -20,9 +18,12 @@
 [f 0 5 -258][f 2 1]Call Menu[e]
 [f 0 5 -258][f 2 1]Player Menu[e]
 [f 0 5 -258][f 2 1]Flags[e]
+[f 0 5 -258][f 2 1]Quick travel[e]
+[f 0 5 -258][f 2 1]Dungeon options[e]
+[f 0 5 -258][f 2 1]Options[e]
 
 [msg Call_Menu_Text]
-[f 0 5 -258][f 2 1]Call Menu (Page 1)[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Call Menu (Page 1/2)[n][f 1 1][e]
 
 [sel Call_Menu_1]
 [f 0 5 -258][f 2 1]Call Field[e]
@@ -32,7 +33,7 @@
 [f 0 5 -258][f 2 1]Call Floor[e]
 
 [msg Call_Menu_Text_2]
-[f 0 5 -258][f 2 1]Call Menu (Page 2)[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Call Menu (Page 2/2)[n][f 1 1][e]
 
 [sel Call_Menu_2]
 [f 0 5 -258][f 2 1]Call Dungeon[e]
@@ -42,10 +43,10 @@
 [f 0 5 -258][f 2 1]Call SFX[e]
 
 [msg Player_Menu_Text_1]
-[f 0 5 -258][f 2 1]Player Menu (Page 1)[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Player Menu (Page 1/2)[n][f 1 1][e]
 
 [msg Player_Menu_Text_2]
-[f 0 5 -258][f 2 1]Player Menu (Page 2)[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Player Menu (Page 2/2)[n][f 1 1][e]
 
 [sel Player_Menu_1]
 [f 0 5 -258][f 2 1]Change Name[e]
@@ -61,10 +62,10 @@
 [f 0 5 -258][f 2 1]Refill HP/SP[e]
 
 [msg Facility_Menu_Text]
-[f 0 5 -258][f 2 1]Facility Menu (Page 1)[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Facility Menu (Page 1/2)[n][f 1 1][e]
 
 [msg Facility_Menu_Text_2]
-[f 0 5 -258][f 2 1]Facility Menu (Page 2)[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Facility Menu (Page 2/2)[n][f 1 1][e]
 
 [sel Facility_Menu_1]
 [f 0 5 -258][f 2 1]TV Studio[e]
@@ -90,7 +91,6 @@
 [f 0 5 -258][f 2 1]Renew All Quests[e]
 [f 0 5 -258][f 2 1]Turn Off Tired Flags[e]
 [f 0 5 -258][f 2 1]Unlock Entire Town Map[e]
-[f 0 5 -258][f 2 1]Toggle Menu Options[e]
 
 [sel OnOff]
 [f 0 5 -258][f 2 1]On[e]
@@ -135,7 +135,7 @@
 [f 0 5 -258][f 2 1]Boss Select[e]
 
 [msg BOSS_SEL1_Text]
-[f 0 5 -258][f 2 1]Boss Select (Page 1)[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Boss Select (Page 1/2)[n][f 1 1][e]
 
 [sel BOSS_SEL1]
 [f 0 5 -258][f 2 1]Shadow Yosuke[e]
@@ -147,7 +147,7 @@
 [f 0 5 -258][f 2 1]Shadow Mitsuo[e]
 
 [msg BOSS_SEL2_Text]
-[f 0 5 -258][f 2 1]Boss Select (Page 2)[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Boss Select (Page 2/2)[n][f 1 1][e]
 
 [sel BOSS_SEL2]
 [f 0 5 -258][f 2 1]Shadow Naoto[e]
@@ -158,3 +158,78 @@
 [f 0 5 -258][f 2 1]Izanami[e]
 [f 0 5 -258][f 2 1]Margaret[e]
 
+[sel SocialLinkSel1]
+[f 0 5 -258][f 2 1]Adachi (Jester)[e]
+[f 0 5 -258][f 2 1]Adachi (Hunger)[e]
+[f 0 5 -258][f 2 1]Ai[e]
+[f 0 5 -258][f 2 1]Ai (Romance)[e]
+[f 0 5 -258][f 2 1]Ayane[e]
+[f 0 5 -258][f 2 1]Ayane (Romance)[e]
+[f 0 5 -258][f 2 1]Chie[e]
+[f 0 5 -258][f 2 1]Chie (Romance)[e]
+[f 0 5 -258][f 2 1]Dojima[e]
+
+[sel SocialLinkSel2]
+[f 0 5 -258][f 2 1]Eri[e]
+[f 0 5 -258][f 2 1]Fellow Athletes (Kou)[e]
+[f 0 5 -258][f 2 1]Fellow Athletes (Daisuke)[e]
+[f 0 5 -258][f 2 1]Fox[e]
+[f 0 5 -258][f 2 1]Hisano[e]
+[f 0 5 -258][f 2 1]Investigation Team[e]
+[f 0 5 -258][f 2 1]Kanji[e]
+[f 0 5 -258][f 2 1]Margaret[e]
+[f 0 5 -258][f 2 1]Marie[e]
+
+[sel SocialLinkSel3]
+[f 0 5 -258][f 2 1]Marie (Romance)[e]
+[f 0 5 -258][f 2 1]Naoki[e]
+[f 0 5 -258][f 2 1]Naoto[e]
+[f 0 5 -258][f 2 1]Naoto (Romance)[e]
+[f 0 5 -258][f 2 1]Nanako[e]
+[f 0 5 -258][f 2 1]Rise[e]
+[f 0 5 -258][f 2 1]Rise (Romance)[e]
+[f 0 5 -258][f 2 1]Sayoko[e]
+[f 0 5 -258][f 2 1]Shu[e]
+
+[sel SocialLinkSel4]
+[f 0 5 -258][f 2 1]The Seekers of Truth[e]
+[f 0 5 -258][f 2 1]Teddie[e]
+[f 0 5 -258][f 2 1]Yosuke[e]
+[f 0 5 -258][f 2 1]Yukiko[e]
+[f 0 5 -258][f 2 1]Yukiko (Romance)[e]
+[f 0 5 -258][f 2 1]Yumi[e]
+[f 0 5 -258][f 2 1]Yumi (Romance)[e]
+
+[msg SL_SEL_Text1]
+[f 0 5 -258][f 2 1]S.Link Select (Page 1/4)[n][f 1 1][e]
+
+[msg SL_SEL_Text2]
+[f 0 5 -258][f 2 1]S.Link Select (Page 2/4)[n][f 1 1][e]
+
+[msg SL_SEL_Text3]
+[f 0 5 -258][f 2 1]S.Link Select (Page 3/4)[n][f 1 1][e]
+
+[msg SL_SEL_Text4]
+[f 0 5 -258][f 2 1]S.Link Select (Page 4/4)[n][f 1 1][e]
+
+[sel Months1]
+[f 0 5 -258][f 2 1]January[e]
+[f 0 5 -258][f 2 1]February[e]
+[f 0 5 -258][f 2 1]March[e]
+[f 0 5 -258][f 2 1]April[e]
+[f 0 5 -258][f 2 1]May[e]
+[f 0 5 -258][f 2 1]June[e]
+
+[sel Months2]
+[f 0 5 -258][f 2 1]July[e]
+[f 0 5 -258][f 2 1]August[e]
+[f 0 5 -258][f 2 1]September[e]
+[f 0 5 -258][f 2 1]October[e]
+[f 0 5 -258][f 2 1]November[e]
+[f 0 5 -258][f 2 1]December[e]
+
+[msg Month_Text1]
+[f 0 5 -258][f 2 1]Which month? (Page 1/2)[n][f 1 1][e]
+
+[msg Month_Text2]
+[f 0 5 -258][f 2 1]Which month? (Page 2/2)[n][f 1 1][e]

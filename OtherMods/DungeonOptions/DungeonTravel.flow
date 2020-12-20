@@ -75,8 +75,8 @@ void SelectFloor()
 	}
 	
 	int switchFloor = GET_FLOOR_ID() - EntranceFloor;
-	int selectMask1;
-	int selectMask2;
+	int selectMask1 = 0;
+	int selectMask2 = 0;
 	// Hide current floor from options
 	switch(switchFloor)
 	{
@@ -122,7 +122,7 @@ void SelectFloor()
 	}
 	
 	int selection;
-	bool selected = false;
+	bool chosen = false;
 	bool firstPage = true;
 	
 	if (!if ( floor == 5 || floor == 20 || floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120 || floor == 140 || floor == 160 ))
@@ -137,7 +137,7 @@ void SelectFloor()
 		}
 	}
 
-	while (selected == false)
+	while (chosen == false)
 	{
 		if (firstPage == true)
 		{	
@@ -160,7 +160,7 @@ void SelectFloor()
 				return;
 			}
 			else if (selection < 6)
-				selected = true;
+				chosen = true;
 		}
 		else
 		{
@@ -183,7 +183,7 @@ void SelectFloor()
 				return;
 			}
 			else if (selection < (prev + 6))
-				selected = true;
+				chosen = true;
 		}
 	}
 
