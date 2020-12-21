@@ -41,7 +41,7 @@ void generate_hangout_menu()
     SET_MSG_VAR(2, 621 + (CHECK_IF_SL_LVLUP(11) || CHECK_IF_SL_LVLUP(12)), 6);
    
     // If you try to check if Ayane will level up when Yumi is the S.link for the save the game crashes
-    if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0) {
+    if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0)) {
         SET_MSG_VAR(3, 621 + (CHECK_IF_SL_LVLUP(27) || CHECK_IF_SL_LVLUP(28)), 6);
     }
 
@@ -64,8 +64,8 @@ void generate_hangout_menu()
     SET_MSG_VAR(15, 621 + (CHECK_IF_SL_LVLUP(5) || CHECK_IF_SL_LVLUP(6)), 6);
 
     // If you try to check if Yumi will level up when Ayane is the S.link for the save the game crashes
-    if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0) {
-        SET_MSG_VAR(3, 621, 6);
+    if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0)) {
+        SET_MSG_VAR(3, 621 + (CHECK_IF_SL_LVLUP(25) || CHECK_IF_SL_LVLUP(26)), 6);
     }
 
     // Set message variables for the level of each s link
@@ -89,18 +89,17 @@ void generate_hangout_menu()
         SET_MSG_VAR(18, GET_SL_LEVEL(12), 0);
     }
 
-    // Game crashes if you try to set the message variable when it's not > 0 for Ayane
-    if(GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0) {
-        if (GET_SL_LEVEL(27) >= GET_SL_LEVEL(28))
-        {
-            SET_MSG_VAR(19, GET_SL_LEVEL(27), 0);
-        }
-        else
-        {
-            SET_MSG_VAR(19, GET_SL_LEVEL(28), 0);
-        }
-    }
-
+	if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+	{
+		if (GET_SL_LEVEL(27) >= GET_SL_LEVEL(28))
+		{
+			SET_MSG_VAR(19, GET_SL_LEVEL(27), 0);
+		}
+		else
+		{
+			SET_MSG_VAR(19, GET_SL_LEVEL(28), 0);
+		}
+	}
     SET_MSG_VAR(20, GET_SL_LEVEL(29), 0);
     SET_MSG_VAR(21, GET_SL_LEVEL(19), 0);
     SET_MSG_VAR(22, GET_SL_LEVEL(10), 0);
@@ -152,18 +151,17 @@ void generate_hangout_menu()
         SET_MSG_VAR(31, GET_SL_LEVEL(6), 0);
     }
 
-    // Game crashes if you try to set the message variable when it's not > 0 for Yumi
-    if(GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0) {
-        if (GET_SL_LEVEL(25) >= GET_SL_LEVEL(26))
-        {
-            SET_MSG_VAR(19, GET_SL_LEVEL(25), 0);
-        }
-        else
-        {
-            SET_MSG_VAR(19, GET_SL_LEVEL(26), 0);
-        }
-    }
-
+	if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+	{
+		if (GET_SL_LEVEL(25) >= GET_SL_LEVEL(26))
+		{
+			SET_MSG_VAR(19, GET_SL_LEVEL(25), 0);
+		}
+		else
+		{
+			SET_MSG_VAR(19, GET_SL_LEVEL(26), 0);
+		}
+	}
     SET_SEL_CHOICE_KEYBIND(14, 19);
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
 
@@ -231,19 +229,31 @@ _choiceLoop:
             break;
         // Ayane - Learning Building 2F
         case 2:
-            if (fieldMajor == 6 && fieldMinor == 2)
+            if (fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0))
             {
                 OPEN_MSG_WIN();
                 MSG(AYANE_ALREADY_HERE);
                 CLOSE_MSG_WIN();
             }
-            else
+            else if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0)
             {
                 FADE(1, 5);
                 FADE_SYNC();
                 CALL_FIELD(6, 2, 0, 0);
             }
-            break;
+			else if (fieldMajor == 6 && fieldMinor == 4 && (GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+			{
+				OPEN_MSG_WIN();
+                MSG(AYANE_ALREADY_HERE);
+                CLOSE_MSG_WIN();
+			}
+			else
+            {
+                FADE(1, 5);
+                FADE_SYNC();
+                CALL_FIELD(6, 4, 4, 0);
+            }
+			break;
         // Chie
         case 3:
             // South Shopping District on Sundays
@@ -281,18 +291,30 @@ _choiceLoop:
             break;
         // Daisuke - Learning Building 2F
         case 4:
-            if (fieldMajor == 6 && fieldMinor == 2)
+            if (fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(17) > 0)
             {
                 OPEN_MSG_WIN();
                 MSG(DAISUKE_ALREADY_HERE);
                 CLOSE_MSG_WIN();
             }
-            else
+            else if (GET_SL_LEVEL(17) > 0)
             {
                 FADE(1, 5);
                 FADE_SYNC();
                 CALL_FIELD(6, 2, 4, 0);
             }
+			else if (fieldMajor == 6 && fieldMinor == 1 && GET_SL_LEVEL(17) == 0)
+            {
+                OPEN_MSG_WIN();
+                MSG(DAISUKE_ALREADY_HERE);
+                CLOSE_MSG_WIN();
+            }
+			else
+			{
+				FADE(1, 5);
+                FADE_SYNC();
+                CALL_FIELD(6, 1, 2, 0);
+			}
             break;
         // Eri - South Shopping District
         case 5:
@@ -361,18 +383,30 @@ _choiceLoop:
             break;
         // Kou - Learning Building 2F
         case 8:
-            if (fieldMajor == 6 && fieldMinor == 2)
+            if (fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(16) > 0)
             {
                 OPEN_MSG_WIN();
                 MSG(KOU_ALREADY_HERE);
                 CLOSE_MSG_WIN();
             }
-            else
+            else if (GET_SL_LEVEL(17) > 0)
             {
                 FADE(1, 5);
                 FADE_SYNC();
                 CALL_FIELD(6, 2, 4, 0);
             }
+			else if (fieldMajor == 6 && fieldMinor == 1 && GET_SL_LEVEL(16) == 0)
+            {
+                OPEN_MSG_WIN();
+                MSG(KOU_ALREADY_HERE);
+                CLOSE_MSG_WIN();
+            }
+			else
+			{
+				FADE(1, 5);
+                FADE_SYNC();
+                CALL_FIELD(6, 1, 2, 0);
+			}
             break;
 
         // Marie - South Shopping District
@@ -597,17 +631,29 @@ _choiceLoop:
             break;
         // Yumi - Learning Building 2F
         case 17:
-            if (fieldMajor == 6 && fieldMinor == 2)
+            if (fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0))
             {
                 OPEN_MSG_WIN();
                 MSG(YUMI_ALREADY_HERE);
                 CLOSE_MSG_WIN();
             }
-            else
+            else if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0)
             {
                 FADE(1, 5);
                 FADE_SYNC();
                 CALL_FIELD(6, 2, 0, 0);
+            }
+			else if (fieldMajor == 6 && fieldMinor == 4 && (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0))
+			{
+				OPEN_MSG_WIN();
+                MSG(YUMI_ALREADY_HERE);
+                CLOSE_MSG_WIN();
+			}
+			else
+            {
+                FADE(1, 5);
+                FADE_SYNC();
+                CALL_FIELD(6, 4, 1, 0);
             }
             break;
         }
@@ -684,7 +730,7 @@ void generate_selection_mask()
         aiState = 0;
     }
     // Ayane isn't available Wednesday, Friday, Saturday, Sunday and Holiday
-    if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(27) >= 10 || GET_SL_LEVEL(28) >= 10 || (GET_SL_LEVEL(27) <= 0 && GET_SL_LEVEL(28) <= 0) || timeOfDay == 5)
+    if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(27) >= 10 || GET_SL_LEVEL(28) >= 10 || GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || timeOfDay == 5)
     {
         pageOneMask = pageOneMask + 4;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -698,7 +744,7 @@ void generate_selection_mask()
         chieState = 0;
     }
     // Daisuke isn't available Monday, Wednesday, Friday, Sunday and Holidays
-    if (BIT_CHK(0 + 0x0400 + 463) == 0 || GET_SL_LEVEL(17) >= 10 || GET_SL_LEVEL(17) <= 0 || timeOfDay == 5)
+    if (BIT_CHK(0 + 0x0400 + 463) == 0 || GET_SL_LEVEL(17) >= 10 || GET_SL_LEVEL(16) > 0 || timeOfDay == 5)
     {
         pageOneMask = pageOneMask + 16;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -726,7 +772,7 @@ void generate_selection_mask()
         kanjiState = 0;
     }
     // Kou isn't available Monday, Wednesday, Friday, Sunday and Holidays
-    if (BIT_CHK(0 + 0x0400 + 463) == 0 || GET_SL_LEVEL(0x10) >= 10 || GET_SL_LEVEL(16) <= 0 || timeOfDay == 5)
+    if (BIT_CHK(0 + 0x0400 + 463) == 0 || GET_SL_LEVEL(0x10) >= 10 || GET_SL_LEVEL(17) > 0 || timeOfDay == 5)
     {
         pageOneMask = pageOneMask + 256;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -789,7 +835,7 @@ void generate_selection_mask()
         yukikoState = 0;
     }
     // Yumi isn't available Wednesday, Friday, Saturday, Sunday and Holiday
-    if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(25) >= 10 || GET_SL_LEVEL(26) >= 10 || (GET_SL_LEVEL(25) > 0 && GET_SL_LEVEL(26) <= 0) || timeOfDay == 5)
+    if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(25) >= 10 || GET_SL_LEVEL(26) >= 10 || GET_SL_LEVEL(28) > 0 || GET_SL_LEVEL(27) > 0 || timeOfDay == 5)
     {
         pageOneMask = pageOneMask + 131072;
         numSelectionsRemoved = numSelectionsRemoved + 1;
