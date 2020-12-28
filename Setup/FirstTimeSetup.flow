@@ -84,6 +84,15 @@ void ToggleOption(int startMsg, int startFlag, int selection)
 				CLOSE_MSG_WIN();
 				DungeonOptionsToggle();
 			}
+			else if(selection == 4)
+			{
+				MSG(SPOILER_TOGGLE);
+				sel = SEL(ToggleMenu);
+				if (sel == 0)
+					BIT_ON(5678);
+				else if (sel == 1)
+					BIT_OFF(5678);
+			}
 			break;
 		case 1: //off
 			BIT_OFF(startFlag + selection);

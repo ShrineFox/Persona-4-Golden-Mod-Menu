@@ -1249,6 +1249,7 @@ void generate_selection_mask()
 }
 
 
+
 void check_if_holiday()
 {
     // This is the logic lmap uses so it should be right
