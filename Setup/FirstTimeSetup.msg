@@ -57,10 +57,6 @@
 [n]Social Links on a given day. This saves you from
 [n]looking up their location or searching town.[e]
 
-[msg SPOILER_TOGGLE[FindAFriend (AnimatedSwine37)]]
-[f 0 5 -258][f 2 1]Set spoiler-free mode
-[n](Only social links you have met will be shown)[f 1 1][e]
-
 [msg SaveAnywhere_About[Save Anywhere (Tupelov)]]
 [f 0 5 -258][f 2 1]Save your game from any field, straight from
 [n]the square menu. Normally, you would have to save at
@@ -104,3 +100,7 @@
 [f 0 5 -258][f 2 1]Adds an option to swap party members
 [n]on the fly while dungeon crawling. Reloads the
 [n]floor you're currently on.[e]
+
+[msg SPOILER_TOGGLE[FindAFriend (AnimatedSwine37)]]
+[f 0 5 -258][f 2 1]Set spoiler-free mode
+[n](Only social links you have met will be shown)[f 1 1][e]
