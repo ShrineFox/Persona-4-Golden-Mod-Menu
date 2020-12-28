@@ -30,7 +30,7 @@ void entrance_jump_hook()
 	if (!BeatDungeon() || !BIT_CHK(6424))
 		mask = mask + 2;
 	if (!BIT_CHK(6426))
-		mask = mask + 4;
+		mask = mask + 8;
     FUNCTION_0023( 0, 3 );
     SET_SEL_CHOICE_KEYBIND( 14, 4 );
 	if (!BIT_CHK(6421))
