@@ -36,7 +36,7 @@ void school_order_hook()
 		var57 = var57 + 32;
     // Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 20 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
+    if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var57 = var57 + 64;
 	if (!save)
 		var57 = var57 + 128;
@@ -137,7 +137,7 @@ void myhouse_order_hook()
 		var61 = var61 + 256;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 20 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
+    if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var61 = var61 + 512;
     if (!save)
 		var61 = var61 + 1024;
@@ -323,7 +323,7 @@ void street_order_hook()
 			var65 = var65 + 16;
 		// Decide if hangout should not be displayed
 		generate_selection_mask();
-		if (!friend || numSelectionsRemoved == 20 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
+		if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
 			var65 = var65 + 32;
 		if (!save)
 			var65 = var65 + 64;
@@ -540,7 +540,7 @@ void sel_mask_night_play_hook()
 		var139 = var139 + 64;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 20 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
+    if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var139 = var139 + 128;
 	if (!save)
 		var139 = var139 + 256;
@@ -561,7 +561,7 @@ void gms_order_hook()
 		var69 = var69 + 4;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 20 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
+    if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var69 = var69 + 8;
 	if (!save)
 		var69 = var69 + 16;
@@ -619,7 +619,7 @@ void embank_order_hook()
 			var73 = var73 + 8;
 		// Decide if hangout should not be displayed
 		generate_selection_mask();
-		if (!friend || numSelectionsRemoved == 20 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
+		if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
 			var73 = var73 + 16;
 		
 		if (!BIT_CHK(6421))
@@ -667,7 +667,7 @@ void embank_order_hook()
 			var73 = var73 + 8;
 		// Decide if hangout should not be displayed
 		generate_selection_mask();
-		if (!friend || numSelectionsRemoved == 20 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
+		if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
 			var73 = var73 + 16;
 		if (!save)
 			var73 = var73 + 32;
@@ -742,7 +742,7 @@ void station_order_hook()
 		var77 = var77 + 2;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 20 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
+    if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var77 = var77 + 4;
     if (!save)
 		var77 = var77 + 8;
@@ -827,7 +827,7 @@ void schoolroad_order_hook()
 		var81 = var81 + 2;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 20 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
+    if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var81 = var81 + 4;
 	if (!save)
 		var81 = var81 + 8;
@@ -872,7 +872,7 @@ void snowmt_order_hook()
 		var85 = var85 + 4;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 20 || BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ))
+    if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var85 = var85 + 8;
 	if (!save)
 		var85 = var85 + 16;

@@ -7,7 +7,7 @@
 [sel ToggleMenu]
 [f 0 5 -258][f 2 1]On[e]
 [f 0 5 -258][f 2 1]Off[e]
-[f 0 5 -258][f 2 1]Back...[e]
+[f 0 5 -258][f 2 1]Cancel[e]
 
 [sel YesNo]
 [f 0 5 -258][f 2 1]Yes[e]
@@ -56,6 +56,10 @@
 [f 0 5 -258][f 2 1]Instantly travel to the location of any available
 [n]Social Links on a given day. This saves you from
 [n]looking up their location or searching town.[e]
+
+[msg SPOILER_TOGGLE[FindAFriend (AnimatedSwine37)]]
+[f 0 5 -258][f 2 1]Set spoiler-free mode
+[n](Only social links you have met will be shown)[f 1 1][e]
 
 [msg SaveAnywhere_About[Save Anywhere (Tupelov)]]
 [f 0 5 -258][f 2 1]Save your game from any field, straight from
