@@ -9,7 +9,7 @@
 [f 0 5 -258][f 2 1]Class 2-2[e]
 [f 0 5 -258][f 2 1]Go into town[e]
 [f 0 5 -258][f 2 1]View calendar[e]
-[f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Hang out with a friend[e]
 [f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
@@ -33,7 +33,7 @@
 [f 0 5 -258][f 2 1]Shrine[e]
 [f 0 5 -258][f 2 1]Leave the shopping district[e]
 [f 0 5 -258][f 2 1]View calendar[e]
-[f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Hang out with a friend[e]
 [f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 
@@ -51,7 +51,7 @@
 [f 0 5 -258][f 2 1]Riverbank[e]
 [f 0 5 -258][f 2 1]Go back home[e]
 [f 0 5 -258][f 2 1]View calendar[e]
-[f 0 5 -258][f 2 1]Hangout with a friend[e]
+[f 0 5 -258][f 2 1]Hang out with a friend[e]
 [f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Cancel[e]
 

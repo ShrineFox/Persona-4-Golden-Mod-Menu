@@ -1,6 +1,6 @@
 [msg SquareMenuConfig]
-[f 0 5 -258][f 2 1][f 0 1 1]Square Menu Setup[n]
-[f 0 1 0]Thanks for trying the Custom Square Menu mod!
+[f 0 5 -258][f 2 1][f 0 1 1]Custom Sub Menu Setup[n]
+[f 0 1 0]Thanks for trying the Custom Sub Menu mod!
 [n]Please choose which features you'd like to use.
 [n]You can always change these settings later.[f 1 1][e]
 
@@ -9,8 +9,12 @@
 [f 0 5 -258][f 2 1]Off[e]
 [f 0 5 -258][f 2 1]Back...[e]
 
+[sel YesNo]
+[f 0 5 -258][f 2 1]Yes[e]
+[f 0 5 -258][f 2 1]No[e]
+
 [msg SquareMenuOptions_Text]
-[f 0 5 -258][f 2 1]Square Menu Options[f 1 1][e]
+[f 0 5 -258][f 2 1]Sub Menu Options[f 1 1][e]
 
 [sel SquareMenuOptions]
 [f 0 5 -258][f 2 1]Mod Menu: [f 2 4 0][e]
@@ -24,8 +28,9 @@
 [f 0 5 -258][f 2 1]Done[e]
 
 [msg OptionsWarning]
-[f 0 5 -258][f 2 1]Access the Options Menu again by pressing triangle
-[n]in the top level of the square menu.[f 1 1][e]
+[f 0 5 -258][f 2 1]Access the Options Menu again by pressing
+[n]the Command Menu button in the top level
+[n]of the Sub Menu.[f 1 1][e]
 
 [msg ModMenu_About[Mod Menu (Sierra/ShrineFox)]]
 [f 0 5 -258][f 2 1]Call fields, events, battles, BGM, SFX etc. from

@@ -20,8 +20,8 @@ int isHoliday;
 void generate_hangout_menu()
 {
     // Variables that store the location of the messages and whatnot
-    int localVariable54 = HANGOUT_MSG;
-    int localVariable55 = HANGOUT_SEL;
+    int localVariable54 = HANG_OUT_MSG;
+    int localVariable55 = HANG_OUT_SEL;
 
     // Get the day from 0-6, Sunday-Saturday
     int dayOfWeek;
@@ -39,14 +39,21 @@ void generate_hangout_menu()
     SET_MSG_VAR(0, 621 + CHECK_IF_SL_LVLUP(31), 6);
     SET_MSG_VAR(1, 621 + (CHECK_IF_SL_LVLUP(21) || CHECK_IF_SL_LVLUP(22)), 6);
     SET_MSG_VAR(2, 621 + (CHECK_IF_SL_LVLUP(11) || CHECK_IF_SL_LVLUP(12)), 6);
-   
+
     // If you try to check if Ayane will level up when Yumi is the S.link for the save the game crashes
-    if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0)) {
+    if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+    {
         SET_MSG_VAR(3, 621 + (CHECK_IF_SL_LVLUP(27) || CHECK_IF_SL_LVLUP(28)), 6);
     }
 
     SET_MSG_VAR(4, 621 + CHECK_IF_SL_LVLUP(29), 6);
     SET_MSG_VAR(5, 621 + CHECK_IF_SL_LVLUP(19), 6);
+    // Nanako reuses Hisano's message vars as she's never available at night and the var limit is 32 :(
+    if (GET_TIME_OF_DAY() == 5)
+    {
+        SET_MSG_VAR(5, 621 + CHECK_IF_SL_LVLUP(2), 6);
+    }
+
     SET_MSG_VAR(6, 621 + CHECK_IF_SL_LVLUP(10), 6);
     SET_MSG_VAR(7, 621 + (CHECK_IF_SL_LVLUP(33) || CHECK_IF_SL_LVLUP(34)), 6);
     SET_MSG_VAR(8, 621 + CHECK_IF_SL_LVLUP(18), 6);
@@ -55,16 +62,26 @@ void generate_hangout_menu()
     SET_MSG_VAR(11, 621 + CHECK_IF_SL_LVLUP(9), 6);
     SET_MSG_VAR(12, 621 + CHECK_IF_SL_LVLUP(23), 6);
     // Kou is 16, Daisuke 17
-    if(GET_SL_LEVEL(16) > 0 ){
-            SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(16), 6);
-    } else {
-            SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(17), 6);
+    if (GET_SL_LEVEL(16) > 0)
+    {
+        SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(16), 6);
     }
+    else
+    {
+        SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(17), 6);
+    }
+    // Dojima reuses Kou/Daisuke's message vars as they're never available at night and the var limit is 32 :(
+    if (GET_TIME_OF_DAY() == 5)
+    {
+        SET_MSG_VAR(13, 621 + CHECK_IF_SL_LVLUP(8), 6);
+    }
+
     SET_MSG_VAR(14, 621 + CHECK_IF_SL_LVLUP(7), 6);
     SET_MSG_VAR(15, 621 + (CHECK_IF_SL_LVLUP(5) || CHECK_IF_SL_LVLUP(6)), 6);
 
     // If you try to check if Yumi will level up when Ayane is the S.link for the save the game crashes
-    if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0)) {
+    if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+    {
         SET_MSG_VAR(3, 621 + (CHECK_IF_SL_LVLUP(25) || CHECK_IF_SL_LVLUP(26)), 6);
     }
 
@@ -89,19 +106,27 @@ void generate_hangout_menu()
         SET_MSG_VAR(18, GET_SL_LEVEL(12), 0);
     }
 
-	if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
-	{
-		if (GET_SL_LEVEL(27) >= GET_SL_LEVEL(28))
-		{
-			SET_MSG_VAR(19, GET_SL_LEVEL(27), 0);
-		}
-		else
-		{
-			SET_MSG_VAR(19, GET_SL_LEVEL(28), 0);
-		}
-	}
+    if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+    {
+        if (GET_SL_LEVEL(27) >= GET_SL_LEVEL(28))
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(27), 0);
+        }
+        else
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(28), 0);
+        }
+    }
+
     SET_MSG_VAR(20, GET_SL_LEVEL(29), 0);
     SET_MSG_VAR(21, GET_SL_LEVEL(19), 0);
+
+    // Nanako reuses Hisano's message vars as she's never available at night and the var limit is 32 :(
+    if (GET_TIME_OF_DAY() == 5)
+    {
+        SET_MSG_VAR(21, GET_SL_LEVEL(2), 0);
+    }
+
     SET_MSG_VAR(22, GET_SL_LEVEL(10), 0);
 
     if (GET_SL_LEVEL(33) >= GET_SL_LEVEL(34))
@@ -133,11 +158,20 @@ void generate_hangout_menu()
     }
     SET_MSG_VAR(27, GET_SL_LEVEL(9), 0);
     SET_MSG_VAR(28, GET_SL_LEVEL(23), 0);
-    
-    if(GET_SL_LEVEL(16) > 0) {
+
+    if (GET_SL_LEVEL(16) > 0)
+    {
         SET_MSG_VAR(29, GET_SL_LEVEL(16), 0);
-    } else {
+    }
+    else
+    {
         SET_MSG_VAR(29, GET_SL_LEVEL(17), 0);
+    }
+
+    // Dojima reuses Kou/Daisuke's message vars as they're never available at night and the var limit is 32 :(
+    if (GET_TIME_OF_DAY() == 5)
+    {
+        SET_MSG_VAR(29, GET_SL_LEVEL(8), 0);
     }
 
     SET_MSG_VAR(30, GET_SL_LEVEL(7), 0);
@@ -151,18 +185,19 @@ void generate_hangout_menu()
         SET_MSG_VAR(31, GET_SL_LEVEL(6), 0);
     }
 
-	if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
-	{
-		if (GET_SL_LEVEL(25) >= GET_SL_LEVEL(26))
-		{
-			SET_MSG_VAR(19, GET_SL_LEVEL(25), 0);
-		}
-		else
-		{
-			SET_MSG_VAR(19, GET_SL_LEVEL(26), 0);
-		}
-	}
-    SET_SEL_CHOICE_KEYBIND(14, 19);
+    if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0 && GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+    {
+        if (GET_SL_LEVEL(25) >= GET_SL_LEVEL(26))
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(25), 0);
+        }
+        else
+        {
+            SET_MSG_VAR(19, GET_SL_LEVEL(26), 0);
+        }
+    }
+
+    SET_SEL_CHOICE_KEYBIND(14, 21);
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
 
     // Field major and minor to make sure you can't tp to the current location
@@ -173,489 +208,534 @@ _choiceLoop:
     // Cancel or see more wasn't chosen
     if (localVariable56 < 18)
     {
+        // Checks whether the selection should be canceled (for when leaving home for the day)
+        int cancelSel = 0;
 
-        // Teleport the player to the desired location depending on who they chose
-        switch (localVariable56)
+        // Show confirmation for leaving home for the day if applicable
+        if (timeOfDay != 5 && fieldMajor == 7 && (fieldMinor == 2 || fieldMinor == 3))
         {
-        // Adachi
-        case 0:
-            // South Shopping District in the night
-            if (timeOfDay == 5)
-            {
-                if (fieldMajor == 8 && fieldMinor == 2)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(ADACHI_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(8, 2, 8, 0);
-                }
-                // Junes in the day
-            }
-            else
-            {
-                if (fieldMajor == 9 && fieldMinor == 4)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(ADACHI_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(9, 4, 0, 0);
-                }
-            }
-            break;
-        // Ai - Learning Building 1F
-        case 1:
-            if (fieldMajor == 6 && fieldMinor == 1)
-            {
-                OPEN_MSG_WIN();
-                MSG(AI_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(6, 1, 5, 0);
-            }
-            break;
-        // Ayane - Learning Building 2F
-        case 2:
-            if (fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0))
-            {
-                OPEN_MSG_WIN();
-                MSG(AYANE_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0)
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(6, 2, 0, 0);
-            }
-			else if (fieldMajor == 6 && fieldMinor == 4 && (GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
-			{
-				OPEN_MSG_WIN();
-                MSG(AYANE_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-			}
-			else
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(6, 4, 4, 0);
-            }
-			break;
-        // Chie
-        case 3:
-            // South Shopping District on Sundays
-            if (isHoliday == 1)
-            {
-                if (fieldMajor == 8 && fieldMinor == 2)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(CHIE_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(8, 2, 2, 0);
-                }
-                // Roof on Weekdays
-            }
-            else
-            {
-                if (fieldMajor == 6 && fieldMinor == 14)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(CHIE_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(6, 14, 1, 0);
-                }
-            }
-            break;
-        // Daisuke - Learning Building 2F
-        case 4:
-            if (fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(17) > 0)
-            {
-                OPEN_MSG_WIN();
-                MSG(DAISUKE_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else if (GET_SL_LEVEL(17) > 0)
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(6, 2, 4, 0);
-            }
-			else if (fieldMajor == 6 && fieldMinor == 1 && GET_SL_LEVEL(17) == 0)
-            {
-                OPEN_MSG_WIN();
-                MSG(DAISUKE_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-			else
-			{
-				FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(6, 1, 2, 0);
-			}
-            break;
-        // Eri - South Shopping District
-        case 5:
-            if (fieldMajor == 8 && fieldMinor == 2)
-            {
-                OPEN_MSG_WIN();
-                MSG(BUS_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(8, 2, 6, 0);
-            }
-            break;
-        // Hisano - Samegawa Riverbank
-        case 6:
-            if (fieldMajor == 10 && fieldMinor == 2)
-            {
-                OPEN_MSG_WIN();
-                MSG(HISANO_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(10, 2, 0, 0);
-            }
-            break;
-        // Kanji
-        case 7:
-            // North Shopping District on Sundays
-            if (isHoliday == 1)
-            {
-                if (fieldMajor == 8 && fieldMinor == 1)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(KANJI_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(8, 1, 5, 0);
-                }
-                // Practice Building 1F on Weekdays
-            }
-            else
-            {
-                if (fieldMajor == 6 && fieldMinor == 4)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(KANJI_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(6, 4, 5, 0);
-                }
-            }
-            break;
-        // Kou - Learning Building 2F
-        case 8:
-            if (fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(16) > 0)
-            {
-                OPEN_MSG_WIN();
-                MSG(KOU_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else if (GET_SL_LEVEL(17) > 0)
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(6, 2, 4, 0);
-            }
-			else if (fieldMajor == 6 && fieldMinor == 1 && GET_SL_LEVEL(16) == 0)
-            {
-                OPEN_MSG_WIN();
-                MSG(KOU_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-			else
-			{
-				FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(6, 1, 2, 0);
-			}
-            break;
+            OPEN_MSG_WIN();
+            MSG(EXIT_MYHOME_OK);
+            SET_SEL_CHOICE_KEYBIND(14, 1);
+            cancelSel = SEL(YESNO_SEL);
+        }
 
-        // Marie - South Shopping District
-        case 9:
-            if (fieldMajor == 8 && fieldMinor == 2)
+        if (cancelSel == 0)
+        {
+            // Teleport the player to the desired location depending on who they chose
+            switch (localVariable56)
             {
-                OPEN_MSG_WIN();
-                MSG(MARIE_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(8, 2, 4, 0);
-            }
-            break;
-        // Naoki
-        case 10:
-            // North Shopping District on Sundays and whenever the s link level is not 0
-            if (isHoliday == 1 || GET_SL_LEVEL(18) > 0)
-            {
-                if (fieldMajor == 8 && fieldMinor == 1)
+            // Adachi
+            case 0:
+                // South Shopping District in the night
+                if (timeOfDay == 5)
                 {
-                    OPEN_MSG_WIN();
-                    MSG(NAOKI_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
+                    if (fieldMajor == 8 && fieldMinor == 2)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(ADACHI_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 2, 6, 0);
+                    }
+                    // Junes in the day
                 }
                 else
                 {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(8, 1, 5, 0);
+                    if (fieldMajor == 9 && fieldMinor == 4)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(ADACHI_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(9, 4, 0, 0);
+                    }
                 }
-                // Learning Building 1F on Weekdays
-            }
-            else
-            {
+                break;
+            // Ai - Learning Building 1F
+            case 1:
                 if (fieldMajor == 6 && fieldMinor == 1)
                 {
                     OPEN_MSG_WIN();
-                    MSG(NAOKI_ALREADY_HERE);
+                    MSG(AI_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
                 else
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(6, 1, 6, 0);
+                    CALL_FIELD(6, 1, 5, 0);
                 }
-            }
-            break;
-        // Naoto
-        case 11:
-            // Samegawa Flood Plain on Sundays
-            if (isHoliday == 1)
-            {
-                if (fieldMajor == 10 && fieldMinor == 1)
+                break;
+            // Ayane - Learning Building 2F
+            case 2:
+                if (fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0))
                 {
                     OPEN_MSG_WIN();
-                    MSG(NAOTO_ALREADY_HERE);
+                    MSG(AYANE_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(10, 1, 2, 0);
-                }
-                // Learning Building 1F on Weekdays
-            }
-            else
-            {
-                if (fieldMajor == 6 && fieldMinor == 1)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(NAOTO_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(6, 1, 4, 0);
-                }
-            }
-            break;
-        // Rise
-        case 12:
-            // South Shopping District on Sundays
-            if (isHoliday == 1)
-            {
-                if (fieldMajor == 8 && fieldMinor == 2)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(RISE_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(8, 2, 2, 0);
-                }
-                // Learning Building 1F on Weekdays
-            }
-            else
-            {
-                if (fieldMajor == 6 && fieldMinor == 1)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(RISE_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(6, 1, 1, 0);
-                }
-            }
-            break;
-        // Sayoko - South Shopping District
-        case 13:
-            if (fieldMajor == 8 && fieldMinor == 2)
-            {
-                OPEN_MSG_WIN();
-                MSG(BUS_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(8, 2, 6, 0);
-            }
-            break;
-        // Shu - South Shopping District
-        case 14:
-            if (fieldMajor == 8 && fieldMinor == 2)
-            {
-                OPEN_MSG_WIN();
-                MSG(BUS_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(8, 2, 6, 0);
-            }
-            break;
-        // Yoskue
-        case 15:
-            // Junes on Sundays
-            if (isHoliday == 1)
-            {
-                if (fieldMajor == 9 && fieldMinor == 4)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(YOSUKE_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(9, 4, 0, 0);
-                }
-                // Learning Building 2F on Weekdays
-            }
-            else
-            {
-                if (fieldMajor == 6 && fieldMinor == 2)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(YOSUKE_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
+                else if (GET_SL_LEVEL(27) > 0 || GET_SL_LEVEL(28) > 0)
                 {
                     FADE(1, 5);
                     FADE_SYNC();
                     CALL_FIELD(6, 2, 0, 0);
                 }
-            }
-            break;
-        // Yukiko
-        case 16:
-            // South Shopping District on Sundays
-            if (isHoliday == 1)
-            {
+                else if (fieldMajor == 6 && fieldMinor == 4 && (GET_SL_LEVEL(27) == 0 && GET_SL_LEVEL(28) == 0))
+                {
+                    OPEN_MSG_WIN();
+                    MSG(AYANE_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(6, 4, 4, 0);
+                }
+                break;
+
+            // Chie
+            case 3:
+                // South Shopping District on Sundays
+                if (isHoliday == 1)
+                {
+                    if (fieldMajor == 8 && fieldMinor == 2)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(CHIE_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 2, 2, 0);
+                    }
+                    // Roof on Weekdays
+                }
+                else
+                {
+                    if (fieldMajor == 6 && fieldMinor == 14)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(CHIE_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(6, 14, 1, 0);
+                    }
+                }
+                break;
+            // Daisuke - Learning Building 2F
+            case 4:
+                if (fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(17) > 0)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(DAISUKE_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else if (GET_SL_LEVEL(17) > 0)
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(6, 2, 4, 0);
+                }
+                else if (fieldMajor == 6 && fieldMinor == 1 && GET_SL_LEVEL(17) == 0)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(DAISUKE_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(6, 1, 2, 0);
+                }
+                break;
+            // Dojima - Home
+            case 5:
+                if (fieldMajor == 7 && fieldMinor == 2)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(DOJIMA_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(7, 2, 0, 0);
+                }
+                break;
+            // Eri - South Shopping District
+            case 6:
                 if (fieldMajor == 8 && fieldMinor == 2)
                 {
                     OPEN_MSG_WIN();
-                    MSG(YUKIKO_ALREADY_HERE);
+                    MSG(BUS_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
                 else
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(8, 2, 7, 0);
+                    CALL_FIELD(8, 2, 6, 0);
                 }
-                // Learning Building 1F on Weekdays
-            }
-            else
-            {
-                if (fieldMajor == 6 && fieldMinor == 1)
+                break;
+            // Hisano - Samegawa Riverbank
+            case 7:
+                if (fieldMajor == 10 && fieldMinor == 2)
                 {
                     OPEN_MSG_WIN();
-                    MSG(YUKIKO_ALREADY_HERE);
+                    MSG(HISANO_ALREADY_HERE);
                     CLOSE_MSG_WIN();
                 }
                 else
                 {
                     FADE(1, 5);
                     FADE_SYNC();
-                    CALL_FIELD(6, 1, 7, 0);
+                    CALL_FIELD(10, 2, 0, 0);
                 }
+                break;
+            // Kanji
+            case 8:
+                // North Shopping District on Sundays
+                if (isHoliday == 1)
+                {
+                    if (fieldMajor == 8 && fieldMinor == 1)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(KANJI_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 1, 5, 0);
+                    }
+                    // Practice Building 1F on Weekdays
+                }
+                else
+                {
+                    if (fieldMajor == 6 && fieldMinor == 4)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(KANJI_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(6, 4, 5, 0);
+                    }
+                }
+                break;
+            // Kou - Learning Building 2F
+            case 9:
+                if (fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(16) > 0)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(KOU_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else if (GET_SL_LEVEL(16) > 0)
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(6, 2, 4, 0);
+                }
+                else if (fieldMajor == 6 && fieldMinor == 1 && GET_SL_LEVEL(16) == 0)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(KOU_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(6, 1, 2, 0);
+                }
+                break;
+
+            // Marie - South Shopping District
+            case 10:
+                if (fieldMajor == 8 && fieldMinor == 2)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(MARIE_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(8, 2, 4, 0);
+                }
+                break;
+            // Nanako - Home
+            case 11:
+                if (fieldMajor == 7 && fieldMinor == 2)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(NANAKO_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(7, 2, 0, 0);
+                }
+                break;
+            // Naoki
+            case 12:
+                // North Shopping District on Sundays and whenever the s link level is not 0
+                if (isHoliday == 1 || GET_SL_LEVEL(18) > 0)
+                {
+                    if (fieldMajor == 8 && fieldMinor == 1)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(NAOKI_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 1, 5, 0);
+                    }
+                    // Learning Building 1F on Weekdays
+                }
+                else
+                {
+                    if (fieldMajor == 6 && fieldMinor == 1)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(NAOKI_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(6, 1, 6, 0);
+                    }
+                }
+                break;
+            // Naoto
+            case 13:
+                // Samegawa Flood Plain on Sundays
+                if (isHoliday == 1)
+                {
+                    if (fieldMajor == 10 && fieldMinor == 1)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(NAOTO_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(10, 1, 2, 0);
+                    }
+                    // Learning Building 1F on Weekdays
+                }
+                else
+                {
+                    if (fieldMajor == 6 && fieldMinor == 1)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(NAOTO_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(6, 1, 4, 0);
+                    }
+                }
+                break;
+            // Rise
+            case 14:
+                // South Shopping District on Sundays
+                if (isHoliday == 1)
+                {
+                    if (fieldMajor == 8 && fieldMinor == 2)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(RISE_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 2, 2, 0);
+                    }
+                    // Learning Building 1F on Weekdays
+                }
+                else
+                {
+                    if (fieldMajor == 6 && fieldMinor == 1)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(RISE_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(6, 1, 1, 0);
+                    }
+                }
+                break;
+            // Sayoko - South Shopping District
+            case 15:
+                if (fieldMajor == 8 && fieldMinor == 2)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(BUS_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(8, 2, 6, 0);
+                }
+                break;
+            // Shu - South Shopping District
+            case 16:
+                if (fieldMajor == 8 && fieldMinor == 2)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(BUS_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(8, 2, 6, 0);
+                }
+                break;
+            // Yoskue
+            case 17:
+                // Junes on Sundays
+                if (isHoliday == 1)
+                {
+                    if (fieldMajor == 9 && fieldMinor == 4)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(YOSUKE_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(9, 4, 0, 0);
+                    }
+                    // Learning Building 2F on Weekdays
+                }
+                else
+                {
+                    if (fieldMajor == 6 && fieldMinor == 2)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(YOSUKE_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(6, 2, 0, 0);
+                    }
+                }
+                break;
+            // Yukiko
+            case 18:
+                // South Shopping District on Sundays
+                if (isHoliday == 1)
+                {
+                    if (fieldMajor == 8 && fieldMinor == 2)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(YUKIKO_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(8, 2, 7, 0);
+                    }
+                    // Learning Building 1F on Weekdays
+                }
+                else
+                {
+                    if (fieldMajor == 6 && fieldMinor == 1)
+                    {
+                        OPEN_MSG_WIN();
+                        MSG(YUKIKO_ALREADY_HERE);
+                        CLOSE_MSG_WIN();
+                    }
+                    else
+                    {
+                        FADE(1, 5);
+                        FADE_SYNC();
+                        CALL_FIELD(6, 1, 7, 0);
+                    }
+                }
+                break;
+            // Yumi - Learning Building 2F
+            case 19:
+                if (fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0))
+                {
+                    OPEN_MSG_WIN();
+                    MSG(YUMI_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0)
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(6, 2, 0, 0);
+                }
+                else if (fieldMajor == 6 && fieldMinor == 4 && (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0))
+                {
+                    OPEN_MSG_WIN();
+                    MSG(YUMI_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(6, 4, 1, 0);
+                }
+                break;
             }
-            break;
-        // Yumi - Learning Building 2F
-        case 17:
-            if (fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0))
-            {
-                OPEN_MSG_WIN();
-                MSG(YUMI_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-            }
-            else if (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0)
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(6, 2, 0, 0);
-            }
-			else if (fieldMajor == 6 && fieldMinor == 4 && (GET_SL_LEVEL(25) == 0 && GET_SL_LEVEL(26) == 0))
-			{
-				OPEN_MSG_WIN();
-                MSG(YUMI_ALREADY_HERE);
-                CLOSE_MSG_WIN();
-			}
-			else
-            {
-                FADE(1, 5);
-                FADE_SYNC();
-                CALL_FIELD(6, 4, 1, 0);
-            }
-            break;
         }
         // See more was chosen
     }
@@ -683,7 +763,7 @@ void generate_selection_mask()
 {
     pageOneMask = 0; // First list
     // All characters removed (subtracting from this adds them back to the second list)
-    pageTwoMask = 131071; // Second list
+    pageTwoMask = 1048575; // Second list
 
     // Count how many people were removed from the list so I can decide whether to make a second page
     numSelectionsRemoved = 0;
@@ -695,10 +775,12 @@ void generate_selection_mask()
     int chieState = 1;
     int ayaneState = 1;
     int daisukeState = 1;
+    int dojimaState = 1;
     int eriState = 1;
     int hisanoState = 1;
     int kanjiState = 1;
     int marieState = 1;
+    int nanakoState = 1;
     int naokiState = 1;
     int naotoState = 1;
     int riseState = 1;
@@ -715,7 +797,7 @@ void generate_selection_mask()
 
     // Choose which people to exclude based on the day
     // Check Adachi
-    if (BIT_CHK(0 + 0x0400 + 692) == 0 || GET_SL_LEVEL(31) >= 6)
+    if (BIT_CHK(0 + 0x0400 + 692) == 0 || BIT_CHK(0 + 0x0400 + 702) == 1 || BIT_CHK(0 + 0x0400 + 1569) == 1 || GET_SL_LEVEL(31) >= 6 || (CHECK_IF_SL_LVLUP(31) == 0 && timeOfDay == 5) || (CHECK_IF_SL_LVLUP(31) == 1 && ((timeOfDay == 5 && (GET_SL_LEVEL(31) == 1 || GET_SL_LEVEL(31) == 5)) || (timeOfDay != 5 && GET_SL_LEVEL(31) >= 2 && GET_SL_LEVEL(31) <= 4))))
     {
         pageOneMask = pageOneMask + 1;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -750,116 +832,156 @@ void generate_selection_mask()
         numSelectionsRemoved = numSelectionsRemoved + 1;
         daisukeState = 0;
     }
+    // Dojima
+    if (BIT_CHK(0 + 0x0400 + 455) == 0 || GET_SL_LEVEL(8) >= 10 || timeOfDay != 5)
+    {
+        pageOneMask = pageOneMask + 32;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        dojimaState = 0;
+    }
     // Eri isn't available Tuesday, Wednesday, Thursday, Sunday and Holidays
     if (BIT_CHK(0 + 0x0400 + 1641) == 0 || BIT_CHK(0 + 0x0400 + 476) == 0 || GET_SL_LEVEL(29) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 32;
+        pageOneMask = pageOneMask + 64;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         eriState = 0;
     }
     // Hisano is only available on Sundays and Holidays
     if (BIT_CHK(0 + 0x0400 + 466) == 0 || GET_SL_LEVEL(19) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 64;
+        pageOneMask = pageOneMask + 128;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         hisanoState = 0;
     }
     // Kanji isn't available Monday, Tuesday and Friday
     if (BIT_CHK(0 + 0x0400 + 457) == 0 || GET_SL_LEVEL(10) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 128;
+        pageOneMask = pageOneMask + 256;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         kanjiState = 0;
     }
     // Kou isn't available Monday, Wednesday, Friday, Sunday and Holidays
     if (BIT_CHK(0 + 0x0400 + 463) == 0 || GET_SL_LEVEL(0x10) >= 10 || GET_SL_LEVEL(17) > 0 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 256;
+        pageOneMask = pageOneMask + 512;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         kouState = 0;
     }
     // Marie isn't available Monday, Tuesday, Thursday and Friday
     if (BIT_CHK(0 + 0x0400 + 712) == 0 || GET_SL_LEVEL(33) >= 10 || GET_SL_LEVEL(34) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 512;
+        pageOneMask = pageOneMask + 1024;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         marieState = 0;
+    }
+    // Nanako
+    if (BIT_CHK(0 + 0x0400 + 449) == 0 || GET_SL_LEVEL(2) >= 10 || timeOfDay != 5)
+    {
+        pageOneMask = pageOneMask + 2048;
+        numSelectionsRemoved = numSelectionsRemoved + 1;
+        nanakoState = 0;
     }
     // Naoki isn't available Friday, Saturday and Sunday
     if (BIT_CHK(0 + 0x0400 + 465) == 0 || GET_SL_LEVEL(18) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 1024;
+        pageOneMask = pageOneMask + 4096;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         naokiState = 0;
     }
     // Naoto isn't available Thursday and Friday
     if (BIT_CHK(0 + 0x0400 + 462) == 0 || GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 2048;
+        pageOneMask = pageOneMask + 8192;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         naotoState = 0;
     }
     // Rise isn't available Monday, Tuesday, Wednesday and Thursday
-    if (BIT_CHK(0 + 0x0400 + 436) == 0 || GET_SL_LEVEL(3) >= 10 || GET_SL_LEVEL(4) >= 10 || timeOfDay == 5)
+    if (BIT_CHK(0 + 0x0400 + 450) == 0 || GET_SL_LEVEL(3) >= 10 || GET_SL_LEVEL(4) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 4096;
+        pageOneMask = pageOneMask + 16384;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         riseState = 0;
     }
     // Sayoko isn't available Monday, Tuesday, Saturday, Sunday, Holidays, and in the day
     if (BIT_CHK(0 + 0x0400 + 456) == 0 || BIT_CHK(0 + 0x0400 + 1640) == 0 || timeOfDay != 5 || GET_SL_LEVEL(9) >= 10)
     {
-        pageOneMask = pageOneMask + 8192;
+        pageOneMask = pageOneMask + 32768;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         sayokoState = 0;
     }
     // Shu isn't available Monday, Wednesday, Friday, Sunday, Holidays and in the day
     if (BIT_CHK(0 + 0x0400 + 470) == 0 || BIT_CHK(0 + 0x0400 + 1638) == 0 || GET_SL_LEVEL(23) >= 10 || timeOfDay != 5)
     {
-        pageOneMask = pageOneMask + 16384;
+        pageOneMask = pageOneMask + 65536;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         shuState = 0;
     }
     // Yoskue isn't available Tuesday and Wednesday
     if (BIT_CHK(0 + 0x0400 + 454) == 0 || GET_SL_LEVEL(7) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 32768;
+        pageOneMask = pageOneMask + 131072;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yosukeState = 0;
     }
     // Yukiko isn't available Friday, Saturday and Sunday
     if (BIT_CHK(0 + 0x0400 + 452) == 0 || GET_SL_LEVEL(5) >= 10 || GET_SL_LEVEL(6) >= 10 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 65536;
+        pageOneMask = pageOneMask + 262144;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yukikoState = 0;
     }
     // Yumi isn't available Wednesday, Friday, Saturday, Sunday and Holiday
     if (BIT_CHK(0 + 0x0400 + 475) == 0 || GET_SL_LEVEL(25) >= 10 || GET_SL_LEVEL(26) >= 10 || GET_SL_LEVEL(28) > 0 || GET_SL_LEVEL(27) > 0 || timeOfDay == 5)
     {
-        pageOneMask = pageOneMask + 131072;
+        pageOneMask = pageOneMask + 524288;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         yumiState = 0;
     }
 
     // Decide whether a second page is needed THIS WOULD BE SO MUCH EASIER WITH AN ARRAY AND A LOOP AHHHHH
-    if (numSelectionsRemoved < 10)
+    if (numSelectionsRemoved < 12)
     {
         // local58 is all characters removed (subtracting from this adds them back to the second list)
         // Yumi
         if (yumiState == 1)
         {
             // Remove from list 1
-            pageOneMask = pageOneMask + 131072;
+            pageOneMask = pageOneMask + 524288;
             // Add to list 2
-            pageTwoMask = pageTwoMask - 131072;
+            pageTwoMask = pageTwoMask - 524288;
             // Increment the count
             numSelectionsRemoved = numSelectionsRemoved + 1;
         }
         // Yukiko
-        if (numSelectionsRemoved < 10) 
+        if (numSelectionsRemoved < 12)
         {
             if (yukikoState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 262144;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 262144;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Yosuke
+        if (numSelectionsRemoved < 12)
+        {
+            if (yosukeState == 1)
+            {
+                // Remove from list 1
+                pageOneMask = pageOneMask + 131072;
+                // Add to list 2
+                pageTwoMask = pageTwoMask - 131072;
+                // Increment the count
+                numSelectionsRemoved = numSelectionsRemoved + 1;
+            }
+        }
+        // Shu
+        if (numSelectionsRemoved < 12)
+        {
+            if (shuState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 65536;
@@ -869,10 +991,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Yosuke
-        if (numSelectionsRemoved < 10)
+        // Sayoko
+        if (numSelectionsRemoved < 12)
         {
-            if (yosukeState == 1)
+            if (sayokoState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 32768;
@@ -882,10 +1004,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Shu
-        if (numSelectionsRemoved < 10)
+        // Rise
+        if (numSelectionsRemoved < 12)
         {
-            if (shuState == 1)
+            if (riseState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 16384;
@@ -895,10 +1017,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Sayoko
-        if (numSelectionsRemoved < 10)
+        // Naoto
+        if (numSelectionsRemoved < 12)
         {
-            if (sayokoState == 1)
+            if (naotoState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 8192;
@@ -908,10 +1030,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Rise
-        if (numSelectionsRemoved < 10)
+        // Naoki
+        if (numSelectionsRemoved < 12)
         {
-            if (riseState == 1)
+            if (naokiState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 4096;
@@ -921,10 +1043,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Naoto
-        if (numSelectionsRemoved < 10)
+        // Nanako
+        if (numSelectionsRemoved < 12)
         {
-            if (naotoState == 1)
+            if (nanakoState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 2048;
@@ -934,10 +1056,10 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Naoki
-        if (numSelectionsRemoved < 10)
+        // Marie
+        if (numSelectionsRemoved < 12)
         {
-            if (naokiState == 1)
+            if (marieState == 1)
             {
                 // Remove from list 1
                 pageOneMask = pageOneMask + 1024;
@@ -947,26 +1069,14 @@ void generate_selection_mask()
                 numSelectionsRemoved = numSelectionsRemoved + 1;
             }
         }
-        // Marie
-        if (numSelectionsRemoved < 10)
-        {
-            if (marieState == 1)
-            {
-                // Remove from list 1
-                pageOneMask = pageOneMask + 512;
-                // Add to list 2
-                pageTwoMask = pageTwoMask - 512;
-                // Increment the count
-                numSelectionsRemoved = numSelectionsRemoved + 1;
-            }
-        }
         // We don't need the see more option
     }
     else
     {
-        pageOneMask = pageOneMask + 262144;
+        pageOneMask = pageOneMask + 1048576;
     }
 }
+
 
 void check_if_holiday()
 {

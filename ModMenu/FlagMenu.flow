@@ -2,36 +2,48 @@ int Flag_Menu()
 {
 	while(true)
 	{
-		SET_SEL_CHOICE_KEYBIND(14, 10);
-		SET_SEL_CHOICE_KEYBIND(15, 11);
+		SET_SEL_CHOICE_KEYBIND(14, 17);
+		SET_SEL_CHOICE_KEYBIND(15, 18);
 		int flag = ADV_SEL(Flag_Menu_Text, Flag_Menu, 0);
 		switch (flag) 
 		{
 			case 0:
 				ToggleBit();
-				return 0;
+				break;
 			case 1:
 				ToggleBitRange();
-				return 0;
+				break;
 			case 2:
 				KillQuests();
-				return 0;
+				break;
 			case 3:
 				ReviveQuests();
-				return 0;
+				break;
 			case 4:
 				TurnOffTiredFlags();
-				return 0;
+				break;
 			case 5:
 				UnlockMap();
-				return 0;
-			case 10:
+				break;
+			case 6:
+				ToggleHUD();
+				break;
+			case 17:
 				return -1;
-			case 11:
+			case 18:
 				return 0;
 		}
 	}
 	return 0;
+}
+
+void ToggleHUD()
+{
+	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
+	if (toggle == 0)
+		SHOW_DATE(1);
+	else
+		SHOW_DATE(0);
 }
 
 void TurnOffTiredFlags()
