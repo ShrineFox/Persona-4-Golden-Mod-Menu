@@ -1,4 +1,4 @@
-[msg HANGOUT_MSG]
+[msg HANG_OUT_MSG]
 [f 0 5 -258][f 2 1]Who do you want to see?[n][f 1 1][e]
 
 [sel HANG_OUT_SEL]
