@@ -29,7 +29,7 @@
 
 [msg OptionsWarning]
 [f 0 5 -258][f 2 1]Access the Options Menu again by pressing
-[n]the Command Menu button in the top level
+[n]the [f 0 1 2]Command Menu button[f 0 1 0] in the top level
 [n]of the Sub Menu.[f 1 1][e]
 
 [msg ModMenu_About[Mod Menu (Sierra/ShrineFox)]]

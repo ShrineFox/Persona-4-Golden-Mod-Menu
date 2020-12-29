@@ -9,6 +9,7 @@
 [f 0 5 -258][f 2 1]Daisuke (Rank [f 2 4 29][f 2 4 13])[e]
 [f 0 5 -258][f 2 1]Dojima (Rank [f 2 4 29][f 2 4 13])[e]
 [f 0 5 -258][f 2 1]Eri (Rank [f 2 4 20][f 2 4 4])[e]
+[f 0 5 -258][f 2 1]Fox (Rank [f 2 4 27][f 2 4 11])[e]
 [f 0 5 -258][f 2 1]Hisano (Rank [f 2 4 21][f 2 4 5])[e]
 [f 0 5 -258][f 2 1]Kanji (Rank [f 2 4 22][f 2 4 6])[e]
 [f 0 5 -258][f 2 1]Kou (Rank [f 2 4 29][f 2 4 13])[e]
@@ -78,3 +79,6 @@
 
 [msg YUKIKO_ALREADY_HERE]
 [f 0 5 -258][f 2 1]Yukiko is nearby.[n][f 1 1][e]
+
+[msg SHRINE_ALREADY_HERE]
+[f 0 5 -258][f 2 1]The shrine is nearby.[n][f 1 1][e]

@@ -14,13 +14,14 @@ void TurnOnAllOptions()
 {
 	// Uncomment to enable options without setup
 	BIT_ON(6420); //Disable First Time Setup
-	BIT_ON(6421); //Mod Menu
+	//BIT_ON(6421); //Mod Menu
+	BIT_OFF(6421); //Mod Menu
 	BIT_ON(6422); // QuickTravelPlus
 	BIT_ON(6423); // MobileCalendar
 	BIT_ON(6424); // DungeonOptions
 	BIT_ON(6425); // Find a Friend
 	BIT_ON(5678); // Spoiler-free find a friend
-	BIT_ON(6426); // Save Anywhere
+	BIT_OFF(6426); // Save Anywhere
 	BIT_ON(6427); // Game over skip
 	BIT_ON(6428); //Reap-Balanced Encounters
 	BIT_ON(6430); //Enable Fox (DungeonOptions)

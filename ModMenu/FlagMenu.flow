@@ -39,10 +39,11 @@ int Flag_Menu()
 
 void ToggleHUD()
 {
+	SET_SEL_CHOICE_KEYBIND(14,2);
 	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
 	if (toggle == 0)
 		SHOW_DATE(1);
-	else
+	else if (toggle == 1)
 		SHOW_DATE(0);
 }
 
@@ -72,12 +73,18 @@ void ToggleBit()
 	int major = Get_Number(4, MSG_4);
 	if (major == -1)
 		return;
-	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
+	SET_MSG_VAR(0, major, 0);
+	SET_MSG_VAR(1, 619 + BIT_CHK(major), 6);
+	OPEN_MSG_WIN();
+	MSG(FlagIndicator);
+	SET_SEL_CHOICE_KEYBIND(14,2);
+	int toggle = SEL(OnOff);
+	CLOSE_MSG_WIN();
 	if (toggle == 0)
 	{
 		BIT_ON(major);
 	}
-	else
+	else if (toggle == 1)
 	{
 		BIT_OFF(major);
 	}
@@ -92,6 +99,7 @@ void ToggleBitRange()
 	if (minor == -1)
 		return;
 	int i = major;
+	SET_SEL_CHOICE_KEYBIND(14,2);
 	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
 	if (toggle == 0)
 	{
@@ -101,7 +109,7 @@ void ToggleBitRange()
 			i++;
 		}
 	}
-	else
+	else if (toggle == 1)
 	{
 		while (i <= minor)
 		{

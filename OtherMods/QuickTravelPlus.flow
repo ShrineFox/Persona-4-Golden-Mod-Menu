@@ -99,7 +99,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
 		streetMask = streetMask + 8;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         streetMask = streetMask + 16;
 	if (!save)
 		streetMask = streetMask + 32;
@@ -238,7 +238,7 @@ void SchoolOrder(bool calendar, bool friend, bool save)
 		schoolMask = schoolMask + 64;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         schoolMask = schoolMask + 128;
 	if (!save)
 		schoolMask = schoolMask + 256;
@@ -360,7 +360,7 @@ void NightOrder(bool calendar, bool friend, bool save)
 		nightMask = nightMask + 16;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 20 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         nightMask = nightMask + 32;
 	if (!save)
 		nightMask = nightMask + 64;

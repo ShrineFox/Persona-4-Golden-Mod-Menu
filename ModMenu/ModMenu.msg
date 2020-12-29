@@ -234,3 +234,6 @@
 
 [msg Month_Text2]
 [f 0 5 -258][f 2 1]Which month? (Page 2/2)[n][f 1 1][e]
+
+[msg FlagIndicator]
+[f 0 5 -258][f 2 1]Flag [f 2 4 0] is set to [f 2 4 1].[n][e]

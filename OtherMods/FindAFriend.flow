@@ -12,6 +12,7 @@ int pageOneMask;
 int pageTwoMask;
 int numSelectionsRemoved;
 int isHoliday;
+bool foxReady;
 
 //
 // Procedure declarations
@@ -60,6 +61,14 @@ void generate_hangout_menu()
     SET_MSG_VAR(9, 621 + (CHECK_IF_SL_LVLUP(14) || CHECK_IF_SL_LVLUP(15)), 6);
     SET_MSG_VAR(10, 621 + (CHECK_IF_SL_LVLUP(3) || CHECK_IF_SL_LVLUP(4)), 6);
     SET_MSG_VAR(11, 621 + CHECK_IF_SL_LVLUP(9), 6);
+    // Shrine fox hijacks Sayoko's variables as he's not available at night
+    if (timeOfDay != 5)
+    {
+        // Can't use check if sl lvl up on fox (it's always ready) so instead use custom function that checks
+        // if the quest needed has been completed
+        check_if_fox_ready();
+        SET_MSG_VAR(11, 621 + foxReady, 6);
+    }
     SET_MSG_VAR(12, 621 + CHECK_IF_SL_LVLUP(23), 6);
     // Kou is 16, Daisuke 17
     if (GET_SL_LEVEL(16) > 0)
@@ -157,6 +166,12 @@ void generate_hangout_menu()
         SET_MSG_VAR(26, GET_SL_LEVEL(4), 0);
     }
     SET_MSG_VAR(27, GET_SL_LEVEL(9), 0);
+    // Shrine fox hijacks Sayoko's variables as he isn't available at night
+    if (timeOfDay != 5)
+    {
+        SET_MSG_VAR(27, GET_SL_LEVEL(13), 0);
+    }
+
     SET_MSG_VAR(28, GET_SL_LEVEL(23), 0);
 
     if (GET_SL_LEVEL(16) > 0)
@@ -198,12 +213,12 @@ void generate_hangout_menu()
     }
 
     // Set B button to nobody
-    SET_SEL_CHOICE_KEYBIND(14, 21);
+    SET_SEL_CHOICE_KEYBIND(14, 22);
     // Set bumpers to someone else if it's available
-    if (pageTwoMask != 1048575)
+    if (pageTwoMask != 2097151)
     {
-        SET_SEL_CHOICE_KEYBIND(10, 20);
-        SET_SEL_CHOICE_KEYBIND(11, 20);
+        SET_SEL_CHOICE_KEYBIND(10, 21);
+        SET_SEL_CHOICE_KEYBIND(11, 21);
     }
 
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
@@ -214,7 +229,7 @@ void generate_hangout_menu()
 
 _choiceLoop:
     // Cancel or see more wasn't chosen
-    if (localVariable56 < 20)
+    if (localVariable56 < 21)
     {
         // Checks whether the selection should be canceled (for when leaving home for the day)
         int cancelSel = 0;
@@ -231,26 +246,27 @@ _choiceLoop:
         if (cancelSel == 0)
         {
             // Some extra stuff is needed when leaving Okina so weather is preserved
-            if(fieldMajor == 11) {
-                BIT_OFF( 0 + 0x0400 + 0x0800 + 172 );
-                BIT_OFF( 0 + 0x0400 + 0x0800 + 171 );
-                if ( GET_CNT( 169 ) != 0 )
+            if (fieldMajor == 11)
+            {
+                BIT_OFF(0 + 0x0400 + 0x0800 + 172);
+                BIT_OFF(0 + 0x0400 + 0x0800 + 171);
+                if (GET_CNT(169) != 0)
                 {
 
-                    if ( DATE_CHK( 3, 20 ) == 1 )
+                    if (DATE_CHK(3, 20) == 1)
                     {
-                        SET_CNT( 169, 0 );
-                        FUNCTION_006B( -1 );
-                        FUNCTION_006B( 1 );
+                        SET_CNT(169, 0);
+                        FUNCTION_006B(-1);
+                        FUNCTION_006B(1);
                     }
-                    else 
+                    else
                     {
-                        SET_CNT( 169, 0 );
-                        FUNCTION_006B( -1 );
+                        SET_CNT(169, 0);
+                        FUNCTION_006B(-1);
                     }
-
                 }
             }
+
             // Teleport the player to the desired location depending on who they chose
             switch (localVariable56)
             {
@@ -424,8 +440,23 @@ _choiceLoop:
                     CALL_FIELD(8, 2, 6, 0);
                 }
                 break;
-            // Hisano - Samegawa Riverbank
+            // Fox - Shrine
             case 7:
+                if (fieldMajor == 8 && fieldMinor == 9)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(SHRINE_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(8, 9, 1, 0);
+                }
+                break;
+            // Hisano - Samegawa Riverbank
+            case 8:
                 if (fieldMajor == 10 && fieldMinor == 2)
                 {
                     OPEN_MSG_WIN();
@@ -440,7 +471,7 @@ _choiceLoop:
                 }
                 break;
             // Kanji
-            case 8:
+            case 9:
                 // North Shopping District on Sundays
                 if (isHoliday == 1)
                 {
@@ -475,7 +506,7 @@ _choiceLoop:
                 }
                 break;
             // Kou - Learning Building 2F
-            case 9:
+            case 10:
                 if (fieldMajor == 6 && fieldMinor == 2 && GET_SL_LEVEL(16) > 0)
                 {
                     OPEN_MSG_WIN();
@@ -503,7 +534,7 @@ _choiceLoop:
                 break;
 
             // Marie - South Shopping District
-            case 10:
+            case 11:
                 if (fieldMajor == 8 && fieldMinor == 2)
                 {
                     OPEN_MSG_WIN();
@@ -518,7 +549,7 @@ _choiceLoop:
                 }
                 break;
             // Nanako - Home
-            case 11:
+            case 12:
                 if (fieldMajor == 7 && fieldMinor == 2)
                 {
                     OPEN_MSG_WIN();
@@ -533,7 +564,7 @@ _choiceLoop:
                 }
                 break;
             // Naoki
-            case 12:
+            case 13:
                 // North Shopping District on Sundays and whenever the s link level is not 0
                 if (isHoliday == 1 || GET_SL_LEVEL(18) > 0)
                 {
@@ -568,7 +599,7 @@ _choiceLoop:
                 }
                 break;
             // Naoto
-            case 13:
+            case 14:
                 // Samegawa Flood Plain on Sundays
                 if (isHoliday == 1)
                 {
@@ -603,7 +634,7 @@ _choiceLoop:
                 }
                 break;
             // Rise
-            case 14:
+            case 15:
                 // South Shopping District on Sundays
                 if (isHoliday == 1)
                 {
@@ -638,21 +669,6 @@ _choiceLoop:
                 }
                 break;
             // Sayoko - South Shopping District
-            case 15:
-                if (fieldMajor == 8 && fieldMinor == 2)
-                {
-                    OPEN_MSG_WIN();
-                    MSG(BUS_ALREADY_HERE);
-                    CLOSE_MSG_WIN();
-                }
-                else
-                {
-                    FADE(1, 5);
-                    FADE_SYNC();
-                    CALL_FIELD(8, 2, 6, 0);
-                }
-                break;
-            // Shu - South Shopping District
             case 16:
                 if (fieldMajor == 8 && fieldMinor == 2)
                 {
@@ -667,8 +683,23 @@ _choiceLoop:
                     CALL_FIELD(8, 2, 6, 0);
                 }
                 break;
-            // Yoskue
+            // Shu - South Shopping District
             case 17:
+                if (fieldMajor == 8 && fieldMinor == 2)
+                {
+                    OPEN_MSG_WIN();
+                    MSG(BUS_ALREADY_HERE);
+                    CLOSE_MSG_WIN();
+                }
+                else
+                {
+                    FADE(1, 5);
+                    FADE_SYNC();
+                    CALL_FIELD(8, 2, 6, 0);
+                }
+                break;
+            // Yoskue
+            case 18:
                 // Junes on Sundays
                 if (isHoliday == 1)
                 {
@@ -703,7 +734,7 @@ _choiceLoop:
                 }
                 break;
             // Yukiko
-            case 18:
+            case 19:
                 // South Shopping District on Sundays
                 if (isHoliday == 1)
                 {
@@ -738,7 +769,7 @@ _choiceLoop:
                 }
                 break;
             // Yumi - Learning Building 2F
-            case 19:
+            case 20:
                 if (fieldMajor == 6 && fieldMinor == 2 && (GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0))
                 {
                     OPEN_MSG_WIN();
@@ -768,15 +799,13 @@ _choiceLoop:
         }
     }
     // See more was chosen
-    else if (localVariable56 == 20)
+    else if (localVariable56 == 21)
     {
         // Generate another menu
-        SET_SEL_CHOICE_KEYBIND(14, 21);
-        // Set Y to opening options
-        SET_SEL_CHOICE_KEYBIND(15, 30);
+        SET_SEL_CHOICE_KEYBIND(14, 22);
         // Set bumpers to someone else
-        SET_SEL_CHOICE_KEYBIND(10, 20);
-        SET_SEL_CHOICE_KEYBIND(11, 20);
+        SET_SEL_CHOICE_KEYBIND(10, 21);
+        SET_SEL_CHOICE_KEYBIND(11, 21);
         // If you're on page one go to two and vice versa
         if (localVariable120 == 0)
         {
@@ -790,7 +819,6 @@ _choiceLoop:
         }
         // Go back to the choices for round rwo (or more)
         goto _choiceLoop;
-        // Options was chosen (X pressed)
     }
 }
 
@@ -1193,7 +1221,14 @@ void generate_selection_mask()
     }
 }
 
-
+void check_if_fox_ready()
+{
+    foxReady = ((BIT_CHK(0 + 325) == 1 && BIT_CHK(0 + 0x0400 + 1696) == 0) || (BIT_CHK(0 + 332) == 1 && BIT_CHK(0 + 0x0400 + 1697) == 0) 
+    || (BIT_CHK(0 + 339) == 1 && BIT_CHK(0 + 0x0400 + 1698) == 0) || (BIT_CHK(0 + 345) == 1 && BIT_CHK(0 + 0x0400 + 1699) == 0) 
+    || (BIT_CHK(0 + 349) == 1 && BIT_CHK(0 + 0x0400 + 1700) == 0) || (BIT_CHK(0 + 355) == 1 && BIT_CHK(0 + 0x0400 + 1701) == 0) 
+    || (BIT_CHK(0 + 360) == 1 && BIT_CHK(0 + 0x0400 + 1702) == 0) || (BIT_CHK(0 + 361) == 1 && BIT_CHK(0 + 0x0400 + 1703) == 0) 
+    || (BIT_CHK(0 + 367) == 1 && BIT_CHK(0 + 0x0400 + 1704) == 0));
+}
 
 void check_if_holiday()
 {

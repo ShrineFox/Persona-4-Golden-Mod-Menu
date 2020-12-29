@@ -13,11 +13,12 @@
 [f 0 5 -258][f 2 1]9[e]
 
 [sel OnOff_Text]
-[f 0 5 -258][f 2 1]Toggle Value[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Toggle[e]
 
 [sel OnOff]
 [f 0 5 -258][f 2 1]On[e]
 [f 0 5 -258][f 2 1]Off[e]
+[f 0 5 -258][f 2 1]Cancel[e]
 
 [msg MSG_1]
 [f 0 5 -258][f 2 1]1 Digit[n][f 1 1][e]
