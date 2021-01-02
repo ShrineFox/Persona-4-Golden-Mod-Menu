@@ -1,4 +1,16 @@
 import ( "QuickTravelPlus.msg" );
+
+bool saveAnywhere()
+{
+	int major = GET_FIELD_MAJOR();
+	int minor = GET_FIELD_MINOR();
+	int floor = GET_FLOOR_ID();
+	if ((major == 8 && minor == 9) || major == 11 || floor == 4
+		|| floor == 5 || floor == 100 || floor == 122 || floor == 170)
+		return true;
+	return false;
+}
+
 void field_order_hook()
 {
 	bool calendar = BIT_CHK(6423);
@@ -101,7 +113,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         streetMask = streetMask + 16;
-	if (!save)
+	if (!save || saveAnywhere() || saveAnywhere())
 		streetMask = streetMask + 32;
 	begin:
 	if (!BIT_CHK(6421))
@@ -240,7 +252,7 @@ void SchoolOrder(bool calendar, bool friend, bool save)
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         schoolMask = schoolMask + 128;
-	if (!save)
+	if (!save || saveAnywhere())
 		schoolMask = schoolMask + 256;
 	begin:
 	if (!BIT_CHK(6421))
@@ -362,7 +374,7 @@ void NightOrder(bool calendar, bool friend, bool save)
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         nightMask = nightMask + 32;
-	if (!save)
+	if (!save || saveAnywhere())
 		nightMask = nightMask + 64;
 	begin:
 	if (!BIT_CHK(6421))

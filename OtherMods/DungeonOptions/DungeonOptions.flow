@@ -29,7 +29,7 @@ void entrance_jump_hook()
 		mask = mask + 4;
 	if (!BeatDungeon() || !BIT_CHK(6424))
 		mask = mask + 2;
-	if (!BIT_CHK(6426))
+	if (!BIT_CHK(6426) || saveAnywhere())
 		mask = mask + 8;
     FUNCTION_0023( 0, 3 );
     SET_SEL_CHOICE_KEYBIND( 14, 4 );
@@ -455,7 +455,7 @@ void init_sel_mask_hook()
 	// Hide Call Fox
 	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 9 ) == 0 || !showFox || !BIT_CHK(6424))
 		sVar1 = sVar1 + 1024;
-	if ( !BIT_CHK(6426) )
+	if ( !BIT_CHK(6426) || saveAnywhere() )
 		sVar1 = sVar1 + 2048;
 }
 
@@ -467,7 +467,7 @@ void tomb_jump_hook()
     var24 = var24 + 0x20;
 	if (!EnableOrganizeParty() || !BIT_CHK(6424))
 		var24 = var24 + 2;
-	if (!BIT_CHK(6426))
+	if (!BIT_CHK(6426) || saveAnywhere())
 		var24 = var24 + 64;
     FUNCTION_0023( 0, 3 );
     SET_SEL_CHOICE_KEYBIND( 14, 7 );
@@ -552,7 +552,7 @@ void liqueur_jump_hook()
 	int mask = 0;
 	if (!EnableOrganizeParty() || !BIT_CHK(6424))
 		mask = mask + 2;
-	if (!BIT_CHK(6426))
+	if (!BIT_CHK(6426) || saveAnywhere())
 		mask = mask + 4;
     SET_SEL_CHOICE_KEYBIND( 14, 3 );
 	if (!BIT_CHK(6421))
@@ -599,7 +599,7 @@ void studio_jump_hook()
         var21 = var21 + 128;
     }
 
-	if (!BIT_CHK(6426))
+	if (!BIT_CHK(6426) || saveAnywhere())
 		var21 = var21 + 32;
 
     FUNCTION_0023( 0, 3 );

@@ -38,7 +38,7 @@ void school_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var57 = var57 + 64;
-	if (!save)
+	if (!save || saveAnywhere())
 		var57 = var57 + 128;
 	if (!BIT_CHK(6421))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
@@ -139,7 +139,7 @@ void myhouse_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var61 = var61 + 512;
-    if (!save)
+    if (!save || saveAnywhere())
 		var61 = var61 + 1024;
     if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 0 ) == 0 )
     {
@@ -325,7 +325,7 @@ void street_order_hook()
 		generate_selection_mask();
 		if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
 			var65 = var65 + 32;
-		if (!save)
+		if (!save || saveAnywhere())
 			var65 = var65 + 64;
 		if (!BIT_CHK(6421))
 			SET_SEL_CHOICE_KEYBIND(12, 18);
@@ -542,7 +542,7 @@ void sel_mask_night_play_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var139 = var139 + 128;
-	if (!save)
+	if (!save || saveAnywhere())
 		var139 = var139 + 256;
     BIT_OFF( 0 + 0x0400 + 0x0800 + 178 );
     sVar136 = var139;
@@ -563,7 +563,7 @@ void gms_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var69 = var69 + 8;
-	if (!save)
+	if (!save || saveAnywhere())
 		var69 = var69 + 16;
 	if (!BIT_CHK(6421))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
@@ -669,7 +669,7 @@ void embank_order_hook()
 		generate_selection_mask();
 		if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
 			var73 = var73 + 16;
-		if (!save)
+		if (!save || saveAnywhere())
 			var73 = var73 + 32;
 		if ( GET_FIELD_MINOR() == 1 )
 		{
@@ -744,7 +744,7 @@ void station_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var77 = var77 + 4;
-    if (!save)
+    if (!save || saveAnywhere())
 		var77 = var77 + 8;
     if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 336 ) == 1 )
     {
@@ -829,7 +829,7 @@ void schoolroad_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var81 = var81 + 4;
-	if (!save)
+	if (!save || saveAnywhere())
 		var81 = var81 + 8;
 	if (!BIT_CHK(6421))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
@@ -874,7 +874,7 @@ void snowmt_order_hook()
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 21 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
         var85 = var85 + 8;
-	if (!save)
+	if (!save || saveAnywhere())
 		var85 = var85 + 16;
 	if (!BIT_CHK(6421))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
