@@ -60,6 +60,7 @@
 [f 0 5 -258][f 2 1]Social Stats[e]
 [f 0 5 -258][f 2 1]Party Members[e]
 [f 0 5 -258][f 2 1]Refill HP/SP[e]
+[f 0 5 -258][f 2 1]Level Up Party[e]
 
 [msg Facility_Menu_Text]
 [f 0 5 -258][f 2 1]Facility Menu (Page 1/2)[n][f 1 1][e]
@@ -139,6 +140,7 @@
 [f 0 5 -258][f 2 1]Boss Select (Page 1/2)[n][f 1 1][e]
 
 [sel BOSS_SEL1]
+[f 0 5 -258][f 2 1]???[e]
 [f 0 5 -258][f 2 1]Shadow Yosuke[e]
 [f 0 5 -258][f 2 1]Shadow Chie[e]
 [f 0 5 -258][f 2 1]Shadow Yukiko[e]
@@ -158,6 +160,7 @@
 [f 0 5 -258][f 2 1]Kusumi-no-Okami[e]
 [f 0 5 -258][f 2 1]Izanami[e]
 [f 0 5 -258][f 2 1]Margaret[e]
+[f 0 5 -258][f 2 1]Marie[e]
 
 [sel SocialLinkSel1]
 [f 0 5 -258][f 2 1]Adachi (Jester)[e]

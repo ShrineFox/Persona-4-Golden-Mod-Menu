@@ -78,6 +78,9 @@ int PlayerMenuDisplay2()
 			case 3:
 				RefillHPSP();
 				return 0;
+			case 4:
+				FUNCTION_00A6(ModChooseMember(SelectMemberMsg, 0), Get_Number(2, MSG_2));
+				break;
 			case 10:
 				return -1;
 			case 11:

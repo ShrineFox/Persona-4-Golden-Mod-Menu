@@ -83,7 +83,7 @@ int CallMenuDisplay2()
 					return 0;
 			case 2:
 				BAD_END_CREDITS();
-				break;
+				return 0;
 			case 3:
 				if (BGMSelect() == -1)
 					break;
@@ -312,24 +312,27 @@ int Battles()
 		switch (boss)
 		{
 			case 0:
-				CALL_BATTLE( 512, 0 );
+				CALL_BATTLE( 532, 0 );
 				return 0;
 			case 1:
-				CALL_BATTLE( 513, 0 );
+				CALL_BATTLE( 512, 0 );
 				return 0;
 			case 2:
-				CALL_BATTLE( 514, 0 );
+				CALL_BATTLE( 513, 0 );
 				return 0;
 			case 3:
-				CALL_BATTLE( 515, 0 );
+				CALL_BATTLE( 514, 0 );
 				return 0;
 			case 4:
-				CALL_BATTLE( 516, 0 );
+				CALL_BATTLE( 515, 0 );
 				return 0;
 			case 5:
-				CALL_BATTLE( 517, 0 );
+				CALL_BATTLE( 516, 0 );
 				return 0;
 			case 6:
+				CALL_BATTLE( 517, 0 );
+				return 0;
+			case 7:
 				CALL_BATTLE( 518, 0 );
 				return 0;
 			case 15:
@@ -375,13 +378,16 @@ int Battles2()
 				CALL_BATTLE( 522, 0 );
 				return 0;
 			case 4:
-				CALL_BATTLE( 523, 0 );
+				CALL_BATTLE( 534, 0 );
 				return 0;
 			case 5:
-				CALL_BATTLE( 524, 0 );
+				CALL_BATTLE( 523, 0 );
 				return 0;
 			case 6:
 				CALL_BATTLE( 525, 0 );
+				return 0;
+			case 7:
+				CALL_BATTLE( 535, 0 );
 				return 0;
 			case 15:
 				return -1;
@@ -451,7 +457,7 @@ int CallDungeon()
 	int minor = Get_Number(4, MSG_4);
 	if (minor == -1)
 		return -1;
-	FADE(4, 10);
+	FADE( 1, 10 );
 	FADE_SYNC();
 	CALL_DUNGEON(major, minor);
 	return 0;
