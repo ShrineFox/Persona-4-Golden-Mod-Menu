@@ -45,6 +45,7 @@ void use_gohom()
         OPEN_MSG_WIN();
         MSG( ESCAPE_BAN );
         CLOSE_MSG_WIN();
+		return;
     }
     else if ( GET_CNT( 38 ) == 13 && !ConsistentReaper)
     {
