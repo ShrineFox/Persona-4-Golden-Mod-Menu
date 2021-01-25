@@ -102,6 +102,10 @@ void StreetOrder(bool calendar, bool friend, bool save)
 			break;
 		case 2:
 			shoppingMask = shoppingMask + 2;
+			if ( DATE_CHK( 4, 11 ) )
+            {
+                streetMask = streetMask + 3;
+            }
 			break;
 		case 9:
 			streetMask = streetMask + 2;
