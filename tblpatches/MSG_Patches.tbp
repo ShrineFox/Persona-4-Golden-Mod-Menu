@@ -1,0 +1,33 @@
+{
+  "Version": 1,
+  "Patches": [
+    {
+      "comment": "Segment: Skill Names, Index: 619",
+      "tbl": "MSG",
+      "section": 1,
+      "offset": 14237,
+      "data": "4F 66 66 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+    },
+    {
+      "comment": "Segment: Skill Names, Index: 620",
+      "tbl": "MSG",
+      "section": 1,
+      "offset": 14260,
+      "data": "4F 6E 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+    },
+    {
+      "comment": "Segment: Skill Names, Index: 621",
+      "tbl": "MSG",
+      "section": 1,
+      "offset": 14283,
+      "data": "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+    },
+    {
+      "comment": "Segment: Skill Names, Index: 622",
+      "tbl": "MSG",
+      "section": 1,
+      "offset": 14306,
+      "data": "2B 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+    }
+  ]
+}
