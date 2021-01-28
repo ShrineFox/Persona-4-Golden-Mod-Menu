@@ -76,7 +76,7 @@ void dng_decease_hook()
             {
                 CALL_DUNGEON( var17, 1023 );
             }
-            else if ( var17 == 122 )
+            else if ( var17 == 122 || var17 == 159 )
             {
                 CALL_DUNGEON( var17, 0 );
             }

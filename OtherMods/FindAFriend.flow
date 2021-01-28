@@ -1156,21 +1156,21 @@ void generate_selection_mask()
     }
 
     // Ai isn't available Monday, Tuesday, Saturday, Sunday and Holidays
-    if ((BIT_CHK(0 + 0x0400 + 468) == 0 && timeOfDay != 5) || GET_SL_LEVEL(21) >= 10 || GET_SL_LEVEL(22) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1163) == 0 || (GET_SL_LEVEL(21) <= 0 && GET_SL_LEVEL(22) <= 0))) || (GET_SL_LEVEL(22) <= 0 && GET_SL_LEVEL(21) <= 0 && spoilerFree) || (GET_SL_LEVEL(22) <= 0 && GET_SL_LEVEL(21) <= 0 && GET_SL_LEVEL(16) < 4 && GET_SL_LEVEL(17) < 4))
+    if ((BIT_CHK(0 + 0x0400 + 468) == 0 && timeOfDay != 5) || GET_SL_LEVEL(21) >= 10 || GET_SL_LEVEL(22) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1163) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 894) || (GET_SL_LEVEL(21) <= 0 && GET_SL_LEVEL(22) <= 0))) || (GET_SL_LEVEL(22) <= 0 && GET_SL_LEVEL(21) <= 0 && spoilerFree) || (GET_SL_LEVEL(22) <= 0 && GET_SL_LEVEL(21) <= 0 && GET_SL_LEVEL(16) < 4 && GET_SL_LEVEL(17) < 4))
     {
         pageOneMask = pageOneMask + 2;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         aiState = 0;
     }
     // Ayane isn't available Wednesday, Friday, Saturday, Sunday and Holiday
-    if ((BIT_CHK(0 + 0x0400 + 475) == 0 && timeOfDay != 5) || GET_SL_LEVEL(27) >= 10 || GET_SL_LEVEL(28) >= 10 || GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1161 ) == 0 || (GET_SL_LEVEL(27) <= 0 && GET_SL_LEVEL(28) <= 0))) || (GET_SL_LEVEL(27) <= 0 && GET_SL_LEVEL(28) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 475) == 0 && timeOfDay != 5) || GET_SL_LEVEL(27) >= 10 || GET_SL_LEVEL(28) >= 10 || GET_SL_LEVEL(25) > 0 || GET_SL_LEVEL(26) > 0 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1161) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 896) || (GET_SL_LEVEL(27) <= 0 && GET_SL_LEVEL(28) <= 0))) || (GET_SL_LEVEL(27) <= 0 && GET_SL_LEVEL(28) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 4;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         ayaneState = 0;
     }
     // Chie isn't available Friday and Sunday
-    if (((!BIT_CHK(0 + 0x0400 + 434) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 458 )) && !isHoliday && timeOfDay != 5) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 434) && !BIT_CHK( 0 + 0x0400 + 458 )) || GET_SL_LEVEL(11) >= 10 || GET_SL_LEVEL(12) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1153) == 0 || (GET_SL_LEVEL(11) <= 0 && GET_SL_LEVEL(12) <= 0))) || (GET_SL_LEVEL(11) <= 0 && GET_SL_LEVEL(12) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
+    if ((((!BIT_CHK(0 + 0x0400 + 434) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 458 ))) && !isHoliday && timeOfDay != 5) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 434) && !BIT_CHK( 0 + 0x0400 + 458 )) || GET_SL_LEVEL(11) >= 10 || GET_SL_LEVEL(12) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1153) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 884) || (GET_SL_LEVEL(11) <= 0 && GET_SL_LEVEL(12) <= 0))) || (GET_SL_LEVEL(11) <= 0 && GET_SL_LEVEL(12) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 8;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1184,14 +1184,14 @@ void generate_selection_mask()
         chieScooterState = 0;
     }
     // Daisuke isn't available Monday, Wednesday, Friday, Sunday and Holidays
-    if ((BIT_CHK(0 + 0x0400 + 463) == 0 && timeOfDay != 5) || GET_SL_LEVEL(17) >= 10 || GET_SL_LEVEL(16) > 0 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1159 ) == 0 || GET_SL_LEVEL(17) <= 0)) || (GET_SL_LEVEL(17) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 463) == 0 && timeOfDay != 5) || GET_SL_LEVEL(17) >= 10 || GET_SL_LEVEL(16) > 0 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1159) == 0 || GET_SL_LEVEL(17) <= 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 895))) || (GET_SL_LEVEL(17) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 32;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         daisukeState = 0;
     }
     // Dojima
-    if (BIT_CHK(0 + 0x0400 + 455) == 0 || GET_SL_LEVEL(8) >= 10 || timeOfDay != 5 || (GET_SL_LEVEL(8) <= 0 && spoilerFree))
+    if (BIT_CHK(0 + 0x0400 + 455) == 0 || BIT_CHK( 0 + 0x0400 + 1569 ) || GET_SL_LEVEL(8) >= 10 || timeOfDay != 5 || (GET_SL_LEVEL(8) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 64;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1225,7 +1225,7 @@ void generate_selection_mask()
         hisanoState = 0;
     }
     // Kanji isn't available Monday, Tuesday and Friday
-    if (((!BIT_CHK(0 + 0x0400 + 433) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 457 )) && !isHoliday && timeOfDay != 5 ) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 433) && !BIT_CHK( 0 + 0x0400 + 457 )) || GET_SL_LEVEL(10) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1155) == 0 || GET_SL_LEVEL(10) <= 0)) || (GET_SL_LEVEL(10) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
+    if ((((!BIT_CHK(0 + 0x0400 + 433) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 457 ))) && !isHoliday && timeOfDay != 5 ) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 433) && !BIT_CHK( 0 + 0x0400 + 457 )) || GET_SL_LEVEL(10) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1155) == 0 || GET_SL_LEVEL(10) <= 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 886))) || (GET_SL_LEVEL(10) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 1024;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1239,7 +1239,7 @@ void generate_selection_mask()
         kanjiScooterState = 0;
     }
     // Kou isn't available Monday, Wednesday, Friday, Sunday and Holidays
-    if ((BIT_CHK(0 + 0x0400 + 463) == 0 && timeOfDay != 5) || GET_SL_LEVEL(0x10) >= 10 || GET_SL_LEVEL(17) > 0 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1158 ) == 0 || GET_SL_LEVEL(16) <= 0)) || (GET_SL_LEVEL(16) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 463) == 0 && timeOfDay != 5) || GET_SL_LEVEL(0x10) >= 10 || GET_SL_LEVEL(17) > 0 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1158) == 0 || GET_SL_LEVEL(16) <= 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 895))) || (GET_SL_LEVEL(16) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 4096;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1260,14 +1260,14 @@ void generate_selection_mask()
         nanakoState = 0;
     }
     // Naoki isn't available Friday, Saturday and Sunday
-    if ((BIT_CHK(0 + 0x0400 + 465) == 0 && timeOfDay != 5) || GET_SL_LEVEL(18) >= 10 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1162 ) == 0 || GET_SL_LEVEL(18) <= 0)) || (GET_SL_LEVEL(18) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 465) == 0 && timeOfDay != 5) || GET_SL_LEVEL(18) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1162) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 891) || GET_SL_LEVEL(18) <= 0)) || (GET_SL_LEVEL(18) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 32768;
         numSelectionsRemoved = numSelectionsRemoved + 1;
         naokiState = 0;
     }
     // Naoto isn't available Thursday and Friday
-    if (((!BIT_CHK(0 + 0x0400 + 461) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 462 )) && !isHoliday && timeOfDay != 5) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 462) && !BIT_CHK( 0 + 0x0400 + 461 )) || (BIT_CHK(0 + 0x0400 + 1569) && CHECK_TIME_SPAN(11, 6, 11, 20)) || GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1157) == 0 || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0))) || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
+    if ((((!BIT_CHK(0 + 0x0400 + 461) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 462 ))) && !isHoliday && timeOfDay != 5) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 462) && !BIT_CHK( 0 + 0x0400 + 461 )) || (BIT_CHK(0 + 0x0400 + 1569) && CHECK_TIME_SPAN(11, 6, 11, 20)) || GET_SL_LEVEL(14) >= 10 || GET_SL_LEVEL(15) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1157) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 889) || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0))) || (GET_SL_LEVEL(14) <= 0 && GET_SL_LEVEL(15) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 65536;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1281,7 +1281,7 @@ void generate_selection_mask()
         naotoScooterState = 0;
     }  
     // Rise isn't available Monday, Tuesday, Wednesday and Thursday
-    if (((!BIT_CHK(0 + 0x0400 + 436) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 451 )) && !isHoliday && timeOfDay != 5) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 436) && !BIT_CHK( 0 + 0x0400 + 451 )) || GET_SL_LEVEL(3) >= 10 || GET_SL_LEVEL(4) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1156) == 0 || (GET_SL_LEVEL(3) <= 0 && GET_SL_LEVEL(4) <= 0))) || (GET_SL_LEVEL(3) <= 0 && GET_SL_LEVEL(4) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
+    if ((((!BIT_CHK(0 + 0x0400 + 436) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 451 ))) && !isHoliday && timeOfDay != 5) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 436) && !BIT_CHK( 0 + 0x0400 + 451 )) || GET_SL_LEVEL(3) >= 10 || GET_SL_LEVEL(4) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1156) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 887) || (GET_SL_LEVEL(3) <= 0 && GET_SL_LEVEL(4) <= 0))) || (GET_SL_LEVEL(3) <= 0 && GET_SL_LEVEL(4) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 262144;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1316,7 +1316,7 @@ void generate_selection_mask()
         teddieState = 0;
     }
     // Yosuke isn't available Tuesday and Wednesday
-    if (((!BIT_CHK(0 + 0x0400 + 432) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 454 )) && !isHoliday && timeOfDay != 5) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 432) && !BIT_CHK( 0 + 0x0400 + 454 )) || GET_SL_LEVEL(7) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1152) == 0 || GET_SL_LEVEL(7) <= 0)) || (GET_SL_LEVEL(7) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
+    if ((((!BIT_CHK(0 + 0x0400 + 432) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 454 ))) && !isHoliday && timeOfDay != 5) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 432) && !BIT_CHK( 0 + 0x0400 + 454 )) || GET_SL_LEVEL(7) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1152) == 0 || GET_SL_LEVEL(7) <= 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 883))) || (GET_SL_LEVEL(7) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 8388608;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1330,7 +1330,7 @@ void generate_selection_mask()
         yosukeScooterState = 0;
     }
     // Yukiko isn't available Friday, Saturday and Sunday
-    if (((!BIT_CHK(0 + 0x0400 + 435) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 452 )) && !isHoliday && timeOfDay != 5) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 435) && !BIT_CHK( 0 + 0x0400 + 452 )) || GET_SL_LEVEL(5) >= 10 || GET_SL_LEVEL(6) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1154) == 0 || (GET_SL_LEVEL(5) <= 0 && GET_SL_LEVEL(6) <= 0))) || (GET_SL_LEVEL(5) <= 0 && GET_SL_LEVEL(6) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
+    if ((((!BIT_CHK(0 + 0x0400 + 435) && BIT_CHK(0 + 0x0400 + 1569)) || (!BIT_CHK(0 + 0x0400 + 1569) && !BIT_CHK( 0 + 0x0400 + 452 ))) && !isHoliday && timeOfDay != 5) || (isHoliday && timeOfDay != 5 && !BIT_CHK(0 + 0x0400 + 435) && !BIT_CHK( 0 + 0x0400 + 452 )) || GET_SL_LEVEL(5) >= 10 || GET_SL_LEVEL(6) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1154) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 885) || (GET_SL_LEVEL(5) <= 0 && GET_SL_LEVEL(6) <= 0))) || (GET_SL_LEVEL(5) <= 0 && GET_SL_LEVEL(6) <= 0 && spoilerFree) || (BIT_CHK(0 + 87) && timeOfDay != 5))
     {
         pageOneMask = pageOneMask + 33554432;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1344,7 +1344,7 @@ void generate_selection_mask()
         yukikoScooterState = 0;
     }
     // Yumi isn't available Wednesday, Friday, Saturday, Sunday and Holiday
-    if ((BIT_CHK(0 + 0x0400 + 475) == 0 && timeOfDay != 5) || GET_SL_LEVEL(25) >= 10 || GET_SL_LEVEL(26) >= 10 || GET_SL_LEVEL(28) > 0 || GET_SL_LEVEL(27) > 0 || (timeOfDay == 5 && (BIT_CHK( 0 + 0x0400 + 1160 ) == 0 || (GET_SL_LEVEL(25) <= 0 && GET_SL_LEVEL(26) <= 0))) || (GET_SL_LEVEL(25) <= 0 && GET_SL_LEVEL(26) <= 0 && spoilerFree))
+    if ((BIT_CHK(0 + 0x0400 + 475) == 0 && timeOfDay != 5) || GET_SL_LEVEL(25) >= 10 || GET_SL_LEVEL(26) >= 10 || GET_SL_LEVEL(28) > 0 || GET_SL_LEVEL(27) > 0 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1160) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 896) || (GET_SL_LEVEL(25) <= 0 && GET_SL_LEVEL(26) <= 0))) || (GET_SL_LEVEL(25) <= 0 && GET_SL_LEVEL(26) <= 0 && spoilerFree))
     {
         pageOneMask = pageOneMask + 134217728;
         numSelectionsRemoved = numSelectionsRemoved + 1;
