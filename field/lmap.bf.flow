@@ -1,0 +1,578 @@
+
+// 
+// FlowScript decompiled by AtlusScriptLib by TGE (2017)
+// In the unfortunate case of any bugs, please report them back to me.
+// 
+
+
+// 
+// Imports
+// 
+
+import( "../build/input/field/script/lmap.bf" );
+import( "lmap.bf.msg" );
+
+// 
+// Procedure declarations
+// 
+
+// Yasogami High
+void sel_000_hook()
+{
+    
+    if ( DATE_CHK( 4, 12 ) == 1 )
+    {
+        CALL_FIELD( 6, 15, 1, 0 );
+    }
+    else if ( GET_TIME_OF_DAY() == 3 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 172 ) == 1 )
+        {
+            CALL_FIELD( 6, 15, 1, 0 );
+        }
+        else 
+        {
+            CALL_FIELD( 6, 15, 0, 0 );
+        }
+
+    }
+    else 
+    {
+		if (BIT_CHK(6422))
+			SchoolOrder();
+		else
+			CALL_FIELD( 6, 1, 0, 0 );
+    }
+
+}
+
+void SchoolOrder()
+{
+	begin:
+	SET_SEL_CHOICE_KEYBIND(14, 3);
+	int school = ADV_SEL( School_Text, School, 0 );
+	if (school > 1 && school < 6) 
+	{
+		FADE( 2, 5 );
+		FADE_SYNC();
+	}
+	switch (school)
+	{
+		case 0:
+			SET_SEL_CHOICE_KEYBIND(14, 4);
+			int classroom = ADV_SEL( School_Text, ClassroomBuilding, 0 );
+			if (classroom < 4) 
+			{
+				FADE( 2, 5 );
+				FADE_SYNC();
+			}
+			switch (classroom)
+			{
+				case 0:
+					CALL_FIELD( 6, 1, 0, 0 );
+					break;
+				case 1:
+					CALL_FIELD( 6, 2, 0, 0 );
+					break;
+				case 2:
+					CALL_FIELD( 6, 3, 0, 0 );
+					break;
+				case 3:
+					CALL_FIELD( 6, 14, 0, 0 );
+					break;
+				case 4:
+					goto begin;
+			}
+			break;
+		case 1:
+			SET_SEL_CHOICE_KEYBIND(14, 2);
+			int practice = ADV_SEL( School_Text, PracticeBuilding, 0 );
+			if (practice < 2) 
+			{
+				FADE( 2, 5 );
+				FADE_SYNC();
+			}
+			switch (practice)
+			{
+				case 0:
+					CALL_FIELD( 6, 4, 0, 0 );
+					break;
+				case 1:
+					CALL_FIELD( 6, 5, 0, 0 );
+					break;
+				case 2:
+					goto begin;
+			}
+			break;
+		case 2:
+			CALL_FIELD( 6, 6, 0, 0 );
+			break;
+		case 3:
+			TOWN_MAP( 0 );
+			break;
+	}
+}
+
+// Shopping District
+void sel_001_hook()
+{
+    if (BIT_CHK(6422))
+	{
+		StreetOrder();
+	}
+	else
+	{
+		if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 172 ) == 1 )
+		{
+			CALL_FIELD( 8, 2, 8, 0 );
+		}
+		else 
+		{
+			CALL_FIELD( 8, 2, 0, 0 );
+		}
+	}
+}
+
+void StreetOrder()
+{
+	begin:
+	SET_SEL_CHOICE_KEYBIND(14, 2);
+	int street = ADV_SEL( Street_Text, Street, 0 );
+	switch (street)
+	{
+		case 0:
+			SET_SEL_CHOICE_KEYBIND(14, 5);
+			int shopping = ADV_SEL( Street_Text, ShoppingDistrictDay, 0 );
+			if (shopping < 4) 
+			{
+				FADE( 2, 5 );
+				FADE_SYNC();
+			}
+			switch (shopping)
+			{
+				case 0:
+					CALL_FIELD( 8, 1, 0, 0 );
+					break;
+				case 1:
+					if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 172 ) == 1 )
+					{
+						CALL_FIELD( 8, 2, 8, 0 );
+					}
+					else 
+					{
+						CALL_FIELD( 8, 2, 0, 0 );
+					}
+					break;
+				case 2:
+					DAIDARA_SHOP();
+					CALL_FIELD(8, 2, 2, 0 );
+					break;
+				case 3:
+					SHIROKU_SHOP();
+					CALL_FIELD(8, 2, 3, 0);
+					break;
+				case 4:
+					call_velvet_room();
+					break;
+				case 5:
+					goto begin;
+			}
+			break;
+		case 1:
+			FADE( 2, 5 );
+			FADE_SYNC();
+			CALL_FIELD( 8, 9, 0, 0 );
+			break;
+		case 2:
+			TOWN_MAP( 1 );
+			break;
+	}
+}
+
+// Flood plain
+void sel_003_hook()
+{
+	if (BIT_CHK(6422))
+	{
+		FloodPlainOrder();
+	}
+	else
+		CALL_FIELD( 10, 1, 0, 0 );
+}
+
+void FloodPlainOrder()
+{
+	begin:
+	SET_SEL_CHOICE_KEYBIND(14, 2);
+	int plain = ADV_SEL( FloodPlain_Text, FloodPlain, 0 );
+	switch (plain)
+	{
+		case 0:
+			CALL_FIELD( 10, 1, 0, 0);
+			break;
+		case 1:
+			CALL_FIELD( 10, 2, 0, 0);
+			break;
+		case 2:
+			TOWN_MAP( 3 );
+			break;
+	}
+}
+
+void call_velvet_room()
+{
+    int var6 = GET_MONTH();
+    int var7 = GET_DAY_OF_MONTH();
+    int var8 = 0;
+    
+    if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 0x0400 + 51 ) && BIT_CHK( 0 + 0x0400 + 1304 ) == 0 )
+    {
+        OPEN_MSG_WIN();
+        MSG( MARGARET_GOJITUDAN_01 );
+        CLOSE_MSG_WIN();
+        FADE( 1, 10 );
+        FADE_SYNC();
+        CALL_EVENT( 900, 8, 0 );
+        BIT_ON( 0 + 0x0400 + 1304 );
+        CALL_FIELD( 8, 2, 4, 0 );
+    }
+    else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 0x0400 + 567 ) == 0 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 333 ) == 1 )
+        {
+            OPEN_MSG_WIN();
+            
+            if ( BIT_CHK( 0 + 0x0400 + 515 ) )
+            {
+                
+                if ( BIT_CHK( 0 + 0x0400 + 1280 ) )
+                {
+                    MSG( MSG_0320_GO_HOME_COMU_AL2 );
+                }
+                else 
+                {
+                    MSG( MSG_0320_GO_HOME_COMU_NO2 );
+                    CLOSE_MSG_WIN();
+                    return;
+                }
+
+            }
+            else 
+            {
+                MSG( MSG_0320_RETURN_HOME2 );
+            }
+
+            SET_SEL_CHOICE_KEYBIND( 14, 1 );
+            var8 = SEL( SEL_GO_SEA );
+            CLOSE_MSG_WIN();
+            
+            if ( var8 == 0 )
+            {
+                BIT_ON( 0 + 46 );
+                FADE( 1, 10 );
+                FADE_SYNC();
+                TV_STUDIO();
+                return;
+            }
+            else 
+            {
+                return;
+            }
+
+        }
+        else 
+        {
+            OPEN_MSG_WIN();
+            
+            if ( BIT_CHK( 0 + 0x0400 + 515 ) )
+            {
+                
+                if ( BIT_CHK( 0 + 0x0400 + 1280 ) )
+                {
+                    MSG( MSG_0320_GO_HOME_COMU_AL3 );
+                }
+                else 
+                {
+                    MSG( MSG_0320_GO_HOME_COMU_NO2 );
+                    gojitudan_guide();
+                }
+
+            }
+            else 
+            {
+                MSG( MSG_0320_RETURN_HOME2 );
+            }
+
+            CLOSE_MSG_WIN();
+        }
+
+    }
+    else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 0x0400 + 567 ) && BIT_CHK( 0 + 1019 ) == 0 )
+    {
+        OPEN_MSG_WIN();
+        MSG( MSG_0320_DOUJIMA_SEARCH );
+        CLOSE_MSG_WIN();
+    }
+    else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 1019 ) && BIT_CHK( 0 + 0x0400 + 566 ) == 0 )
+    {
+        PLAY_SOUNDEFFECT( 700 );
+        FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
+        NS_WAIT( 15 );
+        FADE( 1, 10 );
+        FUNCTION_0024( 255, 255, 255 );
+        FADE_SYNC();
+        eve_0320_velvetroom();
+        FUNCTION_006B( 1 );
+        BIT_OFF( 0 + 129 );
+        BIT_ON( 0 + 1018 );
+        CALL_FIELD( 8, 2, 4, 0 );
+    }
+    else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 1007 ) == 1 && BIT_CHK( 0 + 538 ) == 0 )
+    {
+        PLAY_SOUNDEFFECT( 700 );
+        FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
+        NS_WAIT( 15 );
+        FADE( 1, 10 );
+        FUNCTION_0024( 255, 255, 255 );
+        FADE_SYNC();
+        eve_0320_vs_marguerite();
+        CALL_FIELD( 8, 2, 4, 0 );
+    }
+    else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 131 ) == 0 )
+    {
+        OPEN_MSG_WIN();
+        MSG( MSG_0320_NOMORE_NEED3 );
+        CLOSE_MSG_WIN();
+    }
+    else if ( var6 == 4 && var7 == 17 )
+    {
+        OPEN_MSG_WIN();
+        MSG( MSG_0417_VELVET_DONOTENT );
+        CLOSE_MSG_WIN();
+    }
+    else if ( GET_TIME_OF_DAY() == 5 )
+    {
+        BIT_OFF( 0 + 0x0400 + 704 );
+        BIT_OFF( 0 + 0x0400 + 705 );
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 704 ) == 1 && BIT_CHK( 0 + 0x0400 + 705 ) == 0 && BIT_CHK( 0 + 0x0400 + 532 ) == 0 && BIT_CHK( 0 + 87 ) == 0 && BIT_CHK( 0 + 0x0400 + 706 ) == 0 )
+    {
+        OPEN_MSG_WIN();
+        MSG( MSG_MARIE_VELVET_IN );
+        CLOSE_MSG_WIN();
+    }
+
+    PLAY_SOUNDEFFECT( 700 );
+    FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
+    NS_WAIT( 15 );
+    FADE( 1, 10 );
+    FUNCTION_0024( 255, 255, 255 );
+    FADE_SYNC();
+    BIT_ON( 0 + 0x0400 + 655 );
+    
+    if ( BIT_CHK( 0 + 0x0400 + 518 ) == 1 )
+    {
+        BIT_ON( 0 + 0x0400 + 1010 );
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 518 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 59 ) == 0 && BIT_CHK( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 66 ) == 0 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 62 ) == 1 )
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 59 );
+            SHOW_DATE( 0 );
+            CALL_EVENT( 441, 500, 0 );
+            SHOW_DATE( 1 );
+        }
+        else 
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 66 );
+            SHOW_DATE( 0 );
+            CALL_EVENT( 441, 501, 0 );
+            SHOW_DATE( 1 );
+        }
+
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 704 ) == 1 || BIT_CHK( 0 + 0x0400 + 705 ) == 1 )
+    {
+        BIT_ON( 0 + 0x0400 + 641 );
+    }
+
+    VELVET_ROOM();
+    BIT_OFF( 0 + 0x0400 + 655 );
+    BIT_OFF( 0 + 0x0400 + 719 );
+    
+    if ( BIT_CHK( 0 + 0x0400 + 704 ) == 1 || BIT_CHK( 0 + 0x0400 + 705 ) == 1 )
+    {
+        BIT_OFF( 0 + 0x0400 + 641 );
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 704 ) == 1 && BIT_CHK( 0 + 0x0400 + 705 ) == 0 && BIT_CHK( 0 + 0x0400 + 532 ) == 0 && BIT_CHK( 0 + 87 ) == 0 && BIT_CHK( 0 + 0x0400 + 706 ) == 0 )
+    {
+        BIT_OFF( 0 + 0x0400 + 704 );
+        BIT_ON( 0 + 0x0400 + 705 );
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 718 ) == 1 )
+    {
+        BIT_OFF( 0 + 0x0400 + 718 );
+        BIT_ON( 0 + 0x0400 + 1076 );
+        
+        if ( (GET_SL_LEVEL( 33 ) == 10 || GET_SL_LEVEL( 34 ) == 10) && BIT_CHK( 0 + 0x0400 + 1357 ) == 1 )
+        {
+            CALL_EVENT( 745, 595, 0 );
+            BIT_ON( 0 + 0x0400 + 1216 );
+            BIT_ON( 0 + 0x0400 + 1217 );
+            BIT_ON( 0 + 0x0400 + 1218 );
+            BIT_ON( 0 + 0x0400 + 1219 );
+            BIT_ON( 0 + 0x0400 + 1220 );
+            BIT_ON( 0 + 0x0400 + 1221 );
+        }
+        else if ( (GET_SL_LEVEL( 33 ) == 9 || GET_SL_LEVEL( 34 ) == 9) && BIT_CHK( 0 + 0x0400 + 1356 ) == 1 && BIT_CHK( 0 + 0x0400 + 1354 ) == 0 )
+        {
+            BIT_ON( 0 + 0x0400 + 1354 );
+            CALL_EVENT( 740, 585, 0 );
+            BIT_ON( 0 + 0x0400 + 1216 );
+            BIT_ON( 0 + 0x0400 + 1217 );
+            BIT_ON( 0 + 0x0400 + 1218 );
+            BIT_ON( 0 + 0x0400 + 1219 );
+            BIT_ON( 0 + 0x0400 + 1220 );
+            BIT_ON( 0 + 0x0400 + 1221 );
+        }
+        else if ( GET_SL_LEVEL( 33 ) == 5 && BIT_CHK( 0 + 0x0400 + 1355 ) == 1 && BIT_CHK( 0 + 0x0400 + 1353 ) == 0 )
+        {
+            BIT_ON( 0 + 0x0400 + 1353 );
+            CALL_EVENT( 740, 545, 0 );
+            BIT_ON( 0 + 0x0400 + 1216 );
+            BIT_ON( 0 + 0x0400 + 1217 );
+            BIT_ON( 0 + 0x0400 + 1218 );
+            BIT_ON( 0 + 0x0400 + 1219 );
+            BIT_ON( 0 + 0x0400 + 1220 );
+            BIT_ON( 0 + 0x0400 + 1221 );
+        }
+        else 
+        {
+            EVT_FUNCTION_000A();
+        }
+
+        BIT_OFF( 0 + 0x0400 + 1076 );
+        EVT_FUNCTION_0016( 0 );
+        TV_STUDIO();
+        
+        if ( EVT_FUNCTION_0002( 33 ) == 0 && EVT_FUNCTION_0002( 34 ) == 0 )
+        {
+            EVT_FUNCTION_0001( 33 );
+        }
+
+    }
+    else 
+    {
+        CALL_FIELD( 8, 2, 4, 0 );
+    }
+
+}
+
+void gojitudan_guide()
+{
+    
+    if ( BIT_CHK( 0 + 0x0400 + 55 ) == 1 && BIT_CHK( 0 + 0x0400 + 1290 ) == 1 || BIT_CHK( 0 + 0x0400 + 55 ) == 0 || BIT_CHK( 0 + 0x0400 + 38 ) == 1 && BIT_CHK( 0 + 0x0400 + 34 ) == 1 || BIT_CHK( 0 + 0x0400 + 35 ) == 1 && BIT_CHK( 0 + 0x0400 + 1294 ) == 1 || BIT_CHK( 0 + 0x0400 + 34 ) == 0 && BIT_CHK( 0 + 0x0400 + 35 ) == 0 && BIT_CHK( 0 + 0x0400 + 42 ) == 1 || BIT_CHK( 0 + 0x0400 + 43 ) == 1 && BIT_CHK( 0 + 0x0400 + 1293 ) == 1 || BIT_CHK( 0 + 0x0400 + 42 ) == 0 && BIT_CHK( 0 + 0x0400 + 43 ) == 0 && BIT_CHK( 0 + 0x0400 + 41 ) == 1 && BIT_CHK( 0 + 0x0400 + 1303 ) == 1 || BIT_CHK( 0 + 0x0400 + 41 ) == 0 && BIT_CHK( 0 + 0x0400 + 49 ) == 1 && BIT_CHK( 0 + 0x0400 + 1295 ) == 1 || BIT_CHK( 0 + 0x0400 + 49 ) == 0 && BIT_CHK( 0 + 0x0400 + 51 ) == 1 && BIT_CHK( 0 + 0x0400 + 1304 ) == 1 || BIT_CHK( 0 + 0x0400 + 51 ) == 0 && BIT_CHK( 0 + 0x0400 + 54 ) == 1 && BIT_CHK( 0 + 0x0400 + 1296 ) == 1 || BIT_CHK( 0 + 0x0400 + 54 ) == 0 && BIT_CHK( 0 + 0x0400 + 721 ) == 1 || BIT_CHK( 0 + 0x0400 + 737 ) == 1 && BIT_CHK( 0 + 0x0400 + 1289 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 58 ) == 0 || BIT_CHK( 0 + 0x0400 + 721 ) == 0 && BIT_CHK( 0 + 0x0400 + 737 ) == 0 || BIT_CHK( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 58 ) == 1 )
+    {
+        OPEN_MSG_WIN();
+        
+        if ( BIT_CHK( 0 + 0x0400 + 44 ) == 1 && BIT_CHK( 0 + 0x0400 + 1300 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_KITU );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 47 ) == 1 && BIT_CHK( 0 + 0x0400 + 1306 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_BASK );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 48 ) == 1 && BIT_CHK( 0 + 0x0400 + 1307 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_SOCC );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 40 ) == 1 && BIT_CHK( 0 + 0x0400 + 1298 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_NURS );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 60 ) == 1 && BIT_CHK( 0 + 0x0400 + 1305 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_HAHA );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 36 ) == 1 || BIT_CHK( 0 + 0x0400 + 37 ) == 1 && BIT_CHK( 0 + 0x0400 + 1297 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_YUKI );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 50 ) == 1 && BIT_CHK( 0 + 0x0400 + 1299 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_ROUH );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 38 ) == 1 && BIT_CHK( 0 + 0x0400 + 1310 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_YOUS );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 45 ) == 1 || BIT_CHK( 0 + 0x0400 + 46 ) == 1 && BIT_CHK( 0 + 0x0400 + 1308 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_NAOT );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 52 ) == 1 || BIT_CHK( 0 + 0x0400 + 53 ) == 1 && BIT_CHK( 0 + 0x0400 + 1309 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_AI );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 56 ) == 1 || BIT_CHK( 0 + 0x0400 + 57 ) == 1 && BIT_CHK( 0 + 0x0400 + 1301 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_ENGE );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 58 ) == 1 || BIT_CHK( 0 + 0x0400 + 59 ) == 1 && BIT_CHK( 0 + 0x0400 + 1302 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_SUIS );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 33 ) == 1 && BIT_CHK( 0 + 0x0400 + 39 ) == 1 && BIT_CHK( 0 + 0x0400 + 1292 ) == 0 && BIT_CHK( 0 + 0x0400 + 1311 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_DOUJ2 );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 33 ) == 1 && BIT_CHK( 0 + 0x0400 + 1292 ) == 0 && BIT_CHK( 0 + 0x0400 + 39 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_NANA );
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 39 ) == 1 && BIT_CHK( 0 + 0x0400 + 1311 ) == 0 && BIT_CHK( 0 + 0x0400 + 33 ) == 0 )
+        {
+            MSG( MSG_GOJITUDAN_GUIDE_DOUJ );
+        }
+
+        CLOSE_MSG_WIN();
+    }
+
+}
+
+void eve_0320_velvetroom()
+{
+    SHOW_DATE( 0 );
+    CALL_EVENT( 428, 2, 0 );
+    SHOW_DATE( 1 );
+    BIT_ON( 0 + 0x0400 + 566 );
+    SET_ITEM( 0x0400 + 25, 1 );
+    BIT_OFF( 0 + 992 );
+}
+
+void eve_0320_vs_marguerite()
+{
+    SHOW_DATE( 0 );
+    CALL_EVENT( 440, 2, 0 );
+    SHOW_DATE( 1 );
+    BIT_ON( 0 + 0x0400 + 568 );
+    SET_ITEM( 0x0400 + 26, 1 );
+    BIT_ON( 0 + 0x0400 + 0x0800 + 785 );
+    BIT_ON( 0 + 0x0400 + 0x0800 + 788 );
+    SET_CNT( 28, 0 );
+}
