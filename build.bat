@@ -22,6 +22,7 @@ if not exist %OUTPUT_PATH%\tblpatches mkdir %OUTPUT_PATH%\tblpatches
 
 %COMPILER% .\init_free\field.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\init_free\field\script\field.bf" -Hook
 %COMPILER% .\field\dungeon.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\script\dungeon.bf" -Hook
+%COMPILER% .\field\lmap.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\script\lmap.bf" -Hook
 %COMPILER% .\field\f007.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\pack\fd007_001\f007.bf" -Hook
 %COMPILER% .\field\f010.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\pack\fd010_002\f010.bf" -Hook
 %COMPILER% .\scheduler\scheduler_04.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_04.bf" -Hook

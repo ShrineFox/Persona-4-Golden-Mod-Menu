@@ -125,7 +125,7 @@ void SelectFloor()
 	bool chosen = false;
 	bool firstPage = true;
 	
-	if (!if ( floor == 5 || floor == 20 || floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120 || floor == 140 || floor == 160 ))
+	if ( !(floor == 5 || floor == 20 || floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120 || floor == 140 || floor == 160 ))
 	{
 		if (sVar8 == 5)
 		{
