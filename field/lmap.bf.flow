@@ -138,10 +138,10 @@ void StreetOrder()
 {
 	SET_SEL_CHOICE_KEYBIND(14, 6);
 	int street = ADV_SEL( Street_Text, ShoppingDistrictDay, 0 );
+	FADE( 2, 5 );
+	FADE_SYNC();
 	switch (street)
 	{
-		FADE( 2, 5 );
-		FADE_SYNC();
 		case 0:
 			CALL_FIELD( 8, 1, 0, 0 );
 			break;
