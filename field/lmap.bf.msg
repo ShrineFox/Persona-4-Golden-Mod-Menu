@@ -42,14 +42,10 @@
 [msg Street_Text]
 [f 0 5 -258][f 2 1]Town of Inaba[n][f 1 1][e]
 
-[sel Street]
-[f 0 5 -258][f 2 1]Shopping District[e]
-[f 0 5 -258][f 2 1]Shrine[e]
-[f 0 5 -258][f 2 1]Cancel[e]
-
 [sel ShoppingDistrictDay]
 [f 0 5 -258][f 2 1]Shopping District, North[e]
 [f 0 5 -258][f 2 1]Shopping District, South[e]
+[f 0 5 -258][f 2 1]Shrine[e]
 [f 0 5 -258][f 2 1]Daidara Metalworks[e]
 [f 0 5 -258][f 2 1]Shiroku Store[e]
 [f 0 5 -258][f 2 1]Velvet Room[e]

@@ -52,7 +52,7 @@ void SchoolOrder()
 	begin:
 	SET_SEL_CHOICE_KEYBIND(14, 3);
 	int school = ADV_SEL( School_Text, School, 0 );
-	if (school > 1 && school < 6) 
+	if (school > 1) 
 	{
 		FADE( 2, 5 );
 		FADE_SYNC();
@@ -136,55 +136,40 @@ void sel_001_hook()
 
 void StreetOrder()
 {
-	begin:
-	SET_SEL_CHOICE_KEYBIND(14, 2);
-	int street = ADV_SEL( Street_Text, Street, 0 );
+	SET_SEL_CHOICE_KEYBIND(14, 6);
+	int street = ADV_SEL( Street_Text, ShoppingDistrictDay, 0 );
 	switch (street)
 	{
+		FADE( 2, 5 );
+		FADE_SYNC();
 		case 0:
-			SET_SEL_CHOICE_KEYBIND(14, 5);
-			int shopping = ADV_SEL( Street_Text, ShoppingDistrictDay, 0 );
-			if (shopping < 4) 
-			{
-				FADE( 2, 5 );
-				FADE_SYNC();
-			}
-			switch (shopping)
-			{
-				case 0:
-					CALL_FIELD( 8, 1, 0, 0 );
-					break;
-				case 1:
-					if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 172 ) == 1 )
-					{
-						CALL_FIELD( 8, 2, 8, 0 );
-					}
-					else 
-					{
-						CALL_FIELD( 8, 2, 0, 0 );
-					}
-					break;
-				case 2:
-					DAIDARA_SHOP();
-					CALL_FIELD(8, 2, 2, 0 );
-					break;
-				case 3:
-					SHIROKU_SHOP();
-					CALL_FIELD(8, 2, 3, 0);
-					break;
-				case 4:
-					call_velvet_room();
-					break;
-				case 5:
-					goto begin;
-			}
+			CALL_FIELD( 8, 1, 0, 0 );
 			break;
 		case 1:
-			FADE( 2, 5 );
-			FADE_SYNC();
-			CALL_FIELD( 8, 9, 0, 0 );
+			if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 172 ) == 1 )
+			{
+				CALL_FIELD( 8, 2, 8, 0 );
+			}
+			else 
+			{
+				CALL_FIELD( 8, 2, 0, 0 );
+			}
 			break;
 		case 2:
+			CALL_FIELD( 8, 9, 0, 0 );
+			break;
+		case 3:
+			DAIDARA_SHOP();
+			CALL_FIELD(8, 2, 2, 0 );
+			break;
+		case 4:
+			SHIROKU_SHOP();
+			CALL_FIELD(8, 2, 3, 0);
+			break;
+		case 5:
+			call_velvet_room();
+			break;
+		case 6:
 			TOWN_MAP( 1 );
 			break;
 	}
