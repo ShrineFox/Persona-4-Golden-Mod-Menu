@@ -13,10 +13,10 @@ bool saveAnywhere()
 
 void field_order_hook()
 {
-	bool calendar = BIT_CHK(6423);
-	bool friend = BIT_CHK(6425);
-	bool plus = BIT_CHK(6422);
-	bool save = BIT_CHK(6426);
+	bool calendar = BIT_CHK(6523);
+	bool friend = BIT_CHK(6525);
+	bool plus = BIT_CHK(6522);
+	bool save = BIT_CHK(6526);
 
 	if ( GET_FIELD_MAJOR() == 6 )
 	{
@@ -120,7 +120,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
 	if (!save || saveAnywhere() || saveAnywhere())
 		streetMask = streetMask + 32;
 	begin:
-	if (!BIT_CHK(6421))
+	if (!BIT_CHK(6521))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
 	SET_SEL_CHOICE_KEYBIND(14, 6);
 	int street = ADV_SEL( Street_Text, Street, streetMask );
@@ -259,7 +259,7 @@ void SchoolOrder(bool calendar, bool friend, bool save)
 	if (!save || saveAnywhere())
 		schoolMask = schoolMask + 256;
 	begin:
-	if (!BIT_CHK(6421))
+	if (!BIT_CHK(6521))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
 	SET_SEL_CHOICE_KEYBIND(14, 9);
 	int school = ADV_SEL( School_Text, School, schoolMask );
@@ -381,7 +381,7 @@ void NightOrder(bool calendar, bool friend, bool save)
 	if (!save || saveAnywhere())
 		nightMask = nightMask + 64;
 	begin:
-	if (!BIT_CHK(6421))
+	if (!BIT_CHK(6521))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
 	SET_SEL_CHOICE_KEYBIND( 14, 7 );
 	int street = ADV_SEL( Street_Text, StreetNight, nightMask );

@@ -60,7 +60,6 @@
 [f 0 5 -258][f 2 1]Social Stats[e]
 [f 0 5 -258][f 2 1]Party Members[e]
 [f 0 5 -258][f 2 1]Refill HP/SP[e]
-[f 0 5 -258][f 2 1]Level Up Party[e]
 
 [msg Facility_Menu_Text]
 [f 0 5 -258][f 2 1]Facility Menu (Page 1/2)[n][f 1 1][e]

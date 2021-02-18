@@ -4,7 +4,7 @@ void dng_decease_hook()
     int var18 = GET_CNT( 34 );
     SHOW_DATE( 0 );
 	//If VRGameOverSkip enabled
-	if (!BIT_CHK(6427))
+	if (!BIT_CHK(6527))
 	{
 		CALL_EVENT( 450, 2, 0 );
 	}

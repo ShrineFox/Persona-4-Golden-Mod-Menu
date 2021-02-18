@@ -8,7 +8,7 @@ void dng_tbox_hook()
     int var12 = FLD_FUNCTION_0026();
 	
 	// Always reaper if bit is set unless locked chest
-	if (BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && var12 != 1 && BIT_CHK(6428))
+	if (BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && var12 != 1 && BIT_CHK(6528))
 		var12 = 10;
 	
     get_box_item_id();
@@ -116,11 +116,11 @@ void death_check_hook()
         if ( var178 == 13 && BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 0 )
         {
 			// Set back to 0 so you'd need 21 more to trigger again
-			if (BIT_CHK(6428))
+			if (BIT_CHK(6528))
 				SET_CNT( 38, 14 );
             BIT_ON( 0 + 0x0400 + 0x0800 + 46 );
         }
-		else if (!BIT_CHK(6428))
+		else if (!BIT_CHK(6528))
 			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
     }
 
@@ -252,7 +252,7 @@ void death_box_hook()
     if ( var185 == 1 )
     {
 		//If ConsistentReaper enabled
-		if (BIT_CHK(6428))
+		if (BIT_CHK(6528))
 		{
 			OPEN_MSG_WIN();
 			MSG( New_Death_Msg );
@@ -269,7 +269,7 @@ void common_floor_change_hook()
 {
     RESET_FLOOR();
 	//If ConsistentReaper enabled
-	if (BIT_CHK(6428))
+	if (BIT_CHK(6528))
 	{
 		// Turn off bits if they said no
 		if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && GET_CNT( 999 ) == 1  )
@@ -333,7 +333,7 @@ void backto_stair_hook()
     if ( var238 == 6 || var238 == 8 || var238 == 21 || var238 == 41 || var238 == 61 || var238 == 81 || var238 == 101 || var238 == 121 || var238 == 141 || var238 == 161 )
     {
 		//If ConsistentReaper enabled
-		if (BIT_CHK(6428))
+		if (BIT_CHK(6528))
 		{
 			int floor = var238 - 1;
 			if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 && 
@@ -383,7 +383,7 @@ void dng_escape_hook()
     else 
 	{
 		//If ConsistentReaper enabled
-		if (BIT_CHK(6428))
+		if (BIT_CHK(6528))
 		{
 			if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 1 )
 			{

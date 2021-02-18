@@ -8,21 +8,21 @@ void FirstTimeSetup()
 	CLOSE_MSG_WIN();
 	
 	//Marks first time setup as complete
-	BIT_ON(6420);
+	BIT_ON(6520);
 	
 	//Set all menu option values to 0
 	for (int i = 0; i < 8; i++)
 	{
-		BIT_OFF(6421 + i);
+		BIT_OFF(6521 + i);
 	}
 	
 	//Enable "Options" in menu for later configuration
-	BIT_ON(6429);
+	BIT_ON(6529);
 	
 	//Set all dungeon option values to 0
 	for (int i = 0; i < 4; i++)
 	{
-		BIT_OFF(6430 + i);
+		BIT_OFF(6530 + i);
 	}
 	
 	//Toggle options until done
@@ -32,7 +32,7 @@ void FirstTimeSetup()
 void MenuOptions()
 {
 	//First time setup for Custom Square Menu
-	if (!BIT_CHK(6420))
+	if (!BIT_CHK(6520))
 	{
 		FirstTimeSetup();
 	}
@@ -45,7 +45,7 @@ void MenuOptions()
 			//Set message variables for menu options
 			for (int i = 0; i < 8; i++)
 			{
-				SET_MSG_VAR(i, 619 + BIT_CHK(6421 + i), 6);
+				SET_MSG_VAR(i, 619 + BIT_CHK(6521 + i), 6);
 			}
 			SET_SEL_CHOICE_KEYBIND( 14, 8 );
 			SET_SEL_CHOICE_KEYBIND( 15, 8 );
@@ -53,12 +53,12 @@ void MenuOptions()
 			int selection = ADV_SEL(SquareMenuOptions_Text, SquareMenuOptions, 0);
 			if (selection != 8)
 			{
-				ToggleOption(ModMenu_About, 6421, selection);
+				ToggleOption(ModMenu_About, 6521, selection);
 			}
 			else
 			{
 				done = true;
-				if (!BIT_CHK(6421))
+				if (!BIT_CHK(6521))
 				{
 					OPEN_MSG_WIN();
 					MSG(OptionsWarning);
@@ -98,10 +98,10 @@ void ToggleOption(int startMsg, int startFlag, int selection)
 			BIT_OFF(startFlag + selection);
 			if (selection == 3)
 			{
-				BIT_OFF(6430);
-				BIT_OFF(6431);
-				BIT_OFF(6432);
-				BIT_OFF(6433);
+				BIT_OFF(6530);
+				BIT_OFF(6531);
+				BIT_OFF(6532);
+				BIT_OFF(6533);
 			}
 			break;
 		case 2: //back
@@ -119,7 +119,7 @@ void DungeonOptionsToggle()
 		//Set message variables for menu options
 		for (int i = 0; i < 4; i++)
 		{
-			SET_MSG_VAR(i, 619 + BIT_CHK(6430 + i), 6);
+			SET_MSG_VAR(i, 619 + BIT_CHK(6530 + i), 6);
 		}
 		SET_SEL_CHOICE_KEYBIND( 14, 4 );
 		SET_SEL_CHOICE_KEYBIND( 15, 4 );
@@ -127,7 +127,7 @@ void DungeonOptionsToggle()
 		int selection = ADV_SEL(DungeonOptions_Text, DungeonOptions, 0);
 		if (selection != 4)
 		{
-			ToggleOption(ShowFox_About, 6430, selection);
+			ToggleOption(ShowFox_About, 6530, selection);
 		}
 		else
 		{

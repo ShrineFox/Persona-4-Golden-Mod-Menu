@@ -18,7 +18,7 @@ import( "DungeonTravel.msg" );
 
 void SelectFloor()
 {
-	bool ConsitentReaper = BIT_CHK(6428);
+	bool ConsitentReaper = BIT_CHK(6528);
 	int floor = GET_FLOOR_ID();
 	int EntranceFloor;
 	int FloorText;

@@ -10,62 +10,81 @@ import ( "../OtherMods/DungeonOptions/DungeonOptions.flow" ); //Various QoL Dung
 import ( "../OtherMods/ConsistentReaperField.flow" ); //Hooks field functions for consistent reaper 
 import ( "../OtherMods/MobileCalendar.flow" );
 
+// Turn off all old conflicting flags
+void TurnOffAllOptions()
+{
+    BIT_OFF(6420); //Disable First Time Setup
+    BIT_OFF(6421); //Mod Menu
+    BIT_OFF(6422); // QuickTravelPlus
+    BIT_OFF(6423); // MobileCalendar
+    BIT_OFF(6424); // DungeonOptions
+    BIT_OFF(6425); // Find a Friend
+    BIT_OFF(5678); // Spoiler-free find a friend
+    BIT_OFF(6426); // Save Anywhere
+    BIT_OFF(6427); // Game over skip
+    BIT_OFF(6428); //Reap-Balanced Encounters
+	BIT_OFF(6429); //Options
+    BIT_OFF(6430); //Enable Fox (DungeonOptions)
+    BIT_OFF(6431); //Enable Floor Select (DungeonOptions)
+    BIT_OFF(6432); //Enable Goho-M (DungeonOptions)
+    BIT_OFF(6433); //Enable Organize Party (DungeonOptions)
+}
+
 void TurnOnAllOptions()
 {
-	// Uncomment to enable options without setup
-	BIT_ON(6420); //Disable First Time Setup
-	//BIT_ON(6421); //Mod Menu
-	BIT_OFF(6421); //Mod Menu
-	BIT_ON(6422); // QuickTravelPlus
-	BIT_ON(6423); // MobileCalendar
-	BIT_ON(6424); // DungeonOptions
-	BIT_ON(6425); // Find a Friend
-	BIT_ON(5678); // Spoiler-free find a friend
-	BIT_OFF(6426); // Save Anywhere
-	BIT_ON(6427); // Game over skip
-	BIT_ON(6428); //Reap-Balanced Encounters
-	BIT_ON(6430); //Enable Fox (DungeonOptions)
-	BIT_ON(6431); //Enable Floor Select (DungeonOptions)
-	BIT_ON(6432); //Enable Goho-M (DungeonOptions)
-	BIT_ON(6433); //Enable Organize Party (DungeonOptions)
+    BIT_ON(6520); //Disable First Time Setup
+    BIT_OFF(6521); //Mod Menu
+    BIT_ON(6522); // QuickTravelPlus
+    BIT_ON(6523); // MobileCalendar
+    BIT_ON(6524); // DungeonOptions
+    BIT_ON(6525); // Find a Friend
+    BIT_ON(5678); // Spoiler-free find a friend
+    BIT_OFF(6526); // Save Anywhere
+    BIT_ON(6527); // Game over skip
+    BIT_ON(6528); //Reap-Balanced Encounters
+    BIT_ON(6530); //Enable Fox (DungeonOptions)
+    BIT_ON(6531); //Enable Floor Select (DungeonOptions)
+    BIT_ON(6532); //Enable Goho-M (DungeonOptions)
+    BIT_ON(6533); //Enable Organize Party (DungeonOptions)
 }
 
 void order_party_hook()
 {
-	restart:
-	
-	bool modMenu = BIT_CHK(6421); //Mod menu with many different debugging options
-	bool mobileCalendar = BIT_CHK(6423); //Quickly open Calendar
-	bool findAFriend = BIT_CHK(6425); //Fast travel to social link locations
-	bool saveAnywhere = BIT_CHK(6426); //Save anywhere
-	
-	
-	//First Time Setup
-	if (!BIT_CHK(6420))
-	{
-		MenuOptions();
-		//TurnOnAllOptions();
-		goto restart;
-	}
+    restart:
+    
+    bool modMenu = BIT_CHK(6521); //Mod menu with many different debugging options
+    bool mobileCalendar = BIT_CHK(6523); //Quickly open Calendar
+    bool findAFriend = BIT_CHK(6525); //Fast travel to social link locations
+    bool saveAnywhere = BIT_CHK(6526); //Save anywhere
+    
+    
+    //First Time Setup
+    if (!BIT_CHK(6520))
+    {
+		TurnOffAllOptions();
+        MenuOptions();
+        //TurnOnAllOptions();
+        goto restart;
+    }
 
-	if (!modMenu)
-	{
-		options = false;
-		if ( GET_FLOOR_ID() > 0)
-		{
-			dungeon_order();
-		}
-		else
-		{
-			field_order();
-		}
-		if (options)
-			goto restart;
-	}
-	//Multiple options
-	else 
-	{
-		if (ModMenuDisplay() == -1)
-			goto restart;
-	}
+    if (!modMenu)
+    {
+        options = false;
+        if ( GET_FLOOR_ID() > 0)
+        {
+            dungeon_order();
+        }
+        else
+        {
+            field_order();
+        }
+        if (options)
+            goto restart;
+    }
+    //Multiple options
+    else 
+    {
+        if (ModMenuDisplay() == -1)
+            goto restart;
+    }
 }

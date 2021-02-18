@@ -2,9 +2,9 @@ import ( "MobileCalendar.msg" );
 
 void school_order_hook()
 {
-	bool calendar = BIT_CHK(6423);
-	bool friend = BIT_CHK(6425);
-	bool save = BIT_CHK(6426);
+	bool calendar = BIT_CHK(6523);
+	bool friend = BIT_CHK(6525);
+	bool save = BIT_CHK(6526);
 	int var54 = 327;
 	int var55 = SCHOOL_SEL_HOOK;
 	int var57 = 0;
@@ -40,7 +40,7 @@ void school_order_hook()
         var57 = var57 + 64;
 	if (!save || saveAnywhere())
 		var57 = var57 + 128;
-	if (!BIT_CHK(6421))
+	if (!BIT_CHK(6521))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
 	SET_SEL_CHOICE_KEYBIND( 14, 8 );
 	int var56 = ADV_SEL( var54, var55, var57 );
@@ -104,9 +104,9 @@ void school_order_hook()
 
 void myhouse_order_hook()
 {
-	bool calendar = BIT_CHK(6423);
-	bool friend = BIT_CHK(6425);
-	bool save = BIT_CHK(6426);
+	bool calendar = BIT_CHK(6523);
+	bool friend = BIT_CHK(6525);
+	bool save = BIT_CHK(6526);
     int var58 = 327;
     int var59 = MYHOME_SEL_HOOK;
     int var61 = 0;
@@ -146,7 +146,7 @@ void myhouse_order_hook()
         var61 = var61 + 0x1000;
     }
 
-	if (!BIT_CHK(6421))
+	if (!BIT_CHK(6521))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
     SET_SEL_CHOICE_KEYBIND( 14, 11 );
     int var60 = ADV_SEL( var58, var59, var61 );
@@ -224,9 +224,9 @@ void myhouse_order_hook()
 
 void street_order_hook()
 {
-	bool calendar = BIT_CHK(6423);
-	bool friend = BIT_CHK(6425);
-	bool save = BIT_CHK(6426);
+	bool calendar = BIT_CHK(6523);
+	bool friend = BIT_CHK(6525);
+	bool save = BIT_CHK(6526);
     int var62 = 0;
     int var63 = 0;
     int var65 = 0;
@@ -240,7 +240,7 @@ void street_order_hook()
         sel_mask_night_play();
         var65 = sVar136;
 		
-		if (!BIT_CHK(6421))
+		if (!BIT_CHK(6521))
 			SET_SEL_CHOICE_KEYBIND(12, 18);
         SET_SEL_CHOICE_KEYBIND( 14, 9 );
         var64 = ADV_SEL( var62, var63, var65 );
@@ -327,7 +327,7 @@ void street_order_hook()
 			var65 = var65 + 32;
 		if (!save || saveAnywhere())
 			var65 = var65 + 64;
-		if (!BIT_CHK(6421))
+		if (!BIT_CHK(6521))
 			SET_SEL_CHOICE_KEYBIND(12, 18);
         SET_SEL_CHOICE_KEYBIND( 14, 7 );
         var64 = ADV_SEL( var62, var63, var65 );
@@ -419,7 +419,7 @@ void night_place_order_exit_hook()
     sel_mask_night_play();
     int var137 = sVar136;
     MSG( EXIT_NIGHT_STREET_OK );
-	if (!BIT_CHK(6421))
+	if (!BIT_CHK(6521))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
     SET_SEL_CHOICE_KEYBIND( 14, 9 );
     SET_MASK( var137 );
@@ -495,9 +495,9 @@ void night_place_order_exit_hook()
 
 void sel_mask_night_play_hook()
 {
-	bool calendar = BIT_CHK(6423);
-	bool friend = BIT_CHK(6425);
-	bool save = BIT_CHK(6426);
+	bool calendar = BIT_CHK(6523);
+	bool friend = BIT_CHK(6525);
+	bool save = BIT_CHK(6526);
     int var139 = 0;
     sVar136 = 0;
     
@@ -550,9 +550,9 @@ void sel_mask_night_play_hook()
 
 void gms_order_hook()
 {
-	bool calendar = BIT_CHK(6423);
-	bool friend = BIT_CHK(6425);
-	bool save = BIT_CHK(6426);
+	bool calendar = BIT_CHK(6523);
+	bool friend = BIT_CHK(6525);
+	bool save = BIT_CHK(6526);
 	int var66 = 327;
 	int var67 = GMS_SEL_HOOK;
 	int var69 = 0;
@@ -565,7 +565,7 @@ void gms_order_hook()
         var69 = var69 + 8;
 	if (!save || saveAnywhere())
 		var69 = var69 + 16;
-	if (!BIT_CHK(6421))
+	if (!BIT_CHK(6521))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
 	SET_SEL_CHOICE_KEYBIND( 14, 5 );
 	int var68 = ADV_SEL( var66, var67, var69 );
@@ -601,9 +601,9 @@ void gms_order_hook()
 
 void embank_order_hook()
 {
-	bool calendar = BIT_CHK(6423);
-	bool friend = BIT_CHK(6425);
-	bool save = BIT_CHK(6426);
+	bool calendar = BIT_CHK(6523);
+	bool friend = BIT_CHK(6525);
+	bool save = BIT_CHK(6526);
 	int var70 = 0;
 	int var71 = 0;
 	int var73 = 0;
@@ -622,7 +622,7 @@ void embank_order_hook()
 		if (!friend || numSelectionsRemoved == 28 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
 			var73 = var73 + 16;
 		
-		if (!BIT_CHK(6421))
+		if (!BIT_CHK(6521))
 			SET_SEL_CHOICE_KEYBIND(12, 18);
 		SET_SEL_CHOICE_KEYBIND( 14, 6 );
 		var72 = ADV_SEL( var70, var71, var73 );
@@ -680,7 +680,7 @@ void embank_order_hook()
 			var73 = var73 + 2;
 		}
 
-		if (!BIT_CHK(6421))
+		if (!BIT_CHK(6521))
 			SET_SEL_CHOICE_KEYBIND(12, 18);
 		SET_SEL_CHOICE_KEYBIND( 14, 6 );
 		var72 = ADV_SEL( var70, var71, var73 );
@@ -730,9 +730,9 @@ void embank_order_hook()
 
 void station_order_hook()
 {
-	bool calendar = BIT_CHK(6423);
-	bool friend = BIT_CHK(6425);
-	bool save = BIT_CHK(6426);
+	bool calendar = BIT_CHK(6523);
+	bool friend = BIT_CHK(6525);
+	bool save = BIT_CHK(6526);
     int var74 = 327;
     int var75 = STATION_SEL_HOOK;
     int var77 = 0;
@@ -754,7 +754,7 @@ void station_order_hook()
     }
     else 
     {
-		if (!BIT_CHK(6421))
+		if (!BIT_CHK(6521))
 			SET_SEL_CHOICE_KEYBIND(12, 18);
         SET_SEL_CHOICE_KEYBIND( 14, 4 );
         var76 = ADV_SEL( var74, var75, var77 );
@@ -816,9 +816,9 @@ void station_order_hook()
 
 void schoolroad_order_hook()
 {
-	bool calendar = BIT_CHK(6423);
-	bool friend = BIT_CHK(6425);
-	bool save = BIT_CHK(6426);
+	bool calendar = BIT_CHK(6523);
+	bool friend = BIT_CHK(6525);
+	bool save = BIT_CHK(6526);
 	int var78 = 327;
 	int var79 = SCHOOLROAD_SEL_HOOK;
 	int var81 = 0;
@@ -831,7 +831,7 @@ void schoolroad_order_hook()
         var81 = var81 + 4;
 	if (!save || saveAnywhere())
 		var81 = var81 + 8;
-	if (!BIT_CHK(6421))
+	if (!BIT_CHK(6521))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
 	SET_SEL_CHOICE_KEYBIND( 14, 4 );
 	int var80 = ADV_SEL( var78, var79, var81 );
@@ -861,9 +861,9 @@ void schoolroad_order_hook()
 
 void snowmt_order_hook()
 {
-	bool calendar = BIT_CHK(6423);
-	bool friend = BIT_CHK(6425);
-	bool save = BIT_CHK(6426);
+	bool calendar = BIT_CHK(6523);
+	bool friend = BIT_CHK(6525);
+	bool save = BIT_CHK(6526);
 	int var82 = 327;
 	int var83 = SNOWMOUNTAIN_SEL_HOOK;
 	int var85 = 0;
@@ -876,7 +876,7 @@ void snowmt_order_hook()
         var85 = var85 + 8;
 	if (!save || saveAnywhere())
 		var85 = var85 + 16;
-	if (!BIT_CHK(6421))
+	if (!BIT_CHK(6521))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
 	SET_SEL_CHOICE_KEYBIND( 14, 5 );
 	int var84 = ADV_SEL( var82, var83, var85 );
