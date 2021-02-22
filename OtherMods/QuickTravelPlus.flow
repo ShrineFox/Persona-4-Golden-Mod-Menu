@@ -415,8 +415,44 @@ void NightOrder(bool calendar, bool friend, bool save)
 						CALL_FIELD( 8, 2, 0, 0 );
 					break;
 				case 2:
+					BIT_ON( 0 + 0x0400 + 844 );
+					BIT_ON( 0 + 0x0400 + 845 );
+					BIT_ON( 0 + 0x0400 + 846 );
+					BIT_ON( 0 + 0x0400 + 847 );
+					
+					if ( GET_DAY_OF_WEEK() == 1 )
+					{
+						BIT_OFF( 0 + 0x0400 + 844 );
+					}
+					else if ( GET_DAY_OF_WEEK() == 2 )
+					{
+						BIT_OFF( 0 + 0x0400 + 847 );
+					}
+					else if ( GET_DAY_OF_WEEK() == 3 )
+					{
+						BIT_OFF( 0 + 0x0400 + 846 );
+					}
+					else if ( GET_DAY_OF_WEEK() == 4 )
+					{
+						BIT_OFF( 0 + 0x0400 + 845 );
+					}
+					else 
+					{
+						BIT_OFF( 0 + 0x0400 + 844 );
+						BIT_OFF( 0 + 0x0400 + 845 );
+						BIT_OFF( 0 + 0x0400 + 846 );
+						BIT_OFF( 0 + 0x0400 + 847 );
+					}
+					BIT_ON( 0 + 0x0400 + 1067 );
 					SHIROKU_PUB();
-					CALL_FIELD(8, 2, 3, 0);
+					if ( BIT_CHK( 0 + 0x0400 + 1057 ) == 1 )
+					{
+						commu_yoru();
+					}
+					else 
+					{
+						CALL_FIELD( 8, 2, 3, 0 );
+					}
 					break;
 				case 3:
 					call_velvet_room();
@@ -714,6 +750,181 @@ void call_velvet_room()
     else 
     {
         CALL_FIELD( 8, 2, 4, 0 );
+    }
+
+}
+
+void commu_yoru()
+{
+    int var134 = GET_MONTH();
+    int var135 = GET_DAY_OF_MONTH();
+    int var137 = GET_TIME_OF_DAY();
+    
+    if ( var134 == 4 && var135 == 11 )
+    {
+        eve_0411_midnight();
+        return;
+    }
+    else if ( var134 == 4 && var135 == 13 )
+    {
+        eve_0413_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 4 && var135 == 15 )
+    {
+        eve_0415_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 4 && var135 == 0x10 )
+    {
+        eve_0416_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 4 && var135 == 29 )
+    {
+        eve_0429_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 5 && var135 == 14 )
+    {
+        eve_0514_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 5 && var135 == 15 )
+    {
+        eve_0515_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 5 && var135 == 17 )
+    {
+        eve_0517_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 6 && var135 == 4 )
+    {
+        eve_0604_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 6 && var135 == 21 )
+    {
+        eve_0621_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 6 && var135 == 23 )
+    {
+        eve_0623_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 7 && var135 == 9 )
+    {
+        eve_0709_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 7 && var135 == 10 )
+    {
+        eve_0710_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 7 && var135 == 26 )
+    {
+        eve_0726_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 8 && var135 == 12 )
+    {
+        eve_0812_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 9 && var135 == 14 )
+    {
+        eve_0914_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 9 && var135 == 15 )
+    {
+        eve_0915_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 10 && var135 == 5 )
+    {
+        eve_1005_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 11 && var135 == 20 )
+    {
+        eve_1120_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 12 && var135 == 3 )
+    {
+        eve_1203_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 12 && var135 == 5 )
+    {
+        eve_1205_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 12 && var135 == 7 )
+    {
+        eve_1207_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 12 && var135 == 26 )
+    {
+        eve_1226_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 1 && var135 == 3 )
+    {
+        eve_0103_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 1 && var135 == 17 )
+    {
+        eve_0117_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 1 && var135 == 24 )
+    {
+        eve_0124_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( var134 == 2 && var135 == 2 )
+    {
+        eve_0202_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else 
+    {
+        TV_STUDIO();
+        return;
     }
 
 }

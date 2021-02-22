@@ -22,7 +22,7 @@ void up_embankment_hook()
     
     if ( GET_TIME_OF_DAY() == 5 )
     {
-		if (!BIT_CHK(6422))
+		if (!BIT_CHK(6522))
 		{
 			OPEN_MSG_WIN();
 			MSG( MSG_EMBANK_EXIT_NIGHT );
