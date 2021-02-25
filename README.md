@@ -16,8 +16,9 @@ More features will continue to be added as game functions are discovered.
 - FindAFriend by [AnimatedSwine37](https://gamebanana.com/members/1742760) ([see mod release](https://gamebanana.com/gamefiles/12921))
 - ConsistentReaper by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13381))
 ## Usage (PC)
-You can use the [Aemulus Package Manager](https://gamebanana.com/tools/6878) to merge the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases) with other mods.
-Use the [latest p4gpc.modloader](https://amicitia.github.io/post/p4g-pc-modloader) with Reloaded II to launch P4G with mods. Point Aemulus to your P4G game directory's "mods" folder build the Mod Menu in combination with any other mods you may want to install.
+1. Download and unzip [Aemulus Package Manager](https://gamebanana.com/tools/6878) and add the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases) to the "Packages" folder.
+2. Point Aemulus to your P4G game directory's "mods" folder and build the Mod Menu in combination with any other mods you may want to install.
+3. Use the [latest p4gpc.modloader](https://amicitia.github.io/post/p4g-pc-modloader) with [Reloaded II](https://github.com/Reloaded-Project/Reloaded-II/releases) to launch P4G with mods.
 ## Compiling
 1. Download the latest build of TGE's [AtlusScriptCompiler](https://ci.appveyor.com/project/TGEnigma/atlusscripttoolchain/build/artifacts) ([source](https://github.com/TGEnigma/AtlusScriptToolchain)), which is used to compile the **.flow** and **.msg** scripts in this repository and recompile them into **.bf** format.
 2. Download this [P4G Library](https://github.com/Tupelov/Persona-Library) that includes some function names used in this menu. Extract it and overwrite the contents of the **AtlusScriptTools\Libraries folder**.
