@@ -53,10 +53,6 @@ void order_party_hook()
     restart:
     
     bool modMenu = BIT_CHK(6521); //Mod menu with many different debugging options
-    bool mobileCalendar = BIT_CHK(6523); //Quickly open Calendar
-    bool findAFriend = BIT_CHK(6525); //Fast travel to social link locations
-    bool saveAnywhere = BIT_CHK(6526); //Save anywhere
-    
     
     //First Time Setup
     if (!BIT_CHK(6520))
