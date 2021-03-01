@@ -25,15 +25,15 @@ void entrance_jump_hook()
 {
     int var29 = GET_FLOOR_ID();
 	int mask = 0;
-	if (!EnableOrganizeParty() || !BIT_CHK(6524))
+	if (!EnableOrganizeParty() || !BIT_CHK(6324))
 		mask = mask + 4;
-	if (!BeatDungeon() || !BIT_CHK(6524))
+	if (!BeatDungeon() || !BIT_CHK(6324))
 		mask = mask + 2;
-	if (!BIT_CHK(6526) || saveAnywhere())
+	if (!BIT_CHK(6326) || saveAnywhere())
 		mask = mask + 8;
     FUNCTION_0023( 0, 3 );
     SET_SEL_CHOICE_KEYBIND( 14, 4 );
-	if (!BIT_CHK(6521))
+	if (!BIT_CHK(6321))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
     int var27 = ADV_SEL( 15, ENTRANCE_SEL_HOOK, mask );
     
@@ -111,7 +111,7 @@ void helper_order_hook()
 		SET_MSG_VAR(1, GET_ITEM(790), 0);
 		// Sets mask
         SET_MASK( sVar1 );
-		if (!BIT_CHK(6521))
+		if (!BIT_CHK(6321))
 			SET_SEL_CHOICE_KEYBIND(12, 18);
         SET_SEL_CHOICE_KEYBIND( 14, 12 );
         var33 = SEL( DUNGEON_SEL_HOOK );
@@ -303,11 +303,11 @@ void StrategizeMenu()
 
 void init_sel_mask_hook()
 {
-	bool showDungeonOptions = BIT_CHK(6524);
-    bool showFox = BIT_CHK(6530);
-    bool showFloorSelect = BIT_CHK(6531);
-    bool showGohom = BIT_CHK(6532);
-    bool showOrganizeParty = BIT_CHK(6533);
+	bool showDungeonOptions = BIT_CHK(6324);
+    bool showFox = BIT_CHK(6330);
+    bool showFloorSelect = BIT_CHK(6331);
+    bool showGohom = BIT_CHK(6332);
+    bool showOrganizeParty = BIT_CHK(6333);
 	showFloorSelect = showFloorSelect && BeatDungeon();
     int var34 = GET_FLOOR_ID();
     sVar0 = 0;
@@ -441,21 +441,21 @@ void init_sel_mask_hook()
     }
 	
 	// Hide floor select
-	if (!showFloorSelect || !BIT_CHK(6524))
+	if (!showFloorSelect || !BIT_CHK(6324))
 		sVar1 = sVar1 + 256;
 	// Hide Goho-M
-	if (!showGohom || showFloorSelect || !BIT_CHK(6524) ||
+	if (!showGohom || showFloorSelect || !BIT_CHK(6324) ||
 		( FLD_FUNCTION_0037() == 1 && 
 		( var34 == 6 || var34 == 21 || var34 == 41 || var34 == 61 || var34 == 81 || var34 == 101 
 		|| var34 == 121 || var34 == 123 || var34 == 141 || var34 == 161 )))
 		sVar1 = sVar1 + 512;
 	// Hide OrganizeParty
-	if (!EnableOrganizeParty() || !showOrganizeParty || !BIT_CHK(6524))
+	if (!EnableOrganizeParty() || !showOrganizeParty || !BIT_CHK(6324))
 		stratMask = stratMask + 16;
 	// Hide Call Fox
-	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 9 ) == 0 || !showFox || !BIT_CHK(6524))
+	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 9 ) == 0 || !showFox || !BIT_CHK(6324))
 		sVar1 = sVar1 + 1024;
-	if ( !BIT_CHK(6526) || saveAnywhere() )
+	if ( !BIT_CHK(6326) || saveAnywhere() )
 		sVar1 = sVar1 + 2048;
 }
 
@@ -465,13 +465,13 @@ void tomb_jump_hook()
     int var25 = 0;
     var24 = var24 + 1 + 4 + 8;
     var24 = var24 + 0x20;
-	if (!EnableOrganizeParty() || !BIT_CHK(6524))
+	if (!EnableOrganizeParty() || !BIT_CHK(6324))
 		var24 = var24 + 2;
-	if (!BIT_CHK(6526) || saveAnywhere())
+	if (!BIT_CHK(6326) || saveAnywhere())
 		var24 = var24 + 64;
     FUNCTION_0023( 0, 3 );
     SET_SEL_CHOICE_KEYBIND( 14, 7 );
-	if (!BIT_CHK(6521))
+	if (!BIT_CHK(6321))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
     int var23 = ADV_SEL( 12, TOMB_SEL_HOOK, var24 );
     
@@ -550,12 +550,12 @@ void liqueur_jump_hook()
 {
     FUNCTION_0023( 0, 3 );
 	int mask = 0;
-	if (!EnableOrganizeParty() || !BIT_CHK(6524))
+	if (!EnableOrganizeParty() || !BIT_CHK(6324))
 		mask = mask + 2;
-	if (!BIT_CHK(6526) || saveAnywhere())
+	if (!BIT_CHK(6326) || saveAnywhere())
 		mask = mask + 4;
     SET_SEL_CHOICE_KEYBIND( 14, 3 );
-	if (!BIT_CHK(6521))
+	if (!BIT_CHK(6321))
 		SET_SEL_CHOICE_KEYBIND(12, 18);
     int var26 = ADV_SEL( 15, LIQUEUR_SEL_HOOK, mask );
     
@@ -599,12 +599,12 @@ void studio_jump_hook()
         var21 = var21 + 128;
     }
 
-	if (!BIT_CHK(6526) || saveAnywhere())
+	if (!BIT_CHK(6326) || saveAnywhere())
 		var21 = var21 + 32;
 
     FUNCTION_0023( 0, 3 );
     SET_SEL_CHOICE_KEYBIND( 14, 6 );
-	if (!BIT_CHK(6521))SET_SEL_CHOICE_KEYBIND(12, 18);
+	if (!BIT_CHK(6321))SET_SEL_CHOICE_KEYBIND(12, 18);
     int var20 = ADV_SEL( 3, SHOP_SEL_HOOK, var21 );
     
     if ( var20 == 0 || var20 == 1 || var20 == 2 || var20 == 3 )

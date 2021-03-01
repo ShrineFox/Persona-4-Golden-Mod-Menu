@@ -39,7 +39,7 @@ void sel_000_hook()
     }
     else 
     {
-		if (BIT_CHK(6522))
+		if (BIT_CHK(6322))
 			SchoolOrder();
 		else
 			CALL_FIELD( 6, 1, 0, 0 );
@@ -117,7 +117,7 @@ void SchoolOrder()
 // Shopping District
 void sel_001_hook()
 {
-    if (BIT_CHK(6522))
+    if (BIT_CHK(6322))
 	{
 		StreetOrder();
 	}
@@ -178,7 +178,7 @@ void StreetOrder()
 // Flood plain
 void sel_003_hook()
 {
-	if (BIT_CHK(6522))
+	if (BIT_CHK(6322))
 	{
 		FloodPlainOrder();
 	}

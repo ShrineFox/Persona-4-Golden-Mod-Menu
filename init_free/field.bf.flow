@@ -30,40 +30,57 @@ void TurnOffAllOptions()
     BIT_OFF(6433); //Enable Organize Party (DungeonOptions)
 }
 
+void TurnOffAllOptionsV2()
+{
+	BIT_OFF(6520); //Disable First Time Setup
+    BIT_OFF(6521); //Mod Menu
+    BIT_OFF(6522); // QuickTravelPlus
+    BIT_OFF(6523); // MobileCalendar
+    BIT_OFF(6524); // DungeonOptions
+    BIT_OFF(6525); // Find a Friend
+    BIT_OFF(6526); // Save Anywhere
+    BIT_OFF(6527); // Game over skip
+    BIT_OFF(6528); //Reap-Balanced Encounters
+	BIT_OFF(6529); //Options
+    BIT_OFF(6530); //Enable Fox (DungeonOptions)
+    BIT_OFF(6531); //Enable Floor Select (DungeonOptions)
+    BIT_OFF(6532); //Enable Goho-M (DungeonOptions)
+    BIT_OFF(6533); //Enable Organize Party (DungeonOptions)
+}
+
 void TurnOnAllOptions()
 {
-    BIT_ON(6520); //Disable First Time Setup
-    BIT_OFF(6521); //Mod Menu
-    BIT_ON(6522); // QuickTravelPlus
-    BIT_ON(6523); // MobileCalendar
-    BIT_ON(6524); // DungeonOptions
-    BIT_ON(6525); // Find a Friend
+    BIT_ON(6320); //Disable First Time Setup
+    BIT_OFF(6321); //Mod Menu
+    BIT_ON(6322); // QuickTravelPlus
+    BIT_ON(6323); // MobileCalendar
+    BIT_ON(6324); // DungeonOptions
+    BIT_ON(6325); // Find a Friend
     BIT_ON(5678); // Spoiler-free find a friend
-    BIT_OFF(6526); // Save Anywhere
-    BIT_ON(6527); // Game over skip
-    BIT_ON(6528); //Reap-Balanced Encounters
-    BIT_ON(6530); //Enable Fox (DungeonOptions)
-    BIT_ON(6531); //Enable Floor Select (DungeonOptions)
-    BIT_ON(6532); //Enable Goho-M (DungeonOptions)
-    BIT_ON(6533); //Enable Organize Party (DungeonOptions)
+    BIT_OFF(6326); // Save Anywhere
+    BIT_ON(6327); // Game over skip
+    BIT_ON(6328); //Reap-Balanced Encounters
+    BIT_ON(6330); //Enable Fox (DungeonOptions)
+    BIT_ON(6331); //Enable Floor Select (DungeonOptions)
+    BIT_ON(6332); //Enable Goho-M (DungeonOptions)
+    BIT_ON(6333); //Enable Organize Party (DungeonOptions)
 }
 
 void order_party_hook()
 {
     restart:
     
-    bool modMenu = BIT_CHK(6521); //Mod menu with many different debugging options
-    
     //First Time Setup
-    if (!BIT_CHK(6520))
+    if (!BIT_CHK(6320))
     {
 		TurnOffAllOptions();
+		TurnOffAllOptionsV2();
         MenuOptions();
         //TurnOnAllOptions();
         goto restart;
     }
 
-    if (!modMenu)
+    if (!BIT_CHK(6321))
     {
         options = false;
         if ( GET_FLOOR_ID() > 0)

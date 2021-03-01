@@ -2,7 +2,7 @@ import("GohoM.msg");
 
 void use_gohom()
 {
-	bool ConsistentReaper = BIT_CHK(6528);
+	bool ConsistentReaper = BIT_CHK(6328);
 	if (GET_ITEM(790) == 0)
 	{
 		NAVI_BU_CLOSE( sVar7 );
