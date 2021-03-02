@@ -135,3 +135,18 @@ void DungeonOptionsToggle()
 		}
 	}
 }
+
+bool IntroSkip() {
+	OPEN_MSG_WIN();
+	HELP_MSG( IntroSkipConfig );
+	CLOSE_MSG_WIN();
+	OPEN_MSG_WIN();
+	MSG( IntroSkipSelection );
+	int selection = SEL( YesNo );
+	CLOSE_MSG_WIN();
+	if (selection == 0)
+		selection = 1;
+	else
+		selection = 0;
+	return selection;
+}
