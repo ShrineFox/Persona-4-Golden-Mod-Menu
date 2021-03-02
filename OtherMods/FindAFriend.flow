@@ -18,57 +18,6 @@ bool foxReady;
 // Procedure declarations
 //
 
-void first_time()
-{
-    // Introduction
-    OPEN_MSG_WIN();
-    HELP_MSG(FIRST_TIME);
-    CLOSE_MSG_WIN();
-
-    // Starts setting up options
-    options_setup();
-    // Marks first time setup as complete
-    BIT_ON(5677);
-}
-
-void options_setup()
-{
-    int spoilers;
-    // Ask if spoiler-free version is wanted
-    OPEN_MSG_WIN();
-    // Slightly different message the first time
-    if (!BIT_CHK(5677))
-    {
-        MSG(SPOILER_CHECK);
-        spoilers = SEL(YESNO_SEL);
-    }
-    else
-    {
-        MSG(SPOILER_TOGGLE);
-        SET_SEL_CHOICE_KEYBIND(14, 2);
-        spoilers = SEL(ToggleMenu);
-    }
-
-    CLOSE_MSG_WIN();
-
-    // Bit on is spoiler free
-    if (spoilers == 0)
-    {
-        BIT_ON(5678);
-    }
-    else if (spoilers == 1)
-    {
-        BIT_OFF(5678);
-        // Back was selected
-    }
-    else
-    {
-        return;
-    }
-    // Regenerate selection mask after this as it may have changed
-    generate_selection_mask();
-}
-
 void generate_hangout_menu()
 {
     if (!BIT_CHK(5677))

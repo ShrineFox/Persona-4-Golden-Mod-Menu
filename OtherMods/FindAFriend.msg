@@ -1,23 +1,3 @@
-[msg FIRST_TIME]
-[f 0 5 -258][f 2 1][f 0 1 1]Find A Friend Setup[n]
-[f 0 1 0]Thanks for using Find A Friend!
-[n]Please choose which version you would like to use.
-[n]You can always change this later by pressing the
-[n]command menu button in the hang out menu.[f 1 1][e]
-
-[msg SPOILER_CHECK]
-[f 0 5 -258][f 2 1]Would you like to enable spoiler-free mode?
-[n](Only social links you have met will be shown)[f 1 1][e]
-
-[msg SPOILER_TOGGLE]
-[f 0 5 -258][f 2 1]Set spoiler-free mode
-[n](Only social links you have met will be shown)[f 1 1][e]
-
-[sel ToggleMenu]
-[f 0 5 -258][f 2 1]On[e]
-[f 0 5 -258][f 2 1]Off[e]
-[f 0 5 -258][f 2 1]Back...[e]
-
 [msg HANG_OUT_MSG]
 [f 0 5 -258][f 2 1]Who do you want to see?[n][f 1 1][e]
 
