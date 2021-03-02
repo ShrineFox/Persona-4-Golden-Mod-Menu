@@ -20,16 +20,6 @@ bool foxReady;
 
 void generate_hangout_menu()
 {
-    if (!BIT_CHK(5677))
-    {
-        first_time();
-        // After setting spoiler free on or off it is possible the menu should
-        // no longer be available so close it if that is the case
-        if (numSelectionsRemoved == 20)
-        {
-            return;
-        }
-    }
     // Variables that store the location of the messages and whatnot
     int localVariable54 = HANG_OUT_MSG;
     int localVariable55 = HANG_OUT_SEL;
@@ -1144,19 +1134,6 @@ _choiceLoop:
         }
         // Go back to the choices for round rwo (or more)
         goto _choiceLoop;
-    }
-    else if (localVariable56 == 30)
-    {
-        options_setup();
-        // Once options are set if the hangout menu should still show, show it
-        if (numSelectionsRemoved == 20)
-        {
-            return;
-        }
-        else
-        {
-            generate_hangout_menu();
-        }
     }
 }
 
