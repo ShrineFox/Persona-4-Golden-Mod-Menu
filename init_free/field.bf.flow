@@ -64,6 +64,7 @@ void TurnOnAllOptions()
     BIT_ON(6331); //Enable Floor Select (DungeonOptions)
     BIT_ON(6332); //Enable Goho-M (DungeonOptions)
     BIT_ON(6333); //Enable Organize Party (DungeonOptions)
+    BIT_ON(6334); //Enable Default Direct Commands
 }
 
 void order_party_hook()

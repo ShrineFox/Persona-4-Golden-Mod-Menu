@@ -1,0 +1,185 @@
+
+// 
+// FlowScript decompiled by AtlusScriptLib by TGE (2017)
+// In the unfortunate case of any bugs, please report them back to me.
+// 
+
+
+// 
+// Imports
+// 
+
+import( "../build/input/field/script/dungeon01.bf" );
+
+// 
+// Procedure declarations
+// 
+
+void dng_init_00_hook()
+{
+    int var6 = 0;
+    int var0 = GET_FLOOR_ID();
+    int var1 = GET_CNT( 10 );
+    int var4 = 0;
+    int var3 = 0;
+    int var5 = 0;
+    int var2 = 0;
+    
+    if ( var0 == 6 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 624 ) == 1 )
+        {
+            var4 = 30;
+            
+            if ( BIT_CHK( 0 + 52 ) == 1 )
+            {
+                var3 = 5;
+                var5 = 2;
+                
+                if ( CHECK_TIME_SPAN( 6, 13, 10, 9 ) == 1 )
+                {
+                    var4 = 20;
+                }
+
+            }
+            else 
+            {
+                var3 = 8;
+                var5 = 1;
+            }
+
+            OPEN_MSG_WIN();
+            var2 = NAVI_BU_OPEN( 280, -40, var3, var4 );
+            MSG( var5 );
+            NAVI_BU_CLOSE( var2 );
+        }
+        else if ( DATE_CHK( 4, 17 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 608 ) == 0 )
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 608 );
+            OPEN_MSG_WIN();
+            var2 = NAVI_BU_OPEN( 280, -40, 8, 30 );
+            MSG( KUMA_FOR_CHIE );
+            NAVI_BU_CLOSE( var2 );
+            change_speaker();
+            MSG( YOSUKE_FOR_CHIE );
+            change_speaker();
+            var2 = NAVI_BU_OPEN( 280, -40, 8, 30 );
+            MSG( HELP_KUMA_ENCOUNT_1 );
+            NAVI_BU_CLOSE( var2 );
+            CLOSE_MSG_WIN();
+            HELP_MSG( 6 );
+        }
+        else if ( CHECK_TIME_SPAN( 4, 18, 4, 29 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 609 ) == 0 )
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 609 );
+			if (BIT_CHK(6334)
+				SET_ORDER( 3, 4 );
+			else
+				SET_ORDER( 3, 1 );
+            OPEN_MSG_WIN();
+            var2 = NAVI_BU_OPEN( 280, -40, 8, 30 );
+            
+            if ( DATE_CHK( 4, 18 ) == 1 )
+            {
+                MSG( HELP_MAP_1 );
+            }
+            else 
+            {
+                MSG( HELP_MAP_2 );
+            }
+
+            NAVI_BU_CLOSE( var2 );
+            CLOSE_MSG_WIN();
+            HELP_MSG( 10 );
+        }
+
+    }
+    else if ( var1 <= GET_CNT( 9 ) )
+    {
+        OPEN_MSG_WIN();
+        
+        if ( var0 == 8 && var1 == 8 )
+        {
+            var6 = 1;
+            PLAY_SOUNDEFFECT( 241 );
+            NS_WAIT( 10 );
+            MSG( YUKI_008_1 );
+            change_speaker();
+            MSG( YUKI_008_2 );
+            change_speaker();
+            var2 = NAVI_BU_OPEN( 280, -40, 8, 30 );
+            MSG( YUKI_008_3 );
+            NAVI_BU_CLOSE( var2 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 10 );
+            CLOSE_MSG_WIN();
+            HELP_MSG( 14 );
+            OPEN_MSG_WIN();
+            var2 = NAVI_BU_OPEN( 280, -40, 8, 30 );
+            MSG( YUKI_008_4 );
+            NAVI_BU_CLOSE( var2 );
+            CLOSE_MSG_WIN();
+            HELP_MSG( 0x10 );
+        }
+        else if ( var0 == 9 && var1 == 9 )
+        {
+            var6 = 1;
+            PLAY_SOUNDEFFECT( 241 );
+            NS_WAIT( 10 );
+            MSG( YUKI_009_2 );
+            change_speaker();
+            var2 = NAVI_BU_OPEN( 280, -40, 8, 33 );
+            MSG( YUKI_009_3 );
+            NAVI_BU_CLOSE( var2 );
+        }
+        else if ( var0 == 11 && var1 == 11 )
+        {
+            var6 = 1;
+            PLAY_SOUNDEFFECT( 241 );
+            NS_WAIT( 10 );
+            MSG( YUKI_011_2 );
+            change_speaker();
+            MSG( YUKI_011_3 );
+            change_speaker();
+            MSG( YUKI_011_4 );
+            change_speaker();
+            MSG( YUKI_011_5 );
+            change_speaker();
+            MSG( YUKI_011_6 );
+            change_speaker();
+            MSG( YUKI_011_7 );
+            change_speaker();
+            var2 = NAVI_BU_OPEN( 280, -40, 8, 30 );
+            MSG( YUKI_011_8 );
+            NAVI_BU_CLOSE( var2 );
+        }
+        else if ( var0 == 12 && var1 == 12 )
+        {
+            var6 = 1;
+            PLAY_SOUNDEFFECT( 241 );
+            NS_WAIT( 10 );
+            MSG( YUKI_012_2 );
+            change_speaker();
+            var2 = NAVI_BU_OPEN( 280, -40, 8, 0x20 );
+            MSG( YUKI_012_3 );
+            NAVI_BU_CLOSE( var2 );
+        }
+        else if ( var0 == 18 )
+        {
+            SET_CNT( 38, 13 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 8 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 46 );
+            BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
+        }
+
+        CLOSE_MSG_WIN();
+        
+        if ( var6 == 1 )
+        {
+            SET_CNT( 10, var1 + 1 );
+        }
+
+    }
+
+}
+
