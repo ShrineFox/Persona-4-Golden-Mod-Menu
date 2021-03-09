@@ -47,11 +47,12 @@ void MenuOptions()
 			{
 				SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
 			}
-			SET_SEL_CHOICE_KEYBIND( 14, 8 );
-			SET_SEL_CHOICE_KEYBIND( 15, 8 );
+			SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6);
+			SET_SEL_CHOICE_KEYBIND( 14, 18 );
+			SET_SEL_CHOICE_KEYBIND( 15, 18 );
 			//Toggle selection or read more about it
 			int selection = ADV_SEL(SquareMenuOptions_Text, SquareMenuOptions, 0);
-			if (selection != 8)
+			if (selection != 18)
 			{
 				ToggleOption(ModMenu_About, 6321, selection);
 			}
@@ -78,7 +79,10 @@ void ToggleOption(int startMsg, int startFlag, int selection)
 	switch (sel)
 	{
 		case 0: //on
-			BIT_ON(startFlag + selection);
+			if (selection == 8)
+				BIT_ON(6334);
+			else
+				BIT_ON(startFlag + selection);
 			if(selection == 3)
 			{
 				CLOSE_MSG_WIN();
@@ -95,7 +99,10 @@ void ToggleOption(int startMsg, int startFlag, int selection)
 			}
 			break;
 		case 1: //off
-			BIT_OFF(startFlag + selection);
+			if (selection == 8)
+				BIT_OFF(6334);
+			else
+				BIT_OFF(startFlag + selection);
 			if (selection == 3)
 			{
 				BIT_OFF(6330);
@@ -134,4 +141,19 @@ void DungeonOptionsToggle()
 			done = true;
 		}
 	}
+}
+
+bool IntroSkip() {
+	OPEN_MSG_WIN();
+	HELP_MSG( IntroSkipConfig );
+	CLOSE_MSG_WIN();
+	OPEN_MSG_WIN();
+	MSG( IntroSkipSelection );
+	int selection = SEL( YesNo );
+	CLOSE_MSG_WIN();
+	if (selection == 0)
+		selection = 1;
+	else
+		selection = 0;
+	return selection;
 }

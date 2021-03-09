@@ -1,0 +1,97 @@
+void into_tv_world_hook()
+{
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 3 );
+    
+    if ( CHECK_TIME_SPAN( 4, 17, 6, 6 ) == 1 )
+    {
+        ADD_PARTY( 2 );
+    }
+
+    // Require Chie to be unlocked in case you're using the Intro Skip mod
+    if ( CHECK_TIME_SPAN( 4, 18, 6, 6 ) == 1 && BIT_CHK( 49 ) )
+    {
+        ADD_PARTY( 3 );
+    }
+	
+    if ( CHECK_TIME_SPAN( 4, 30, 6, 6 ) == 1 )
+    {
+        ADD_PARTY( 4 );
+    }
+
+}
+
+// Direct commands
+void f020_001_init_hook()
+{
+    int var0 = 0;
+    int var1 = 0;
+    
+    if ( FLD_FUNCTION_0000() == 0 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) == 0 )
+        {
+            into_tv_world();
+        }
+
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 785 ) == 1 )
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 786 );
+        }
+        else 
+        {
+            BIT_OFF( 0 + 0x0400 + 0x0800 + 786 );
+        }
+
+    }
+    else if ( FLD_FUNCTION_0000() == 1 )
+    {
+        FLD_FUNCTION_0007( 10244, 0 );
+        FLD_FUNCTION_0007( 10245, 0 );
+        FLD_FUNCTION_0007( 10246, 0 );
+        FLD_FUNCTION_0007( 10247, 0 );
+        FLD_FUNCTION_0007( 10248, 0 );
+        FLD_FUNCTION_0007( 10249, 0 );
+        FLD_FUNCTION_0007( 10250, 0 );
+        FLD_FUNCTION_0007( 10251, 0 );
+        FLD_FUNCTION_0007( 10252, 0 );
+        FLD_FUNCTION_0007( 10253, 0 );
+        FLD_FUNCTION_0007( 10254, 0 );
+        FLD_FUNCTION_0008( 10244, 0, 1, 0, 1.00f );
+        FLD_FUNCTION_0008( 10249, 0, 1, 0, 1.00f );
+    }
+    else if ( FLD_FUNCTION_0000() == 2 )
+    {
+        var0 = LOAD_FIELD_OBJECT( -1, 102 );
+        var1 = FLD_FUNCTION_000F( var0 );
+        FLD_FUNCTION_000C( var1, 2 );
+        FLD_FUNCTION_0007( var1, 1 );
+    }
+    else if ( FLD_FUNCTION_0000() == 3 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) == 0 )
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 2 );
+            SET_CNT( 91, 0 );
+            hello_dungeon();
+            gk_announce();
+        }
+		DefaultDirectCommands();
+    }
+
+}
+
+void DefaultDirectCommands()
+{   
+    if ( BIT_CHK(6334) )
+	{
+		SET_ORDER(2, 4);
+		SET_ORDER(3, 4);
+		SET_ORDER(4, 4);
+		SET_ORDER(6, 4);
+		SET_ORDER(7, 4);
+		SET_ORDER(8, 4);
+    }
+}

@@ -10,6 +10,7 @@ More features will continue to be added as game functions are discovered.
 ## Optional Extensions
 - MobileCalendar (view the calendar from anywhere!)
 - QuickTravelPlus (extended quicktravel options in Yasogami High and around the town of Inaba)
+- IntroSkip (start the game at 4/20)
 - VRGameOverSkip (skips velvet room scene after game over) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13301))
 - DungeonOptions (fast travel to any dungeon floor after deadline, heal, use goho-ms, organize party) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13356))
 - SaveAnywhere by [Tupelov](https://github.com/Tupelov) ([see mod release](https://gamebanana.com/gamefiles/13318))

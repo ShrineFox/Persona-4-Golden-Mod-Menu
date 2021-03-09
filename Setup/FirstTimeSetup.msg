@@ -14,7 +14,7 @@
 [f 0 5 -258][f 2 1]No[e]
 
 [msg SquareMenuOptions_Text]
-[f 0 5 -258][f 2 1]Sub Menu Options[f 1 1][e]
+[f 0 5 -258][f 2 1]Options (Press Back to Exit)[f 1 1][e]
 
 [sel SquareMenuOptions]
 [f 0 5 -258][f 2 1]Mod Menu: [f 2 4 0][e]
@@ -25,7 +25,7 @@
 [f 0 5 -258][f 2 1]Save Anywhere: [f 2 4 5][e]
 [f 0 5 -258][f 2 1]Game Over Skip: [f 2 4 6][e]
 [f 0 5 -258][f 2 1]Reap-Balanced Encounters: [f 2 4 7][e]
-[f 0 5 -258][f 2 1]Done[e]
+[f 0 5 -258][f 2 1]Default Direct Commands: [f 2 4 8][e]
 
 [msg OptionsWarning]
 [f 0 5 -258][f 2 1]Access the Options Menu again by pressing
@@ -71,6 +71,11 @@
 [n]you open while dungeon crawling. Normally, there's
 [n]only a small chance of an encounter.[e]
 
+[msg DirectCommands_About[Default Direct Commands (Tekka)]]
+[f 0 5 -258][f 2 1]Automatically sets party member tactics to Direct
+[n]Commands so you don't have to take the couple
+[n]seconds to change it yourself.[e]
+
 [msg DungeonOptions_Text]
 [f 0 5 -258][f 2 1]Dungeon Options[e]
 
@@ -104,3 +109,14 @@
 [msg SPOILER_TOGGLE[FindAFriend (AnimatedSwine37)]]
 [f 0 5 -258][f 2 1]Set spoiler-free mode
 [n](Only social links you have met will be shown)[f 1 1][e]
+
+[msg IntroSkipConfig]
+[f 0 5 -258][f 2 1][f 0 1 1]Intro Skip Setup[n]
+[f 0 1 0]The opening events of Persona 4 Golden
+[n]are notoriously long, spanning about 1 to 3
+[n]hours before real gameplay begins.[f 1 1][e]
+
+[msg IntroSkipSelection[Intro Skip (ShrineFox)]]
+[f 0 5 -258][f 2 1]Would you like to skip the story exposition
+[n]and start from April 20? This is recommended if
+[n]you have experienced Persona 4 Golden before.[f 1 1][e]

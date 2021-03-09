@@ -1,0 +1,112 @@
+
+// 
+// FlowScript decompiled by AtlusScriptLib by TGE (2017)
+// In the unfortunate case of any bugs, please report them back to me.
+// 
+
+
+// 
+// Imports
+// 
+
+import( "../build/input/field/pack/fd023_001/f023.bf" );
+
+// 
+// Procedure declarations
+// 
+
+void f023_001_init_hook()
+{
+    int var0 = 0;
+    
+    if ( FLD_FUNCTION_0000() == 0 )
+    {
+        
+        if ( DATE_CHK( 4, 17 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 617 ) == 0 )
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 617 );
+            ADD_PARTY( 2 );
+			if (BIT_CHK(6334))
+				SET_ORDER( 2, 4 );
+        }
+
+    }
+    else if ( FLD_FUNCTION_0000() == 3 )
+    {
+        
+        if ( DATE_CHK( 4, 17 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 618 ) == 0 )
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 618 );
+            OPEN_MSG_WIN();
+            MSG( CHASE_CHIE_1 );
+            change_speaker();
+            MSG( CHASE_CHIE_2 );
+            change_speaker();
+            MSG( CHASE_CHIE_3 );
+            CLOSE_MSG_WIN();
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 3 ) == 1 )
+        {
+            out_dungeon();
+            OPEN_MSG_WIN();
+            
+            if ( BIT_CHK( 0 + 49 ) == 0 )
+            {
+                MSG( RETURN_KUMA_CHIE );
+                CLOSE_MSG_WIN();
+                return;
+            }
+            else if ( BIT_CHK( 0 + 52 ) == 0 )
+            {
+                
+                if ( BIT_CHK( 0 + 17 ) == 0 )
+                {
+                    MSG( RETURN_KUMA_YUKIKO );
+                    
+                    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 626 ) == 0 )
+                    {
+                        BIT_ON( 0 + 0x0400 + 0x0800 + 626 );
+                        CLOSE_MSG_WIN();
+                        HELP_MSG( 33 );
+                        OPEN_MSG_WIN();
+                        MSG( RETURN_FIRST );
+                    }
+
+                }
+                else 
+                {
+                    MSG( RETURN_KUMA );
+                }
+
+            }
+            else 
+            {
+                MSG( RETURN_RISE );
+            }
+
+            SET_SEL_CHOICE_KEYBIND( 14, 1 );
+            var0 = SEL( RETUEN_SEL );
+            CLOSE_MSG_WIN();
+            
+            if ( var0 == 0 )
+            {
+                return_tv_studio();
+            }
+
+        }
+        else if ( CHECK_TIME_SPAN( 4, 1, 6, 5 ) != 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 5 ) == 0 )
+        {
+            party_organize();
+        }
+        else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 629 ) == 0 && BIT_CHK( 0 + 17 ) == 0 && CHECK_TIME_SPAN( 4, 18, 4, 20 ) == 1 && GET_CUR_SP( 1 ) < 50 || GET_CUR_SP( 2 ) < 50 || GET_CUR_SP( 3 ) < 50 )
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 629 );
+            OPEN_MSG_WIN();
+            MSG( RETURN_SUGGEST );
+            CLOSE_MSG_WIN();
+            HELP_MSG( 36 );
+        }
+
+    }
+
+}
