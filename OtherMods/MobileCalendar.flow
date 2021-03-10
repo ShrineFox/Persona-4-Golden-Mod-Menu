@@ -137,7 +137,7 @@ void myhouse_order_hook()
 		var61 = var61 + 256;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
-    if (!friend || numSelectionsRemoved == 28 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
+    if (!friend || numSelectionsRemoved == 28 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5) || (!BIT_CHK( 0 + 0x0400 + 663 ) && GET_TIME_OF_DAY() == 5 && (BIT_CHK( 0 + 0x0400 + 455 ) || BIT_CHK( 0 + 0x0400 + 439 )) && !(BIT_CHK( 0 + 0x0400 + 671 ) == 1 && BIT_CHK( 0 + 0x0400 + 663 ) == 0 && (BIT_CHK( 0 + 0x0400 + 1056 ) == 1 || BIT_CHK( 0 + 0x0400 + 1638 ) == 1 || BIT_CHK( 0 + 0x0400 + 1640 ) == 1))))
         var61 = var61 + 512;
     if (!save || saveAnywhere())
 		var61 = var61 + 1024;
