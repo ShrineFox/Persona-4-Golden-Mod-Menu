@@ -21,7 +21,7 @@ More features will continue to be added as game functions are discovered.
 2. Point Aemulus to your P4G game directory's "mods" folder and build the Mod Menu in combination with any other mods you may want to install.
 3. Use the [latest p4gpc.modloader](https://amicitia.github.io/post/p4g-pc-modloader) with [Reloaded II](https://github.com/Reloaded-Project/Reloaded-II/releases) to launch P4G with mods.
 ## Compiling the scripts yourself
-You don't have to follow this section if you're merely installing the mod on your Vita. This is for developers who want to make changes to the mod.  
+You don't have to follow this section if you're merely installing the mod. This is for developers who want to make changes to the mod.  
 1. Download the latest build of TGE's [AtlusScriptCompiler](https://ci.appveyor.com/project/TGEnigma/atlusscripttoolchain/build/artifacts) ([source](https://github.com/TGEnigma/AtlusScriptToolchain)), which is used to compile the **.flow** and **.msg** scripts in this repository and recompile them into **.bf** format.
 2. Download this [P4G Library](https://github.com/Tupelov/Persona-Library) that includes some function names used in this menu. Extract it and overwrite the contents of the **AtlusScriptTools\Libraries folder**.
 3. Also download [TGE's PAKTools](https://github.com/TGEnigma/AtlusFileSystemLibrary/releases) which is used to repack BIN/PAK files.
