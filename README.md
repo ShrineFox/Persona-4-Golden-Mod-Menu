@@ -1,7 +1,7 @@
 # Persona 4 Golden Mod Menu
 **Custom scripts for Persona 4 Golden that replace the square button function with a fully featured trainer**  
 <img src="/Screenshots/modmenu.gif?raw=true">  
-[See this mod's Gamebanana page](https://gamebanana.com/gamefiles/13256)! Alternatively, go to [this repository for the PSVita version](https://github.com/Amicitia/P4G-Vita-Custom-Sub-Menu).
+[See this mod's Gamebanana page](https://gamebanana.com/gamefiles/13256)! Alternatively, go to [this repository for the PSVita version](https://github.com/Amicitia/P4G-Vita-Custom-Sub-Menu) or [this one for PS2](https://github.com/Amicitia/P4-PS2-Custom-Sub-Menu).
 ## Notable Features
 - **Call Menu**: Using IDs, call a Field, Dungeon Floor, Battle, Event, Cutscene, BGM/SFX Track, Dungeon or Facility to load
 - **Player Menu**: Change date/time, Social Link ranks, give yen/items, manage party members
@@ -20,7 +20,8 @@ More features will continue to be added as game functions are discovered.
 1. Download and unzip [Aemulus Package Manager](https://gamebanana.com/tools/6878) and add the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases) to the "Packages" folder.
 2. Point Aemulus to your P4G game directory's "mods" folder and build the Mod Menu in combination with any other mods you may want to install.
 3. Use the [latest p4gpc.modloader](https://amicitia.github.io/post/p4g-pc-modloader) with [Reloaded II](https://github.com/Reloaded-Project/Reloaded-II/releases) to launch P4G with mods.
-## Compiling
+## Compiling the scripts yourself
+You don't have to follow this section if you're merely installing the mod on your Vita. This is for developers who want to make changes to the mod.  
 1. Download the latest build of TGE's [AtlusScriptCompiler](https://ci.appveyor.com/project/TGEnigma/atlusscripttoolchain/build/artifacts) ([source](https://github.com/TGEnigma/AtlusScriptToolchain)), which is used to compile the **.flow** and **.msg** scripts in this repository and recompile them into **.bf** format.
 2. Download this [P4G Library](https://github.com/Tupelov/Persona-Library) that includes some function names used in this menu. Extract it and overwrite the contents of the **AtlusScriptTools\Libraries folder**.
 3. Also download [TGE's PAKTools](https://github.com/TGEnigma/AtlusFileSystemLibrary/releases) which is used to repack BIN/PAK files.
