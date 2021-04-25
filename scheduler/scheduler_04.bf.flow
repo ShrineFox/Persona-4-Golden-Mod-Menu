@@ -17,9 +17,15 @@ void sdl04_10_PM_D_hook()
 		BIT_ON( 0 + 137 );
 		SHOW_DATE( 1 );
 		NEXT_DATE( 4, 20, 0 );
+		// Set go home tutorial flag
+		BIT_ON( 0 + 0x0400 + 0x0800 + 4 );
 		// Set up Yosuke SL
 		EVT_FUNCTION_0001( 7 );
 		EVT_FUNCTION_0016( 7 );
+		EVT_FUNCTION_0016( 0 );
+		// Set up Chie SL
+		EVT_FUNCTION_0001( 12 );
+		EVT_FUNCTION_0016( 12 );
 		EVT_FUNCTION_0016( 0 );
 	}
 	else
