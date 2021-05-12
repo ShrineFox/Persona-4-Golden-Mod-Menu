@@ -3,7 +3,7 @@ import( "../Setup/FirstTimeSetup.flow" );
 
 void sdl04_10_PM_D_hook()
 {
-	MenuOptions();
+	//MenuOptions();
 	
 	if (IntroSkip())
 	{

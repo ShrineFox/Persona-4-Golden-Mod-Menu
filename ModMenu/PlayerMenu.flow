@@ -555,7 +555,7 @@ void UpdateSS(int stat)
 	int op = ADV_SEL(Operation,PlusOrMinus,0);
 	int number = Get_Number(3, MSG_3);
 	if (op == 1)
-		number = -number;
+		number *= -1;
 	GET_SOCIAL_STATS(stat, number);
 }
 

@@ -13,6 +13,8 @@ int SelectDigit( int helpText )
     {
 		SET_SEL_CHOICE_KEYBIND(10, 10);
 		SET_SEL_CHOICE_KEYBIND(11, 10);
+		SET_SEL_CHOICE_KEYBIND(5, 10);
+		SET_SEL_CHOICE_KEYBIND(7, 10);
 		SET_SEL_CHOICE_KEYBIND(14, 11);
 		int digit = ADV_SEL( helpText, Num_Menu, 0);
 		if ( digit < 5 ) //0 through 4

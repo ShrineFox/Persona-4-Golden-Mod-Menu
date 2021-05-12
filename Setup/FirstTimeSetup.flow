@@ -51,7 +51,7 @@ void MenuOptions()
 			SET_SEL_CHOICE_KEYBIND( 14, 18 );
 			SET_SEL_CHOICE_KEYBIND( 15, 18 );
 			//Toggle selection or read more about it
-			int selection = ADV_SEL(SquareMenuOptions_Text, SquareMenuOptions, 0);
+			int selection = ADV_SEL(SquareMenuOptions_Text, SquareMenuOptions, 33);
 			if (selection != 18)
 			{
 				ToggleOption(ModMenu_About, 6321, selection);
@@ -145,9 +145,9 @@ void DungeonOptionsToggle()
 
 bool IntroSkip() {
 	OPEN_MSG_WIN();
-	HELP_MSG( IntroSkipConfig );
-	CLOSE_MSG_WIN();
-	OPEN_MSG_WIN();
+	//HELP_MSG( IntroSkipConfig );
+	//CLOSE_MSG_WIN();
+	//OPEN_MSG_WIN();
 	MSG( IntroSkipSelection );
 	int selection = SEL( YesNo );
 	CLOSE_MSG_WIN();
