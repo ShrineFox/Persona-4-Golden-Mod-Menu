@@ -136,8 +136,12 @@ void sel_001_hook()
 
 void StreetOrder()
 {
+	int streetMask = 0;
+	if ( DATE_CHK( 4, 12 ) || DATE_CHK( 4, 13 ) || DATE_CHK( 4, 14 ) || DATE_CHK( 4, 15 ) 
+			|| DATE_CHK( 4, 16 ) )
+		streetMask = 56;
 	SET_SEL_CHOICE_KEYBIND(14, 6);
-	int street = ADV_SEL( Street_Text, ShoppingDistrictDay, 0 );
+	int street = ADV_SEL( Street_Text, ShoppingDistrictDay, streetMask );
 	FADE( 2, 5 );
 	FADE_SYNC();
 	switch (street)
