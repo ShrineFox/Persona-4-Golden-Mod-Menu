@@ -21,7 +21,7 @@
 [f 0 5 -258][f 2 1]Quick Travel Plus: [f 2 4 1][e]
 [f 0 5 -258][f 2 1]Mobile Calendar: [f 2 4 2][e]
 [f 0 5 -258][f 2 1]Dungeon Options: [f 2 4 3][e]
-[f 0 5 -258][f 2 1]Find A Friend (Beta): [f 2 4 4][e]
+[f 0 5 -258][f 2 1]Find A Friend: [f 2 4 4][e]
 [f 0 5 -258][f 2 1]Save Anywhere: [f 2 4 5][e]
 [f 0 5 -258][f 2 1]Game Over Skip: [f 2 4 6][e]
 [f 0 5 -258][f 2 1]Reap-Balanced Encounters: [f 2 4 7][e]
