@@ -1234,7 +1234,7 @@ void generate_selection_mask()
         chieScooterState = 0;
     }
     // Daisuke isn't available Monday, Wednesday, Friday, Sunday and Holidays
-    if ((BIT_CHK(0 + 0x0400 + 463) == 0 && timeOfDay != 5) || GET_SL_LEVEL(17) >= 10 || GET_SL_LEVEL(16) > 0 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1159) == 0 || GET_SL_LEVEL(17) <= 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 895))) || (GET_SL_LEVEL(17) <= 0 && spoilerFree) || (timeOfDay == 5 && (DATE_CHK(10, 3) && !BIT_CHK(0 + 0x0400 + 1569)) || CHECK_TIME_SPAN(10, 5, 1, 1)))
+    if ((BIT_CHK(0 + 0x0400 + 463) == 0 && timeOfDay != 5) || GET_SL_LEVEL(17) >= 10 || GET_SL_LEVEL(16) > 0 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1159) == 0 || GET_SL_LEVEL(17) <= 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 895))) || (GET_SL_LEVEL(17) <= 0 && spoilerFree) || (timeOfDay == 5 && (DATE_CHK(10, 3) && !BIT_CHK(0 + 0x0400 + 1569)) || (CHECK_TIME_SPAN(10, 5, 1, 1) && timeOfDay == 5)))
     {
         pageOneMask = pageOneMask + 32;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1289,7 +1289,7 @@ void generate_selection_mask()
         kanjiScooterState = 0;
     }
     // Kou isn't available Monday, Wednesday, Friday, Sunday and Holidays
-    if ((BIT_CHK(0 + 0x0400 + 463) == 0 && timeOfDay != 5) || GET_SL_LEVEL(0x10) >= 10 || GET_SL_LEVEL(17) > 0 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1158) == 0 || GET_SL_LEVEL(16) <= 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 895))) || (GET_SL_LEVEL(16) <= 0 && spoilerFree) || (timeOfDay == 5 && (DATE_CHK(10, 3) && !BIT_CHK(0 + 0x0400 + 1569)) || CHECK_TIME_SPAN(10, 5, 1, 1)))
+    if ((BIT_CHK(0 + 0x0400 + 463) == 0 && timeOfDay != 5) || GET_SL_LEVEL(0x10) >= 10 || GET_SL_LEVEL(17) > 0 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1158) == 0 || GET_SL_LEVEL(16) <= 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 895))) || (GET_SL_LEVEL(16) <= 0 && spoilerFree) || (timeOfDay == 5 && (DATE_CHK(10, 3) && !BIT_CHK(0 + 0x0400 + 1569)) || (CHECK_TIME_SPAN(10, 5, 1, 1) && timeOfDay == 5)))
     {
         pageOneMask = pageOneMask + 4096;
         numSelectionsRemoved = numSelectionsRemoved + 1;
