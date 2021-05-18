@@ -15,6 +15,12 @@ void FirstTimeSetup()
 	{
 		BIT_OFF(6321 + i);
 	}
+
+	// Set second group of menu options to 0
+	for (int i = 0; i < 3; i++) 
+	{
+		BIT_OFF(6340 + i);
+	}
 	
 	//Enable "Options" in menu for later configuration
 	BIT_ON(6329);
@@ -40,23 +46,40 @@ void MenuOptions()
 	{
 		//Toggle options until done
 		bool done = false;
+		int pageNum = 0;
 		while(!done)
 		{
-			//Set message variables for menu options
-			for (int i = 0; i < 8; i++)
-			{
-				SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
+			if(pageNum == 0) {
+				//Set options for page 1
+				for (int i = 0; i < 8; i++)
+				{
+					SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
+				}
+				SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6);
+			} else {
+				// Set optins for page 2
+				for (int i = 0; i < 3; i++)
+				{
+					SET_MSG_VAR(i, 619 + BIT_CHK(6340 + i), 6);
+				}
 			}
-			SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6);
+			SET_SEL_CHOICE_KEYBIND(10, 17);
+			SET_SEL_CHOICE_KEYBIND(11, 17);
+			SET_SEL_CHOICE_KEYBIND(5, 17);
+			SET_SEL_CHOICE_KEYBIND(7, 17);
 			SET_SEL_CHOICE_KEYBIND( 14, 18 );
 			SET_SEL_CHOICE_KEYBIND( 15, 18 );
 			//Toggle selection or read more about it
-			int selection = ADV_SEL(SquareMenuOptions_Text, SquareMenuOptions, 0);
-			if (selection != 18)
+			int selection = ADV_SEL(SquareMenuOptions_Text + pageNum, SquareMenuOptions + pageNum, 0);
+			if (selection < 17)
 			{
-				ToggleOption(ModMenu_About, 6321, selection);
+				if (pageNum == 0)  {
+					ToggleOption(ModMenu_About, 6321, selection, 0);
+				} else {
+					ToggleOption(RemoveInvitations_About, 6340, selection, 1);
+				}
 			}
-			else
+			else if(selection == 18)
 			{
 				done = true;
 				if (!BIT_CHK(6321))
@@ -65,12 +88,16 @@ void MenuOptions()
 					MSG(OptionsWarning);
 					CLOSE_MSG_WIN();
 				}
+			} 
+			else 
+			{
+				pageNum = !pageNum;
 			}
 		}
 	}
 }
 
-void ToggleOption(int startMsg, int startFlag, int selection)
+void ToggleOption(int startMsg, int startFlag, int selection, int pageNum)
 {
 	OPEN_MSG_WIN();
 	MSG( startMsg + selection );
@@ -79,16 +106,16 @@ void ToggleOption(int startMsg, int startFlag, int selection)
 	switch (sel)
 	{
 		case 0: //on
-			if (selection == 8)
+			if (selection == 8 && pageNum == 0)
 				BIT_ON(6334);
 			else
 				BIT_ON(startFlag + selection);
-			if(selection == 3)
+			if(selection == 3 && pageNum == 0)
 			{
 				CLOSE_MSG_WIN();
 				DungeonOptionsToggle();
 			}
-			else if(selection == 4)
+			else if(selection == 4 && pageNum == 0)
 			{
 				MSG(SPOILER_TOGGLE);
 				sel = SEL(ToggleMenu);
@@ -96,19 +123,30 @@ void ToggleOption(int startMsg, int startFlag, int selection)
 					BIT_ON(5678);
 				else if (sel == 1)
 					BIT_OFF(5678);
+			} 
+			else if(selection == 1 && pageNum == 1)
+			{
+				CLOSE_MSG_WIN();
+				RemoveEventsOptionsToggle();
 			}
 			break;
 		case 1: //off
-			if (selection == 8)
+			if (selection == 8 && pageNum == 0)
 				BIT_OFF(6334);
 			else
 				BIT_OFF(startFlag + selection);
-			if (selection == 3)
+			if (selection == 3 && pageNum == 0)
 			{
 				BIT_OFF(6330);
 				BIT_OFF(6331);
 				BIT_OFF(6332);
 				BIT_OFF(6333);
+			}
+			else if(selection == 1 && pageNum == 1) {
+				BIT_OFF(6350);
+				BIT_OFF(6351);
+				BIT_OFF(6352);
+				BIT_OFF(6353);
 			}
 			break;
 		case 2: //back
@@ -134,7 +172,33 @@ void DungeonOptionsToggle()
 		int selection = ADV_SEL(DungeonOptions_Text, DungeonOptions, 0);
 		if (selection != 4)
 		{
-			ToggleOption(ShowFox_About, 6330, selection);
+			ToggleOption(ShowFox_About, 6330, selection, 0);
+		}
+		else
+		{
+			done = true;
+		}
+	}
+}
+
+void RemoveEventsOptionsToggle()
+{
+	//Toggle options until done
+	bool done = false;
+	while(!done)
+	{
+		//Set message variables for menu options
+		for (int i = 0; i < 4; i++)
+		{
+			SET_MSG_VAR(i, 619 + BIT_CHK(6350 + i), 6);
+		}
+		SET_SEL_CHOICE_KEYBIND( 14, 4 );
+		SET_SEL_CHOICE_KEYBIND( 15, 4 );
+		//Toggle selection or read more about it
+		int selection = ADV_SEL(RemoveEventsOptions_Text, RemoveEventsOptions, 0);
+		if (selection != 4)
+		{
+			ToggleOption(RemoveCamping_About, 6350, selection, 1);
 		}
 		else
 		{

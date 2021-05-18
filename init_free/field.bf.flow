@@ -65,6 +65,13 @@ void TurnOnAllOptions()
     BIT_ON(6332); //Enable Goho-M (DungeonOptions)
     BIT_ON(6333); //Enable Organize Party (DungeonOptions)
     BIT_ON(6334); //Enable Default Direct Commands
+    BIT_ON(6340); //Remove Lunchtime Invitations
+    BIT_ON(6341); // Remove Events
+    BIT_ON(6342); // Save Everyday
+    BIT_ON(6350); // Remove Camping Event
+    BIT_ON(6351); // Remove Cross Dressing Event
+    BIT_ON(6352); // Remove Group Date Event 
+    BIT_ON(6353); // Remove Hot Springs Event
 }
 
 void order_party_hook()

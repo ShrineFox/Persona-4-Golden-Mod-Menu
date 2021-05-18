@@ -1,0 +1,4725 @@
+import("../build/input/scheduler/scheduler_10.bf");
+import("../OtherMods/SaveEveryday.flow");
+import("../OtherMods/RemoveLunchtimeInvites.flow");
+
+// Remove lunchtime invitations
+void start_cmm_hirusasoi_hook()
+{
+    RemoveLunchtimeInvites();
+}
+
+// Remove Hotsprings Event
+void sdl10_30_PM_D_hook()
+{
+    INCREASE_SL(24);
+    CALL_EVENT(335, 1, 0);
+    NS_WAIT(10);
+    PLAY_CUTSCENE(33);
+    FUNCTION_0065();
+    FUNCTION_000F();
+    if(!BIT_CHK(6353)) {
+        CALL_EVENT( 336, 1, 0 );
+    }
+    CALL_EVENT(337, 1, 0);
+    CALL_EVENT(338, 1, 0);
+    CALL_EVENT(339, 1, 0);
+    NS_WAIT(60);
+    STOP_BGM(30);
+    NS_WAIT(60);
+    SAVE_ASK(4);
+    NS_DISABLE_PLAYER_MOVEMENT();
+}
+
+// Remove Culture Festival Stuff All Below
+// TODO add some text that said you had a good time with your friends or something to 10/29 before going to night
+
+void sdl10_22_AM_B_hook()
+{
+    // Group date caffee class decision
+    if (!BIT_CHK(6352))
+    {
+        CALL_EVENT( 323, 1, 0 );
+    }
+}
+
+void sdl10_27_AM_A_hook()
+{
+    everymorning();
+    CALL_EVENT(461, 1, 0);
+    if (!BIT_CHK(6351))
+    {
+        CALL_EVENT( 324, 1, 0 );
+    }
+}
+
+void sdl10_27_PM_A_hook()
+{
+    if (!BIT_CHK(6351))
+    {
+        CALL_EVENT( 325, 1, 0 );
+    }
+}
+
+void sdl10_27_PM_C_hook()
+{
+    if (!BIT_CHK(6351))
+    {
+        CALL_EVENT( 326, 1, 0 );
+    }
+    else 
+    {
+        // Fix NPC flags
+        BIT_ON(0 + 0x0400 + 454);
+        BIT_ON(0 + 0x0400 + 432);
+        BIT_ON(0 + 0x0400 + 458);
+        BIT_ON(0 + 0x0400 + 459);
+        BIT_ON(0 + 0x0400 + 434);
+        BIT_ON(0 + 0x0400 + 452);
+        BIT_ON(0 + 0x0400 + 453);
+        BIT_ON(0 + 0x0400 + 457);
+        BIT_ON(0 + 0x0400 + 433);
+        BIT_ON(0 + 0x0400 + 624);
+        BIT_ON(0 + 0x0400 + 463);
+        BIT_ON(0 + 0x0400 + 464);
+        BIT_ON(0 + 0x0400 + 472);
+        BIT_ON(0 + 0x0400 + 473);
+        BIT_ON(0 + 0x0400 + 474);
+        BIT_ON(0 + 0x0400 + 475);
+        BIT_ON(0 + 0x0400 + 465);
+        BIT_ON(0 + 0x0400 + 455);
+        BIT_ON(0 + 0x0400 + 481);
+        BIT_ON(0 + 0x0400 + 456);
+        BIT_ON(0 + 0x0400 + 470);
+        BIT_ON(0 + 0x0400 + 468);
+        BIT_ON(0 + 0x0400 + 469);
+        BIT_ON(0 + 0x0400 + 503);
+        BIT_ON(0 + 0x0400 + 1155);
+        BIT_ON(0 + 0x0400 + 1156);
+
+        CALL_FIELD(6, 6, 2, 0);
+    }
+}
+
+void sdl10_28_PM_A_hook()
+{
+    if (!BIT_CHK(6351))
+    {
+        CALL_EVENT( 327, 1, 0 );
+    }
+}
+
+void sdl10_28_PM_C_hook()
+{
+    if (!BIT_CHK(6351))
+    {
+        CALL_EVENT( 328, 1, 0 );
+    } else {
+        // Fix NPC flags
+        BIT_OFF(0 + 0x0400 + 481);
+        BIT_ON(0 + 0x0400 + 625);
+        BIT_ON(0 + 0x0400 + 450);
+        BIT_ON(0 + 0x0400 + 451);
+        BIT_ON(0 + 0x0400 + 436);
+        BIT_ON(0 + 0x0400 + 495);
+        BIT_ON(0 + 0x0400 + 496);
+        BIT_ON(0 + 0x0400 + 446);
+        BIT_ON(0 + 0x0400 + 476);
+        BIT_ON(0 + 0x0400 + 449);
+        BIT_ON(0 + 0x0400 + 468);
+        BIT_ON(0 + 0x0400 + 469);
+        BIT_ON(0 + 0x0400 + 692);
+        BIT_ON(0 + 0x0400 + 503);
+        BIT_ON(0 + 0x0400 + 1152);
+        BIT_ON(0 + 0x0400 + 1154);
+        BIT_ON(0 + 0x0400 + 1160);
+        BIT_ON(0 + 0x0400 + 1161);
+
+        CALL_FIELD(6, 6, 2, 0);
+    }
+}
+
+void sdl10_29_PM_B_hook()
+{
+
+    if (EVT_FUNCTION_000F(21) == 1 || EVT_FUNCTION_000F(22) == 1 || EVT_FUNCTION_0010(21) == 1 || EVT_FUNCTION_0010(22) == 1)
+    {
+        BIT_ON(0 + 0x0400 + 554);
+    }
+
+    if (EVT_FUNCTION_000F(27) == 1 || EVT_FUNCTION_000F(28) == 1 || EVT_FUNCTION_0010(27) == 1 || EVT_FUNCTION_0010(28) == 1)
+    {
+        BIT_ON(0 + 0x0400 + 553);
+    }
+
+    if (GET_SL_LEVEL(25) >= 1 && GET_SL_LEVEL(25) <= 4 || GET_SL_LEVEL(25) == 10)
+    {
+        BIT_ON(0 + 0x0400 + 558);
+    }
+
+    if (GET_SL_LEVEL(0x10) >= 1 || GET_SL_LEVEL(17) >= 1)
+    {
+        BIT_ON(0 + 0x0400 + 555);
+    }
+    else if (GET_SL_LEVEL(21) >= 1 || GET_SL_LEVEL(22) >= 1 && BIT_CHK(0 + 0x0400 + 554) == 0)
+    {
+        BIT_ON(0 + 0x0400 + 555);
+    }
+    else if (GET_SL_LEVEL(27) >= 1 || GET_SL_LEVEL(28) >= 1 && BIT_CHK(0 + 0x0400 + 553) == 0)
+    {
+        BIT_ON(0 + 0x0400 + 555);
+    }
+    else if (BIT_CHK(0 + 0x0400 + 558) == 1)
+    {
+        BIT_ON(0 + 0x0400 + 555);
+    }
+    
+    // Group date cafe
+    if (!BIT_CHK(6352))
+    {
+        CALL_EVENT( 329, 1, 0 );
+    }
+
+    if (BIT_CHK(0 + 0x0400 + 555) == 1)
+    {
+        CALL_EVENT(890, 81, 0);
+    }
+}
+
+void sdl10_30_PM_B_hook()
+{
+    if (!BIT_CHK(6351))
+    {
+        CALL_EVENT( 330, 1, 0 );
+        CALL_EVENT( 331, 1, 0 );
+        CALL_EVENT( 332, 1, 0 );
+        CALL_EVENT( 333, 1, 0 );
+        CALL_EVENT( 333, 2, 0 );
+    } 
+    else 
+    {
+        // Give the drag costumes as they were from one of the skipped events
+        SET_ITEM(1792 + 41, 1);
+        SET_ITEM(1792 + 42, 1);
+        SET_ITEM(1792 + 46, 1);
+        SET_ITEM(1792 + 48, 1);
+    }
+    CALL_EVENT(334, 1, 0);
+}
+
+// Changes the flags for 10/27 so npc are initialised (as the afternoon is regularly skipped)
+// void cmu_npc_flag_on_hook()
+// {
+//     int localVariable12 = GET_MONTH();
+//     int localVariable13 = GET_DAY_OF_MONTH();
+
+//     if (localVariable12 == 4)
+//     {
+
+//         if (localVariable13 == 11)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 445);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             return;
+//         }
+//         else if (localVariable13 == 30)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 5)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 504);
+//             BIT_ON(0 + 0x0400 + 505);
+//             BIT_ON(0 + 0x0400 + 506);
+//             BIT_ON(0 + 0x0400 + 507);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 438);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 439);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 439);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 439);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 30)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 31)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 6)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 438);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             BIT_ON(0 + 0x0400 + 489);
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 497);
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 445);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 438);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 30)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 7)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 438);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 504);
+//             BIT_ON(0 + 0x0400 + 505);
+//             BIT_ON(0 + 0x0400 + 506);
+//             BIT_ON(0 + 0x0400 + 507);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 693);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 504);
+//             BIT_ON(0 + 0x0400 + 505);
+//             BIT_ON(0 + 0x0400 + 506);
+//             BIT_ON(0 + 0x0400 + 507);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 693);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 693);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 693);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 693);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 438);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 30)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 31)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 8)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 445);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 445);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 693);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 445);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             BIT_ON(0 + 0x0400 + 626);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 445);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 693);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 445);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 693);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 445);
+//             BIT_ON(0 + 0x0400 + 693);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 445);
+//             BIT_ON(0 + 0x0400 + 693);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 30)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 31)
+//         {
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 9)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 447);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 447);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 503);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 503);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 438);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 503);
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 503);
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 503);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 503);
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             BIT_ON(0 + 0x0400 + 626);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 503);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 503);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 503);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 503);
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             BIT_ON(0 + 0x0400 + 626);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 503);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 438);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 503);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 503);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 30)
+//         {
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 503);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 10)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 504);
+//             BIT_ON(0 + 0x0400 + 505);
+//             BIT_ON(0 + 0x0400 + 506);
+//             BIT_ON(0 + 0x0400 + 507);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 447);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 447);
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             BIT_ON(0 + 0x0400 + 626);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 438);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             if(BIT_CHK(6351)) 
+//             {
+//                 // Changes here
+//                 // TODO fix dasiuke/kou being available for s link (they shouldn't be)
+//                 // TODO remove the two NPCs (1F and 2F classroom) that don't have any dialogue
+//                 BIT_ON(0 + 0x0400 + 458);
+//                 BIT_ON(0 + 0x0400 + 459);
+//                 BIT_ON(0 + 0x0400 + 452);
+//                 BIT_ON(0 + 0x0400 + 453);
+//                 BIT_ON(0 + 0x0400 + 457);
+//                 BIT_ON(0 + 0x0400 + 624);
+//                 BIT_ON(0 + 0x0400 + 463);
+//                 BIT_ON(0 + 0x0400 + 464);
+//                 BIT_ON(0 + 0x0400 + 472);
+//                 BIT_ON(0 + 0x0400 + 473);
+//                 BIT_ON(0 + 0x0400 + 474);
+//                 BIT_ON(0 + 0x0400 + 475);
+//                 BIT_ON(0 + 0x0400 + 465);
+//                 BIT_ON(0 + 0x0400 + 468);
+//                 BIT_ON(0 + 0x0400 + 469);
+//                 BIT_ON(0 + 0x0400 + 455);
+//                 BIT_ON(0 + 0x0400 + 481);
+//                 BIT_ON(0 + 0x0400 + 456);
+//                 BIT_ON(0 + 0x0400 + 470);
+//                 BIT_ON(0 + 0x0400 + 1155);
+//                 BIT_ON(0 + 0x0400 + 1156);
+//             } 
+//             else 
+//             {
+//                 BIT_ON(0 + 0x0400 + 455);
+//                 BIT_ON(0 + 0x0400 + 481);
+//                 BIT_ON(0 + 0x0400 + 456);
+//                 BIT_ON(0 + 0x0400 + 470);
+//                 BIT_ON(0 + 0x0400 + 1156);
+//                 BIT_ON(0 + 0x0400 + 1155);
+//             }
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             if (BIT_CHK(6351)) 
+//             {
+//                 // Changes here
+//                 // TODO fix jank school npcs
+//                 BIT_ON(0 + 0x0400 + 490);
+//                 BIT_ON(0 + 0x0400 + 491);
+//                 BIT_ON(0 + 0x0400 + 447);
+//                 BIT_ON(0 + 0x0400 + 484);
+//                 BIT_ON(0 + 0x0400 + 485);
+//                 BIT_ON(0 + 0x0400 + 447);
+//                 BIT_ON(0 + 0x0400 + 627);
+//                 BIT_ON(0 + 0x0400 + 450);
+//                 BIT_ON(0 + 0x0400 + 451);
+//                 BIT_ON(0 + 0x0400 + 495);
+//                 BIT_ON(0 + 0x0400 + 496);
+//                 BIT_ON(0 + 0x0400 + 446);
+//                 BIT_ON(0 + 0x0400 + 465);
+//                 BIT_ON(0 + 0x0400 + 476);
+//                 BIT_ON(0 + 0x0400 + 449);
+//                 BIT_ON(0 + 0x0400 + 456);
+//                 BIT_ON(0 + 0x0400 + 468);
+//                 BIT_ON(0 + 0x0400 + 469);
+//                 BIT_ON(0 + 0x0400 + 692);
+//                 BIT_ON(0 + 0x0400 + 712);
+//                 BIT_ON(0 + 0x0400 + 713);
+//                 BIT_ON(0 + 0x0400 + 1152);
+//                 BIT_ON(0 + 0x0400 + 1154);
+//                 BIT_ON(0 + 0x0400 + 1160);
+//                 BIT_ON(0 + 0x0400 + 1161);
+//                 BIT_ON(0 + 0x0400 + 481);
+
+//             } else {
+//                 BIT_ON(0 + 0x0400 + 481);
+//             }
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 30)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 31)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 629);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 11)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             BIT_ON(0 + 0x0400 + 626);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 692);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 497);
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             BIT_ON(0 + 0x0400 + 466);
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 456);
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 629);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             BIT_ON(0 + 0x0400 + 626);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 438);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 456);
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 497);
+//             BIT_ON(0 + 0x0400 + 470);
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 504);
+//             BIT_ON(0 + 0x0400 + 505);
+//             BIT_ON(0 + 0x0400 + 506);
+//             BIT_ON(0 + 0x0400 + 507);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 504);
+//             BIT_ON(0 + 0x0400 + 505);
+//             BIT_ON(0 + 0x0400 + 506);
+//             BIT_ON(0 + 0x0400 + 507);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             BIT_ON(0 + 0x0400 + 626);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 30)
+//         {
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 12)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 437);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 437);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 437);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 437);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 446);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 437);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 436);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 434);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 437);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 435);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 432);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 433);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 437);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 712);
+//             BIT_ON(0 + 0x0400 + 713);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 493);
+//             BIT_ON(0 + 0x0400 + 494);
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 30)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 31)
+//         {
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 1)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 629);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             BIT_ON(0 + 0x0400 + 626);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 629);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 629);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 472);
+//             BIT_ON(0 + 0x0400 + 473);
+//             BIT_ON(0 + 0x0400 + 474);
+//             BIT_ON(0 + 0x0400 + 475);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             BIT_ON(0 + 0x0400 + 626);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 463);
+//             BIT_ON(0 + 0x0400 + 464);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 628);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             return;
+//         }
+//         else if (localVariable13 == 30)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 627);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 504);
+//             BIT_ON(0 + 0x0400 + 505);
+//             BIT_ON(0 + 0x0400 + 506);
+//             BIT_ON(0 + 0x0400 + 507);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             return;
+//         }
+//         else if (localVariable13 == 31)
+//         {
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 624);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 504);
+//             BIT_ON(0 + 0x0400 + 505);
+//             BIT_ON(0 + 0x0400 + 506);
+//             BIT_ON(0 + 0x0400 + 507);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 2)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             BIT_ON(0 + 0x0400 + 626);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 449);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 452);
+//             BIT_ON(0 + 0x0400 + 453);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 482);
+//             BIT_ON(0 + 0x0400 + 483);
+//             BIT_ON(0 + 0x0400 + 629);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 504);
+//             BIT_ON(0 + 0x0400 + 505);
+//             BIT_ON(0 + 0x0400 + 506);
+//             BIT_ON(0 + 0x0400 + 507);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 455);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 468);
+//             BIT_ON(0 + 0x0400 + 469);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             BIT_ON(0 + 0x0400 + 486);
+//             BIT_ON(0 + 0x0400 + 490);
+//             BIT_ON(0 + 0x0400 + 491);
+//             BIT_ON(0 + 0x0400 + 625);
+//             BIT_ON(0 + 0x0400 + 489);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 465);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 456);
+//             BIT_ON(0 + 0x0400 + 471);
+//             BIT_ON(0 + 0x0400 + 1152);
+//             BIT_ON(0 + 0x0400 + 1156);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 458);
+//             BIT_ON(0 + 0x0400 + 459);
+//             BIT_ON(0 + 0x0400 + 484);
+//             BIT_ON(0 + 0x0400 + 485);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 461);
+//             BIT_ON(0 + 0x0400 + 462);
+//             BIT_ON(0 + 0x0400 + 495);
+//             BIT_ON(0 + 0x0400 + 496);
+//             BIT_ON(0 + 0x0400 + 476);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 470);
+//             BIT_ON(0 + 0x0400 + 630);
+//             BIT_ON(0 + 0x0400 + 1158);
+//             BIT_ON(0 + 0x0400 + 1159);
+//             BIT_ON(0 + 0x0400 + 1160);
+//             BIT_ON(0 + 0x0400 + 1161);
+//             BIT_ON(0 + 0x0400 + 1163);
+//             BIT_ON(0 + 0x0400 + 1162);
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             BIT_ON(0 + 0x0400 + 454);
+//             BIT_ON(0 + 0x0400 + 457);
+//             BIT_ON(0 + 0x0400 + 450);
+//             BIT_ON(0 + 0x0400 + 451);
+//             BIT_ON(0 + 0x0400 + 629);
+//             BIT_ON(0 + 0x0400 + 466);
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             BIT_ON(0 + 0x0400 + 1153);
+//             BIT_ON(0 + 0x0400 + 1154);
+//             BIT_ON(0 + 0x0400 + 1155);
+//             BIT_ON(0 + 0x0400 + 1157);
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             BIT_ON(0 + 0x0400 + 487);
+//             BIT_ON(0 + 0x0400 + 481);
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 20)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 21)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 22)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 23)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 24)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 25)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 26)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 27)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 28)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 29)
+//         {
+//             return;
+//         }
+
+//         return;
+//     }
+
+//     if (localVariable12 == 3)
+//     {
+
+//         if (localVariable13 == 1)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 2)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 3)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 4)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 5)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 6)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 7)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 8)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 9)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 10)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 11)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 12)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 13)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 14)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 15)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 0x10)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 17)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 18)
+//         {
+//             return;
+//         }
+//         else if (localVariable13 == 19)
+//         {
+//             return;
+//         }
+
+//         return;
+//     }
+// }
