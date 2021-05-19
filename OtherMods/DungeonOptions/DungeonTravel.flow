@@ -141,11 +141,11 @@ void SelectFloor()
 	{
 		if (firstPage == true)
 		{	
-			SET_SEL_CHOICE_KEYBIND( 14, 11 );
-			SET_SEL_CHOICE_KEYBIND( 10, 6 );
-			SET_SEL_CHOICE_KEYBIND( 11, 6 );
-			SET_SEL_CHOICE_KEYBIND(5, 6);
-			SET_SEL_CHOICE_KEYBIND(7, 6);
+			SEL_CHK_PAD( 14, 11 );
+			SEL_CHK_PAD( 10, 6 );
+			SEL_CHK_PAD( 11, 6 );
+			SEL_CHK_PAD(5, 6);
+			SEL_CHK_PAD(7, 6);
 			if ( floor == 5 || floor == 20 || floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120 || floor == 140 || floor == 160 )
 				selection = ADV_SEL(SelectFloorsMsg, FloorText, selectMask1);
 			else
@@ -166,11 +166,11 @@ void SelectFloor()
 		}
 		else
 		{
-			SET_SEL_CHOICE_KEYBIND( 14, 11 );
-			SET_SEL_CHOICE_KEYBIND( 10, prev );
-			SET_SEL_CHOICE_KEYBIND( 11, prev );
-			SET_SEL_CHOICE_KEYBIND(5, prev);
-			SET_SEL_CHOICE_KEYBIND(7, prev);
+			SEL_CHK_PAD( 14, 11 );
+			SEL_CHK_PAD( 10, prev );
+			SEL_CHK_PAD( 11, prev );
+			SEL_CHK_PAD(5, prev);
+			SEL_CHK_PAD(7, prev);
 			if ( floor == 5 || floor == 20 || floor == 40 || floor == 60 || floor == 80 || floor == 100 || floor == 120 || floor == 140 || floor == 160 )
 				selection = ADV_SEL(SelectFloorsMsg, FloorText + 1, selectMask2 ) + 6;
 			else

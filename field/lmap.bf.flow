@@ -50,7 +50,7 @@ void sel_000_hook()
 void SchoolOrder()
 {
 	begin:
-	SET_SEL_CHOICE_KEYBIND(14, 3);
+	SEL_CHK_PAD(14, 3);
 	int school = ADV_SEL( School_Text, School, 0 );
 	if (school > 1) 
 	{
@@ -60,7 +60,7 @@ void SchoolOrder()
 	switch (school)
 	{
 		case 0:
-			SET_SEL_CHOICE_KEYBIND(14, 4);
+			SEL_CHK_PAD(14, 4);
 			int classroom = ADV_SEL( School_Text, ClassroomBuilding, 0 );
 			if (classroom < 4) 
 			{
@@ -86,7 +86,7 @@ void SchoolOrder()
 			}
 			break;
 		case 1:
-			SET_SEL_CHOICE_KEYBIND(14, 2);
+			SEL_CHK_PAD(14, 2);
 			int practice = ADV_SEL( School_Text, PracticeBuilding, 0 );
 			if (practice < 2) 
 			{
@@ -140,7 +140,7 @@ void StreetOrder()
 	if ( DATE_CHK( 4, 12 ) || DATE_CHK( 4, 13 ) || DATE_CHK( 4, 14 ) || DATE_CHK( 4, 15 ) 
 			|| DATE_CHK( 4, 16 ) )
 		streetMask = 56;
-	SET_SEL_CHOICE_KEYBIND(14, 6);
+	SEL_CHK_PAD(14, 6);
 	int street = ADV_SEL( Street_Text, ShoppingDistrictDay, streetMask );
 	FADE( 2, 5 );
 	FADE_SYNC();
@@ -193,7 +193,7 @@ void sel_003_hook()
 void FloodPlainOrder()
 {
 	begin:
-	SET_SEL_CHOICE_KEYBIND(14, 2);
+	SEL_CHK_PAD(14, 2);
 	int plain = ADV_SEL( FloodPlain_Text, FloodPlain, 0 );
 	switch (plain)
 	{
@@ -253,7 +253,7 @@ void call_velvet_room()
                 MSG( MSG_0320_RETURN_HOME2 );
             }
 
-            SET_SEL_CHOICE_KEYBIND( 14, 1 );
+            SEL_CHK_PAD( 14, 1 );
             var8 = SEL( SEL_GO_SEA );
             CLOSE_MSG_WIN();
             
@@ -308,7 +308,7 @@ void call_velvet_room()
     {
         PLAY_SOUNDEFFECT( 700 );
         FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-        NS_WAIT( 15 );
+        WAIT( 15 );
         FADE( 1, 10 );
         FUNCTION_0024( 255, 255, 255 );
         FADE_SYNC();
@@ -322,7 +322,7 @@ void call_velvet_room()
     {
         PLAY_SOUNDEFFECT( 700 );
         FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-        NS_WAIT( 15 );
+        WAIT( 15 );
         FADE( 1, 10 );
         FUNCTION_0024( 255, 255, 255 );
         FADE_SYNC();
@@ -357,7 +357,7 @@ void call_velvet_room()
 
     PLAY_SOUNDEFFECT( 700 );
     FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-    NS_WAIT( 15 );
+    WAIT( 15 );
     FADE( 1, 10 );
     FUNCTION_0024( 255, 255, 255 );
     FADE_SYNC();

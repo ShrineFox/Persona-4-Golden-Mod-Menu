@@ -48,10 +48,10 @@ void MenuOptions()
 				SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
 			}
 			SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6);
-			SET_SEL_CHOICE_KEYBIND( 14, 18 );
-			SET_SEL_CHOICE_KEYBIND( 15, 18 );
+			SEL_CHK_PAD( 14, 18 );
+			SEL_CHK_PAD( 15, 18 );
 			//Toggle selection or read more about it
-			int selection = ADV_SEL(SquareMenuOptions_Text, SquareMenuOptions, 33);
+			int selection = ADV_SEL(SquareMenuOptions_Text, SquareMenuOptions, 0);//33);
 			if (selection != 18)
 			{
 				ToggleOption(ModMenu_About, 6321, selection);
@@ -74,7 +74,7 @@ void ToggleOption(int startMsg, int startFlag, int selection)
 {
 	OPEN_MSG_WIN();
 	MSG( startMsg + selection );
-	SET_SEL_CHOICE_KEYBIND(14, 2);
+	SEL_CHK_PAD(14, 2);
 	int sel = SEL(ToggleMenu);
 	switch (sel)
 	{
@@ -128,8 +128,8 @@ void DungeonOptionsToggle()
 		{
 			SET_MSG_VAR(i, 619 + BIT_CHK(6330 + i), 6);
 		}
-		SET_SEL_CHOICE_KEYBIND( 14, 4 );
-		SET_SEL_CHOICE_KEYBIND( 15, 4 );
+		SEL_CHK_PAD( 14, 4 );
+		SEL_CHK_PAD( 15, 4 );
 		//Toggle selection or read more about it
 		int selection = ADV_SEL(DungeonOptions_Text, DungeonOptions, 0);
 		if (selection != 4)

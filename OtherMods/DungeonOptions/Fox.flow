@@ -138,7 +138,7 @@ void use_fox()
 		SET_MSG_VAR( 0, var4, 0 );
 		SET_MSG_VAR( 1, var3, 0 );
 		MSG( RECOVER_OK );
-		SET_SEL_CHOICE_KEYBIND( 14, 1 );
+		SEL_CHK_PAD( 14, 1 );
 		int var0 = SEL( PAY_SEL );
 		
 		if ( var0 == 0 )
@@ -154,7 +154,7 @@ void use_fox()
 				ADD_YEN( var4 );
 				MSG( RECOVER_START );
 				CLOSE_MSG_WIN();
-				NS_WAIT( 10 );
+				WAIT( 10 );
 				recovery_SP();
 				OPEN_MSG_WIN();
 				MSG( RECOVER_DONE );

@@ -135,7 +135,7 @@ void death_box_hook()
     OPEN_MSG_WIN();
     MSG( DEATH_WAIT );
     MSG( DEATH_BOX );
-    SET_SEL_CHOICE_KEYBIND( 14, 1 );
+    SEL_CHK_PAD( 14, 1 );
     int var179 = SEL( YESNO_SEL );
     CLOSE_MSG_WIN();
     int var183 = 0;
@@ -161,7 +161,7 @@ void death_box_hook()
         NAVI_BU_CLOSE( var183 );
         change_speaker();
         MSG( DEATH_BOX_OPEN_OK );
-        SET_SEL_CHOICE_KEYBIND( 14, 1 );
+        SEL_CHK_PAD( 14, 1 );
         var179 = SEL( YESNO_SEL );
         CLOSE_MSG_WIN();
         
@@ -172,7 +172,7 @@ void death_box_hook()
             MSG( DEATH_ENCOUNT );
             CLOSE_MSG_WIN();
             BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
-            NS_WAIT( 10 );
+            WAIT( 10 );
             var184 = CALL_BATTLE( 801, 0 );
             
             if ( var184 != 0 || gVar9 == 1 )
@@ -373,9 +373,9 @@ void dng_escape_hook()
     
     if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 92 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 93 ) == 0 )
     {
-        NS_WAIT( 10 );
+        WAIT( 10 );
         PLAY_SOUNDEFFECT( 241 );
-        NS_WAIT( 10 );
+        WAIT( 10 );
         OPEN_MSG_WIN();
         MSG( ESCAPE_BAN );
         CLOSE_MSG_WIN();

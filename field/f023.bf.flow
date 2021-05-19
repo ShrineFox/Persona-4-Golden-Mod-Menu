@@ -84,7 +84,7 @@ void f023_001_init_hook()
                 MSG( RETURN_RISE );
             }
 
-            SET_SEL_CHOICE_KEYBIND( 14, 1 );
+            SEL_CHK_PAD( 14, 1 );
             var0 = SEL( RETUEN_SEL );
             CLOSE_MSG_WIN();
             

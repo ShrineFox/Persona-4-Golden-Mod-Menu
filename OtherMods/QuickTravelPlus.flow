@@ -136,8 +136,8 @@ void StreetOrder(bool calendar, bool friend, bool save)
 		streetMask = streetMask + 128;
 	begin:
 	if (!BIT_CHK(6321))
-		SET_SEL_CHOICE_KEYBIND(12, 18);
-	SET_SEL_CHOICE_KEYBIND(14, 8);
+		SEL_CHK_PAD(12, 18);
+	SEL_CHK_PAD(14, 8);
 	int street = ADV_SEL( Street_Text, Street, streetMask );
 	if (street == 1) 
 	{
@@ -147,7 +147,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
 	switch (street)
 	{
 		case 0:
-			SET_SEL_CHOICE_KEYBIND(14, 5);
+			SEL_CHK_PAD(14, 5);
 			int shopping = ADV_SEL( Street_Text, ShoppingDistrictDay, shoppingMask );
 			if (shopping < 4) 
 			{
@@ -215,7 +215,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
 			{
 				OPEN_MSG_WIN();
 				MSG( GOINTO_HOME_STOP );
-				SET_SEL_CHOICE_KEYBIND( 14, 1 );
+				SEL_CHK_PAD( 14, 1 );
 				int var64 = SEL( YESNO_SEL );
 				CLOSE_MSG_WIN();
 				
@@ -293,8 +293,8 @@ void SchoolOrder(bool calendar, bool friend, bool save)
 		schoolMask = schoolMask + 256;
 	begin:
 	if (!BIT_CHK(6321))
-		SET_SEL_CHOICE_KEYBIND(12, 18);
-	SET_SEL_CHOICE_KEYBIND(14, 9);
+		SEL_CHK_PAD(12, 18);
+	SEL_CHK_PAD(14, 9);
 	int school = ADV_SEL( School_Text, School, schoolMask );
 	if (school > 1 && school < 6) 
 	{
@@ -304,7 +304,7 @@ void SchoolOrder(bool calendar, bool friend, bool save)
 	switch (school)
 	{
 		case 0:
-			SET_SEL_CHOICE_KEYBIND(14, 4);
+			SEL_CHK_PAD(14, 4);
 			int classroom = ADV_SEL( School_Text, ClassroomBuilding, classMask );
 			if (classroom < 4) 
 			{
@@ -330,7 +330,7 @@ void SchoolOrder(bool calendar, bool friend, bool save)
 			}
 			break;
 		case 1:
-			SET_SEL_CHOICE_KEYBIND(14, 2);
+			SEL_CHK_PAD(14, 2);
 			int practice = ADV_SEL( School_Text, PracticeBuilding, 0 );
 			if (practice < 2) 
 			{
@@ -415,8 +415,8 @@ void NightOrder(bool calendar, bool friend, bool save)
 		nightMask = nightMask + 64;
 	begin:
 	if (!BIT_CHK(6321))
-		SET_SEL_CHOICE_KEYBIND(12, 18);
-	SET_SEL_CHOICE_KEYBIND( 14, 7 );
+		SEL_CHK_PAD(12, 18);
+	SEL_CHK_PAD( 14, 7 );
 	int street = ADV_SEL( Street_Text, StreetNight, nightMask );
 	if (street > 0 && street < 4) 
 	{
@@ -426,7 +426,7 @@ void NightOrder(bool calendar, bool friend, bool save)
 	switch (street)
 	{
 		case 0:
-			SET_SEL_CHOICE_KEYBIND(14, 4);
+			SEL_CHK_PAD(14, 4);
 			int shopping = ADV_SEL( Street_Text, ShoppingDistrict, streetMask );
 			if (shopping < 3) 
 			{
@@ -569,7 +569,7 @@ void call_velvet_room()
                 MSG( MSG_0320_RETURN_HOME2 );
             }
 
-            SET_SEL_CHOICE_KEYBIND( 14, 1 );
+            SEL_CHK_PAD( 14, 1 );
             var8 = SEL( YESNO_SEL );
             CLOSE_MSG_WIN();
             
@@ -624,7 +624,7 @@ void call_velvet_room()
     {
         PLAY_SOUNDEFFECT( 700 );
         FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-        NS_WAIT( 15 );
+        WAIT( 15 );
         FADE( 1, 10 );
         FUNCTION_0024( 255, 255, 255 );
         FADE_SYNC();
@@ -638,7 +638,7 @@ void call_velvet_room()
     {
         PLAY_SOUNDEFFECT( 700 );
         FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-        NS_WAIT( 15 );
+        WAIT( 15 );
         FADE( 1, 10 );
         FUNCTION_0024( 255, 255, 255 );
         FADE_SYNC();
@@ -673,7 +673,7 @@ void call_velvet_room()
 
     PLAY_SOUNDEFFECT( 700 );
     FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-    NS_WAIT( 15 );
+    WAIT( 15 );
     FADE( 1, 10 );
     FUNCTION_0024( 255, 255, 255 );
     FADE_SYNC();

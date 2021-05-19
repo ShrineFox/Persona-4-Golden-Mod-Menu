@@ -76,8 +76,8 @@ void order_party_hook()
     {
 		TurnOffAllOptions();
 		TurnOffAllOptionsV2();
-        //MenuOptions();
-        TurnOnAllOptions();
+        MenuOptions();
+        //TurnOnAllOptions();
         goto restart;
     }
 

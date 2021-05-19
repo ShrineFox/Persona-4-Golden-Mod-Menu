@@ -103,7 +103,7 @@ void dng_init_00_hook()
         {
             var6 = 1;
             PLAY_SOUNDEFFECT( 241 );
-            NS_WAIT( 10 );
+            WAIT( 10 );
             MSG( YUKI_008_1 );
             change_speaker();
             MSG( YUKI_008_2 );
@@ -125,7 +125,7 @@ void dng_init_00_hook()
         {
             var6 = 1;
             PLAY_SOUNDEFFECT( 241 );
-            NS_WAIT( 10 );
+            WAIT( 10 );
             MSG( YUKI_009_2 );
             change_speaker();
             var2 = NAVI_BU_OPEN( 280, -40, 8, 33 );
@@ -136,7 +136,7 @@ void dng_init_00_hook()
         {
             var6 = 1;
             PLAY_SOUNDEFFECT( 241 );
-            NS_WAIT( 10 );
+            WAIT( 10 );
             MSG( YUKI_011_2 );
             change_speaker();
             MSG( YUKI_011_3 );
@@ -157,7 +157,7 @@ void dng_init_00_hook()
         {
             var6 = 1;
             PLAY_SOUNDEFFECT( 241 );
-            NS_WAIT( 10 );
+            WAIT( 10 );
             MSG( YUKI_012_2 );
             change_speaker();
             var2 = NAVI_BU_OPEN( 280, -40, 8, 0x20 );
