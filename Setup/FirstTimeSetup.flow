@@ -4,12 +4,12 @@ void FirstTimeSetup()
 {
 	//Introduction
 	OPEN_MSG_WIN();
-	HELP_MSG( SquareMenuConfig );
+	HELP_MSG(SquareMenuConfig);
 	CLOSE_MSG_WIN();
-	
+
 	//Marks first time setup as complete
 	BIT_ON(6320);
-	
+
 	//Set all menu option values to 0
 	for (int i = 0; i < 8; i++)
 	{
@@ -17,20 +17,20 @@ void FirstTimeSetup()
 	}
 
 	// Set second group of menu options to 0
-	for (int i = 0; i < 3; i++) 
+	for (int i = 0; i < 3; i++)
 	{
 		BIT_OFF(6340 + i);
 	}
-	
+
 	//Enable "Options" in menu for later configuration
 	BIT_ON(6329);
-	
+
 	//Set all dungeon option values to 0
 	for (int i = 0; i < 4; i++)
 	{
 		BIT_OFF(6330 + i);
 	}
-	
+
 	//Toggle options until done
 	MenuOptions();
 }
@@ -47,39 +47,55 @@ void MenuOptions()
 		//Toggle options until done
 		bool done = false;
 		int pageNum = 0;
-		while(!done)
+		while (!done)
 		{
-			if(pageNum == 0) {
+			if (pageNum == 0)
+			{
 				//Set options for page 1
 				for (int i = 0; i < 8; i++)
 				{
 					SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
 				}
-				SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6);
-			} else {
-				// Set optins for page 2
-				for (int i = 0; i < 3; i++)
-				{
-					SET_MSG_VAR(i, 619 + BIT_CHK(6340 + i), 6);
-				}
+				SET_SEL_CHOICE_KEYBIND(10, 8);
+				SET_SEL_CHOICE_KEYBIND(11, 8);
+				SET_SEL_CHOICE_KEYBIND(5, 8);
+				SET_SEL_CHOICE_KEYBIND(7, 8);
 			}
-			SET_SEL_CHOICE_KEYBIND(10, 17);
-			SET_SEL_CHOICE_KEYBIND(11, 17);
-			SET_SEL_CHOICE_KEYBIND(5, 17);
-			SET_SEL_CHOICE_KEYBIND(7, 17);
-			SET_SEL_CHOICE_KEYBIND( 14, 18 );
-			SET_SEL_CHOICE_KEYBIND( 15, 18 );
+			else
+			{
+				// Set optins for page 2
+				SET_MSG_VAR(0, 619 + BIT_CHK(6334), 6); // Default to direct commands
+				for (int i = 1; i < 4; i++)
+				{
+					SET_MSG_VAR(i, 619 + BIT_CHK(6339 + i), 6);
+				}
+				SET_SEL_CHOICE_KEYBIND(10, 4);
+				SET_SEL_CHOICE_KEYBIND(11, 4);
+				SET_SEL_CHOICE_KEYBIND(5, 4);
+				SET_SEL_CHOICE_KEYBIND(7, 4);
+			}
+			SET_SEL_CHOICE_KEYBIND(14, 18);
+			SET_SEL_CHOICE_KEYBIND(15, 18);
 			//Toggle selection or read more about it
 			int selection = ADV_SEL(SquareMenuOptions_Text + pageNum, SquareMenuOptions + pageNum, 0);
 			if (selection < 17)
 			{
-				if (pageNum == 0)  {
-					ToggleOption(ModMenu_About, 6321, selection, 0);
-				} else {
-					ToggleOption(RemoveInvitations_About, 6340, selection, 1);
+				if (pageNum == 0)
+				{
+					if (selection == 8)
+						pageNum = !pageNum;
+					else 
+						ToggleOption(ModMenu_About, 6321, selection, 0);
+				}
+				else
+				{
+					if (selection == 4)
+						pageNum = !pageNum;
+					else
+						ToggleOption(DirectCommands_About, 6339, selection, 1);
 				}
 			}
-			else if(selection == 18)
+			else
 			{
 				done = true;
 				if (!BIT_CHK(6321))
@@ -88,10 +104,6 @@ void MenuOptions()
 					MSG(OptionsWarning);
 					CLOSE_MSG_WIN();
 				}
-			} 
-			else 
-			{
-				pageNum = !pageNum;
 			}
 		}
 	}
@@ -100,57 +112,58 @@ void MenuOptions()
 void ToggleOption(int startMsg, int startFlag, int selection, int pageNum)
 {
 	OPEN_MSG_WIN();
-	MSG( startMsg + selection );
+	MSG(startMsg + selection);
 	SET_SEL_CHOICE_KEYBIND(14, 2);
 	int sel = SEL(ToggleMenu);
 	switch (sel)
 	{
-		case 0: //on
-			if (selection == 8 && pageNum == 0)
-				BIT_ON(6334);
-			else
-				BIT_ON(startFlag + selection);
-			if(selection == 3 && pageNum == 0)
-			{
-				CLOSE_MSG_WIN();
-				DungeonOptionsToggle();
-			}
-			else if(selection == 4 && pageNum == 0)
-			{
-				MSG(SPOILER_TOGGLE);
-				sel = SEL(ToggleMenu);
-				if (sel == 0)
-					BIT_ON(5678);
-				else if (sel == 1)
-					BIT_OFF(5678);
-			} 
-			else if(selection == 1 && pageNum == 1)
-			{
-				CLOSE_MSG_WIN();
-				RemoveEventsOptionsToggle();
-			}
-			break;
-		case 1: //off
-			if (selection == 8 && pageNum == 0)
-				BIT_OFF(6334);
-			else
-				BIT_OFF(startFlag + selection);
-			if (selection == 3 && pageNum == 0)
-			{
-				BIT_OFF(6330);
-				BIT_OFF(6331);
-				BIT_OFF(6332);
-				BIT_OFF(6333);
-			}
-			else if(selection == 1 && pageNum == 1) {
-				BIT_OFF(6350);
-				BIT_OFF(6351);
-				BIT_OFF(6352);
-				BIT_OFF(6353);
-			}
-			break;
-		case 2: //back
-			break;
+	case 0: //on
+		if (selection == 0 && pageNum == 1)
+			BIT_ON(6334);
+		else
+			BIT_ON(startFlag + selection);
+		if (selection == 3 && pageNum == 0)
+		{
+			CLOSE_MSG_WIN();
+			DungeonOptionsToggle();
+		}
+		else if (selection == 4 && pageNum == 0)
+		{
+			MSG(SPOILER_TOGGLE);
+			sel = SEL(ToggleMenu);
+			if (sel == 0)
+				BIT_ON(5678);
+			else if (sel == 1)
+				BIT_OFF(5678);
+		}
+		else if (selection == 2 && pageNum == 1)
+		{
+			CLOSE_MSG_WIN();
+			RemoveEventsOptionsToggle();
+		}
+		break;
+	case 1: //off
+		if (selection == 0 && pageNum == 1)
+			BIT_OFF(6334);
+		else
+			BIT_OFF(startFlag + selection);
+		if (selection == 3 && pageNum == 0)
+		{
+			BIT_OFF(6330);
+			BIT_OFF(6331);
+			BIT_OFF(6332);
+			BIT_OFF(6333);
+		}
+		else if (selection == 2 && pageNum == 1)
+		{
+			BIT_OFF(6350);
+			BIT_OFF(6351);
+			BIT_OFF(6352);
+			BIT_OFF(6353);
+		}
+		break;
+	case 2: //back
+		break;
 	}
 	CLOSE_MSG_WIN();
 }
@@ -159,15 +172,15 @@ void DungeonOptionsToggle()
 {
 	//Toggle options until done
 	bool done = false;
-	while(!done)
+	while (!done)
 	{
 		//Set message variables for menu options
 		for (int i = 0; i < 4; i++)
 		{
 			SET_MSG_VAR(i, 619 + BIT_CHK(6330 + i), 6);
 		}
-		SET_SEL_CHOICE_KEYBIND( 14, 4 );
-		SET_SEL_CHOICE_KEYBIND( 15, 4 );
+		SET_SEL_CHOICE_KEYBIND(14, 4);
+		SET_SEL_CHOICE_KEYBIND(15, 4);
 		//Toggle selection or read more about it
 		int selection = ADV_SEL(DungeonOptions_Text, DungeonOptions, 0);
 		if (selection != 4)
@@ -185,15 +198,15 @@ void RemoveEventsOptionsToggle()
 {
 	//Toggle options until done
 	bool done = false;
-	while(!done)
+	while (!done)
 	{
 		//Set message variables for menu options
 		for (int i = 0; i < 4; i++)
 		{
 			SET_MSG_VAR(i, 619 + BIT_CHK(6350 + i), 6);
 		}
-		SET_SEL_CHOICE_KEYBIND( 14, 4 );
-		SET_SEL_CHOICE_KEYBIND( 15, 4 );
+		SET_SEL_CHOICE_KEYBIND(14, 4);
+		SET_SEL_CHOICE_KEYBIND(15, 4);
 		//Toggle selection or read more about it
 		int selection = ADV_SEL(RemoveEventsOptions_Text, RemoveEventsOptions, 0);
 		if (selection != 4)
@@ -207,13 +220,14 @@ void RemoveEventsOptionsToggle()
 	}
 }
 
-bool IntroSkip() {
+bool IntroSkip()
+{
 	OPEN_MSG_WIN();
-	HELP_MSG( IntroSkipConfig );
+	HELP_MSG(IntroSkipConfig);
 	CLOSE_MSG_WIN();
 	OPEN_MSG_WIN();
-	MSG( IntroSkipSelection );
-	int selection = SEL( YesNo );
+	MSG(IntroSkipSelection);
+	int selection = SEL(YesNo);
 	CLOSE_MSG_WIN();
 	if (selection == 0)
 		selection = 1;
