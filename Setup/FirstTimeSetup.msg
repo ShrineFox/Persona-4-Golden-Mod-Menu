@@ -160,12 +160,12 @@
 [n](Only social links you have met will be shown)[f 1 1][e]
 
 [msg IntroSkipConfig]
-[f 0 5 -258][f 2 1][f 0 1 1]Intro Skip Setup[n]
+[f 0 5 -258][f 2 1][f 0 1 1]Prologue Skip Setup[n]
 [f 0 1 0]The opening events of Persona 4 Golden
 [n]are notoriously long, spanning about 1 to 3
 [n]hours before real gameplay begins.[f 1 1][e]
 
-[msg IntroSkipSelection[Intro Skip (ShrineFox)]]
+[msg IntroSkipSelection[Prologue Skip (ShrineFox)]]
 [f 0 5 -258][f 2 1]Would you like to skip the story exposition
-[n]and start from April 20? This is recommended if
-[n]you have experienced Persona 4 Golden before.[f 1 1][e]
+[n]and start from April 20? This is not recommended
+[n]for first-time players.[f 1 1][e]

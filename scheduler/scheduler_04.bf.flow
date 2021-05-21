@@ -11,7 +11,7 @@ void start_cmm_hirusasoi_hook()
 
 void sdl04_10_PM_D_hook()
 {
-	MenuOptions();
+	//MenuOptions();
 	
 	if (IntroSkip())
 	{

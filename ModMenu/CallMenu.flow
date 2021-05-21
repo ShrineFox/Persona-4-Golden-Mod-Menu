@@ -416,7 +416,7 @@ int Battles2()
 
 int BGMSelect()
 {
-	int bgm = Get_Number(5, MSG_5);
+	int bgm = Get_Number(9, MSG_5);
 	if (bgm == -1)
 		return -1;
 	CALL_BGM(bgm);
