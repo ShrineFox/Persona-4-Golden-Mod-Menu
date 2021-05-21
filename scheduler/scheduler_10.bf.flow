@@ -13,7 +13,7 @@ void sdl10_30_PM_D_hook()
 {
     INCREASE_SL(24);
     CALL_EVENT(335, 1, 0);
-    NS_WAIT(10);
+    WAIT(10);
     PLAY_CUTSCENE(33);
     FUNCTION_0065();
     FUNCTION_000F();
@@ -23,9 +23,9 @@ void sdl10_30_PM_D_hook()
     CALL_EVENT(337, 1, 0);
     CALL_EVENT(338, 1, 0);
     CALL_EVENT(339, 1, 0);
-    NS_WAIT(60);
+    WAIT(60);
     STOP_BGM(30);
-    NS_WAIT(60);
+    WAIT(60);
     SAVE_ASK(4);
     NS_DISABLE_PLAYER_MOVEMENT();
 }
