@@ -9,12 +9,12 @@ int CallMenuDisplay()
 		mask = 0;
 	while(true) 
 	{
-		SET_SEL_CHOICE_KEYBIND(10, 10);
-		SET_SEL_CHOICE_KEYBIND(11, 10);
-		SET_SEL_CHOICE_KEYBIND(5, 10);
-		SET_SEL_CHOICE_KEYBIND(7, 10);
-		SET_SEL_CHOICE_KEYBIND(14, 11);
-		SET_SEL_CHOICE_KEYBIND(15, 12);
+		SEL_CHK_PAD(10, 10);
+		SEL_CHK_PAD(11, 10);
+		SEL_CHK_PAD(5, 10);
+		SEL_CHK_PAD(7, 10);
+		SEL_CHK_PAD(14, 11);
+		SEL_CHK_PAD(15, 12);
 		int selection = ADV_SEL(Call_Menu_Text, Call_Menu_1, mask);
 		switch (selection)
 		{
@@ -66,12 +66,12 @@ int CallMenuDisplay2()
 	BackToModMenu = false;
 	while(true) 
 	{
-		SET_SEL_CHOICE_KEYBIND(10, 10);
-		SET_SEL_CHOICE_KEYBIND(11, 10);
-		SET_SEL_CHOICE_KEYBIND(5, 10);
-		SET_SEL_CHOICE_KEYBIND(7, 10);
-		SET_SEL_CHOICE_KEYBIND(14, 11);
-		SET_SEL_CHOICE_KEYBIND(15, 12);
+		SEL_CHK_PAD(10, 10);
+		SEL_CHK_PAD(11, 10);
+		SEL_CHK_PAD(5, 10);
+		SEL_CHK_PAD(7, 10);
+		SEL_CHK_PAD(14, 11);
+		SEL_CHK_PAD(15, 12);
 		int selection = ADV_SEL(Call_Menu_Text_2, Call_Menu_2, 0);
 		switch (selection)
 		{
@@ -169,12 +169,12 @@ int Facilities()
 	int fieldMinor = GET_FIELD_MINOR();
 	while (true)
 	{
-		SET_SEL_CHOICE_KEYBIND(10, 10);
-		SET_SEL_CHOICE_KEYBIND(11, 10);
-		SET_SEL_CHOICE_KEYBIND(5, 10);
-		SET_SEL_CHOICE_KEYBIND(7, 10);
-		SET_SEL_CHOICE_KEYBIND(14, 11);
-		SET_SEL_CHOICE_KEYBIND(15, 12);
+		SEL_CHK_PAD(10, 10);
+		SEL_CHK_PAD(11, 10);
+		SEL_CHK_PAD(5, 10);
+		SEL_CHK_PAD(7, 10);
+		SEL_CHK_PAD(14, 11);
+		SEL_CHK_PAD(15, 12);
 		int facility = ADV_SEL(Facility_Menu_Text, Facility_Menu_1, 0);
 		if (facility < 5 && facility > 0)
 		{
@@ -184,9 +184,9 @@ int Facilities()
 		switch (facility) 
 		{
 			case 0:
-				CLD_FUNCTION_0001();
-				CLD_FUNCTION_0002();
-				CLD_FUNCTION_0003();
+				FCL_FUNCTION_0001();
+				FCL_FUNCTION_0002();
+				FCL_FUNCTION_0003();
 				CALL_FIELD(20, 1, 0, 0);
 				return 0;
 			case 1:
@@ -230,12 +230,12 @@ int Facilities2()
 	int fieldMinor = GET_FIELD_MINOR();
 	while (true)
 	{
-		SET_SEL_CHOICE_KEYBIND(10, 10);
-		SET_SEL_CHOICE_KEYBIND(11, 10);
-		SET_SEL_CHOICE_KEYBIND(5, 10);
-		SET_SEL_CHOICE_KEYBIND(7, 10);
-		SET_SEL_CHOICE_KEYBIND(14, 11);
-		SET_SEL_CHOICE_KEYBIND(15, 12);
+		SEL_CHK_PAD(10, 10);
+		SEL_CHK_PAD(11, 10);
+		SEL_CHK_PAD(5, 10);
+		SEL_CHK_PAD(7, 10);
+		SEL_CHK_PAD(14, 11);
+		SEL_CHK_PAD(15, 12);
 		int facility = ADV_SEL(Facility_Menu_Text_2, Facility_Menu_2, 0);
 		if (facility < 5)
 		{
@@ -286,8 +286,8 @@ void RemoveParty()
 
 int BattleSelect()
 {
-	SET_SEL_CHOICE_KEYBIND(14, 10);
-	SET_SEL_CHOICE_KEYBIND(15, 11);
+	SEL_CHK_PAD(14, 10);
+	SEL_CHK_PAD(15, 11);
 	int battle = ADV_SEL(BATTLE_SEL_Text, BATTLE_SEL, 0);
 	if (battle == 0)
 	{
@@ -312,12 +312,12 @@ int Battles()
 {
 	while (true)
 	{
-		SET_SEL_CHOICE_KEYBIND(10, 15);
-		SET_SEL_CHOICE_KEYBIND(11, 15);
-		SET_SEL_CHOICE_KEYBIND(5, 15);
-		SET_SEL_CHOICE_KEYBIND(7, 15);
-		SET_SEL_CHOICE_KEYBIND(14, 16);
-		SET_SEL_CHOICE_KEYBIND(15, 17);
+		SEL_CHK_PAD(10, 15);
+		SEL_CHK_PAD(11, 15);
+		SEL_CHK_PAD(5, 15);
+		SEL_CHK_PAD(7, 15);
+		SEL_CHK_PAD(14, 16);
+		SEL_CHK_PAD(15, 17);
 		int boss = ADV_SEL( BOSS_SEL1_Text, BOSS_SEL1, 0 );
 		switch (boss)
 		{
@@ -368,12 +368,12 @@ int Battles2()
 	BackToModMenu = false;
 	while (true)
 	{
-		SET_SEL_CHOICE_KEYBIND(10, 15);
-		SET_SEL_CHOICE_KEYBIND(11, 15);
-		SET_SEL_CHOICE_KEYBIND(5, 15);
-		SET_SEL_CHOICE_KEYBIND(7, 15);
-		SET_SEL_CHOICE_KEYBIND(14, 16);
-		SET_SEL_CHOICE_KEYBIND(15, 17);
+		SEL_CHK_PAD(10, 15);
+		SEL_CHK_PAD(11, 15);
+		SEL_CHK_PAD(5, 15);
+		SEL_CHK_PAD(7, 15);
+		SEL_CHK_PAD(14, 16);
+		SEL_CHK_PAD(15, 17);
 		int boss2 = ADV_SEL( BOSS_SEL2_Text, BOSS_SEL2, 0 );
 		switch (boss2)
 		{

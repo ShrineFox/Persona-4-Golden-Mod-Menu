@@ -93,36 +93,51 @@ void StreetOrder(bool calendar, bool friend, bool save)
 
 	//Show daytime town quicktravel menu if not at home or school
 	// Set mask
-	int streetMask = 0;
+	int streetMask = 6;
 	int shoppingMask = 0;
 	switch (fieldMinor)
 	{
 		case 1:
 			shoppingMask = shoppingMask + 1;
+			if ( DATE_CHK( 4, 12 ) || DATE_CHK( 4, 13 ) || DATE_CHK( 4, 14 ) || DATE_CHK( 4, 15 ) 
+			|| DATE_CHK( 4, 16 ) )
+			{
+				streetMask = streetMask - 3;
+			}
 			break;
 		case 2:
 			shoppingMask = shoppingMask + 2;
 			if ( DATE_CHK( 4, 11 ) )
             {
-                streetMask = streetMask + 3;
+                streetMask = streetMask + 9;
             }
+			if ( DATE_CHK( 4, 12 ) || DATE_CHK( 4, 13 ) || DATE_CHK( 4, 14 ) || DATE_CHK( 4, 15 ) 
+			|| DATE_CHK( 4, 16 ) )
+			{
+				streetMask = streetMask - 1;
+			}
 			break;
 		case 9:
-			streetMask = streetMask + 2;
+			streetMask = streetMask + 8;
+			if ( DATE_CHK( 4, 12 ) || DATE_CHK( 4, 13 ) || DATE_CHK( 4, 14 ) || DATE_CHK( 4, 15 ) 
+			|| DATE_CHK( 4, 16 ) )
+			{
+				streetMask = streetMask - 5;
+			}
 			break;
 	}
 	if (!calendar)
-		streetMask = streetMask + 8;
+		streetMask = streetMask + 32;
 	// Decide if hangout should not be displayed
     generate_selection_mask();
     if (!friend || numSelectionsRemoved == 28 || (BIT_CHK( 0 + 0x0400 + 0x0800 + 2 ) || BIT_CHK( 0 + 0x0400 + 1726 ) && GET_TIME_OF_DAY() == 5))
-        streetMask = streetMask + 16;
+        streetMask = streetMask + 64;
 	if (!save || saveAnywhere() || saveAnywhere())
-		streetMask = streetMask + 32;
+		streetMask = streetMask + 128;
 	begin:
 	if (!BIT_CHK(6321))
-		SET_SEL_CHOICE_KEYBIND(12, 18);
-	SET_SEL_CHOICE_KEYBIND(14, 6);
+		SEL_CHK_PAD(12, 18);
+	SEL_CHK_PAD(14, 8);
 	int street = ADV_SEL( Street_Text, Street, streetMask );
 	if (street == 1) 
 	{
@@ -132,7 +147,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
 	switch (street)
 	{
 		case 0:
-			SET_SEL_CHOICE_KEYBIND(14, 5);
+			SEL_CHK_PAD(14, 5);
 			int shopping = ADV_SEL( Street_Text, ShoppingDistrictDay, shoppingMask );
 			if (shopping < 4) 
 			{
@@ -169,9 +184,27 @@ void StreetOrder(bool calendar, bool friend, bool save)
 			}
 			break;
 		case 1:
-			CALL_FIELD( 8, 9, 0, 0 );
+			FADE( 2, 5 );
+			FADE_SYNC();
+			if (GET_FIELD_MAJOR() == 8 && GET_FIELD_MINOR() == 9)
+				CALL_FIELD( 8, 1, 2, 0 );
+			else
+				CALL_FIELD( 8, 1, 0, 0 );
 			break;
 		case 2:
+			FADE( 2, 5 );
+			FADE_SYNC();
+			if (GET_FIELD_MAJOR() == 8)
+				CALL_FIELD( 8, 2, 1, 0 );
+			else
+				CALL_FIELD( 8, 2, 0, 0 );
+			break;
+		case 3:
+			FADE( 2, 5 );
+			FADE_SYNC();
+			CALL_FIELD( 8, 9, 0, 0 );
+			break;
+		case 4:
 			if ( DATE_CHK( 4, 11 ) == 1 )
 			{
 				OPEN_MSG_WIN();
@@ -182,7 +215,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
 			{
 				OPEN_MSG_WIN();
 				MSG( GOINTO_HOME_STOP );
-				SET_SEL_CHOICE_KEYBIND( 14, 1 );
+				SEL_CHK_PAD( 14, 1 );
 				int var64 = SEL( YESNO_SEL );
 				CLOSE_MSG_WIN();
 				
@@ -201,16 +234,16 @@ void StreetOrder(bool calendar, bool friend, bool save)
 				TOWN_MAP( 1 );
 			}
 			break;
-		case 3:
+		case 5:
 			OPEN_CALENDAR();
 			break;
-		case 4:
+		case 6:
 			generate_hangout_menu();
 			break;
-		case 5:
+		case 7:
 			NS_SAVE();
 			break;
-		case 6:
+		case 8:
 			selected = false;
 			break;
 		case 18:
@@ -260,8 +293,8 @@ void SchoolOrder(bool calendar, bool friend, bool save)
 		schoolMask = schoolMask + 256;
 	begin:
 	if (!BIT_CHK(6321))
-		SET_SEL_CHOICE_KEYBIND(12, 18);
-	SET_SEL_CHOICE_KEYBIND(14, 9);
+		SEL_CHK_PAD(12, 18);
+	SEL_CHK_PAD(14, 9);
 	int school = ADV_SEL( School_Text, School, schoolMask );
 	if (school > 1 && school < 6) 
 	{
@@ -271,7 +304,7 @@ void SchoolOrder(bool calendar, bool friend, bool save)
 	switch (school)
 	{
 		case 0:
-			SET_SEL_CHOICE_KEYBIND(14, 4);
+			SEL_CHK_PAD(14, 4);
 			int classroom = ADV_SEL( School_Text, ClassroomBuilding, classMask );
 			if (classroom < 4) 
 			{
@@ -297,7 +330,7 @@ void SchoolOrder(bool calendar, bool friend, bool save)
 			}
 			break;
 		case 1:
-			SET_SEL_CHOICE_KEYBIND(14, 2);
+			SEL_CHK_PAD(14, 2);
 			int practice = ADV_SEL( School_Text, PracticeBuilding, 0 );
 			if (practice < 2) 
 			{
@@ -382,8 +415,8 @@ void NightOrder(bool calendar, bool friend, bool save)
 		nightMask = nightMask + 64;
 	begin:
 	if (!BIT_CHK(6321))
-		SET_SEL_CHOICE_KEYBIND(12, 18);
-	SET_SEL_CHOICE_KEYBIND( 14, 7 );
+		SEL_CHK_PAD(12, 18);
+	SEL_CHK_PAD( 14, 7 );
 	int street = ADV_SEL( Street_Text, StreetNight, nightMask );
 	if (street > 0 && street < 4) 
 	{
@@ -393,7 +426,7 @@ void NightOrder(bool calendar, bool friend, bool save)
 	switch (street)
 	{
 		case 0:
-			SET_SEL_CHOICE_KEYBIND(14, 4);
+			SEL_CHK_PAD(14, 4);
 			int shopping = ADV_SEL( Street_Text, ShoppingDistrict, streetMask );
 			if (shopping < 3) 
 			{
@@ -536,7 +569,7 @@ void call_velvet_room()
                 MSG( MSG_0320_RETURN_HOME2 );
             }
 
-            SET_SEL_CHOICE_KEYBIND( 14, 1 );
+            SEL_CHK_PAD( 14, 1 );
             var8 = SEL( YESNO_SEL );
             CLOSE_MSG_WIN();
             
@@ -591,7 +624,7 @@ void call_velvet_room()
     {
         PLAY_SOUNDEFFECT( 700 );
         FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-        NS_WAIT( 15 );
+        WAIT( 15 );
         FADE( 1, 10 );
         FUNCTION_0024( 255, 255, 255 );
         FADE_SYNC();
@@ -605,7 +638,7 @@ void call_velvet_room()
     {
         PLAY_SOUNDEFFECT( 700 );
         FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-        NS_WAIT( 15 );
+        WAIT( 15 );
         FADE( 1, 10 );
         FUNCTION_0024( 255, 255, 255 );
         FADE_SYNC();
@@ -640,7 +673,7 @@ void call_velvet_room()
 
     PLAY_SOUNDEFFECT( 700 );
     FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-    NS_WAIT( 15 );
+    WAIT( 15 );
     FADE( 1, 10 );
     FUNCTION_0024( 255, 255, 255 );
     FADE_SYNC();

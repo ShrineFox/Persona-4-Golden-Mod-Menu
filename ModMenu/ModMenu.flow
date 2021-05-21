@@ -21,8 +21,8 @@ int ModMenuDisplay()
 	{
 		selected = true;
 		options = false;
-		SET_SEL_CHOICE_KEYBIND(14, 18);
-		SET_SEL_CHOICE_KEYBIND(15, 18);
+		SEL_CHK_PAD(14, 18);
+		SEL_CHK_PAD(15, 18);
 		int selection = ADV_SEL(Mod_Menu_Text, Mod_Menu, mask);
 		switch (selection)
 		{

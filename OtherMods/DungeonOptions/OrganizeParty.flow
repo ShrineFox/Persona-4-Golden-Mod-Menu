@@ -135,7 +135,7 @@ void OrganizeParty()
 			optionMask = optionMask + 2;
 		if (availableMembers - numMembers == 0)
 			optionMask = optionMask + 1;
-		SET_SEL_CHOICE_KEYBIND( 14, 2 );
+		SEL_CHK_PAD( 14, 2 );
 		if (floor > 1 && floor != 2 && floor != 3 && floor != 5 && floor != 20 && floor != 40 && floor != 60 && floor != 80 && floor != 100 && floor != 120 && floor != 140 && floor != 160)
 		{
 			if (sVar8 == 5)
@@ -195,7 +195,7 @@ void OrganizeParty()
 				MSG(ConfirmPartyTeddie);
 			}
 			
-			SET_SEL_CHOICE_KEYBIND( 14, 1 );
+			SEL_CHK_PAD( 14, 1 );
 			int confirm = SEL(YesNo);
 			if (confirm == 0)
 			{
@@ -380,7 +380,7 @@ bool CheckParty()
 
 int ChooseMember(int text, int mask)
 {
-	SET_SEL_CHOICE_KEYBIND( 14, 6 );
+	SEL_CHK_PAD( 14, 6 );
 	int member;
 	int selection;
 	int floor = GET_FLOOR_ID();

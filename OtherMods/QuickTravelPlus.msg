@@ -30,6 +30,8 @@
 
 [sel Street]
 [f 0 5 -258][f 2 1]Shopping District[e]
+[f 0 5 -258][f 2 1]Shopping District, North[e]
+[f 0 5 -258][f 2 1]Shopping District, South[e]
 [f 0 5 -258][f 2 1]Shrine[e]
 [f 0 5 -258][f 2 1]Leave the shopping district[e]
 [f 0 5 -258][f 2 1]View calendar[e]

@@ -233,14 +233,14 @@ void generate_hangout_menu()
     }
 
     // Set B button to nobody
-    SET_SEL_CHOICE_KEYBIND(14, 29);
+    SEL_CHK_PAD(14, 29);
     // Set bumpers to someone else if it's available
     if (pageTwoMask != 268435455)
     {
-        SET_SEL_CHOICE_KEYBIND(10, 28);
-        SET_SEL_CHOICE_KEYBIND(11, 28);
-		SET_SEL_CHOICE_KEYBIND(5, 28);
-        SET_SEL_CHOICE_KEYBIND(7, 28);
+        SEL_CHK_PAD(10, 28);
+        SEL_CHK_PAD(11, 28);
+		SEL_CHK_PAD(5, 28);
+        SEL_CHK_PAD(7, 28);
     }
 
     int localVariable56 = ADV_SEL(localVariable54, localVariable55, pageOneMask);
@@ -261,7 +261,7 @@ _choiceLoop:
         {
             OPEN_MSG_WIN();
             MSG(EXIT_MYHOME_OK);
-            SET_SEL_CHOICE_KEYBIND(14, 1);
+            SEL_CHK_PAD(14, 1);
             cancelSel = SEL(YESNO_SEL);
         }
 
@@ -503,7 +503,7 @@ _choiceLoop:
                         FADE( 1, 5 );
                         FADE_SYNC();
                         PLAY_SOUNDEFFECT( 173 );
-                        //NS_WAIT( 5 );
+                        //WAIT( 5 );
                         CALL_FIELD( 7, 2, 0, 0 );
                     }
                     // Play the sliding door sound effect if coming into the house
@@ -685,7 +685,7 @@ _choiceLoop:
                         FADE( 1, 5 );
                         FADE_SYNC();
                         PLAY_SOUNDEFFECT( 173 );
-                        //NS_WAIT( 5 );
+                        //WAIT( 5 );
                         CALL_FIELD( 7, 2, 0, 0 );
                     }
                     // Play the sliding door sound effect if coming into the house
@@ -1115,12 +1115,12 @@ _choiceLoop:
     else if (localVariable56 == 28)
     {
         // Generate another menu
-        SET_SEL_CHOICE_KEYBIND(14, 29);
+        SEL_CHK_PAD(14, 29);
         // Set bumpers to someone else
-        SET_SEL_CHOICE_KEYBIND(10, 28);
-        SET_SEL_CHOICE_KEYBIND(11, 28);
-		SET_SEL_CHOICE_KEYBIND(5, 28);
-        SET_SEL_CHOICE_KEYBIND(7, 28);
+        SEL_CHK_PAD(10, 28);
+        SEL_CHK_PAD(11, 28);
+		SEL_CHK_PAD(5, 28);
+        SEL_CHK_PAD(7, 28);
         // If you're on page one go to two and vice versa
         if (localVariable120 == 0)
         {

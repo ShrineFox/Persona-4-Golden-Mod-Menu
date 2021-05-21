@@ -26,7 +26,7 @@ void up_embankment_hook()
 		{
 			OPEN_MSG_WIN();
 			MSG( MSG_EMBANK_EXIT_NIGHT );
-			SET_SEL_CHOICE_KEYBIND( 14, 3 );
+			SEL_CHK_PAD( 14, 3 );
 			var3 = SEL( SEL_EMBANK_NIGHT );
 			CLOSE_MSG_WIN();
 			
@@ -63,7 +63,7 @@ void NightOrder()
 	MSG( MSG_EMBANK_EXIT_NIGHT );
 	
 	begin:
-	SET_SEL_CHOICE_KEYBIND(14, 3);
+	SEL_CHK_PAD(14, 3);
 	int street = SEL( StreetNight );
 	if (street > 0 && street < 3) 
 	{
@@ -73,7 +73,7 @@ void NightOrder()
 	switch (street)
 	{
 		case 0:
-			SET_SEL_CHOICE_KEYBIND(14, 4);
+			SEL_CHK_PAD(14, 4);
 			int shopping = SEL( ShoppingDistrict );
 			if (shopping < 3) 
 			{
@@ -157,7 +157,7 @@ void call_velvet_room()
                 MSG( MSG_0320_RETURN_HOME2 );
             }
 
-            SET_SEL_CHOICE_KEYBIND( 14, 1 );
+            SEL_CHK_PAD( 14, 1 );
             var8 = SEL( YESNO_SEL );
             CLOSE_MSG_WIN();
             
@@ -212,7 +212,7 @@ void call_velvet_room()
     {
         PLAY_SOUNDEFFECT( 700 );
         FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-        NS_WAIT( 15 );
+        WAIT( 15 );
         FADE( 1, 10 );
         FUNCTION_0024( 255, 255, 255 );
         FADE_SYNC();
@@ -226,7 +226,7 @@ void call_velvet_room()
     {
         PLAY_SOUNDEFFECT( 700 );
         FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-        NS_WAIT( 15 );
+        WAIT( 15 );
         FADE( 1, 10 );
         FUNCTION_0024( 255, 255, 255 );
         FADE_SYNC();
@@ -261,7 +261,7 @@ void call_velvet_room()
 
     PLAY_SOUNDEFFECT( 700 );
     FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
-    NS_WAIT( 15 );
+    WAIT( 15 );
     FADE( 1, 10 );
     FUNCTION_0024( 255, 255, 255 );
     FADE_SYNC();
