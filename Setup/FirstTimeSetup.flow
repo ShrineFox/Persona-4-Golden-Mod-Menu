@@ -56,11 +56,8 @@ void MenuOptions()
 				SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
 			}
 			SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6); // Default to direct commands
-			// Set message variables for scheduler mods
-			for (int i = 0; i < 3; i++)
-			{
-				SET_MSG_VAR(i + 9, 619 + BIT_CHK(6340 + i), 6);
-			}
+			SET_MSG_VAR(9, 619 + BIT_CHK(6341), 6);
+			SET_MSG_VAR(10, 619 + BIT_CHK(6342), 6);
 
 			SEL_CHK_PAD(14, 18);
 			SEL_CHK_PAD(15, 18);
@@ -129,18 +126,8 @@ void ToggleOption(int startMsg, int startFlag, int selection, bool subOption)
 		}
 		else if (selection == 4)
 		{
-			MSG(SPOILER_TOGGLE);
-			sel = SEL(ToggleMenu);
-			if (sel == 0)
-				BIT_ON(5678);
-			else if (sel == 1)
-				BIT_OFF(5678);
-			MSG(RemoveInvitations_About);
-			sel = SEL(ToggleMenu);
-			if (sel == 0)
-				BIT_ON(6340);
-			else if (sel == 1)
-				BIT_OFF(6340);
+			CLOSE_MSG_WIN();
+			FindAFriendOptionsToggle();
 		}
 		else if (selection == 9)
 		{
@@ -172,6 +159,50 @@ void ToggleOption(int startMsg, int startFlag, int selection, bool subOption)
 		break;
 	}
 	CLOSE_MSG_WIN();
+}
+
+void FindAFriendOptionsToggle()
+{
+	//Toggle options until done
+	bool done = false;
+	while (!done)
+	{
+		//Set message variables for menu options
+		SET_MSG_VAR(0, 619 + BIT_CHK(5678), 6);
+		SET_MSG_VAR(1, 619 + BIT_CHK(6340), 6);
+		SEL_CHK_PAD(14, 2);
+		SEL_CHK_PAD(15, 2);
+		//Toggle selection or read more about it
+		int selection = ADV_SEL(FindAFriendOptions_Text, FindAFriendOptions, 0);
+		if (selection == 0)
+		{
+			OPEN_MSG_WIN();
+			MSG(SPOILER_TOGGLE);
+			SEL_CHK_PAD(14, 2);
+			int sel = SEL(ToggleMenu);
+			if (sel == 0)
+				BIT_ON(5678);
+			else if (sel == 1)
+				BIT_OFF(5678);
+			CLOSE_MSG_WIN();
+		}
+		else if (selection == 1)
+		{
+			OPEN_MSG_WIN();
+			MSG(RemoveInvitations_About);
+			SEL_CHK_PAD(14, 2);
+			int sel = SEL(ToggleMenu);
+			if (sel == 0)
+				BIT_ON(6340);
+			else if (sel == 1)
+				BIT_OFF(6340);
+			CLOSE_MSG_WIN();
+		}
+		else
+		{
+			done = true;
+		}
+	}
 }
 
 void DungeonOptionsToggle()

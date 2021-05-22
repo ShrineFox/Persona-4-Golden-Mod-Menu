@@ -29,8 +29,8 @@
 [f 0 5 -258][f 2 1]Game Over Skip: [f 2 4 6][e]
 [f 0 5 -258][f 2 1]Reap-Balanced Encounters: [f 2 4 7][e]
 [f 0 5 -258][f 2 1]Default Direct Commands: [f 2 4 8][e]
-[f 0 5 -258][f 2 1]Remove Events: [f 2 4 10][e]
-[f 0 5 -258][f 2 1]Save Everyday: [f 2 4 11][e]
+[f 0 5 -258][f 2 1]Remove Events: [f 2 4 9][e]
+[f 0 5 -258][f 2 1]Save Everyday: [f 2 4 10][e]
 [f 0 5 -258][f 2 1]Next[e]
 [f 0 5 -258][f 2 1]Previous[e]
 
@@ -147,13 +147,21 @@
 [n]on the fly while dungeon crawling. Reloads the
 [n]floor you're currently on.[e]
 
+[msg FindAFriendOptions_Text]
+[f 0 5 -258][f 2 1]Find A Friend Options[e]
+
+[sel FindAFriendOptions]
+[f 0 5 -258][f 2 1]Spoiler-Free Mode: [f 2 4 0][e]
+[f 0 5 -258][f 2 1]Remove Invites: [f 2 4 1][e]
+[f 0 5 -258][f 2 1]Done[e]
+
 [msg SPOILER_TOGGLE[FindAFriend (AnimatedSwine37)]]
 [f 0 5 -258][f 2 1]Set spoiler-free mode
-[n](Only social links you have met will be shown)[f 1 1][e]
+[n](Only social links you have met will be shown)[e]
 
 [msg RemoveInvitations_About[Remove Invites (AnimatedSwine37)]]
-[f 0 5 -258][f 2 1]Remove lunchtime invitations to spend time with a
-[n]Social Link after school? It's highly recommended to 
+[f 0 5 -258][f 2 1]Removes lunchtime invitations to spend time with a
+[n]Social Link after school. It's highly recommended to 
 [n]use this with Find a Friend.[e]
 
 [msg IntroSkipConfig]
