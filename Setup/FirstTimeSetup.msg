@@ -28,13 +28,10 @@
 [f 0 5 -258][f 2 1]Save Anywhere: [f 2 4 5][e]
 [f 0 5 -258][f 2 1]Game Over Skip: [f 2 4 6][e]
 [f 0 5 -258][f 2 1]Reap-Balanced Encounters: [f 2 4 7][e]
-[f 0 5 -258][f 2 1]Next[e]
-
-[sel SquareMenuOptions_2]
-[f 0 5 -258][f 2 1]Default Direct Commands: [f 2 4 0][e]
-[f 0 5 -258][f 2 1]Remove Lunchtime Invites: [f 2 4 1][e]
-[f 0 5 -258][f 2 1]Remove Events: [f 2 4 2][e]
-[f 0 5 -258][f 2 1]Save Everyday: [f 2 4 3][e]
+[f 0 5 -258][f 2 1]Default Direct Commands: [f 2 4 8][e]
+[f 0 5 -258][f 2 1]Remove Lunchtime Invites: [f 2 4 9][e]
+[f 0 5 -258][f 2 1]Remove Events: [f 2 4 10][e]
+[f 0 5 -258][f 2 1]Save Everyday: [f 2 4 11][e]
 [f 0 5 -258][f 2 1]Next[e]
 
 [msg OptionsWarning]

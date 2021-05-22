@@ -47,53 +47,45 @@ void MenuOptions()
 		//Toggle options until done
 		bool done = false;
 		int pageNum = 0;
+		int mask = 0;
 		while (!done)
 		{
-			if (pageNum == 0)
+			//Set message variables
+			for (int i = 0; i < 8; i++)
 			{
-				//Set options for page 1
-				for (int i = 0; i < 8; i++)
-				{
-					SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
-				}
-				SEL_CHK_PAD(10, 8);
-				SEL_CHK_PAD(11, 8);
-				SEL_CHK_PAD(5, 8);
-				SEL_CHK_PAD(7, 8);
+				SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
 			}
-			else
+			SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6); // Default to direct commands
+			// Set message variables for scheduler mods
+			for (int i = 0; i < 3; i++)
 			{
-				// Set optins for page 2
-				SET_MSG_VAR(0, 619 + BIT_CHK(6334), 6); // Default to direct commands
-				for (int i = 1; i < 4; i++)
-				{
-					SET_MSG_VAR(i, 619 + BIT_CHK(6339 + i), 6);
-				}
-				SEL_CHK_PAD(10, 4);
-				SEL_CHK_PAD(11, 4);
-				SEL_CHK_PAD(5, 4);
-				SEL_CHK_PAD(7, 4);
+				SET_MSG_VAR(i + 9, 619 + BIT_CHK(6340 + i), 6);
 			}
+
+			SEL_CHK_PAD(10, 12);
+			SEL_CHK_PAD(11, 12);
+			SEL_CHK_PAD(5, 12);
+			SEL_CHK_PAD(7, 12);
 			SEL_CHK_PAD(14, 18);
 			SEL_CHK_PAD(15, 18);
+
+			if (pageNum == 0)
+				mask = 4032;
+			else
+				mask = 63;
+
 			//Toggle selection or read more about it
-			int selection = ADV_SEL(SquareMenuOptions_Text + pageNum, SquareMenuOptions + pageNum, 0);//33);
-			if (selection < 17)
+			int selection = ADV_SEL(SquareMenuOptions_Text + pageNum, SquareMenuOptions, mask); //33);
+			if (selection < 12)
 			{
-				if (pageNum == 0)
-				{
-					if (selection == 8)
-						pageNum = !pageNum;
-					else 
-						ToggleOption(ModMenu_About, 6321, selection, 0);
-				}
+				if (selection > 8) // Scheduler mods have a different range of flags (6340+)
+					ToggleOption(ModMenu_About, 6331, selection, false);
 				else
-				{
-					if (selection == 4)
-						pageNum = !pageNum;
-					else
-						ToggleOption(DirectCommands_About, 6339, selection, 1);
-				}
+					ToggleOption(ModMenu_About, 6321, selection, false);
+			}
+			else if (selection == 12)
+			{
+				pageNum = !pageNum;
 			}
 			else
 			{
@@ -109,25 +101,25 @@ void MenuOptions()
 	}
 }
 
-void ToggleOption(int startMsg, int startFlag, int selection, int pageNum)
+void ToggleOption(int startMsg, int startFlag, int selection, bool subOption)
 {
 	OPEN_MSG_WIN();
-	MSG( startMsg + selection );
+	MSG(startMsg + selection);
 	SEL_CHK_PAD(14, 2);
 	int sel = SEL(ToggleMenu);
 	switch (sel)
 	{
 	case 0: //on
-		if (selection == 0 && pageNum == 1)
+		if (selection == 8)
 			BIT_ON(6334);
 		else
 			BIT_ON(startFlag + selection);
-		if (selection == 3 && pageNum == 0)
+		if (selection == 3 && !subOption)
 		{
 			CLOSE_MSG_WIN();
 			DungeonOptionsToggle();
 		}
-		else if (selection == 4 && pageNum == 0)
+		else if (selection == 4)
 		{
 			MSG(SPOILER_TOGGLE);
 			sel = SEL(ToggleMenu);
@@ -136,25 +128,25 @@ void ToggleOption(int startMsg, int startFlag, int selection, int pageNum)
 			else if (sel == 1)
 				BIT_OFF(5678);
 		}
-		else if (selection == 2 && pageNum == 1)
+		else if (selection == 10)
 		{
 			CLOSE_MSG_WIN();
 			RemoveEventsOptionsToggle();
 		}
 		break;
 	case 1: //off
-		if (selection == 0 && pageNum == 1)
+		if (selection == 8)
 			BIT_OFF(6334);
 		else
 			BIT_OFF(startFlag + selection);
-		if (selection == 3 && pageNum == 0)
+		if (selection == 3 && !subOption)
 		{
 			BIT_OFF(6330);
 			BIT_OFF(6331);
 			BIT_OFF(6332);
 			BIT_OFF(6333);
 		}
-		else if (selection == 2 && pageNum == 1)
+		else if (selection == 10)
 		{
 			BIT_OFF(6350);
 			BIT_OFF(6351);
@@ -179,13 +171,13 @@ void DungeonOptionsToggle()
 		{
 			SET_MSG_VAR(i, 619 + BIT_CHK(6330 + i), 6);
 		}
-		SEL_CHK_PAD( 14, 4 );
-		SEL_CHK_PAD( 15, 4 );
+		SEL_CHK_PAD(14, 4);
+		SEL_CHK_PAD(15, 4);
 		//Toggle selection or read more about it
 		int selection = ADV_SEL(DungeonOptions_Text, DungeonOptions, 0);
 		if (selection != 4)
 		{
-			ToggleOption(ShowFox_About, 6330, selection, 0);
+			ToggleOption(ShowFox_About, 6330, selection, true);
 		}
 		else
 		{
@@ -211,7 +203,7 @@ void RemoveEventsOptionsToggle()
 		int selection = ADV_SEL(RemoveEventsOptions_Text, RemoveEventsOptions, 0);
 		if (selection != 4)
 		{
-			ToggleOption(RemoveCamping_About, 6350, selection, 1);
+			ToggleOption(RemoveCamping_About, 6350, selection, true);
 		}
 		else
 		{
@@ -226,8 +218,8 @@ bool IntroSkip()
 	//HELP_MSG( IntroSkipConfig );
 	//CLOSE_MSG_WIN();
 	//OPEN_MSG_WIN();
-	MSG( IntroSkipSelection );
-	int selection = SEL( YesNo );
+	MSG(IntroSkipSelection);
+	int selection = SEL(YesNo);
 	CLOSE_MSG_WIN();
 	if (selection == 0)
 		selection = 1;
