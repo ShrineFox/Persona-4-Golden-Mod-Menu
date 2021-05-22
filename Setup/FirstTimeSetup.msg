@@ -29,10 +29,10 @@
 [f 0 5 -258][f 2 1]Game Over Skip: [f 2 4 6][e]
 [f 0 5 -258][f 2 1]Reap-Balanced Encounters: [f 2 4 7][e]
 [f 0 5 -258][f 2 1]Default Direct Commands: [f 2 4 8][e]
-[f 0 5 -258][f 2 1]Remove Lunchtime Invites: [f 2 4 9][e]
 [f 0 5 -258][f 2 1]Remove Events: [f 2 4 10][e]
 [f 0 5 -258][f 2 1]Save Everyday: [f 2 4 11][e]
 [f 0 5 -258][f 2 1]Next[e]
+[f 0 5 -258][f 2 1]Previous[e]
 
 [msg OptionsWarning]
 [f 0 5 -258][f 2 1]Access the Options Menu again by pressing
@@ -83,13 +83,8 @@
 [n]Commands so you don't have to take the couple
 [n]seconds to change it yourself.[e]
 
-[msg RemoveInvitations_About[Remove Invites (AnimatedSwine37)]]
-[f 0 5 -258][f 2 1]Removes lunchtime invitations to spend time with a
-[n]Social Link after school. It's highly reccomended to 
-[n]use this with Find a Friend.[e]
-
 [msg RemoveEvents_About[Remove Events (AnimatedSwine37)]]
-[f 0 5 -258][f 2 1]Removes the Hot Srpings, Camping Trip and
+[f 0 5 -258][f 2 1]Removes the Hot Springs, Camping Trip and
 [n]Culture Festival. Each of these events can be  
 [n]individually disabled to fit your preferences.[e]
 
@@ -155,6 +150,11 @@
 [msg SPOILER_TOGGLE[FindAFriend (AnimatedSwine37)]]
 [f 0 5 -258][f 2 1]Set spoiler-free mode
 [n](Only social links you have met will be shown)[f 1 1][e]
+
+[msg RemoveInvitations_About[Remove Invites (AnimatedSwine37)]]
+[f 0 5 -258][f 2 1]Remove lunchtime invitations to spend time with a
+[n]Social Link after school? It's highly recommended to 
+[n]use this with Find a Friend.[e]
 
 [msg IntroSkipConfig]
 [f 0 5 -258][f 2 1][f 0 1 1]Prologue Skip Setup[n]

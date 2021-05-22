@@ -32,7 +32,18 @@ if not exist %OUTPUT_PATH%\tblpatches mkdir %OUTPUT_PATH%\tblpatches
 %COMPILER% .\field\f010.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\pack\fd010_002\f010.bf" -Hook
 %COMPILER% .\field\f020.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\pack\fd020_001\f020.bf" -Hook
 %COMPILER% .\field\f023.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\pack\fd023_001\f023.bf" -Hook
+%COMPILER% .\scheduler\scheduler_01.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_01.bf" -Hook
+%COMPILER% .\scheduler\scheduler_02.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_02.bf" -Hook
+%COMPILER% .\scheduler\scheduler_03.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_03.bf" -Hook
 %COMPILER% .\scheduler\scheduler_04.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_04.bf" -Hook
+%COMPILER% .\scheduler\scheduler_05.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_05.bf" -Hook
+%COMPILER% .\scheduler\scheduler_06.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_06.bf" -Hook
+%COMPILER% .\scheduler\scheduler_07.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_07.bf" -Hook
+%COMPILER% .\scheduler\scheduler_08.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_08.bf" -Hook
+%COMPILER% .\scheduler\scheduler_09.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_09.bf" -Hook
+%COMPILER% .\scheduler\scheduler_10.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_10.bf" -Hook
+%COMPILER% .\scheduler\scheduler_11.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_11.bf" -Hook
+%COMPILER% .\scheduler\scheduler_12.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_12.bf" -Hook
 
 del /s /q "%INPUT_PATH%\init_free\*"
 rmdir /s /q "%INPUT_PATH%\init_free"

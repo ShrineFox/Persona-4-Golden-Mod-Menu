@@ -62,28 +62,36 @@ void MenuOptions()
 				SET_MSG_VAR(i + 9, 619 + BIT_CHK(6340 + i), 6);
 			}
 
-			SEL_CHK_PAD(10, 12);
-			SEL_CHK_PAD(11, 12);
-			SEL_CHK_PAD(5, 12);
-			SEL_CHK_PAD(7, 12);
 			SEL_CHK_PAD(14, 18);
 			SEL_CHK_PAD(15, 18);
 
-			if (pageNum == 0)
-				mask = 4032;
+			if (!pageNum)
+			{
+				mask = 6080;
+				SEL_CHK_PAD(10, 11);
+				SEL_CHK_PAD(11, 11);
+				SEL_CHK_PAD(5, 11);
+				SEL_CHK_PAD(7, 11);
+			}
 			else
-				mask = 63;
+			{
+				mask = 2111;
+				SEL_CHK_PAD(10, 12);
+				SEL_CHK_PAD(11, 12);
+				SEL_CHK_PAD(5, 12);
+				SEL_CHK_PAD(7, 12);
+			}
 
 			//Toggle selection or read more about it
-			int selection = ADV_SEL(SquareMenuOptions_Text + pageNum, SquareMenuOptions, mask); //33);
-			if (selection < 12)
+			int selection = ADV_SEL(SquareMenuOptions_Text + pageNum, SquareMenuOptions, mask);
+			if (selection < 11)
 			{
 				if (selection > 8) // Scheduler mods have a different range of flags (6340+)
-					ToggleOption(ModMenu_About, 6331, selection, false);
+					ToggleOption(ModMenu_About, 6332, selection, false);
 				else
 					ToggleOption(ModMenu_About, 6321, selection, false);
 			}
-			else if (selection == 12)
+			else if (selection == 11 || selection == 12)
 			{
 				pageNum = !pageNum;
 			}
@@ -127,8 +135,14 @@ void ToggleOption(int startMsg, int startFlag, int selection, bool subOption)
 				BIT_ON(5678);
 			else if (sel == 1)
 				BIT_OFF(5678);
+			MSG(RemoveInvitations_About);
+			sel = SEL(ToggleMenu);
+			if (sel == 0)
+				BIT_ON(6340);
+			else if (sel == 1)
+				BIT_OFF(6340);
 		}
-		else if (selection == 10)
+		else if (selection == 9)
 		{
 			CLOSE_MSG_WIN();
 			RemoveEventsOptionsToggle();
@@ -146,7 +160,7 @@ void ToggleOption(int startMsg, int startFlag, int selection, bool subOption)
 			BIT_OFF(6332);
 			BIT_OFF(6333);
 		}
-		else if (selection == 10)
+		else if (selection == 9)
 		{
 			BIT_OFF(6350);
 			BIT_OFF(6351);

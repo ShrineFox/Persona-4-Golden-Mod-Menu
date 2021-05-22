@@ -11,7 +11,7 @@ void RemoveLunchtimeInvites()
     }
 }
 
-// Original code to be called if lunchtime invitations is disiabled
+// Original code to be called if lunchtime invitations is disabled
 void original_start_cmm_hirusasoi() {
     int localVariable1 = EVT_FUNCTION_0023();
     int localVariable0 = EVT_FUNCTION_001A();
