@@ -204,7 +204,7 @@ void OrganizeParty()
 				FADE_SYNC();
 				
 				if (floor == 7 || floor == 13 || floor == 31 || floor == 51 || floor == 70 
-				|| floor == 89 || floor == 110 || || floor == 122 || floor == 129 || floor == 170)
+				|| floor == 89 || floor == 110 || floor == 122 || floor == 129 || floor == 170)
 					CALL_DUNGEON(floor, 0);
 				else
 					CALL_FLOOR(floor);

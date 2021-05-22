@@ -18,6 +18,7 @@ if not exist %OUTPUT_PATH%\tblpatches mkdir %OUTPUT_PATH%\tblpatches
 
 %PAKPACK% unpack "%INPUT_PATH%\init_free.bin"
 %PAKPACK% unpack "%INPUT_PATH%\field\pack\fd007_001.arc"
+%PAKPACK% unpack "%INPUT_PATH%\field\pack\fd007_002.arc"
 %PAKPACK% unpack "%INPUT_PATH%\field\pack\fd010_002.arc"
 %PAKPACK% unpack "%INPUT_PATH%\field\pack\fd020_001.arc"
 %PAKPACK% unpack "%INPUT_PATH%\field\pack\fd023_001.arc"
@@ -27,6 +28,7 @@ if not exist %OUTPUT_PATH%\tblpatches mkdir %OUTPUT_PATH%\tblpatches
 %COMPILER% .\field\dungeon01.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\script\dungeon01.bf" -Hook
 %COMPILER% .\field\lmap.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\script\lmap.bf" -Hook
 %COMPILER% .\field\f007.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\pack\fd007_001\f007.bf" -Hook
+%COMPILER% .\field\f007_002.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\pack\fd007_002\f007.bf" -Hook
 %COMPILER% .\field\f010.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\pack\fd010_002\f010.bf" -Hook
 %COMPILER% .\field\f020.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\pack\fd020_001\f020.bf" -Hook
 %COMPILER% .\field\f023.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\pack\fd023_001\f023.bf" -Hook
@@ -36,6 +38,8 @@ del /s /q "%INPUT_PATH%\init_free\*"
 rmdir /s /q "%INPUT_PATH%\init_free"
 del /s /q "%INPUT_PATH%\field\pack\fd007_001\*"
 rmdir /s /q "%INPUT_PATH%\field\pack\fd007_001"
+del /s /q "%INPUT_PATH%\field\pack\fd007_002\*"
+rmdir /s /q "%INPUT_PATH%\field\pack\fd007_002"
 del /s /q "%INPUT_PATH%\field\pack\fd010_002\*"
 rmdir /s /q "%INPUT_PATH%\field\pack\fd010_002"
 del /s /q "%INPUT_PATH%\field\pack\fd020_001\*"

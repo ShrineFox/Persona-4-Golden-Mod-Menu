@@ -1,0 +1,178 @@
+// Regular way lunchtime invites are removed
+void RemoveLunchtimeInvites() 
+{
+    if (BIT_CHK(6340))
+    {
+        return;
+    }
+    else 
+    {
+        original_start_cmm_hirusasoi();
+    }
+}
+
+// Original code to be called if lunchtime invitations is disiabled
+void original_start_cmm_hirusasoi() {
+    int localVariable1 = EVT_FUNCTION_0023();
+    int localVariable0 = EVT_FUNCTION_001A();
+
+    if (BIT_CHK(0 + 0x0400 + 1498) == 1)
+    {
+        return;
+    }
+
+    if (CHECK_TIME_SPAN(1, 11, 2, 13) == 1)
+    {
+
+        if (GET_SL_LEVEL(7) == 10 && (BIT_CHK(0 + 0x0400 + 454) == 1 || BIT_CHK(0 + 0x0400 + 432) == 1) && BIT_CHK(0 + 0x0400 + 1127) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1120);
+            localVariable0 = 1;
+        }
+
+        if ((GET_SL_LEVEL(11) == 10 || GET_SL_LEVEL(12) == 10) && (BIT_CHK(0 + 0x0400 + 458) == 1 || BIT_CHK(0 + 0x0400 + 459) == 1 || BIT_CHK(0 + 0x0400 + 434) == 1) && BIT_CHK(0 + 0x0400 + 1128) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1121);
+            localVariable0 = 1;
+        }
+
+        if ((GET_SL_LEVEL(5) == 10 || GET_SL_LEVEL(6) == 10) && (BIT_CHK(0 + 0x0400 + 452) == 1 || BIT_CHK(0 + 0x0400 + 453) == 1 || BIT_CHK(0 + 0x0400 + 435) == 1) && BIT_CHK(0 + 0x0400 + 1129) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1122);
+            localVariable0 = 1;
+        }
+
+        if (GET_SL_LEVEL(10) == 10 && (BIT_CHK(0 + 0x0400 + 457) == 1 || BIT_CHK(0 + 0x0400 + 433) == 1) && BIT_CHK(0 + 0x0400 + 1130) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1123);
+            localVariable0 = 1;
+        }
+
+        if ((GET_SL_LEVEL(3) == 10 || GET_SL_LEVEL(4) == 10) && (BIT_CHK(0 + 0x0400 + 450) == 1 || BIT_CHK(0 + 0x0400 + 451) == 1 || BIT_CHK(0 + 0x0400 + 436) == 1) && BIT_CHK(0 + 0x0400 + 1131) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1124);
+            localVariable0 = 1;
+        }
+
+        if (GET_SL_LEVEL(24) == 10 && BIT_CHK(0 + 0x0400 + 471) == 1 && BIT_CHK(0 + 0x0400 + 1132) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1125);
+            localVariable0 = 1;
+        }
+
+        if ((GET_SL_LEVEL(14) == 10 || GET_SL_LEVEL(15) == 10) && (BIT_CHK(0 + 0x0400 + 461) == 1 || BIT_CHK(0 + 0x0400 + 462) == 1 || BIT_CHK(0 + 0x0400 + 437) == 1) && BIT_CHK(0 + 0x0400 + 1133) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1126);
+            localVariable0 = 1;
+        }
+    }
+
+    if (localVariable1 == 0 && localVariable0 == 0)
+    {
+        return;
+    }
+
+    if (BIT_CHK(0 + 0x0400 + 1488) == 1)
+    {
+        return;
+    }
+
+    if (localVariable1 != 0)
+    {
+        BIT_ON(0 + 0x0400 + 1786);
+    }
+
+    if (localVariable0 != 0 || BIT_CHK(0 + 0x0400 + 1120) == 1 || BIT_CHK(0 + 0x0400 + 1121) == 1 || BIT_CHK(0 + 0x0400 + 1122) == 1 || BIT_CHK(0 + 0x0400 + 1123) == 1 || BIT_CHK(0 + 0x0400 + 1124) == 1 || BIT_CHK(0 + 0x0400 + 1125) == 1 || BIT_CHK(0 + 0x0400 + 1126) == 1)
+    {
+        BIT_ON(0 + 0x0400 + 1787);
+    }
+
+    CALL_EVENT(830, 12, 0);
+    BIT_OFF(0 + 0x0400 + 1788);
+    BIT_OFF(0 + 0x0400 + 1789);
+    BIT_OFF(0 + 0x0400 + 1786);
+    BIT_OFF(0 + 0x0400 + 1787);
+}
+
+// Removes invitations for January and Feburary as they require extra code for max s link events
+void RemoveLunchtimeInvitesSpecial()
+{
+    if (!BIT_CHK(6340))
+    {
+        original_start_cmm_hirusasoi();
+        return;
+    }
+
+    int localVariable1 = EVT_FUNCTION_0023();
+    int localVariable0 = EVT_FUNCTION_001A();
+    bool finished = 1;
+
+    if (BIT_CHK(0 + 0x0400 + 1498) == 1)
+    {
+        return;
+    }
+
+    if (CHECK_TIME_SPAN(1, 11, 2, 13) == 1)
+    {
+
+        if (GET_SL_LEVEL(7) == 10 && (BIT_CHK(0 + 0x0400 + 454) == 1 || BIT_CHK(0 + 0x0400 + 432) == 1) && BIT_CHK(0 + 0x0400 + 1127) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1120);
+            localVariable0 = 1;
+            finished = 0;
+        }
+
+        if ((GET_SL_LEVEL(11) == 10 || GET_SL_LEVEL(12) == 10) && (BIT_CHK(0 + 0x0400 + 458) == 1 || BIT_CHK(0 + 0x0400 + 459) == 1 || BIT_CHK(0 + 0x0400 + 434) == 1) && BIT_CHK(0 + 0x0400 + 1128) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1121);
+            localVariable0 = 1;
+            finished = 0;
+        }
+
+        if ((GET_SL_LEVEL(5) == 10 || GET_SL_LEVEL(6) == 10) && (BIT_CHK(0 + 0x0400 + 452) == 1 || BIT_CHK(0 + 0x0400 + 453) == 1 || BIT_CHK(0 + 0x0400 + 435) == 1) && BIT_CHK(0 + 0x0400 + 1129) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1122);
+            localVariable0 = 1;
+            finished = 0;
+        }
+
+        if (GET_SL_LEVEL(10) == 10 && (BIT_CHK(0 + 0x0400 + 457) == 1 || BIT_CHK(0 + 0x0400 + 433) == 1) && BIT_CHK(0 + 0x0400 + 1130) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1123);
+            localVariable0 = 1;
+            finished = 0;
+        }
+
+        if ((GET_SL_LEVEL(3) == 10 || GET_SL_LEVEL(4) == 10) && (BIT_CHK(0 + 0x0400 + 450) == 1 || BIT_CHK(0 + 0x0400 + 451) == 1 || BIT_CHK(0 + 0x0400 + 436) == 1) && BIT_CHK(0 + 0x0400 + 1131) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1124);
+            localVariable0 = 1;
+            finished = 0;
+        }
+
+        if (GET_SL_LEVEL(24) == 10 && BIT_CHK(0 + 0x0400 + 471) == 1 && BIT_CHK(0 + 0x0400 + 1132) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1125);
+            localVariable0 = 1;
+            finished = 0;
+        }
+
+        if ((GET_SL_LEVEL(14) == 10 || GET_SL_LEVEL(15) == 10) && (BIT_CHK(0 + 0x0400 + 461) == 1 || BIT_CHK(0 + 0x0400 + 462) == 1 || BIT_CHK(0 + 0x0400 + 437) == 1) && BIT_CHK(0 + 0x0400 + 1133) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 1126);
+            localVariable0 = 1;
+            finished = 0;
+        }
+    }
+
+    if (finished)
+    {
+        return;
+    }
+
+    CALL_EVENT(830, 12, 0);
+    BIT_OFF(0 + 0x0400 + 1788);
+    BIT_OFF(0 + 0x0400 + 1789);
+    BIT_OFF(0 + 0x0400 + 1786);
+    BIT_OFF(0 + 0x0400 + 1787);
+}

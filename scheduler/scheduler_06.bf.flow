@@ -1,0 +1,29 @@
+import("../build/input/scheduler/scheduler_06.bf");
+import("../OtherMods/SaveEveryday.flow");
+import("../OtherMods/RemoveLunchtimeInvites.flow");
+
+// Remove lunchtime invitations
+void start_cmm_hirusasoi_hook()
+{
+    RemoveLunchtimeInvites();
+}
+
+// Remove Camping Trip
+void sdl06_17_PM_B_hook()
+{
+    if(BIT_CHK(6350)) {
+        NEXT_DATE(6, 18, 5);
+    } else {
+        CALL_EVENT( 228, 1, 0 );
+    }
+}
+
+// Remove Camping Trip
+void sdl06_18_PM_D_hook()
+{
+    if(BIT_CHK(6350)) {
+        // Have to call everymorning here as I skip the morning phase of the day (NPCs don't show if you don't)
+        everymorning();
+    }
+    CALL_FIELD(7, 2, 0, 0);
+}

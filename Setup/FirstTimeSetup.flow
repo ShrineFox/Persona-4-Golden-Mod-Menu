@@ -4,27 +4,33 @@ void FirstTimeSetup()
 {
 	//Introduction
 	OPEN_MSG_WIN();
-	HELP_MSG( SquareMenuConfig );
+	HELP_MSG(SquareMenuConfig);
 	CLOSE_MSG_WIN();
-	
+
 	//Marks first time setup as complete
 	BIT_ON(6320);
-	
+
 	//Set all menu option values to 0
 	for (int i = 0; i < 8; i++)
 	{
 		BIT_OFF(6321 + i);
 	}
-	
+
+	// Set second group of menu options to 0
+	for (int i = 0; i < 3; i++)
+	{
+		BIT_OFF(6340 + i);
+	}
+
 	//Enable "Options" in menu for later configuration
 	BIT_ON(6329);
-	
+
 	//Set all dungeon option values to 0
 	for (int i = 0; i < 4; i++)
 	{
 		BIT_OFF(6330 + i);
 	}
-	
+
 	//Toggle options until done
 	MenuOptions();
 }
@@ -40,21 +46,46 @@ void MenuOptions()
 	{
 		//Toggle options until done
 		bool done = false;
-		while(!done)
+		int pageNum = 0;
+		int mask = 0;
+		while (!done)
 		{
-			//Set message variables for menu options
+			//Set message variables
 			for (int i = 0; i < 8; i++)
 			{
 				SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
 			}
-			SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6);
-			SEL_CHK_PAD( 14, 18 );
-			SEL_CHK_PAD( 15, 18 );
-			//Toggle selection or read more about it
-			int selection = ADV_SEL(SquareMenuOptions_Text, SquareMenuOptions, 0);//33);
-			if (selection != 18)
+			SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6); // Default to direct commands
+			// Set message variables for scheduler mods
+			for (int i = 0; i < 3; i++)
 			{
-				ToggleOption(ModMenu_About, 6321, selection);
+				SET_MSG_VAR(i + 9, 619 + BIT_CHK(6340 + i), 6);
+			}
+
+			SEL_CHK_PAD(10, 12);
+			SEL_CHK_PAD(11, 12);
+			SEL_CHK_PAD(5, 12);
+			SEL_CHK_PAD(7, 12);
+			SEL_CHK_PAD(14, 18);
+			SEL_CHK_PAD(15, 18);
+
+			if (pageNum == 0)
+				mask = 4032;
+			else
+				mask = 63;
+
+			//Toggle selection or read more about it
+			int selection = ADV_SEL(SquareMenuOptions_Text + pageNum, SquareMenuOptions, mask); //33);
+			if (selection < 12)
+			{
+				if (selection > 8) // Scheduler mods have a different range of flags (6340+)
+					ToggleOption(ModMenu_About, 6331, selection, false);
+				else
+					ToggleOption(ModMenu_About, 6321, selection, false);
+			}
+			else if (selection == 12)
+			{
+				pageNum = !pageNum;
 			}
 			else
 			{
@@ -70,49 +101,61 @@ void MenuOptions()
 	}
 }
 
-void ToggleOption(int startMsg, int startFlag, int selection)
+void ToggleOption(int startMsg, int startFlag, int selection, bool subOption)
 {
 	OPEN_MSG_WIN();
-	MSG( startMsg + selection );
+	MSG(startMsg + selection);
 	SEL_CHK_PAD(14, 2);
 	int sel = SEL(ToggleMenu);
 	switch (sel)
 	{
-		case 0: //on
-			if (selection == 8)
-				BIT_ON(6334);
-			else
-				BIT_ON(startFlag + selection);
-			if(selection == 3)
-			{
-				CLOSE_MSG_WIN();
-				DungeonOptionsToggle();
-			}
-			else if(selection == 4)
-			{
-				MSG(SPOILER_TOGGLE);
-				sel = SEL(ToggleMenu);
-				if (sel == 0)
-					BIT_ON(5678);
-				else if (sel == 1)
-					BIT_OFF(5678);
-			}
-			break;
-		case 1: //off
-			if (selection == 8)
-				BIT_OFF(6334);
-			else
-				BIT_OFF(startFlag + selection);
-			if (selection == 3)
-			{
-				BIT_OFF(6330);
-				BIT_OFF(6331);
-				BIT_OFF(6332);
-				BIT_OFF(6333);
-			}
-			break;
-		case 2: //back
-			break;
+	case 0: //on
+		if (selection == 8)
+			BIT_ON(6334);
+		else
+			BIT_ON(startFlag + selection);
+		if (selection == 3 && !subOption)
+		{
+			CLOSE_MSG_WIN();
+			DungeonOptionsToggle();
+		}
+		else if (selection == 4)
+		{
+			MSG(SPOILER_TOGGLE);
+			sel = SEL(ToggleMenu);
+			if (sel == 0)
+				BIT_ON(5678);
+			else if (sel == 1)
+				BIT_OFF(5678);
+		}
+		else if (selection == 10)
+		{
+			CLOSE_MSG_WIN();
+			RemoveEventsOptionsToggle();
+		}
+		break;
+	case 1: //off
+		if (selection == 8)
+			BIT_OFF(6334);
+		else
+			BIT_OFF(startFlag + selection);
+		if (selection == 3 && !subOption)
+		{
+			BIT_OFF(6330);
+			BIT_OFF(6331);
+			BIT_OFF(6332);
+			BIT_OFF(6333);
+		}
+		else if (selection == 10)
+		{
+			BIT_OFF(6350);
+			BIT_OFF(6351);
+			BIT_OFF(6352);
+			BIT_OFF(6353);
+		}
+		break;
+	case 2: //back
+		break;
 	}
 	CLOSE_MSG_WIN();
 }
@@ -121,20 +164,20 @@ void DungeonOptionsToggle()
 {
 	//Toggle options until done
 	bool done = false;
-	while(!done)
+	while (!done)
 	{
 		//Set message variables for menu options
 		for (int i = 0; i < 4; i++)
 		{
 			SET_MSG_VAR(i, 619 + BIT_CHK(6330 + i), 6);
 		}
-		SEL_CHK_PAD( 14, 4 );
-		SEL_CHK_PAD( 15, 4 );
+		SEL_CHK_PAD(14, 4);
+		SEL_CHK_PAD(15, 4);
 		//Toggle selection or read more about it
 		int selection = ADV_SEL(DungeonOptions_Text, DungeonOptions, 0);
 		if (selection != 4)
 		{
-			ToggleOption(ShowFox_About, 6330, selection);
+			ToggleOption(ShowFox_About, 6330, selection, true);
 		}
 		else
 		{
@@ -143,13 +186,40 @@ void DungeonOptionsToggle()
 	}
 }
 
-bool IntroSkip() {
+void RemoveEventsOptionsToggle()
+{
+	//Toggle options until done
+	bool done = false;
+	while (!done)
+	{
+		//Set message variables for menu options
+		for (int i = 0; i < 4; i++)
+		{
+			SET_MSG_VAR(i, 619 + BIT_CHK(6350 + i), 6);
+		}
+		SEL_CHK_PAD(14, 4);
+		SEL_CHK_PAD(15, 4);
+		//Toggle selection or read more about it
+		int selection = ADV_SEL(RemoveEventsOptions_Text, RemoveEventsOptions, 0);
+		if (selection != 4)
+		{
+			ToggleOption(RemoveCamping_About, 6350, selection, true);
+		}
+		else
+		{
+			done = true;
+		}
+	}
+}
+
+bool IntroSkip()
+{
 	OPEN_MSG_WIN();
 	//HELP_MSG( IntroSkipConfig );
 	//CLOSE_MSG_WIN();
 	//OPEN_MSG_WIN();
-	MSG( IntroSkipSelection );
-	int selection = SEL( YesNo );
+	MSG(IntroSkipSelection);
+	int selection = SEL(YesNo);
 	CLOSE_MSG_WIN();
 	if (selection == 0)
 		selection = 1;

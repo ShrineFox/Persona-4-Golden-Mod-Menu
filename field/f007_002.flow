@@ -1,0 +1,47 @@
+import("../build/input/field/pack/fd007_002/f007.bf");
+
+void door_entrance_hook()
+{
+    if (GET_TIME_OF_DAY() != 5)
+    {
+        getout_day();
+    }
+    else
+    {
+        getout_myhome();
+    }
+}
+
+void getout_day()
+{
+    int var135 = 0;
+    if (BIT_CHK(0 + 0x0400 + 0x0800 + 11) == 0)
+    {
+        HELP_MSG(HELP_EXIT_MYHOUSE);
+    }
+
+    OPEN_MSG_WIN();
+    MSG(EXIT_MYHOME_OK);
+    SEL_CHK_PAD(14, 1);
+    var135 = SEL(YESNO_SEL);
+
+    if (var135 == 0)
+    {
+
+        if (BIT_CHK(0 + 0x0400 + 0x0800 + 11) == 0)
+        {
+            BIT_ON(0 + 0x0400 + 0x0800 + 11);
+        }
+
+        CLOSE_MSG_WIN();
+        FADE(1, 5);
+        FADE_SYNC();
+        PLAY_SOUNDEFFECT(7);
+        CALL_FIELD(7, 1, 1, 0);
+        return;
+    }
+    else
+    {
+        CLOSE_MSG_WIN();
+    }
+}

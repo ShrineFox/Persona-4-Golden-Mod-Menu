@@ -14,18 +14,25 @@
 [f 0 5 -258][f 2 1]No[e]
 
 [msg SquareMenuOptions_Text]
-[f 0 5 -258][f 2 1]Options (Press Back to Exit)[f 1 1][e]
+[f 0 5 -258][f 2 1]Options (1/2 Press Back to Exit)[f 1 1][e]
+
+[msg SquareMenuOptions_Text_2]
+[f 0 5 -258][f 2 1]Options (2/2 Press Back to Exit)[f 1 1][e]
 
 [sel SquareMenuOptions]
 [f 0 5 -258][f 2 1]Mod Menu: [f 2 4 0][e]
 [f 0 5 -258][f 2 1]Quick Travel Plus: [f 2 4 1][e]
 [f 0 5 -258][f 2 1]Mobile Calendar: [f 2 4 2][e]
 [f 0 5 -258][f 2 1]Dungeon Options: [f 2 4 3][e]
-[f 0 5 -258][f 2 1]Find A Friend (Beta): [f 2 4 4][e]
+[f 0 5 -258][f 2 1]Find A Friend: [f 2 4 4][e]
 [f 0 5 -258][f 2 1]Save Anywhere: [f 2 4 5][e]
 [f 0 5 -258][f 2 1]Game Over Skip: [f 2 4 6][e]
 [f 0 5 -258][f 2 1]Reap-Balanced Encounters: [f 2 4 7][e]
 [f 0 5 -258][f 2 1]Default Direct Commands: [f 2 4 8][e]
+[f 0 5 -258][f 2 1]Remove Lunchtime Invites: [f 2 4 9][e]
+[f 0 5 -258][f 2 1]Remove Events: [f 2 4 10][e]
+[f 0 5 -258][f 2 1]Save Everyday: [f 2 4 11][e]
+[f 0 5 -258][f 2 1]Next[e]
 
 [msg OptionsWarning]
 [f 0 5 -258][f 2 1]Access the Options Menu again by pressing
@@ -75,6 +82,45 @@
 [f 0 5 -258][f 2 1]Automatically sets party member tactics to Direct
 [n]Commands so you don't have to take the couple
 [n]seconds to change it yourself.[e]
+
+[msg RemoveInvitations_About[Remove Invites (AnimatedSwine37)]]
+[f 0 5 -258][f 2 1]Removes lunchtime invitations to spend time with a
+[n]Social Link after school. It's highly reccomended to 
+[n]use this with Find a Friend.[e]
+
+[msg RemoveEvents_About[Remove Events (AnimatedSwine37)]]
+[f 0 5 -258][f 2 1]Removes the Hot Srpings, Camping Trip and
+[n]Culture Festival. Each of these events can be  
+[n]individually disabled to fit your preferences.[e]
+
+[msg SaveEveryday_About[Save Everyday (AnimatedSwine37)]]
+[f 0 5 -258][f 2 1]Shows the save prompt at the beginning
+[n]of everyday. [e]
+
+[msg RemoveEventsOptions_Text]
+[f 0 5 -258][f 2 1]Remove Events Options[e]
+
+[sel RemoveEventsOptions]
+[f 0 5 -258][f 2 1]Remove Camping Trip: [f 2 4 0][e]
+[f 0 5 -258][f 2 1]Remove Cross Dressing: [f 2 4 1][e]
+[f 0 5 -258][f 2 1]Remove Group Date Cafe: [f 2 4 2][e]
+[f 0 5 -258][f 2 1]Remove Hotsprings Event: [f 2 4 3][e]
+[f 0 5 -258][f 2 1]Done[e]
+
+[msg RemoveCamping_About[Camping (AnimatedSwine37)]]
+[f 0 5 -258][f 2 1]Remove the entire camping trip.[e]
+
+[msg RemoveCrossDress_About[Cross Dressing (AnimatedSwine37)]]
+[f 0 5 -258][f 2 1]Remove the cross dressing competition
+[n]from the culture festival.[e]
+
+[msg RemoveGroupDate_About[Group Date (AnimatedSwine37)]]
+[f 0 5 -258][f 2 1]Remove the group date cafe
+[n]from the cultre festival.[e]
+
+[msg RemoveHotsprings_About[Hotsprings (AnimatedSwine37)]]
+[f 0 5 -258][f 2 1]Remove the hotsprings event where
+[n]the guys get abused.[e]
 
 [msg DungeonOptions_Text]
 [f 0 5 -258][f 2 1]Dungeon Options[e]

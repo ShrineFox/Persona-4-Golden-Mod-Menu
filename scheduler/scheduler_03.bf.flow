@@ -1,0 +1,8 @@
+import("../build/input/scheduler/scheduler_03.bf");
+import("../OtherMods/RemoveLunchtimeInvites.flow");
+
+// Remove lunchtime invitations
+void start_cmm_hirusasoi_hook()
+{
+    RemoveLunchtimeInvites();
+}
