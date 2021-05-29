@@ -1206,7 +1206,7 @@ void generate_selection_mask()
     }
 
     // Ai isn't available Monday, Tuesday, Saturday, Sunday and Holidays
-    if ((BIT_CHK(0 + 0x0400 + 468) == 0 && timeOfDay != 5) || GET_SL_LEVEL(21) >= 10 || GET_SL_LEVEL(22) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1163) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 894) || (GET_SL_LEVEL(21) <= 0 && GET_SL_LEVEL(22) <= 0))) || (GET_SL_LEVEL(22) <= 0 && GET_SL_LEVEL(21) <= 0 && spoilerFree) || (GET_SL_LEVEL(22) <= 0 && GET_SL_LEVEL(21) <= 0 && GET_SL_LEVEL(16) < 4 && GET_SL_LEVEL(17) < 4))
+    if ((BIT_CHK(0 + 0x0400 + 468) == 0 && timeOfDay != 5) || GET_SL_LEVEL(21) >= 10 || GET_SL_LEVEL(22) >= 10 || (timeOfDay == 5 && (BIT_CHK(0 + 0x0400 + 1163) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 894) || (GET_SL_LEVEL(21) <= 0 && GET_SL_LEVEL(22) <= 0))) || (GET_SL_LEVEL(22) <= 0 && GET_SL_LEVEL(21) <= 0 && spoilerFree) || (GET_SL_LEVEL(22) <= 0 && GET_SL_LEVEL(21) <= 0 && GET_SL_LEVEL(16) < 4 && GET_SL_LEVEL(17) < 4) || BIT_CHK(2512))
     {
         pageOneMask = pageOneMask + 2;
         numSelectionsRemoved = numSelectionsRemoved + 1;
@@ -1296,7 +1296,7 @@ void generate_selection_mask()
         kouState = 0;
     }
     // Marie isn't available Monday, Tuesday, Thursday and Friday
-    if (BIT_CHK(0 + 0x0400 + 712) == 0 || GET_SL_LEVEL(33) >= 10 || GET_SL_LEVEL(34) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(33) <= 0 && GET_SL_LEVEL(34) <= 0 && spoilerFree) || BIT_CHK( 0 + 87 ) == 1 || (EVT_FUNCTION_0002( 33 ) == 0 && EVT_FUNCTION_0002( 34 ) == 0 && BIT_CHK( 0 + 0x0400 + 527 ) == 1))
+    if (BIT_CHK(0 + 0x0400 + 712) == 0 || GET_SL_LEVEL(33) >= 10 || GET_SL_LEVEL(34) >= 10 || timeOfDay == 5 || (GET_SL_LEVEL(33) <= 0 && GET_SL_LEVEL(34) <= 0 && spoilerFree) || BIT_CHK( 0 + 87 ) == 1 || (EVT_FUNCTION_0002( 33 ) == 0 && EVT_FUNCTION_0002( 34 ) == 0 && BIT_CHK( 0 + 0x0400 + 527 ) == 1) || (CHECK_TIME_SPAN(4, 11, 7, 23) && (CHECK_IF_SL_LVLUP(33) || CHECK_IF_SL_LVLUP(34)) && (GET_SL_LEVEL(33) == 4 || GET_SL_LEVEL(34) == 4)))
     {
         pageOneMask = pageOneMask + 8192;
         numSelectionsRemoved = numSelectionsRemoved + 1;
