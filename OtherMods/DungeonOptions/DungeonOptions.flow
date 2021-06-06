@@ -108,7 +108,7 @@ void helper_order_hook()
     
     if ( 1 )
     {
-		SET_MSG_VAR(1, GET_ITEM(790), 0);
+		SET_MSG_VAR(1, GET_ITEM(790) + GET_ITEM(2099), 0);
 		// Sets mask
         SET_MASK( sVar1 );
 		if (!BIT_CHK(6321))

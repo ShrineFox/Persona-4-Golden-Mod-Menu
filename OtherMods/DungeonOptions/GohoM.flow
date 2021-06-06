@@ -3,7 +3,7 @@ import("GohoM.msg");
 void use_gohom()
 {
 	bool ConsistentReaper = BIT_CHK(6328);
-	if (GET_ITEM(790) == 0)
+	if (GET_ITEM(790) == 0 && GET_ITEM(2099) == 0)
 	{
 		NAVI_BU_CLOSE( sVar7 );
 		sVar7 = NAVI_BU_OPEN( 280, -40, sVar8, sVar9 + 3 );
@@ -59,9 +59,10 @@ void use_gohom()
         BIT_OFF( 0 + 0x0400 + 0x0800 + 47 );
     }
 	
-	
-	SET_ITEM(790, GET_ITEM(790) - 1);
-    
+	if (GET_ITEM(790) > 0)
+		SET_ITEM(790, GET_ITEM(790) - 1);
+    else if (GET_ITEM(2099) > 0)
+		SET_ITEM(2099, GET_ITEM(2099) - 1);
     if ( FLD_FUNCTION_0036() == 1 && FLD_FUNCTION_0037() == 0 )
     {
         var18 = var18 + 1;
