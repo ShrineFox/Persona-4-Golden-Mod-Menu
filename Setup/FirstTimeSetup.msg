@@ -52,15 +52,15 @@
 [msg MobileCalendar_About[Mobile Calendar (ShrineFox)]]
 [f 0 5 -258][f 2 1]Allows you to view the calendar from anywhere via
 [n]an additional sub menu option. Best used with the
-[n]"Useful Calendar" mod as a quality-of-life tweak.[e]
+[n]"Useful Calendar" mod as a quality of life tweak.[e]
 
 [msg DungeonOptions_About[Dungeon Options (Tekka)]]
-[f 0 5 -258][f 2 1]Configurable quality-of-life tweaks for dungeon
+[f 0 5 -258][f 2 1]Configurable quality of life tweaks for dungeon
 [n]exploration. Includes rudiger's "Dungeon Text
 [n]Fixes". Enable to view the available options.[e]
 
 [msg FindAFriend_About[FindAFriend (AnimatedSwine37)]]
-[f 0 5 -258][f 2 1]A quality-of-life tweak to make keeping track of
+[f 0 5 -258][f 2 1]A quality of life tweak to make keeping track of
 [n]Social Links less tedious. Adds a sub menu option
 [n]to fast travel to their location when available.[e]
 
@@ -75,12 +75,12 @@
 [n]asked instantly whether you would like to retry.[e]
 
 [msg ConsistentReaper_About[Reap-Balanced Encounters (Tekka)]]
-[f 0 5 -258][f 2 1]A quality-of-life tweak to remove the randomness
-[n]from Reaper encounters. The 23rd chest opened will
+[f 0 5 -258][f 2 1]A quality of life tweak to remove the randomness
+[n]from Reaper encounters. The 22nd chest opened will
 [n]always contain a Reaper. Change floor to reset.[e]
 
 [msg DirectCommands_About[Default Direct Commands (Tekka)]]
-[f 0 5 -258][f 2 1]AWhen enabled, party member tactics will be set to
+[f 0 5 -258][f 2 1]When enabled, party member tactics will be set to
 [n]"Direct Commands" by default, saving you the time
 [n]spent changing it yourself.[e]
 
@@ -134,17 +134,17 @@
 [n]Normally you would need to return to the entrance.[e]
 
 [msg FloorSelect_About[Floor Select (Tekka)]]
-[f 0 5 -258][f 2 1]A quality-of-life tweak activated after a dungeon's
+[f 0 5 -258][f 2 1]A quality of life tweak activated after a dungeon's
 [n]deadline. Allows you to fast travel to any floor,
 [n]making future visits for quests less tedious.[e]
 
 [msg GohoM_About[Goho-M Option (Tekka)]]
-[f 0 5 -258][f 2 1]A quality-of-life tweak inspired by Persona 5.
+[f 0 5 -258][f 2 1]A quality of life tweak inspired by Persona 5.
 [n]Adds a sub menu option that allows you to use
 [n]Goho-M's quickly, without searching your items.[e]
 
 [msg OrganizeParty_About[Organize Party (Tekka)]]
-[f 0 5 -258][f 2 1]A quality-of-life tweak that allows you to swap
+[f 0 5 -258][f 2 1]A quality of life tweak that allows you to swap
 [n]party members via a new sub menu option without
 [n]needing to leave a dungeon.[e]
 

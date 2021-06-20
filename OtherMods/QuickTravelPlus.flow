@@ -541,6 +541,7 @@ void call_velvet_room()
         CALL_EVENT( 900, 8, 0 );
         BIT_ON( 0 + 0x0400 + 1304 );
         CALL_FIELD( 8, 2, 4, 0 );
+		return;
     }
     else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 0x0400 + 567 ) == 0 )
     {
@@ -611,6 +612,7 @@ void call_velvet_room()
             }
 
             CLOSE_MSG_WIN();
+			return;
         }
 
     }
@@ -619,6 +621,7 @@ void call_velvet_room()
         OPEN_MSG_WIN();
         MSG( MSG_0320_DOUJIMA_SEARCH );
         CLOSE_MSG_WIN();
+		return;
     }
     else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 1019 ) && BIT_CHK( 0 + 0x0400 + 566 ) == 0 )
     {
@@ -633,6 +636,7 @@ void call_velvet_room()
         BIT_OFF( 0 + 129 );
         BIT_ON( 0 + 1018 );
         CALL_FIELD( 8, 2, 4, 0 );
+		return;
     }
     else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 1007 ) == 1 && BIT_CHK( 0 + 538 ) == 0 )
     {
@@ -644,18 +648,21 @@ void call_velvet_room()
         FADE_SYNC();
         eve_0320_vs_marguerite();
         CALL_FIELD( 8, 2, 4, 0 );
+		return;
     }
     else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 131 ) == 0 )
     {
         OPEN_MSG_WIN();
         MSG( MSG_0320_NOMORE_NEED3 );
         CLOSE_MSG_WIN();
+		return;
     }
     else if ( var6 == 4 && var7 == 17 )
     {
         OPEN_MSG_WIN();
         MSG( MSG_0417_VELVET_DONOTENT );
         CLOSE_MSG_WIN();
+		return;
     }
     else if ( GET_TIME_OF_DAY() == 5 )
     {
