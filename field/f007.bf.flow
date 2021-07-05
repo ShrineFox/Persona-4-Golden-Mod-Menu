@@ -62,7 +62,7 @@ void check_bike_hook()
 		SET_MSG_VAR(shichcnt, GET_CNT(63), 0);
 		MSG( BIKE_CHECK );
         SEL_CHK_PAD( 14, 2 );
-        var109 = SEL( SEL_BIKE );
+        var109 = SEL( SEL_BIKE_hooked );
         
         if ( var109 == 0 )
         {
