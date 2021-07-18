@@ -8,464 +8,467 @@ void everymorning_hook()
     }
 
     // Original code
+    int var40;
+    int var41;
+
     if (CHECK_TIME_SPAN(4, 18, 3, 20))
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 52);
+        BIT_ON(5172);
     }
 
-    if (BIT_CHK(0 + 0x0400 + 0x0800 + 208) == 1 && BIT_CHK(0 + 0x0400 + 0x0800 + 227) == 0 && GET_CNT(176) != 0)
+    if (((BIT_CHK(3280) == 1) && (BIT_CHK(3299) == 0)) && (GET_CNT(176) != 0))
     {
-        SET_CNT(174, GET_CNT(174) + 1);
-        SET_CNT(175, GET_CNT(175) + 1);
+        SET_CNT(174, (GET_CNT(174) + 1));
+        SET_CNT(175, (GET_CNT(175) + 1));
 
-        if (BIT_CHK(0 + 0x0400 + 0x0800 + 204) == 1 && BIT_CHK(0 + 0x0400 + 0x0800 + 192) == 1 || BIT_CHK(0 + 0x0400 + 0x0800 + 193) == 1)
+        if ((BIT_CHK(3276) == 1) && ((BIT_CHK(3264) == 1) || (BIT_CHK(3265) == 1)))
         {
-            SET_CNT(174, GET_CNT(174) + 1);
+            SET_CNT(174, (GET_CNT(174) + 1));
         }
 
-        BIT_OFF(0 + 0x0400 + 0x0800 + 204);
+        BIT_OFF(3276);
         farmfield_condition();
         FLD_FUNCTION_0033();
     }
 
-    BIT_OFF(0 + 0x0400 + 0x0800 + 234);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 235);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 350);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 351);
+    BIT_OFF(3306);
+    BIT_OFF(3307);
+    BIT_OFF(3422);
+    BIT_OFF(3423);
     SET_CNT(186, 0);
-    BIT_OFF(0 + 0x0400 + 631);
-    BIT_OFF(0 + 0x0400 + 632);
-    BIT_OFF(0 + 0x0400 + 633);
-    BIT_OFF(0 + 0x0400 + 634);
-    BIT_OFF(0 + 0x0400 + 635);
-    BIT_OFF(0 + 0x0400 + 636);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 0x40);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 61);
+    BIT_OFF(1655);
+    BIT_OFF(1656);
+    BIT_OFF(1657);
+    BIT_OFF(1658);
+    BIT_OFF(1659);
+    BIT_OFF(1660);
+    BIT_OFF(5696);
+    BIT_OFF(5693);
 
     if (CHECK_TIME_SPAN(1, 2, 1, 9) == 1)
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 0x40);
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 61);
+        BIT_ON(5696);
+        BIT_ON(5693);
     }
     else if (CHECK_TIME_SPAN(1, 10, 2, 29) == 1)
     {
 
-        if (BIT_CHK(0 + 0x0400 + 0x0800 + 179) == 1)
+        if (BIT_CHK(3251) == 1)
         {
-            BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 0x40);
-            BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 61);
+            BIT_ON(5696);
+            BIT_ON(5693);
         }
         else
         {
-            BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 0x40);
-            BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 61);
+            BIT_ON(5696);
+            BIT_OFF(5693);
         }
     }
     else if (CHECK_TIME_SPAN(3, 1, 3, 31) == 1)
     {
 
-        if (BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 58) == 1)
+        if (BIT_CHK(5690) == 1)
         {
-            BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 0x40);
-            BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 61);
+            BIT_ON(5696);
+            BIT_OFF(5693);
         }
         else
         {
-            BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 0x40);
-            BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 61);
+            BIT_OFF(5696);
+            BIT_OFF(5693);
         }
     }
 
-    if (BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 86) == 1)
+    if (BIT_CHK(5718) == 1)
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 87);
+        BIT_ON(5719);
     }
 
-    if (BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 88) == 1)
+    if (BIT_CHK(5720) == 1)
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 89);
+        BIT_ON(5721);
     }
 
-    if (CHECK_TIME_SPAN(5, 1, 12, 24) == 1 && BIT_CHK(0 + 0x0400 + 642) == 0 || CHECK_TIME_SPAN(5, 1, 12, 24) == 1 && BIT_CHK(0 + 0x0400 + 643) == 0 || CHECK_TIME_SPAN(6, 1, 6, 30) == 1 && BIT_CHK(0 + 0x0400 + 644) == 0 || CHECK_TIME_SPAN(7, 1, 7, 31) == 1 && BIT_CHK(0 + 0x0400 + 645) == 0 || CHECK_TIME_SPAN(8, 1, 8, 31) == 1 && BIT_CHK(0 + 0x0400 + 646) == 0 || CHECK_TIME_SPAN(9, 1, 9, 30) == 1 && BIT_CHK(0 + 0x0400 + 647) == 0 || CHECK_TIME_SPAN(10, 1, 10, 31) == 1 && BIT_CHK(0 + 0x0400 + 648) == 0 || CHECK_TIME_SPAN(11, 1, 11, 30) == 1 && BIT_CHK(0 + 0x0400 + 649) == 0 || CHECK_TIME_SPAN(12, 1, 12, 24) == 1 && BIT_CHK(0 + 0x0400 + 650) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 33) == 1 && CHECK_TIME_SPAN(1, 1, 1, 31) == 1 && BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 45) == 1 && BIT_CHK(0 + 0x0400 + 651) == 0 || BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 33) == 1 && CHECK_TIME_SPAN(2, 1, 2, 14) == 1 && BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 45) == 1 && BIT_CHK(0 + 0x0400 + 652) == 0)
+    if ((((((((((((CHECK_TIME_SPAN(5, 1, 12, 24) == 1) && (BIT_CHK(1666) == 0)) || ((CHECK_TIME_SPAN(5, 1, 12, 24) == 1) && (BIT_CHK(1667) == 0))) || ((CHECK_TIME_SPAN(6, 1, 6, 30) == 1) && (BIT_CHK(1668) == 0))) || ((CHECK_TIME_SPAN(7, 1, 7, 31) == 1) && (BIT_CHK(1669) == 0))) || ((CHECK_TIME_SPAN(8, 1, 8, 31) == 1) && (BIT_CHK(1670) == 0))) || ((CHECK_TIME_SPAN(9, 1, 9, 30) == 1) && (BIT_CHK(1671) == 0))) || ((CHECK_TIME_SPAN(10, 1, 10, 31) == 1) && (BIT_CHK(1672) == 0))) || ((CHECK_TIME_SPAN(11, 1, 11, 30) == 1) && (BIT_CHK(1673) == 0))) || ((CHECK_TIME_SPAN(12, 1, 12, 24) == 1) && (BIT_CHK(1674) == 0))) || ((((BIT_CHK(5665) == 1) && (CHECK_TIME_SPAN(1, 1, 1, 31) == 1)) && (BIT_CHK(5677) == 1)) && (BIT_CHK(1675) == 0))) || ((((BIT_CHK(5665) == 1) && (CHECK_TIME_SPAN(2, 1, 2, 14) == 1)) && (BIT_CHK(5677) == 1)) && (BIT_CHK(1676) == 0)))
     {
-        BIT_ON(0 + 0x0400 + 640);
+        BIT_ON(1664);
     }
     else
     {
-        BIT_OFF(0 + 0x0400 + 640);
+        BIT_OFF(1664);
     }
 
-    BIT_OFF(0 + 0x0400 + 702);
+    BIT_OFF(1726);
 
-    if (BIT_CHK(0 + 0x0400 + 30) == 1 && CHECK_IF_SL_LVLUP(31) == 1 && GET_SL_LEVEL(31) == 2 || GET_SL_LEVEL(31) == 3 || GET_SL_LEVEL(31) == 4)
+    if (((BIT_CHK(1054) == 1) && (CHECK_IF_SL_LVLUP(31) == 1)) && (((GET_SL_LEVEL(31) == 2) || (GET_SL_LEVEL(31) == 3)) || (GET_SL_LEVEL(31) == 4)))
     {
-        BIT_ON(0 + 0x0400 + 688);
+        BIT_ON(1712);
     }
     else
     {
-        BIT_OFF(0 + 0x0400 + 688);
+        BIT_OFF(1712);
     }
 
-    BIT_OFF(0 + 0x0400 + 0x0800 + 0x80);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 129);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 130);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 131);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 132);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 133);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 156);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 157);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 158);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 159);
-    BIT_OFF(0 + 0x0400 + 1216);
-    BIT_OFF(0 + 0x0400 + 1217);
-    BIT_OFF(0 + 0x0400 + 1218);
-    BIT_OFF(0 + 0x0400 + 1219);
-    BIT_OFF(0 + 0x0400 + 1220);
-    BIT_OFF(0 + 0x0400 + 1221);
-    BIT_OFF(0 + 0x0400 + 1222);
-    BIT_OFF(0 + 0x0400 + 1223);
-    BIT_OFF(0 + 0x0400 + 1224);
-    BIT_OFF(0 + 0x0400 + 1225);
-    BIT_OFF(0 + 0x0400 + 1226);
-    BIT_OFF(0 + 0x0400 + 1227);
+    BIT_OFF(3200);
+    BIT_OFF(3201);
+    BIT_OFF(3202);
+    BIT_OFF(3203);
+    BIT_OFF(3204);
+    BIT_OFF(3205);
+    BIT_OFF(3228);
+    BIT_OFF(3229);
+    BIT_OFF(3230);
+    BIT_OFF(3231);
+    BIT_OFF(2240);
+    BIT_OFF(2241);
+    BIT_OFF(2242);
+    BIT_OFF(2243);
+    BIT_OFF(2244);
+    BIT_OFF(2245);
+    BIT_OFF(2246);
+    BIT_OFF(2247);
+    BIT_OFF(2248);
+    BIT_OFF(2249);
+    BIT_OFF(2250);
+    BIT_OFF(2251);
     cmm_night_talk_flg_chk();
-    BIT_OFF(0 + 0x0400 + 685);
-    BIT_OFF(0 + 0x0400 + 686);
-    BIT_OFF(0 + 0x0400 + 661);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 892);
+    BIT_OFF(1709);
+    BIT_OFF(1710);
+    BIT_OFF(1685);
+    BIT_OFF(6524);
 
-    if (BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 805) == 1 && CHECK_TIME_SPAN(1, 4, 2, 29) == 1)
+    if ((BIT_CHK(6437) == 1) && (CHECK_TIME_SPAN(1, 4, 2, 29) == 1))
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 893);
+        BIT_ON(6525);
     }
 
-    BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 897);
+    BIT_OFF(6529);
 
-    if (BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 805) == 0 && BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 773) == 1)
+    if ((BIT_CHK(6437) == 0) && (BIT_CHK(6405) == 1))
     {
-        BIT_OFF(0 + 0x0400 + 0x0800 + 372);
-    }
-    else
-    {
-        BIT_ON(0 + 0x0400 + 0x0800 + 372);
-    }
-
-    if (BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 806) == 0 && BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 774) == 1)
-    {
-        BIT_OFF(0 + 0x0400 + 0x0800 + 373);
+        BIT_OFF(3444);
     }
     else
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 373);
+        BIT_ON(3444);
     }
 
-    BIT_OFF(0 + 0x0400 + 0x0800 + 374);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 369);
+    if ((BIT_CHK(6438) == 0) && (BIT_CHK(6406) == 1))
+    {
+        BIT_OFF(3445);
+    }
+    else
+    {
+        BIT_ON(3445);
+    }
+
+    BIT_OFF(3446);
+    BIT_OFF(3441);
     cmu_npc_flag_init();
     cmu_npc_flag_on();
-    BIT_OFF(0 + 0x0400 + 704);
-    BIT_OFF(0 + 0x0400 + 706);
+    BIT_OFF(1728);
+    BIT_OFF(1730);
 
-    if (CHECK_TIME_SPAN(4, 1, 7, 23) && GET_SL_LEVEL(33) == 4 || GET_SL_LEVEL(34) == 4 || CHECK_TIME_SPAN(4, 1, 4, 29) && GET_SL_LEVEL(33) == 2 || GET_SL_LEVEL(34) == 2 && CHECK_IF_SL_LVLUP(33) == 1 || CHECK_IF_SL_LVLUP(34) == 1)
+    if (((CHECK_TIME_SPAN(4, 1, 7, 23) && ((GET_SL_LEVEL(33) == 4) || (GET_SL_LEVEL(34) == 4))) || (CHECK_TIME_SPAN(4, 1, 4, 29) && ((GET_SL_LEVEL(33) == 2) || (GET_SL_LEVEL(34) == 2)))) && ((CHECK_IF_SL_LVLUP(33) == 1) || (CHECK_IF_SL_LVLUP(34) == 1)))
     {
-        BIT_ON(0 + 0x0400 + 706);
+        BIT_ON(1730);
     }
 
-    if (BIT_CHK(0 + 0x0400 + 712) == 1 && BIT_CHK(0 + 0x0400 + 720) == 1 || BIT_CHK(0 + 0x0400 + 713) == 1 && BIT_CHK(0 + 0x0400 + 736) == 1 && BIT_CHK(0 + 87) == 0 && BIT_CHK(0 + 0x0400 + 706) == 0)
+    if (((((BIT_CHK(1736) == 1) && (BIT_CHK(1744) == 1)) || ((BIT_CHK(1737) == 1) && (BIT_CHK(1760) == 1))) && (BIT_CHK(87) == 0)) && (BIT_CHK(1730) == 0))
     {
-        BIT_ON(0 + 0x0400 + 704);
+        BIT_ON(1728);
     }
 
-    BIT_OFF(0 + 0x0400 + 705);
-    BIT_OFF(0 + 0x0400 + 719);
+    BIT_OFF(1729);
+    BIT_OFF(1743);
     night_keyfree_chk();
-    BIT_OFF(0 + 0x0400 + 1057);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 172);
-    BIT_ON(0 + 0x0400 + 0x0800 + 171);
+    BIT_OFF(2081);
+    BIT_OFF(3244);
+    BIT_ON(3243);
 
-    if (BIT_CHK(0 + 349) == 1 && BIT_CHK(0 + 0x0400 + 0x0800 + 304) == 0)
+    if ((BIT_CHK(349) == 1) && (BIT_CHK(3376) == 0))
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 304);
+        BIT_ON(3376);
     }
 
     SET_CNT(215, 0);
     SET_CNT(224, 0);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 57);
-    BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 58);
-    BIT_OFF(0 + 0x0400 + 1725);
-    BIT_OFF(0 + 0x0400 + 1498);
-    BIT_OFF(0 + 0x0400 + 532);
-    BIT_OFF(0 + 82);
-    BIT_OFF(0 + 0x0400 + 783);
-    BIT_OFF(0 + 1000);
+    BIT_OFF(5177);
+    BIT_OFF(5178);
+    BIT_OFF(2749);
+    BIT_OFF(2522);
+    BIT_OFF(1556);
+    BIT_OFF(82);
+    BIT_OFF(1807);
+    BIT_OFF(1000);
 
-    if (BIT_CHK(0 + 342) == 1 && CHECK_TIME_SPAN(7, 27, 2, 29) == 1)
+    if ((BIT_CHK(342) == 1) && (CHECK_TIME_SPAN(7, 27, 2, 29) == 1))
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 924);
-    }
-
-    if (BIT_CHK(0 + 366) == 1 && CHECK_TIME_SPAN(11, 12, 2, 29) == 1)
-    {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 925);
+        BIT_ON(6556);
     }
 
-    if (BIT_CHK(0 + 369) == 1 && CHECK_TIME_SPAN(1, 10, 2, 29) == 1)
+    if ((BIT_CHK(366) == 1) && (CHECK_TIME_SPAN(11, 12, 2, 29) == 1))
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 926);
+        BIT_ON(6557);
     }
 
-    BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 910);
-
-    if (BIT_CHK(0 + 378) == 1 && CHECK_TIME_SPAN(1, 0x10, 2, 29) == 1)
+    if ((BIT_CHK(369) == 1) && (CHECK_TIME_SPAN(1, 10, 2, 29) == 1))
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 928);
+        BIT_ON(6558);
     }
 
-    if (BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 807) == 1 && CHECK_TIME_SPAN(1, 0x10, 2, 29) == 1)
+    BIT_OFF(6542);
+
+    if ((BIT_CHK(378) == 1) && (CHECK_TIME_SPAN(1, 0x10, 2, 29) == 1))
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 929);
+        BIT_ON(6560);
     }
 
-    if (BIT_CHK(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 808) == 1 && CHECK_TIME_SPAN(1, 0x10, 2, 29) == 1)
+    if ((BIT_CHK(6439) == 1) && (CHECK_TIME_SPAN(1, 0x10, 2, 29) == 1))
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 930);
+        BIT_ON(6561);
     }
 
-    BIT_OFF(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 913);
-
-    if (BIT_CHK(0 + 358) == 1 && CHECK_TIME_SPAN(1, 23, 2, 29) == 1)
+    if ((BIT_CHK(6440) == 1) && (CHECK_TIME_SPAN(1, 0x10, 2, 29) == 1))
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 914);
+        BIT_ON(6562);
     }
 
-    if (BIT_CHK(0 + 351) == 1 && CHECK_TIME_SPAN(1, 10, 2, 29) == 1)
+    BIT_OFF(6545);
+
+    if ((BIT_CHK(358) == 1) && (CHECK_TIME_SPAN(1, 23, 2, 29) == 1))
     {
-        BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 916);
+        BIT_ON(6546);
     }
 
-    BIT_OFF(0 + 0x0400 + 602);
-    BIT_OFF(0 + 0x0400 + 603);
-    BIT_OFF(0 + 0x0400 + 535);
-    BIT_OFF(0 + 86);
-    BIT_OFF(0 + 0x0400 + 519);
-    BIT_OFF(0 + 0x0400 + 684);
-
-    if (BIT_CHK(0 + 17) && BIT_CHK(0 + 368) == 0)
+    if ((BIT_CHK(351) == 1) && (CHECK_TIME_SPAN(1, 10, 2, 29) == 1))
     {
-        BIT_OFF(0 + 190);
-    }
-    else if (BIT_CHK(0 + 18) && BIT_CHK(0 + 368) && BIT_CHK(0 + 369) == 0)
-    {
-        BIT_OFF(0 + 188);
-    }
-    else if (BIT_CHK(0 + 19) && BIT_CHK(0 + 369) && BIT_CHK(0 + 370) == 0)
-    {
-        BIT_OFF(0 + 186);
-    }
-    else if (BIT_CHK(0 + 20) && BIT_CHK(0 + 370) && BIT_CHK(0 + 371) == 0)
-    {
-        BIT_OFF(0 + 184);
-    }
-    else if (BIT_CHK(0 + 21) && BIT_CHK(0 + 371) && BIT_CHK(0 + 372) == 0)
-    {
-        BIT_OFF(0 + 182);
-    }
-    else if (BIT_CHK(0 + 22) && BIT_CHK(0 + 372) && BIT_CHK(0 + 373) == 0)
-    {
-        BIT_OFF(0 + 182);
+        BIT_ON(6548);
     }
 
-    int var40 = GET_CNT(91);
-    var40 = var40 + 1;
+    BIT_OFF(1626);
+    BIT_OFF(1627);
+    BIT_OFF(1559);
+    BIT_OFF(86);
+    BIT_OFF(1543);
+    BIT_OFF(1708);
+
+    if (BIT_CHK(17) && (BIT_CHK(368) == 0))
+    {
+        BIT_OFF(190);
+    }
+    else if ((BIT_CHK(18) && BIT_CHK(368)) && (BIT_CHK(369) == 0))
+    {
+        BIT_OFF(188);
+    }
+    else if ((BIT_CHK(19) && BIT_CHK(369)) && (BIT_CHK(370) == 0))
+    {
+        BIT_OFF(186);
+    }
+    else if ((BIT_CHK(20) && BIT_CHK(370)) && (BIT_CHK(371) == 0))
+    {
+        BIT_OFF(184);
+    }
+    else if ((BIT_CHK(21) && BIT_CHK(371)) && (BIT_CHK(372) == 0))
+    {
+        BIT_OFF(182);
+    }
+    else if ((BIT_CHK(22) && BIT_CHK(372)) && (BIT_CHK(373) == 0))
+    {
+        BIT_OFF(182);
+    }
+
+    var40 = GET_CNT(91);
+    var40 = (var40 + 1);
     SET_CNT(91, var40);
 
-    if (DATE_CHK(4, 18) || DATE_CHK(5, 18) || DATE_CHK(6, 24) || DATE_CHK(7, 27) || DATE_CHK(9, 0x10) || DATE_CHK(11, 6) || DATE_CHK(12, 8))
+    if ((((((DATE_CHK(4, 18) || DATE_CHK(5, 18)) || DATE_CHK(6, 24)) || DATE_CHK(7, 27)) || DATE_CHK(9, 0x10)) || DATE_CHK(11, 6)) || DATE_CHK(12, 8))
     {
         SET_CNT(91, 0);
     }
 
-    if (BIT_CHK(0 + 0x0400 + 864) == 1 || BIT_CHK(0 + 0x0400 + 865) == 1)
+    if ((BIT_CHK(1888) == 1) || (BIT_CHK(1889) == 1))
     {
-        int var41 = GET_CNT(105);
-        var41 = var41 + 1;
+        var41 = GET_CNT(105);
+        var41 = (var41 + 1);
         SET_CNT(105, var41);
     }
 
-    if (GET_SL_LEVEL(0x10) == 4 && CHECK_IF_SL_LVLUP(0x10) == 1 && BIT_CHK(0 + 0x0400 + 463) == 1)
+    if (((GET_SL_LEVEL(0x10) == 4) && (CHECK_IF_SL_LVLUP(0x10) == 1)) && (BIT_CHK(1487) == 1))
     {
-        BIT_ON(0 + 0x0400 + 1571);
+        BIT_ON(2595);
     }
-    else if (GET_SL_LEVEL(0x10) == 7 && CHECK_IF_SL_LVLUP(0x10) == 1 && BIT_CHK(0 + 0x0400 + 463) == 1)
+    else if (((GET_SL_LEVEL(0x10) == 7) && (CHECK_IF_SL_LVLUP(0x10) == 1)) && (BIT_CHK(1487) == 1))
     {
-        BIT_ON(0 + 0x0400 + 1571);
-    }
-    else
-    {
-        BIT_OFF(0 + 0x0400 + 1571);
-    }
-
-    BIT_OFF(0 + 0x0400 + 1601);
-
-    if (GET_SL_LEVEL(19) == 6 && BIT_CHK(0 + 0x0400 + 466) == 1)
-    {
-        BIT_ON(0 + 0x0400 + 510);
-    }
-    else if (GET_SL_LEVEL(19) == 7 && BIT_CHK(0 + 0x0400 + 466) == 1)
-    {
-        BIT_ON(0 + 0x0400 + 511);
-    }
-
-    if (CHECK_TIME_SPAN(4, 18, 4, 29) == 1 && BIT_CHK(0 + 17) == 1)
-    {
-        BIT_ON(0 + 0x0400 + 1568);
-        BIT_OFF(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(4, 18, 4, 29) == 1 && BIT_CHK(0 + 17) == 0)
-    {
-        BIT_OFF(0 + 0x0400 + 1568);
-        BIT_ON(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(5, 18, 6, 4) == 1 && BIT_CHK(0 + 18) == 1)
-    {
-        BIT_ON(0 + 0x0400 + 1568);
-        BIT_OFF(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(5, 18, 6, 4) == 1 && BIT_CHK(0 + 18) == 0)
-    {
-        BIT_OFF(0 + 0x0400 + 1568);
-        BIT_ON(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(6, 24, 7, 9) == 1 && BIT_CHK(0 + 19) == 1)
-    {
-        BIT_ON(0 + 0x0400 + 1568);
-        BIT_OFF(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(6, 24, 7, 9) == 1 && BIT_CHK(0 + 19) == 0)
-    {
-        BIT_OFF(0 + 0x0400 + 1568);
-        BIT_ON(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(7, 27, 8, 12) == 1 && BIT_CHK(0 + 20) == 1)
-    {
-        BIT_ON(0 + 0x0400 + 1568);
-        BIT_OFF(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(7, 27, 8, 12) == 1 && BIT_CHK(0 + 20) == 0)
-    {
-        BIT_OFF(0 + 0x0400 + 1568);
-        BIT_ON(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(9, 0x10, 10, 5) == 1 && BIT_CHK(0 + 21) == 1)
-    {
-        BIT_ON(0 + 0x0400 + 1568);
-        BIT_OFF(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(9, 0x10, 10, 5) == 1 && BIT_CHK(0 + 21) == 0)
-    {
-        BIT_OFF(0 + 0x0400 + 1568);
-        BIT_ON(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(11, 6, 11, 20) == 1 && BIT_CHK(0 + 22) == 1)
-    {
-        BIT_ON(0 + 0x0400 + 1568);
-        BIT_OFF(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(11, 6, 11, 20) == 1 && BIT_CHK(0 + 22) == 0)
-    {
-        BIT_OFF(0 + 0x0400 + 1568);
-        BIT_ON(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(12, 8, 12, 24) == 1 && BIT_CHK(0 + 23) == 1)
-    {
-        BIT_ON(0 + 0x0400 + 1568);
-        BIT_OFF(0 + 0x0400 + 1569);
-    }
-    else if (CHECK_TIME_SPAN(12, 8, 12, 24) == 1 && BIT_CHK(0 + 23) == 0)
-    {
-        BIT_OFF(0 + 0x0400 + 1568);
-        BIT_ON(0 + 0x0400 + 1569);
+        BIT_ON(2595);
     }
     else
     {
-        BIT_OFF(0 + 0x0400 + 1568);
-        BIT_OFF(0 + 0x0400 + 1569);
+        BIT_OFF(2595);
     }
 
-    if (DATE_CHK(7, 3) || DATE_CHK(7, 17) || DATE_CHK(7, 24) || DATE_CHK(8, 5) || DATE_CHK(8, 7) || DATE_CHK(9, 4) || DATE_CHK(10, 0x10))
+    BIT_OFF(2625);
+
+    if ((GET_SL_LEVEL(19) == 6) && (BIT_CHK(1490) == 1))
     {
-        BIT_ON(0 + 0x0400 + 530);
+        BIT_ON(1534);
+    }
+    else if ((GET_SL_LEVEL(19) == 7) && (BIT_CHK(1490) == 1))
+    {
+        BIT_ON(1535);
+    }
+
+    if ((CHECK_TIME_SPAN(4, 18, 4, 29) == 1) && (BIT_CHK(17) == 1))
+    {
+        BIT_ON(2592);
+        BIT_OFF(2593);
+    }
+    else if ((CHECK_TIME_SPAN(4, 18, 4, 29) == 1) && (BIT_CHK(17) == 0))
+    {
+        BIT_OFF(2592);
+        BIT_ON(2593);
+    }
+    else if ((CHECK_TIME_SPAN(5, 18, 6, 4) == 1) && (BIT_CHK(18) == 1))
+    {
+        BIT_ON(2592);
+        BIT_OFF(2593);
+    }
+    else if ((CHECK_TIME_SPAN(5, 18, 6, 4) == 1) && (BIT_CHK(18) == 0))
+    {
+        BIT_OFF(2592);
+        BIT_ON(2593);
+    }
+    else if ((CHECK_TIME_SPAN(6, 24, 7, 9) == 1) && (BIT_CHK(19) == 1))
+    {
+        BIT_ON(2592);
+        BIT_OFF(2593);
+    }
+    else if ((CHECK_TIME_SPAN(6, 24, 7, 9) == 1) && (BIT_CHK(19) == 0))
+    {
+        BIT_OFF(2592);
+        BIT_ON(2593);
+    }
+    else if ((CHECK_TIME_SPAN(7, 27, 8, 12) == 1) && (BIT_CHK(20) == 1))
+    {
+        BIT_ON(2592);
+        BIT_OFF(2593);
+    }
+    else if ((CHECK_TIME_SPAN(7, 27, 8, 12) == 1) && (BIT_CHK(20) == 0))
+    {
+        BIT_OFF(2592);
+        BIT_ON(2593);
+    }
+    else if ((CHECK_TIME_SPAN(9, 0x10, 10, 5) == 1) && (BIT_CHK(21) == 1))
+    {
+        BIT_ON(2592);
+        BIT_OFF(2593);
+    }
+    else if ((CHECK_TIME_SPAN(9, 0x10, 10, 5) == 1) && (BIT_CHK(21) == 0))
+    {
+        BIT_OFF(2592);
+        BIT_ON(2593);
+    }
+    else if ((CHECK_TIME_SPAN(11, 6, 11, 20) == 1) && (BIT_CHK(22) == 1))
+    {
+        BIT_ON(2592);
+        BIT_OFF(2593);
+    }
+    else if ((CHECK_TIME_SPAN(11, 6, 11, 20) == 1) && (BIT_CHK(22) == 0))
+    {
+        BIT_OFF(2592);
+        BIT_ON(2593);
+    }
+    else if ((CHECK_TIME_SPAN(12, 8, 12, 24) == 1) && (BIT_CHK(23) == 1))
+    {
+        BIT_ON(2592);
+        BIT_OFF(2593);
+    }
+    else if ((CHECK_TIME_SPAN(12, 8, 12, 24) == 1) && (BIT_CHK(23) == 0))
+    {
+        BIT_OFF(2592);
+        BIT_ON(2593);
     }
     else
     {
-        BIT_OFF(0 + 0x0400 + 530);
+        BIT_OFF(2592);
+        BIT_OFF(2593);
     }
 
-    BIT_OFF(0 + 0x0400 + 668);
-    BIT_OFF(0 + 0x0400 + 669);
+    if ((((((DATE_CHK(7, 3) || DATE_CHK(7, 17)) || DATE_CHK(7, 24)) || DATE_CHK(8, 5)) || DATE_CHK(8, 7)) || DATE_CHK(9, 4)) || DATE_CHK(10, 0x10))
+    {
+        BIT_ON(1554);
+    }
+    else
+    {
+        BIT_OFF(1554);
+    }
 
-    if (BIT_CHK(0 + 0x0400 + 481) == 1 || BIT_CHK(0 + 0x0400 + 449) == 1)
+    BIT_OFF(1692);
+    BIT_OFF(1693);
+
+    if ((BIT_CHK(1505) == 1) || (BIT_CHK(1473) == 1))
     {
 
-        if (BIT_CHK(0 + 0x0400 + 530) == 0)
+        if (BIT_CHK(1554) == 0)
         {
-            BIT_ON(0 + 0x0400 + 668);
+            BIT_ON(1692);
         }
 
-        if (BIT_CHK(0 + 0x0400 + 445) == 0)
+        if (BIT_CHK(1469) == 0)
         {
-            BIT_ON(0 + 0x0400 + 669);
+            BIT_ON(1693);
         }
     }
 
-    BIT_OFF(0 + 0x0400 + 671);
+    BIT_OFF(1695);
 
-    if (BIT_CHK(0 + 0x0400 + 455) == 1 || BIT_CHK(0 + 0x0400 + 487) == 1 && BIT_CHK(0 + 0x0400 + 1330) == 0 && BIT_CHK(0 + 0x0400 + 1569) == 0 || BIT_CHK(0 + 0x0400 + 439) == 1 || BIT_CHK(0 + 0x0400 + 443) == 1)
+    if ((((((BIT_CHK(1479) == 1) || (BIT_CHK(1511) == 1)) && (BIT_CHK(2354) == 0)) && (BIT_CHK(2593) == 0)) || (BIT_CHK(1463) == 1)) || (BIT_CHK(1467) == 1))
     {
-        BIT_ON(0 + 0x0400 + 671);
+        BIT_ON(1695);
     }
 
-    if (CHECK_TIME_SPAN(5, 2, 5, 8) == 1 || CHECK_TIME_SPAN(7, 12, 7, 18) == 1 || CHECK_TIME_SPAN(10, 7, 10, 0x10) == 1 || CHECK_TIME_SPAN(11, 21, 11, 27) == 1 || CHECK_TIME_SPAN(1, 30, 2, 5) == 1)
+    if (((((CHECK_TIME_SPAN(5, 2, 5, 8) == 1) || (CHECK_TIME_SPAN(7, 12, 7, 18) == 1)) || (CHECK_TIME_SPAN(10, 7, 10, 0x10) == 1)) || (CHECK_TIME_SPAN(11, 21, 11, 27) == 1)) || (CHECK_TIME_SPAN(1, 30, 2, 5) == 1))
     {
-        BIT_ON(0 + 0x0400 + 1757);
+        BIT_ON(2781);
     }
     else
     {
-        BIT_OFF(0 + 0x0400 + 1757);
+        BIT_OFF(2781);
     }
 
-    if (DATE_CHK(4, 18) == 1 || DATE_CHK(5, 21) == 1 || DATE_CHK(6, 21) == 1 || DATE_CHK(7, 27) == 1 || DATE_CHK(9, 14) == 1 || DATE_CHK(11, 6) == 1 || DATE_CHK(12, 3) == 1)
+    if (((((((DATE_CHK(4, 18) == 1) || (DATE_CHK(5, 21) == 1)) || (DATE_CHK(6, 21) == 1)) || (DATE_CHK(7, 27) == 1)) || (DATE_CHK(9, 14) == 1)) || (DATE_CHK(11, 6) == 1)) || (DATE_CHK(12, 3) == 1))
     {
-        BIT_ON(0 + 0x0400 + 1758);
+        BIT_ON(2782);
     }
     else
     {
-        BIT_OFF(0 + 0x0400 + 1758);
+        BIT_OFF(2782);
     }
 
-    BIT_OFF(0 + 0x0400 + 1408);
-    BIT_OFF(0 + 0x0400 + 1409);
-    BIT_OFF(0 + 0x0400 + 1410);
-    BIT_OFF(0 + 0x0400 + 1411);
-    BIT_OFF(0 + 0x0400 + 1412);
-    BIT_OFF(0 + 0x0400 + 1413);
-    BIT_OFF(0 + 0x0400 + 1414);
-    BIT_OFF(0 + 0x0400 + 1415);
-    BIT_OFF(0 + 0x0400 + 1416);
-    BIT_OFF(0 + 0x0400 + 1417);
-    BIT_OFF(0 + 0x0400 + 1418);
-    BIT_OFF(0 + 0x0400 + 1419);
-    BIT_OFF(0 + 0x0400 + 1338);
-    BIT_OFF(0 + 0x0400 + 1312);
-    BIT_OFF(0 + 0x0400 + 1313);
-    BIT_OFF(0 + 0x0400 + 1314);
-    BIT_OFF(0 + 0x0400 + 531);
-    BIT_OFF(0 + 0x0400 + 1763);
-    BIT_OFF(0 + 0x0400 + 1765);
-    BIT_OFF(0 + 0x0400 + 1759);
-    BIT_OFF(0 + 0x0400 + 1768);
-    BIT_OFF(0 + 0x0400 + 1764);
-    BIT_OFF(0 + 0x0400 + 1644);
-    BIT_OFF(0 + 0x0400 + 1645);
+    BIT_OFF(2432);
+    BIT_OFF(2433);
+    BIT_OFF(2434);
+    BIT_OFF(2435);
+    BIT_OFF(2436);
+    BIT_OFF(2437);
+    BIT_OFF(2438);
+    BIT_OFF(2439);
+    BIT_OFF(2440);
+    BIT_OFF(2441);
+    BIT_OFF(2442);
+    BIT_OFF(2443);
+    BIT_OFF(2362);
+    BIT_OFF(2336);
+    BIT_OFF(2337);
+    BIT_OFF(2338);
+    BIT_OFF(1555);
+    BIT_OFF(2787);
+    BIT_OFF(2789);
+    BIT_OFF(2783);
+    BIT_OFF(2792);
+    BIT_OFF(2788);
+    BIT_OFF(2668);
+    BIT_OFF(2669);
 
     if (GET_DAY_OF_WEEK() == 1)
     {
@@ -484,46 +487,46 @@ void everymorning_hook()
     }
     else
     {
-        BIT_OFF(0 + 0x0400 + 0x0800 + 249);
+        BIT_OFF(3321);
         SET_CNT(177, 0);
         SET_CNT(178, 0);
     }
 
     SET_CNT(110, 0);
 
-    if (BIT_CHK(0 + 0x0400 + 1739) == 1)
+    if (BIT_CHK(2763) == 1)
     {
-        BIT_ON(0 + 0x0400 + 1760);
-        BIT_OFF(0 + 0x0400 + 1739);
+        BIT_ON(2784);
+        BIT_OFF(2763);
     }
 
     if (GET_DAY_OF_WEEK() == 1)
     {
-        BIT_OFF(0 + 0x0400 + 1760);
+        BIT_OFF(2784);
     }
 
-    BIT_OFF(0 + 0x0400 + 1737);
-    BIT_OFF(0 + 0x0400 + 1738);
-    BIT_OFF(0 + 0x0400 + 1742);
-    BIT_OFF(0 + 0x0400 + 1632);
-    BIT_OFF(0 + 0x0400 + 868);
+    BIT_OFF(2761);
+    BIT_OFF(2762);
+    BIT_OFF(2766);
+    BIT_OFF(2656);
+    BIT_OFF(1892);
 
     if (GET_DAY_OF_WEEK() == 0)
     {
-        BIT_OFF(0 + 0x0400 + 869);
-        BIT_OFF(0 + 0x0400 + 872);
+        BIT_OFF(1893);
+        BIT_OFF(1896);
     }
 
-    if (BIT_CHK(0 + 0x0400 + 869) == 0 && BIT_CHK(0 + 0x0400 + 872) == 0)
+    if ((BIT_CHK(1893) == 0) && (BIT_CHK(1896) == 0))
     {
-        BIT_OFF(0 + 0x0400 + 870);
+        BIT_OFF(1894);
     }
 
-    BIT_OFF(0 + 0x0400 + 1761);
-    BIT_OFF(0 + 0x0400 + 1606);
-    BIT_OFF(0 + 0x0400 + 1512);
-    BIT_OFF(0 + 0x0400 + 1501);
-    BIT_OFF(0 + 0x0400 + 1488);
+    BIT_OFF(2785);
+    BIT_OFF(2630);
+    BIT_OFF(2536);
+    BIT_OFF(2525);
+    BIT_OFF(2512);
     FUNCTION_0056();
     dng_init_everyday();
     asa_msg_chk();
