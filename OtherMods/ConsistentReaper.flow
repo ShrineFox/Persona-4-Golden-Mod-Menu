@@ -379,6 +379,7 @@ void dng_escape_hook()
         OPEN_MSG_WIN();
         MSG( ESCAPE_BAN );
         CLOSE_MSG_WIN();
+        return;
     }
     else 
 	{
