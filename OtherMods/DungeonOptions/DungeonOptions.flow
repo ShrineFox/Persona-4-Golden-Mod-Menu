@@ -108,7 +108,25 @@ void helper_order_hook()
     
     if ( 1 )
     {
+        // Set goho-m message variable
+        if (GET_FLOOR_ID() > 160 && GET_FLOOR_ID() < 180)
+        {
+            // Sacred branch (hollow forest)
+            SET_MSG_VAR(2, 885, 1);
+            SET_MSG_VAR(1, GET_ITEM(885), 0);
+        }
+        else if (GET_ITEM(790) != 0 || GET_ITEM(2099) == 0)
+        {
+            // Goho-m + Return Daikon
+            SET_MSG_VAR(2, 790, 1);
 		SET_MSG_VAR(1, GET_ITEM(790) + GET_ITEM(2099), 0);
+        }
+        else
+        {
+            // Return Daikon (if there are no goho-m)
+            SET_MSG_VAR(2, 2099, 1);
+            SET_MSG_VAR(1, GET_ITEM(2099), 0);
+        }
 		// Sets mask
         SET_MASK( sVar1 );
 		if (!BIT_CHK(6321))
@@ -453,7 +471,7 @@ void init_sel_mask_hook()
 	if (!EnableOrganizeParty() || !showOrganizeParty || !BIT_CHK(6324))
 		stratMask = stratMask + 16;
 	// Hide Call Fox
-	if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 9 ) == 0 || !showFox || !BIT_CHK(6324))
+    if (BIT_CHK(0 + 0x0400 + 0x0800 + 9) == 0 || !showFox || !BIT_CHK(6324) || (GET_FLOOR_ID() > 160 && GET_FLOOR_ID() < 180))
 		sVar1 = sVar1 + 1024;
 	if ( !BIT_CHK(6326) || saveAnywhere() )
 		sVar1 = sVar1 + 2048;
