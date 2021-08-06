@@ -6,6 +6,13 @@
 [f 0 5 -258][f 2 1]Pay[e]
 [f 0 5 -258][f 2 1]Don't pay[e]
 
+[msg NEED_GOHOM]
+[f 0 5 -258][f 2 1]> However, you need a [f 2 5 3 -1 0] or 
+[n][f 2 5 3 -1 1] to call the fox.[n][f 1 1][e]
+
+[msg ITEM_USED]
+[f 0 5 -258][f 2 1]> Used 1 [f 2 5 3 -1 0].[n][f 1 1][e]
+
 [msg FOX_FIRST_BAD]
 [f 0 5 -258][f 2 1]> It followed you all the way here[n]after all...[n][f 1 1][e]
 [f 0 5 -258][f 2 1]> The strange atmosphere seems to be[n]making him uncomfortable...[n][f 1 1][e]

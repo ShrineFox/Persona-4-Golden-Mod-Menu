@@ -135,11 +135,24 @@ void use_fox()
 	}
 	else 
 	{
-		SET_MSG_VAR( 0, var4, 0 );
-		SET_MSG_VAR( 1, var3, 0 );
-		MSG( RECOVER_OK );
-		SEL_CHK_PAD( 14, 1 );
-		int var0 = SEL( PAY_SEL );
+        SET_MSG_VAR(0, var4, 0);
+        SET_MSG_VAR(1, var3, 0);
+        MSG(RECOVER_OK);
+
+        // Check if they have any goho-m or equal items
+        int gohom = GET_ITEM(790);
+        int retDaikon = GET_ITEM(2099);
+        if (gohom == 0 && retDaikon == 0)
+        {
+            SET_MSG_VAR(0, 790, 1);
+            SET_MSG_VAR(1, 2099, 1);
+            MSG(NEED_GOHOM);
+            return;
+        }
+
+        // Check if they want to pay
+        SEL_CHK_PAD(14, 1);
+        int var0 = SEL(PAY_SEL);
 		
 		if ( var0 == 0 )
 		{
@@ -150,6 +163,18 @@ void use_fox()
 			}
 			else 
 			{
+                if (gohom != 0)
+                {
+                    SET_ITEM(790, gohom - 1);
+                    SET_MSG_VAR(0, 790, 1);
+                }
+                else
+                {
+                    SET_ITEM(2099, retDaikon - 1);
+                    SET_MSG_VAR(0, 2099, 1);
+                }
+
+                MSG(ITEM_USED);
 				var4 = var4 * -1;
 				ADD_YEN( var4 );
 				MSG( RECOVER_START );
