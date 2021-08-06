@@ -14,18 +14,24 @@ int Flag_Menu()
 				ToggleBitRange();
 				break;
 			case 2:
-				KillQuests();
+				EditCount();
 				break;
 			case 3:
-				ReviveQuests();
+				EditMemory();
 				break;
 			case 4:
-				TurnOffTiredFlags();
+				KillQuests();
 				break;
 			case 5:
-				UnlockMap();
+				ReviveQuests();
 				break;
 			case 6:
+				TurnOffTiredFlags();
+				break;
+			case 7:
+				UnlockMap();
+				break;
+			case 8:
 				ToggleHUD();
 				break;
 			case 17:
@@ -66,6 +72,39 @@ void UnlockMap()
 	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 85 );
 	BIT_OFF( 0 + 0x0400 + 0x0800 + 177 );
 	BIT_ON( 0 + 0x0400 + 0x0800 + 175 );
+}
+
+void EditCount()
+{
+	int countNumber = Get_Number(3, MSG_3);
+	if (countNumber == -1)
+		return;
+	SET_MSG_VAR(0, countNumber, 0);
+	SET_MSG_VAR(1, GET_CNT(countNumber), 0);
+	OPEN_MSG_WIN();
+	MSG(CountIndicator);
+	CLOSE_MSG_WIN();
+	int newValue = Get_Number(5, MSG_5);
+	if (newValue != -1)
+		SET_CNT(countNumber, newValue);
+}
+
+void EditMemory() 
+{
+	// Get the location
+	int op = ADV_SEL(Operation, PlusOrMinus, 0);
+	int location = Get_Number(6, MSG_6_Location);
+	if(location == -1)
+		return;
+	if (op) location *= -1;
+	// Get the number of bytes
+	int numBytes = Get_Number(2, MSG_2_Bytes);
+	int foundNumber = ReadNumber(location, numBytes);
+	SET_MSG_VAR(0, location, 0);
+	SET_MSG_VAR(1, foundNumber, 0);
+	OPEN_MSG_WIN();
+	MSG(NumberIndicator);
+	CLOSE_MSG_WIN();
 }
 
 void ToggleBit()

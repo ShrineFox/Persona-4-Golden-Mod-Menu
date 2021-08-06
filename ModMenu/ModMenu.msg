@@ -87,6 +87,8 @@
 [sel Flag_Menu]
 [f 0 5 -258][f 2 1]Edit Flag[e]
 [f 0 5 -258][f 2 1]Mass Flag Edit[e]
+[f 0 5 -258][f 2 1]Edit Count[e]
+[f 0 5 -258][f 2 1]Edit Memory[e]
 [f 0 5 -258][f 2 1]Complete All Quests[e]
 [f 0 5 -258][f 2 1]Renew All Quests[e]
 [f 0 5 -258][f 2 1]Turn Off Tired Flags[e]
@@ -239,3 +241,9 @@
 
 [msg FlagIndicator]
 [f 0 5 -258][f 2 1]Flag [f 2 4 0] is set to [f 2 4 1].[n][e]
+
+[msg CountIndicator]
+[f 0 5 -258][f 2 1]Count [f 2 4 0] is set to [f 2 4 1].[n][f 1 1][e]
+
+[msg NumberIndicator]
+[f 0 5 -258][f 2 1]Location [f 2 4 0] is set to [f 2 4 1].[n][f 1 1][e]

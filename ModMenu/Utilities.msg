@@ -26,6 +26,9 @@
 [msg MSG_2]
 [f 0 5 -258][f 2 1]2 Digits[n][f 1 1][e]
 
+[msg MSG_2_Bytes]
+[f 0 5 -258][f 2 1]2 Digits (Number of Bytes)[n][f 1 1][e]
+
 [msg MSG_2_Day]
 [f 0 5 -258][f 2 1]2 Digits (Day)[n][f 1 1][e]
 
@@ -77,6 +80,9 @@
 [msg MSG_5_Minor]
 [f 0 5 -258][f 2 1]5 Digits (Minor)[n][f 1 1][e]
 
+[msg MSG_6_Location]
+[f 0 5 -258][f 2 1]6 Digits (Location)[n][f 1 1][e]
+
 [msg MSG_7]
 [f 0 5 -258][f 2 1]7 Digits (Yen)[n][f 1 1][e]
 
@@ -89,3 +95,8 @@
 
 [msg ConfirmItem]
 [f 0 5 -258][f 2 1]Selected item: [f 2 5 3 -1 0] × [f 2 4 1][e]
+
+[msg BIT_TEST]
+[f 0 5 -258][f 2 1]Bit [f 2 4 0] at location [f 2 4 1] is [f 2 4 2]
+[n]The bit number is [f 2 4 3]
+[n]The current total is [f 2 4 4][n][f 1 1][e]
