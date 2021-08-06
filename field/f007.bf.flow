@@ -86,7 +86,7 @@ void check_bike_hook()
         else if ( var109 == 1 )
         {
             
-            if ( ( GET_CNT( 62 ) < ( 2 + 1 ) ) && ( FUNCTION_0044( 0 ) < 3 ) )
+            if ( ( GET_CNT( 62 ) < ( 2 + 1 ) ) && ( GET_SOCIAL_STAT_LEVEL( 0 ) < 3 ) )
             {
                 MSG( BIKE_FAR_STOP );
             }
@@ -94,7 +94,7 @@ void check_bike_hook()
             {
                 MSG( BIKE_FAR_STOP_NEAR_NG );
             }
-            else if ( FUNCTION_0044( 0 ) < 3 )
+            else if ( GET_SOCIAL_STAT_LEVEL( 0 ) < 3 )
             {
                 MSG( BIKE_FAR_STOP_YUUKI_NG );
             }

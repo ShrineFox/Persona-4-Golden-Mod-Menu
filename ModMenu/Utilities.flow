@@ -1,74 +1,109 @@
-import( "Utilities.msg" );
+import("Utilities.msg");
 
 void Message_Window(int messageNum)
 {
-    OPEN_MSG_WIN();
-    MSG( messageNum );
-    CLOSE_MSG_WIN();
+	OPEN_MSG_WIN();
+	MSG(messageNum);
+	CLOSE_MSG_WIN();
 }
 
-int SelectDigit( int helpText )
+int SelectDigit(int helpText)
 {
-    while ( true )
-    {
+	while (true)
+	{
 		SEL_CHK_PAD(10, 10);
 		SEL_CHK_PAD(11, 10);
 		SEL_CHK_PAD(5, 10);
 		SEL_CHK_PAD(7, 10);
 		SEL_CHK_PAD(14, 11);
 		SEL_CHK_PAD(15, 12);
-		int digit = ADV_SEL( helpText, Num_Menu, 0);
-		if ( digit < 5 ) //0 through 4
+		int digit = ADV_SEL(helpText, Num_Menu, 0);
+		if (digit < 5) //0 through 4
 			return digit;
-		if ( digit == 10 )
-        {
+		if (digit == 10)
+		{
 			SEL_CHK_PAD(10, 10);
 			SEL_CHK_PAD(11, 10);
 			SEL_CHK_PAD(5, 10);
 			SEL_CHK_PAD(7, 10);
 			SEL_CHK_PAD(14, 11);
 			SEL_CHK_PAD(15, 12);
-            digit = ADV_SEL( helpText, Num_Menu2, 0) + 5;
-            if ( digit < 10 )
+			digit = ADV_SEL(helpText, Num_Menu2, 0) + 5;
+			if (digit < 10)
 				return digit; //5 through 9 or back
 			else if (digit == 16)
-			{	
+			{
 				digit = -1; //exit
 				break;
 			}
-        }
+		}
 		else if (digit == 11)
 		{
 			digit = -1; //exit
 			break;
 		}
-    }
+	}
 	return -1;
 }
 
-int Get_Number( int digitCount, int helpText )
+int Get_Number(int digitCount, int helpText)
 {
-	tryagain:
-    int number = 0;
-    
-    for ( int i = 0; i < digitCount; i++ )
-    {
-        int digit = SelectDigit(helpText);
+tryagain:
+	int number = 0;
+
+	for (int i = 0; i < digitCount; i++)
+	{
+		int digit = SelectDigit(helpText);
 		if (digit == -1)
 			return -1;
 		number *= 10;
 		number += digit;
-    }
-	
+	}
+
 	SET_MSG_VAR(0, number, 0);
 	OPEN_MSG_WIN();
-	MSG( ConfirmNumber );
+	MSG(ConfirmNumber);
 	SEL_CHK_PAD(14, 1);
 	int confirm = SEL(YESNO_SEL);
 	CLOSE_MSG_WIN();
 	if (confirm == 1)
 		goto tryagain;
 
-    return number;
+	return number;
 }
 
+/* 
+   Reads a number from "any" location in memory using bit checks
+   Numbers are read from a certain number of bits away from the first flag location
+   (LocationInMemory - 04DDD55C) * 8 gives you the number you want to input 
+   (LocationInMemory - 81646940) * 8 in decimal
+   Note: This number may be negative or positive depending on location, that is fine
+*/
+int ReadNumber(int baseLocation, int numBytes)
+{
+	int number = 0;
+	for (int i = 0; i < numBytes*8; i++)
+	{
+		// Get the next bit (little endian)
+		int bitLocation = baseLocation + i; 
+		bool foundBit = BIT_CHK(bitLocation);
+		// Convert the bit to a number, there's no power operator :(
+		int bitNumber = 0;
+		if(foundBit) {
+			bitNumber = 1;
+			for(int j = 0; j < i; j++) {
+				bitNumber *= 2;
+			}
+		}
+		number += bitNumber;
+		OPEN_MSG_WIN();
+		SET_MSG_VAR(0, i, 0);
+		SET_MSG_VAR(1, bitLocation, 0);
+		SET_MSG_VAR(2, foundBit, 0);
+		SET_MSG_VAR(3, bitNumber, 0);
+		SET_MSG_VAR(4, number, 0);
+		MSG(BIT_TEST);
+		CLOSE_MSG_WIN();
+	}
+	return number;
+}
