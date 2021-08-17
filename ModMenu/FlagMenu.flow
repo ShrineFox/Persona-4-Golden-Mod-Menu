@@ -1,43 +1,50 @@
 int Flag_Menu()
 {
-	while(true)
+	int page = 0;
+	while (true)
 	{
+		SEL_CHK_PAD(10, 20);
+		SEL_CHK_PAD(11, 20);
+		SEL_CHK_PAD(5, 20);
+		SEL_CHK_PAD(7, 20);
 		SEL_CHK_PAD(14, 17);
 		SEL_CHK_PAD(15, 18);
-		int flag = ADV_SEL(Flag_Menu_Text, Flag_Menu, 0);
-		switch (flag) 
+		int flag = ADV_SEL(Flag_Menu_Text + page, Flag_Menu + page, 0);
+		switch (flag)
 		{
-			case 0:
+		case 0:
+			if(page == 0)
 				ToggleBit();
-				break;
-			case 1:
-				ToggleBitRange();
-				break;
-			case 2:
-				EditCount();
-				break;
-			case 3:
-				EditMemory();
-				break;
-			case 4:
-				KillQuests();
-				break;
-			case 5:
+			else 
 				ReviveQuests();
-				break;
-			case 6:
+			break;
+		case 1:
+			if(page == 0)
+				ToggleBitRange();
+			else	
 				TurnOffTiredFlags();
-				break;
-			case 7:
+			break;
+		case 2:
+			if(page == 0)
+				EditCount();
+			else
 				UnlockMap();
-				break;
-			case 8:
+			break;
+		case 3:
+			if(page == 0)
+				EditMemory();
+			else
 				ToggleHUD();
-				break;
-			case 17:
-				return -1;
-			case 18:
-				return 0;
+			break;
+		case 4:
+			KillQuests();
+			break;
+		case 17:
+			return -1;
+		case 18:
+			return 0;
+		case 20:
+			page = !page;
 		}
 	}
 	return 0;
@@ -45,7 +52,7 @@ int Flag_Menu()
 
 void ToggleHUD()
 {
-	SEL_CHK_PAD(14,2);
+	SEL_CHK_PAD(14, 2);
 	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
 	if (toggle == 0)
 		SHOW_DATE(1);
@@ -55,23 +62,23 @@ void ToggleHUD()
 
 void TurnOffTiredFlags()
 {
-	BIT_OFF( 0 + 0x0400 + 0x0800 + 2 );
-	BIT_OFF( 2750 );
+	BIT_OFF(0 + 0x0400 + 0x0800 + 2);
+	BIT_OFF(2750);
 }
 
 void UnlockMap()
 {
-	BIT_ON( 0 + 0x0400 + 0x0800 + 173 );
-	BIT_OFF( 0 + 0x0400 + 0x0800 + 176 );
-	BIT_ON( 0 + 0x0400 + 0x0800 + 174 );
-	SET_CNT( 62, 3 );
-	BIT_OFF( 0 + 0x0400 + 0x0800 + 181 );
-	BIT_ON( 0 + 0x0400 + 0x0800 + 180 );
-	SET_CNT( 63, 3 );
-	BIT_ON( 0 + 0x0400 + 0x0800 + 179 );
-	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 85 );
-	BIT_OFF( 0 + 0x0400 + 0x0800 + 177 );
-	BIT_ON( 0 + 0x0400 + 0x0800 + 175 );
+	BIT_ON(0 + 0x0400 + 0x0800 + 173);
+	BIT_OFF(0 + 0x0400 + 0x0800 + 176);
+	BIT_ON(0 + 0x0400 + 0x0800 + 174);
+	SET_CNT(62, 3);
+	BIT_OFF(0 + 0x0400 + 0x0800 + 181);
+	BIT_ON(0 + 0x0400 + 0x0800 + 180);
+	SET_CNT(63, 3);
+	BIT_ON(0 + 0x0400 + 0x0800 + 179);
+	BIT_ON(0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 85);
+	BIT_OFF(0 + 0x0400 + 0x0800 + 177);
+	BIT_ON(0 + 0x0400 + 0x0800 + 175);
 }
 
 void EditCount()
@@ -89,22 +96,24 @@ void EditCount()
 		SET_CNT(countNumber, newValue);
 }
 
-void EditMemory() 
+void EditMemory()
 {
 	// Get the location
-	int op = ADV_SEL(Operation, PlusOrMinus, 0);
-	int location = Get_Number(6, MSG_6_Location);
-	if(location == -1)
+	int location = Get_Number(9, MSG_9_Location);
+	if (location == -1)
 		return;
-	if (op) location *= -1;
 	// Get the number of bytes
-	int numBytes = Get_Number(2, MSG_2_Bytes);
+	int numBytes = Get_Number(1, MSG_1_Bytes);
 	int foundNumber = ReadNumber(location, numBytes);
 	SET_MSG_VAR(0, location, 0);
 	SET_MSG_VAR(1, foundNumber, 0);
 	OPEN_MSG_WIN();
 	MSG(NumberIndicator);
 	CLOSE_MSG_WIN();
+	int newValue = Get_Number(6, MSG_6);
+	if (newValue == -1)
+		return;
+	WriteNumber(location, numBytes, newValue);
 }
 
 void ToggleBit()
@@ -116,7 +125,7 @@ void ToggleBit()
 	SET_MSG_VAR(1, 619 + BIT_CHK(major), 6);
 	OPEN_MSG_WIN();
 	MSG(FlagIndicator);
-	SEL_CHK_PAD(14,2);
+	SEL_CHK_PAD(14, 2);
 	int toggle = SEL(OnOff);
 	CLOSE_MSG_WIN();
 	if (toggle == 0)
@@ -138,7 +147,7 @@ void ToggleBitRange()
 	if (minor == -1)
 		return;
 	int i = major;
-	SEL_CHK_PAD(14,2);
+	SEL_CHK_PAD(14, 2);
 	int toggle = ADV_SEL(OnOff_Text, OnOff, 0);
 	if (toggle == 0)
 	{
@@ -161,14 +170,14 @@ void ToggleBitRange()
 void KillQuests()
 {
 	int var149 = 0 + 0x0100;
-	_1208:
-	
-	if ( 1 )
+_1208:
+
+	if (1)
 	{
-		BIT_ON( var149 );
+		BIT_ON(var149);
 		var149 = var149 + 1;
-		
-		if ( var149 > 0 + 447 )
+
+		if (var149 > 0 + 447)
 		{
 			goto _1209;
 		}
@@ -176,16 +185,16 @@ void KillQuests()
 		goto _1208;
 	}
 
-	_1209:
+_1209:
 	var149 = 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 768;
-	_1212:
-	
-	if ( 1 )
+_1212:
+
+	if (1)
 	{
-		BIT_ON( var149 );
+		BIT_ON(var149);
 		var149 = var149 + 1;
-		
-		if ( var149 > 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 863 )
+
+		if (var149 > 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 863)
 		{
 			goto _1213;
 		}
@@ -193,35 +202,35 @@ void KillQuests()
 		goto _1212;
 	}
 
-	_1213:
-	BIT_OFF( 0 + 306 );
-	BIT_OFF( 0 + 307 );
-	BIT_OFF( 0 + 308 );
-	BIT_OFF( 0 + 309 );
-	BIT_OFF( 0 + 310 );
-	BIT_OFF( 0 + 370 );
-	BIT_OFF( 0 + 371 );
-	BIT_OFF( 0 + 372 );
-	BIT_OFF( 0 + 373 );
-	BIT_OFF( 0 + 374 );
-	BIT_OFF( 0 + 434 );
-	BIT_OFF( 0 + 435 );
-	BIT_OFF( 0 + 436 );
-	BIT_OFF( 0 + 437 );
-	BIT_OFF( 0 + 438 );
+_1213:
+	BIT_OFF(0 + 306);
+	BIT_OFF(0 + 307);
+	BIT_OFF(0 + 308);
+	BIT_OFF(0 + 309);
+	BIT_OFF(0 + 310);
+	BIT_OFF(0 + 370);
+	BIT_OFF(0 + 371);
+	BIT_OFF(0 + 372);
+	BIT_OFF(0 + 373);
+	BIT_OFF(0 + 374);
+	BIT_OFF(0 + 434);
+	BIT_OFF(0 + 435);
+	BIT_OFF(0 + 436);
+	BIT_OFF(0 + 437);
+	BIT_OFF(0 + 438);
 }
 
 void ReviveQuests()
 {
 	int var149 = 0 + 0x0100;
-	_1216:
-	
-	if ( 1 )
+_1216:
+
+	if (1)
 	{
-		BIT_OFF( var149 );
+		BIT_OFF(var149);
 		var149 = var149 + 1;
-		
-		if ( var149 > 0 + 447 )
+
+		if (var149 > 0 + 447)
 		{
 			goto _1217;
 		}
@@ -229,16 +238,16 @@ void ReviveQuests()
 		goto _1216;
 	}
 
-	_1217:
+_1217:
 	var149 = 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 768;
-	_1220:
-	
-	if ( 1 )
+_1220:
+
+	if (1)
 	{
-		BIT_OFF( var149 );
+		BIT_OFF(var149);
 		var149 = var149 + 1;
-		
-		if ( var149 > 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 863 )
+
+		if (var149 > 0 + 0x0400 + 0x0800 + 0x0400 + 0x0200 + 0x0200 + 0x0200 + 863)
 		{
 			goto _1221;
 		}
@@ -246,5 +255,5 @@ void ReviveQuests()
 		goto _1220;
 	}
 
-	_1221:
+_1221:
 }
