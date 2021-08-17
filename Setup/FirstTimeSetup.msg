@@ -175,3 +175,15 @@
 [f 0 5 -258][f 2 1]Would you like to skip the story exposition
 [n]and start from April 20? This is not recommended
 [n]for first-time players.[f 1 1][e]
+
+[msg ShowFoxOptions_Text]
+[f 0 5 -258][f 2 1]Show Fox Option[e]
+
+[sel ShowFoxOptions]
+[f 0 5 -258][f 2 1]Use Goho-M: [f 2 4 0][e]
+[f 0 5 -258][f 2 1]Done[e]
+
+[msg ShowFox_GohoM[Fox Goho-M (Tekka)]]
+[f 0 5 -258][f 2 1]If "On", when calling the fox
+[n]a [f 2 5 3 -1 2] or [f 2 5 3 -1 3] 
+[n]will be used if you pay for healing.[e]

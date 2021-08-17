@@ -1,73 +1,129 @@
-import( "Utilities.msg" );
+import("Utilities.msg");
 
 void Message_Window(int messageNum)
 {
-    OPEN_MSG_WIN();
-    MSG( messageNum );
-    CLOSE_MSG_WIN();
+	OPEN_MSG_WIN();
+	MSG(messageNum);
+	CLOSE_MSG_WIN();
 }
 
-int SelectDigit( int helpText )
+int SelectDigit(int helpText)
 {
-    while ( true )
-    {
+	while (true)
+	{
 		SEL_CHK_PAD(10, 10);
 		SEL_CHK_PAD(11, 10);
 		SEL_CHK_PAD(5, 10);
 		SEL_CHK_PAD(7, 10);
 		SEL_CHK_PAD(14, 11);
 		SEL_CHK_PAD(15, 12);
-		int digit = ADV_SEL( helpText, Num_Menu, 0);
-		if ( digit < 5 ) //0 through 4
+		int digit = ADV_SEL(helpText, Num_Menu, 0);
+		if (digit < 5) //0 through 4
 			return digit;
-		if ( digit == 10 )
-        {
+		if (digit == 10)
+		{
 			SEL_CHK_PAD(10, 10);
 			SEL_CHK_PAD(11, 10);
 			SEL_CHK_PAD(5, 10);
 			SEL_CHK_PAD(7, 10);
 			SEL_CHK_PAD(14, 11);
 			SEL_CHK_PAD(15, 12);
-            digit = ADV_SEL( helpText, Num_Menu2, 0) + 5;
-            if ( digit < 10 )
+			digit = ADV_SEL(helpText, Num_Menu2, 0) + 5;
+			if (digit < 10)
 				return digit; //5 through 9 or back
 			else if (digit == 16)
-			{	
+			{
 				digit = -1; //exit
 				break;
 			}
-        }
+		}
 		else if (digit == 11)
 		{
 			digit = -1; //exit
 			break;
 		}
-    }
+	}
 	return -1;
 }
 
-int Get_Number( int digitCount, int helpText )
+int Get_Number(int digitCount, int helpText)
 {
-	tryagain:
-    int number = 0;
-    
-    for ( int i = 0; i < digitCount; i++ )
-    {
-        int digit = SelectDigit(helpText);
+tryagain:
+	int number = 0;
+
+	for (int i = 0; i < digitCount; i++)
+	{
+		int digit = SelectDigit(helpText);
 		if (digit == -1)
 			return -1;
 		number *= 10;
 		number += digit;
-    }
-	
+	}
+
 	SET_MSG_VAR(0, number, 0);
 	OPEN_MSG_WIN();
-	MSG( ConfirmNumber );
+	MSG(ConfirmNumber);
 	SEL_CHK_PAD(14, 1);
 	int confirm = SEL(YESNO_SEL);
 	CLOSE_MSG_WIN();
 	if (confirm == 1)
 		goto tryagain;
 
-    return number;
+	return number;
+}
+
+/* 
+   Reads a number from "any" location in memory using bit checks
+   The baseLocation is the location in memory in integer form
+*/
+int ReadNumber(int baseLocation, int numBytes)
+{
+	int number = 0;
+	baseLocation -= 81646940; // Convert absolute memory location to distance from flags start
+	baseLocation *= 8;		  // Convert from bytes away from flag start to bits away
+	for (int i = 0; i < numBytes * 8; i++)
+	{
+		// Get the next bit
+		int bitLocation = baseLocation + i;
+		bool foundBit = BIT_CHK(bitLocation);
+		// Convert the bit to a number, there's no power operator :(
+		int bitNumber = 0;
+		if (foundBit)
+		{
+			bitNumber = Power(2, i);
+		}
+		number += bitNumber;
+	}
+	return number;
+}
+
+void WriteNumber(int baseLocation, int numBytes, int number)
+{
+	baseLocation -= 81646940; // Convert absolute memory location to distance from flags start
+	baseLocation *= 8;		  // Convert from bytes away from flag start to bits away
+	int numBits = numBytes * 8 - 1;
+	for (int i = numBits; i >= 0; i--)
+	{
+		int bitLocation = baseLocation + i;
+		int power = Power(2, i);
+		if (number - power >= 0)
+		{
+			BIT_ON(bitLocation);
+			number -= power;
+		}
+		else
+		{
+			BIT_OFF(bitLocation);
+		}
+	}
+}
+
+int Power(int number, int power)
+{
+	int result = 1;
+	for (int j = 0; j < power; j++)
+	{
+		result *= number;
+	}
+	return result;
 }
