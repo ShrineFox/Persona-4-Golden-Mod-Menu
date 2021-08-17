@@ -7,8 +7,14 @@
 [f 0 5 -258][f 2 1]Don't pay[e]
 
 [msg NEED_GOHOM]
-[f 0 5 -258][f 2 1]> However, you need a [f 2 5 3 -1 0] or 
-[n][f 2 5 3 -1 1] to call the fox.[n][f 1 1][e]
+[f 0 5 -258][f 2 1]> You don't have a [f 2 5 3 -1 0] or [f 2 5 3 -1 1]...[n][f 1 1][e]
+[f 0 5 -258][f 2 1]> It's too dangerous to call the fox without[n]
+an item that can return it to safety.[n][f 1 1][e]
+
+[msg NEED_BRANCH]
+[f 0 5 -258][f 2 1]> You don't have a [f 2 5 3 -1 0]...[n][f 1 1][e]
+[f 0 5 -258][f 2 1]> It's too dangerous to call the fox without[n]
+an item that can return it to safety.[n][f 1 1][e]
 
 [msg ITEM_USED]
 [f 0 5 -258][f 2 1]> Used 1 [f 2 5 3 -1 0].[n][f 1 1][e]
@@ -57,6 +63,10 @@
 [msg RECOVER_OK]
 [f 0 5 -258][f 2 1]> It seems you need [f 0 1 1][f 2 4 0] yen[f 0 1 0][n]for healing...[n]   (You currently have: [f 0 1 1][f 2 4 1] yen[f 0 1 0])[n][f 1 1][e]
 
+[msg RECOVER_OK_GOHOM]
+[f 0 5 -258][f 2 1]> It seems you need [f 0 1 1][f 2 4 0] yen[f 0 1 0] and [f 0 1 3]1 [f 2 5 3 -1 2][f 0 1 0]
+[n]for healing...[n]   (You currently have: [f 0 1 1][f 2 4 1] yen[f 0 1 0] and [f 0 1 3][f 2 4 3] [f 2 5 3 -1 2][f 0 1 0])[n][f 1 1][e]
+
 [msg RECOVER_NOT_NEED]
 [f 0 5 -258][f 2 1]> You don't need healing right now...[n][f 1 1][e]
 
@@ -68,9 +78,20 @@
 
 [msg RECOVER_DONE]
 [f 0 5 -258][f 2 1]> Everyone's SP has been recovered![n][f 1 1][e]
+[f 0 5 -258][f 2 1]> The fox retreated.[n][f 1 1][e]
 
 [msg FOX_GIFT [Fox]]
 [f 0 5 -258][f 2 1][f 4 6 9 1 0 1]*yip*[n][f 1 1][e]
 
 [msg GET_ITEM_FOX]
 [f 0 5 -258][f 2 1]> The fox gave you[n][f 2 5 3 -1 0] x [f 2 4 1].[n][f 1 1][e]
+
+[msg FOX_BAN]
+[f 0 5 -258][f 2 1]> Something is preventing you from[n]calling the fox...[n][f 1 1][e]
+
+[msg FOX_CALL]
+[f 0 5 -258][f 2 1]> You called for the fox.[n][f 1 1][e]
+[f 0 5 -258][f 2 1]> ...[n][f 1 1][e]
+
+[msg FOX_CALL_2]
+[f 0 5 -258][f 2 1]> ...![n][f 1 1][e]

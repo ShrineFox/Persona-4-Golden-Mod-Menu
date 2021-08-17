@@ -3,8 +3,23 @@ import("Fox.msg");
 void use_fox()
 {
     int var1 = GET_FLOOR_ID();
+    bool inHollowForest = var1 > 160 && var1 < 180;
+    // Stop from using the fox at the end of magatsu inaba if using goho-m's is enabled as goho-m is disabled then
+    if (!inHollowForest && BIT_CHK(0 + 0x0400 + 0x0800 + 92) == 1 && BIT_CHK(0 + 0x0400 + 0x0800 + 93) == 0 && !BIT_CHK(6360))
+    {
+        PLAY_SOUNDEFFECT(241);
+        WAIT(10);
+        OPEN_MSG_WIN();
+        MSG(FOX_BAN);
+        CLOSE_MSG_WIN();
+        return;
+    }
+
     int var2 = GET_SL_LEVEL(13);
     int var3 = ADD_YEN(0);
+    // Get regular inventory yen if in hollow forest
+    if (inHollowForest)
+        var3 = ReadNumber(81684136, 4);
     int var11 = 1;
     int var7 = 0;
     int var12 = 0;
@@ -113,40 +128,53 @@ _16:
 
     OPEN_MSG_WIN();
 
-    if (var8 == 1)
-    {
-        MSG(FOX_TALK_BAD);
-    }
-    else if (var8 == 0 || var8 == 2)
-    {
-        MSG(FOX_TALK_NORMAL);
-    }
-    else if (var8 == 3)
-    {
-        MSG(FOX_TALK_GOOD);
-    }
-
-    OPEN_MSG_WIN();
-
     if (var4 == 0)
     {
         MSG(RECOVER_NOT_NEED);
     }
     else
     {
-        SET_MSG_VAR(0, var4, 0);
-        SET_MSG_VAR(1, var3, 0);
-        MSG(RECOVER_OK);
-
         // Check if they have any goho-m or equal items
+        bool needGohom = !BIT_CHK(6360);
         int gohom = GET_ITEM(790);
         int retDaikon = GET_ITEM(2099);
-        if (gohom == 0 && retDaikon == 0)
+        int branch = GET_ITEM(885);
+        if (inHollowForest && branch == 0)
+        {
+            SET_MSG_VAR(0, 885, 1);
+            MSG(NEED_BRANCH);
+            return;
+        }
+        else if (!inHollowForest && needGohom && gohom == 0 && retDaikon == 0)
         {
             SET_MSG_VAR(0, 790, 1);
             SET_MSG_VAR(1, 2099, 1);
             MSG(NEED_GOHOM);
             return;
+        }
+
+        // Display correct recover message (either with or without goho-m)
+        SET_MSG_VAR(0, var4, 0);
+        SET_MSG_VAR(1, var3, 0);
+
+        if (needGohom)
+        {
+            // Display goho-m recovery message
+            if (inHollowForest)
+            {
+                SET_MSG_VAR(3, branch, 0);
+                SET_MSG_VAR(2, 885, 1);
+            }
+            else
+            {
+                SET_MSG_VAR(3, gohom + retDaikon, 0);
+                SET_MSG_VAR(2, 790, 1);
+            }
+            MSG(RECOVER_OK_GOHOM);
+        }
+        else
+        {
+            MSG(RECOVER_OK);
         }
 
         // Check if they want to pay
@@ -162,21 +190,60 @@ _16:
             }
             else
             {
-                if (gohom != 0)
+                // Fox animation
+                FADE(1, 10);
+                FADE_SYNC();
+                MSG(FOX_CALL);
+                PLAY_SOUNDEFFECT(512);
+                MSG(FOX_CALL_2);
+                FUNCTION_0015(15);
+                FADE_SYNC();
+
+                if (var8 == 1)
                 {
-                    SET_ITEM(790, gohom - 1);
-                    SET_MSG_VAR(0, 790, 1);
+                    MSG(FOX_TALK_BAD);
+                }
+                else if (var8 == 0 || var8 == 2)
+                {
+                    MSG(FOX_TALK_NORMAL);
+                }
+                else if (var8 == 3)
+                {
+                    MSG(FOX_TALK_GOOD);
+                }
+
+                // Actual healing and paying stuff
+                // If use gohom is enabled use it
+                if (needGohom)
+                {
+                    if (inHollowForest)
+                    {
+                        SET_ITEM(885, branch - 1);
+                        SET_MSG_VAR(0, 885, 1);
+                    }
+                    else if (gohom != 0)
+                    {
+                        SET_ITEM(790, gohom - 1);
+                        SET_MSG_VAR(0, 790, 1);
+                    }
+                    else
+                    {
+                        SET_ITEM(2099, retDaikon - 1);
+                        SET_MSG_VAR(0, 2099, 1);
+                    }
+                }
+
+                var4 = var4 * -1;
+                // Take yen from the regular inventory
+                if (inHollowForest)
+                {
+                    WriteNumber(81684136, 4, var3 + var4);
+                    WriteNumber(81725936, 4, var3 + var4);
                 }
                 else
                 {
-                    SET_ITEM(2099, retDaikon - 1);
-                    SET_MSG_VAR(0, 2099, 1);
+                    ADD_YEN(var4);
                 }
-
-                MSG(ITEM_USED);
-
-                var4 = var4 * -1;
-                ADD_YEN(var4);
                 MSG(RECOVER_START);
                 CLOSE_MSG_WIN();
                 WAIT(10);
