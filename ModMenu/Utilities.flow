@@ -74,36 +74,56 @@ tryagain:
 
 /* 
    Reads a number from "any" location in memory using bit checks
-   Numbers are read from a certain number of bits away from the first flag location
-   (LocationInMemory - 04DDD55C) * 8 gives you the number you want to input 
-   (LocationInMemory - 81646940) * 8 in decimal
-   Note: This number may be negative or positive depending on location, that is fine
+   The baseLocation is the location in memory in integer form
 */
 int ReadNumber(int baseLocation, int numBytes)
 {
 	int number = 0;
-	for (int i = 0; i < numBytes*8; i++)
+	baseLocation -= 81646940; // Convert absolute memory location to distance from flags start
+	baseLocation *= 8;		  // Convert from bytes away from flag start to bits away
+	for (int i = 0; i < numBytes * 8; i++)
 	{
-		// Get the next bit (little endian)
-		int bitLocation = baseLocation + i; 
+		// Get the next bit
+		int bitLocation = baseLocation + i;
 		bool foundBit = BIT_CHK(bitLocation);
 		// Convert the bit to a number, there's no power operator :(
 		int bitNumber = 0;
-		if(foundBit) {
-			bitNumber = 1;
-			for(int j = 0; j < i; j++) {
-				bitNumber *= 2;
-			}
+		if (foundBit)
+		{
+			bitNumber = Power(2, i);
 		}
 		number += bitNumber;
-		OPEN_MSG_WIN();
-		SET_MSG_VAR(0, i, 0);
-		SET_MSG_VAR(1, bitLocation, 0);
-		SET_MSG_VAR(2, foundBit, 0);
-		SET_MSG_VAR(3, bitNumber, 0);
-		SET_MSG_VAR(4, number, 0);
-		MSG(BIT_TEST);
-		CLOSE_MSG_WIN();
 	}
 	return number;
+}
+
+void WriteNumber(int baseLocation, int numBytes, int number)
+{
+	baseLocation -= 81646940; // Convert absolute memory location to distance from flags start
+	baseLocation *= 8;		  // Convert from bytes away from flag start to bits away
+	int numBits = numBytes * 8 - 1;
+	for (int i = numBits; i >= 0; i--)
+	{
+		int bitLocation = baseLocation + i;
+		int power = Power(2, i);
+		if (number - power >= 0)
+		{
+			BIT_ON(bitLocation);
+			number -= power;
+		}
+		else
+		{
+			BIT_OFF(bitLocation);
+		}
+	}
+}
+
+int Power(int number, int power)
+{
+	int result = 1;
+	for (int j = 0; j < power; j++)
+	{
+		result *= number;
+	}
+	return result;
 }
