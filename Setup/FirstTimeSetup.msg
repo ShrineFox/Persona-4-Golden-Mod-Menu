@@ -184,6 +184,6 @@
 [f 0 5 -258][f 2 1]Done[e]
 
 [msg ShowFox_GohoM[Fox Goho-M (Tekka)]]
-[f 0 5 -258][f 2 1]If "On", when calling the fox
-[n]a [f 2 5 3 -1 2] or [f 2 5 3 -1 3] 
-[n]will be used if you pay for healing.[e]
+[f 0 5 -258][f 2 1]A tweak designed to improve balance. If "On", 
+[n]calling the fox will additionally require 
+[n]a [f 2 5 3 -1 2] or [f 2 5 3 -1 3].[e]
