@@ -101,6 +101,13 @@ void helper_order_hook()
 _100:
     int var33 = 0;
 
+    // If everything except the strategize and nevermind options are hidden just open the strategize menu
+    if (sVar1 == 2046)
+    {
+        StrategizeMenu();
+        goto _101;
+    }
+
     if (1)
     {
         // Set goho-m message variable
@@ -126,7 +133,7 @@ _100:
         SET_MASK(sVar1);
         if (!BIT_CHK(6321))
             SEL_CHK_PAD(12, 18);
-        SEL_CHK_PAD(14, 12);
+        SEL_CHK_PAD(14, 11);
         var33 = SEL(DUNGEON_SEL_HOOK);
 
         if (var33 == 0)
@@ -212,17 +219,10 @@ _100:
         {
             CLOSE_MSG_WIN();
             NAVI_BU_CLOSE(sVar7);
-            use_fox();
-            goto _101;
-        }
-        else if (var33 == 11)
-        {
-            CLOSE_MSG_WIN();
-            NAVI_BU_CLOSE(sVar7);
             NS_SAVE();
             goto _101;
         }
-        else if (var33 == 12)
+        else if (var33 == 11)
         {
             selected = false;
             goto _101;
@@ -251,7 +251,9 @@ _101:
 void StrategizeMenu()
 {
     SET_MASK(stratMask);
-    SEL_CHK_PAD(14, 5);
+    SEL_CHK_PAD(14, 6);
+    if (!BIT_CHK(6321))
+        SEL_CHK_PAD(12, 18);
     int selection = SEL(Strategize);
 
     if (selection == 0)
@@ -304,6 +306,20 @@ void StrategizeMenu()
     else if (selection == 4)
     {
         OrganizeParty();
+        return;
+    }
+    else if (selection == 5)
+    {
+        CLOSE_MSG_WIN();
+        NAVI_BU_CLOSE(sVar7);
+        use_fox();
+    }
+    else if (selection == 18)
+    {
+        CLOSE_MSG_WIN();
+        NAVI_BU_CLOSE(sVar7);
+        MenuOptions();
+        options = true;
         return;
     }
 }
@@ -457,9 +473,9 @@ _127:
         stratMask = stratMask + 16;
     // Hide Call Fox
     if (BIT_CHK(0 + 0x0400 + 0x0800 + 9) == 0 || !showFox || !BIT_CHK(6324) || (GET_FLOOR_ID() > 160 && GET_FLOOR_ID() < 180))
-        sVar1 = sVar1 + 1024;
+        stratMask = stratMask + 32;
     if (!BIT_CHK(6326) || saveAnywhere())
-        sVar1 = sVar1 + 2048;
+        sVar1 = sVar1 + 1024;
 }
 
 void tomb_jump_hook()
