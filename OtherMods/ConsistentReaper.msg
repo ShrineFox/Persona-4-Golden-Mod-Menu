@@ -1,2 +1,10 @@
 [msg New_Death_Msg]
 [f 0 5 -258][f 2 1]> You should hurry to the next floor...[n][f 1 1][e]
+
+[msg HELP_REAPER]
+[f 0 5 -258][f 2 1]When 21 chests have been opened, you[n]
+will begin to hear the sound of an[n]
+intensely terrifying presence...[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Interacting with a chest and moving[n]
+on to another floor will cause the[n]
+chain rattling to cease.[n][f 1 1][e]
