@@ -26,6 +26,9 @@
 [msg MSG_2]
 [f 0 5 -258][f 2 1]2 Digits[n][f 1 1][e]
 
+[msg MSG_1_Bytes]
+[f 0 5 -258][f 2 1]1 Digit (Number of Bytes)[n][f 1 1][e]
+
 [msg MSG_2_Day]
 [f 0 5 -258][f 2 1]2 Digits (Day)[n][f 1 1][e]
 
@@ -76,6 +79,12 @@
 
 [msg MSG_5_Minor]
 [f 0 5 -258][f 2 1]5 Digits (Minor)[n][f 1 1][e]
+
+[msg MSG_9_Location]
+[f 0 5 -258][f 2 1]9 Digits (Location)[n][f 1 1][e]
+
+[msg MSG_6]
+[f 0 5 -258][f 2 1]6 Digits[n][f 1 1][e]
 
 [msg MSG_7]
 [f 0 5 -258][f 2 1]7 Digits (Yen)[n][f 1 1][e]

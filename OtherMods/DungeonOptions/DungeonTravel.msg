@@ -20,12 +20,11 @@
 [f 0 5 -258][f 2 1]Talk to Teddie[e]
 [f 0 5 -258][f 2 1]Talk to Rise[e]
 [f 0 5 -258][f 2 1]Change battle tactics[e]
+[f 0 5 -258][f 2 1]Use a [f 2 5 3 -1 2] (×[f 2 4 1])[e]
 [f 0 5 -258][f 2 1]Move on to next floor[e]
 [f 0 5 -258][f 2 1]Return to previous floor[e]
 [f 0 5 -258][f 2 1]Return to entrance[e]
 [f 0 5 -258][f 2 1]Select floor[e]
-[f 0 5 -258][f 2 1]Goho-M × [f 2 4 1][e]
-[f 0 5 -258][f 2 1]Call the fox[e]
 [f 0 5 -258][f 2 1]Save[e]
 [f 0 5 -258][f 2 1]Nothing[e]
 
@@ -45,6 +44,7 @@
 [f 0 5 -258][f 2 1]Talk to Rise[e]
 [f 0 5 -258][f 2 1]Change battle tactics[e]
 [f 0 5 -258][f 2 1]Organize party[e]
+[f 0 5 -258][f 2 1]Call the fox[e]
 [f 0 5 -258][f 2 1]Never mind[e]
 
 [sel YukikoFloors1]

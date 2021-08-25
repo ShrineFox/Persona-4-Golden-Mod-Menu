@@ -116,9 +116,16 @@ void death_check_hook()
         if ( var178 == 13 && BIT_CHK( 0 + 0x0400 + 0x0800 + 46 ) == 0 )
         {
 			// Set back to 0 so you'd need 21 more to trigger again
-			if (BIT_CHK(6328))
+			if (BIT_CHK(6328)) {
 				SET_CNT( 38, 14 );
+                // Display help message if it's the first encounter
+                if (!BIT_CHK(6335)) {
+                    HELP_MSG(HELP_REAPER);
+                    BIT_ON(6335);
+                }
+            }
             BIT_ON( 0 + 0x0400 + 0x0800 + 46 );
+
         }
 		else if (!BIT_CHK(6328))
 			BIT_OFF( 0 + 0x0400 + 0x0800 + 46 );
@@ -379,6 +386,7 @@ void dng_escape_hook()
         OPEN_MSG_WIN();
         MSG( ESCAPE_BAN );
         CLOSE_MSG_WIN();
+        return;
     }
     else 
 	{

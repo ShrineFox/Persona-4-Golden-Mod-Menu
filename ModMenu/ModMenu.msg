@@ -82,12 +82,19 @@
 [f 0 5 -258][f 2 1]Produce Shop[e]
 
 [msg Flag_Menu_Text]
-[f 0 5 -258][f 2 1]Flag Menu[n][f 1 1][e]
+[f 0 5 -258][f 2 1]Flag Menu (Page 1/2)[n][f 1 1][e]
+
+[msg Flag_Menu_Text_2]
+[f 0 5 -258][f 2 1]Flag Menu (Page 2/2)[n][f 1 1][e]
 
 [sel Flag_Menu]
 [f 0 5 -258][f 2 1]Edit Flag[e]
 [f 0 5 -258][f 2 1]Mass Flag Edit[e]
+[f 0 5 -258][f 2 1]Edit Count[e]
+[f 0 5 -258][f 2 1]Edit Memory[e]
 [f 0 5 -258][f 2 1]Complete All Quests[e]
+
+[sel Flag_Menu_2]
 [f 0 5 -258][f 2 1]Renew All Quests[e]
 [f 0 5 -258][f 2 1]Turn Off Tired Flags[e]
 [f 0 5 -258][f 2 1]Unlock Entire Town Map[e]
@@ -239,3 +246,9 @@
 
 [msg FlagIndicator]
 [f 0 5 -258][f 2 1]Flag [f 2 4 0] is set to [f 2 4 1].[n][e]
+
+[msg CountIndicator]
+[f 0 5 -258][f 2 1]Count [f 2 4 0] is set to [f 2 4 1].[n][f 1 1][e]
+
+[msg NumberIndicator]
+[f 0 5 -258][f 2 1]Location [f 2 4 0] is set to [f 2 4 1].[n][f 1 1][e]

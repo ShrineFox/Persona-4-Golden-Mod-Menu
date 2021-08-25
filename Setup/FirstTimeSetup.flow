@@ -106,7 +106,7 @@ void MenuOptions()
 	}
 }
 
-void ToggleOption(int startMsg, int startFlag, int selection, bool subOption)
+bool ToggleOption(int startMsg, int startFlag, int selection, bool subOption)
 {
 	OPEN_MSG_WIN();
 	MSG(startMsg + selection);
@@ -159,6 +159,7 @@ void ToggleOption(int startMsg, int startFlag, int selection, bool subOption)
 		break;
 	}
 	CLOSE_MSG_WIN();
+	return sel;
 }
 
 void FindAFriendOptionsToggle()
@@ -222,7 +223,52 @@ void DungeonOptionsToggle()
 		int selection = ADV_SEL(DungeonOptions_Text, DungeonOptions, 0);
 		if (selection != 4)
 		{
-			ToggleOption(ShowFox_About, 6330, selection, true);
+			bool optionSel = ToggleOption(ShowFox_About, 6330, selection, true);
+			// If show fox was selected
+			if (selection == 0)
+			{
+				// Reset fox uses goho-m flag if call fox was turned off
+				if (optionSel == 1)
+				{
+					BIT_OFF(6360);
+				}
+				else if (optionSel == 0)
+				{
+					bool done2 = false;
+					while (!done2)
+					{
+						// If call fox was turned on show selection for whether calling the fox should us a goho-m
+						SET_MSG_VAR(0, 620 - BIT_CHK(6360), 6);
+						SEL_CHK_PAD(14, 1);
+						SEL_CHK_PAD(15, 1);
+						OPEN_MSG_WIN();
+						int foxSel = ADV_SEL(ShowFoxOptions_Text, ShowFoxOptions, 0);
+						// Toggle the option
+						if (foxSel == 0)
+						{
+							SET_MSG_VAR(2, 790, 1);
+							SET_MSG_VAR(3, 2099, 1);
+							OPEN_MSG_WIN();
+							MSG(ShowFox_GohoM);
+							SEL_CHK_PAD(14, 2);
+							SEL_CHK_PAD(15, 2);
+							int gohomSel = SEL(ToggleMenu);
+							//
+							if (gohomSel == 0)
+							{
+								BIT_OFF(6360);
+							}
+							else if (gohomSel == 1)
+							{
+								BIT_ON(6360);
+							}
+						} else {
+							done2 = true;
+						}
+						CLOSE_MSG_WIN();
+					}
+				}
+			}
 		}
 		else
 		{
