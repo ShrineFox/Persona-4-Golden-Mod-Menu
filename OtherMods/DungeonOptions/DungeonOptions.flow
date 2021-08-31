@@ -188,7 +188,7 @@ _100:
             goto _101;
         }
 
-        else if (var33 == 5)
+        else if (var33 == 6)
         {
             CLOSE_MSG_WIN();
             NAVI_BU_CLOSE(sVar7);
@@ -196,7 +196,7 @@ _100:
             goto_stair();
             return;
         }
-        else if (var33 == 6 || var33 == 7)
+        else if (var33 == 7 || var33 == 8)
         {
             CLOSE_MSG_WIN();
             NAVI_BU_CLOSE(sVar7);
@@ -205,12 +205,12 @@ _100:
             return;
         }
         // Select dungeon floor
-        else if (var33 == 8)
+        else if (var33 == 9)
         {
             SelectFloor();
             goto _101;
         }
-        else if (var33 == 9)
+        else if (var33 == 5)
         {
             use_gohom();
             goto _101;
@@ -439,11 +439,11 @@ _127:
     // Hide Go to next floor if floor select is shown
     if (FLD_FUNCTION_0036() == 0 || showFloorSelect == true)
     {
-        sVar1 = sVar1 + 32;
+        sVar1 = sVar1 + 64;
     }
 
     // Mask return to previous floor and entrance
-    sVar1 = sVar1 + 192;
+    sVar1 = sVar1 + 384;
 
     // Keep Return to previous floor/entrance hidden if floor select is shown
     if (FLD_FUNCTION_0037() == 1 && showFloorSelect == false)
@@ -451,23 +451,23 @@ _127:
         // Unmask entrance
         if (var34 == 6 || var34 == 21 || var34 == 41 || var34 == 61 || var34 == 81 || var34 == 101 || var34 == 121 || var34 == 123 || var34 == 141 || var34 == 161)
         {
-            sVar1 = sVar1 - 128;
+            sVar1 = sVar1 - 256;
         }
         // Unmask floor
         else
         {
-            sVar1 = sVar1 - 64;
+            sVar1 = sVar1 - 128;
         }
     }
 
     // Hide floor select
     if (!showFloorSelect || !BIT_CHK(6324))
-        sVar1 = sVar1 + 256;
+        sVar1 = sVar1 + 512;
     // Hide Goho-M
     if (!showGohom || showFloorSelect || !BIT_CHK(6324) ||
         (FLD_FUNCTION_0037() == 1 &&
          (var34 == 6 || var34 == 21 || var34 == 41 || var34 == 61 || var34 == 81 || var34 == 101 || var34 == 121 || var34 == 123 || var34 == 141 || var34 == 161)))
-        sVar1 = sVar1 + 512;
+        sVar1 = sVar1 + 32;
     // Hide OrganizeParty
     if (!EnableOrganizeParty() || !showOrganizeParty || !BIT_CHK(6324))
         stratMask = stratMask + 16;

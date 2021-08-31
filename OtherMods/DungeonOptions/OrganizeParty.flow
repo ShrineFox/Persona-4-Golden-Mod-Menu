@@ -428,6 +428,10 @@ int ChooseMember(int text, int mask)
 
 bool EnableOrganizeParty()
 {
+	// You can't switch party members until after you've saved Yukiko
+	if (DATE_CHK(4,17) || (CHECK_TIME_SPAN(4, 10, 4, 30) && BIT_CHK(0 + 0x0400 + 1569)))
+		return false;
+
 	int availableMembers = 0;
 	if (CHECK_TIME_SPAN(4,10,4,17) == 0)
 		availableMembers = availableMembers + 1;
