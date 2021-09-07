@@ -45,6 +45,8 @@ if not exist %OUTPUT_PATH%\tblpatches mkdir %OUTPUT_PATH%\tblpatches
 %COMPILER% .\scheduler\scheduler_11.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_11.bf" -Hook
 %COMPILER% .\scheduler\scheduler_12.bf.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\scheduler\scheduler_12.bf" -Hook
 
+copy .\field\fc*.flow "%OUTPUT_PATH%\data_e\field\script"
+
 del /s /q "%INPUT_PATH%\init_free\*"
 rmdir /s /q "%INPUT_PATH%\init_free"
 del /s /q "%INPUT_PATH%\field\pack\fd007_001\*"
