@@ -28,8 +28,8 @@ More features will continue to be added as game functions are discovered.
 You don't have to follow this section if you're merely installing the mod. This is for developers who want to make changes to the mod.  
 1. Download the latest build of TGE's [AtlusScriptCompiler](https://ci.appveyor.com/project/TGEnigma/atlusscripttoolchain/build/artifacts) ([source](https://github.com/TGEnigma/AtlusScriptToolchain)), which is used to compile the **.flow** and **.msg** scripts in this repository and recompile them into **.bf** format.
 2. Download [TGE's PAKTools](https://github.com/TGEnigma/AtlusFileSystemLibrary/releases) which is used to unpack BIN/PAK files.
-4. Edit the build.bat file with the paths to your AtlusScriptCompiler and PAKTool exe files. Name your edited copy build_local.bat.
-5. Place the following files from your unpacked copy of the game (details on unpacking the game in the Unpacking Persona 4 Golden section of the [Beginner's Guide](https://gamebanana.com/tuts/13379)) into the build/input folder:
+3. Edit the build.bat file with the paths to your AtlusScriptCompiler and PAKTool exe files. Name your edited copy build_local.bat.
+4. Place the following files from your unpacked copy of the game (details on unpacking the game in the Unpacking Persona 4 Golden section of the [Beginner's Guide](https://gamebanana.com/tuts/13379)) into the build/input folder:
   - field/pack/fd007_001.arc
   - field/pack/fd007_002.arc
   - field/pack/fd010_002.arc
@@ -42,6 +42,6 @@ You don't have to follow this section if you're merely installing the mod. This 
 
 Note: These should be in the same folder structure in the build/input folder so field/pack/fd007_001.arc would go in build/input/field/pack/fd007_001.arc
 
-7. Run build_local.bat.
+5. Run build_local.bat.
 
 Now in your build/output folder you will have the entire compiled mod. You can copy this directly into an Aemulus package and then build your mods with Aemulus. If you'd like you can also just change the output path in your build_local.bat directly to your Aemulus package's folder so everything is immediately ready to build in Aemulus after you run build_local.bat.
