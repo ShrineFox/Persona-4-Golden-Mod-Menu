@@ -196,6 +196,10 @@ void SelectFloor()
 	
 	int nextFloor = selection + EntranceFloor;
 
+	// Turn on the "in dungeon" flag if we're entering the dungeon
+	if(floor == EntranceFloor && nextFloor != EntranceFloor)
+		BIT_ON( 3075 );
+
 	common_floor_change();
 	
 	if (ConsitentReaper && ( nextFloor == 5 || nextFloor == 20 || nextFloor == 40 || nextFloor == 60 || nextFloor == 80 || nextFloor == 100 || nextFloor == 120 || nextFloor == 140 || nextFloor == 160 ))
