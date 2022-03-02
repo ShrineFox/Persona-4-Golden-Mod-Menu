@@ -12,22 +12,36 @@ More features will continue to be added as game functions are discovered.
 - QuickTravelPlus (extended quicktravel options in Yasogami High and around the town of Inaba)
 - IntroSkip (start the game at 4/20)
 - VRGameOverSkip (skips velvet room scene after game over) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13301))
-- DungeonOptions (fast travel to any dungeon floor after deadline, heal, use goho-ms, organize party) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13356))
+- DungeonOptions (fast travel to any dungeon floor after deadline, heal, use goho-ms, organize party, and more) by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13356))
 - SaveAnywhere by [Tupelov](https://github.com/Tupelov) ([see mod release](https://gamebanana.com/gamefiles/13318))
 - FindAFriend by [AnimatedSwine37](https://gamebanana.com/members/1742760) ([see mod release](https://gamebanana.com/gamefiles/12921))
 - ConsistentReaper by [TekkaGB](https://github.com/TekkaGB) ([see mod release](https://gamebanana.com/gamefiles/13381))
+- Scooter Ride Count (adds a count that shows how many times you need to ride your scooter) [rudiger__gb](https://gamebanana.com/members/1491857)
+- Dungeon Text Fixes by [rudiger__gb](https://gamebanana.com/members/1491857) ([see mod release](https://gamebanana.com/mods/50907))
+- Remove Events by [AnimatedSwine37](https://gamebanana.com/members/1742760) ([see mod release](https://gamebanana.com/mods/50924))
+- Save Everyday by [AnimatedSwine37](https://gamebanana.com/members/1742760) ([see mod release](https://gamebanana.com/mods/138058))
 ## Usage (PC)
-1. Download and unzip [Aemulus Package Manager](https://gamebanana.com/tools/6878) and add the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases) to the "Packages" folder.
-2. Point Aemulus to your P4G game directory's "mods" folder and build the Mod Menu in combination with any other mods you may want to install.
-3. Use the [latest p4gpc.modloader](https://amicitia.github.io/post/p4g-pc-modloader) with [Reloaded II](https://github.com/Reloaded-Project/Reloaded-II/releases) to launch P4G with mods.
+1. Follow the [Beginner's Guide to Modding Persona 4 Golden](https://gamebanana.com/tuts/13379) if you haven't already got mods setup for P4G.
+2. Install this mod by dragging the [latest release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases/latest) of the mod into [Aemulus](https://github.com/TekkaGB/AemulusModManager/) or using the one click install on the [Gamebanana page](https://gamebanana.com/gamefiles/13256).
+3. Build your Aemulus loadout with this mod enabled and play the game!
 ## Compiling the scripts yourself
 You don't have to follow this section if you're merely installing the mod. This is for developers who want to make changes to the mod.  
 1. Download the latest build of TGE's [AtlusScriptCompiler](https://ci.appveyor.com/project/TGEnigma/atlusscripttoolchain/build/artifacts) ([source](https://github.com/TGEnigma/AtlusScriptToolchain)), which is used to compile the **.flow** and **.msg** scripts in this repository and recompile them into **.bf** format.
-2. Download this [P4G Library](https://github.com/Tupelov/Persona-Library) that includes some function names used in this menu. Extract it and overwrite the contents of the **AtlusScriptTools\Libraries folder**.
-3. Also download [TGE's PAKTools](https://github.com/TGEnigma/AtlusFileSystemLibrary/releases) which is used to repack BIN/PAK files.
-4. Edit the build.bat file with the paths to your AtlusScriptCompiler and PAKTool exe files. Name your edited copy build_local.bat.
-5. Place the **init_free.bin file from your copy of the game** in the build/input folder (see below).
-6. Run build_local.bat.
+2. Download [TGE's PAKTools](https://github.com/TGEnigma/AtlusFileSystemLibrary/releases) which is used to unpack BIN/PAK files.
+3. Edit the build.bat file with the paths to your AtlusScriptCompiler and PAKTool exe files. Name your edited copy build_local.bat.
+4. Place the following files from your unpacked copy of the game (details on unpacking the game in the Unpacking Persona 4 Golden section of the [Beginner's Guide](https://gamebanana.com/tuts/13379)) into the build/input folder:
+  - field/pack/fd007_001.arc
+  - field/pack/fd007_002.arc
+  - field/pack/fd010_002.arc
+  - field/pack/fd020_001.arc
+  - field/pack/fd023_001.arc
+  - field/script/lmap.bf
+  - field/script/dungeon01.bf
+  - all bfs in scheduler
+  - init_free.bin
 
-When you run the bat, the **field.bf** script will be recompiled into a new BF file including the Mod Menu (with the latest changes) and packed into a new init_free.bin.
-- **field.bf** can be found in **init_free.bin** (extracted from data_e.cpk with [preappfile](https://amicitia.github.io/post/preappfile) or from data00004.pac with [NR2_unpacker](https://modworkshop.net/mod/17641).)
+Note: These should be in the same folder structure in the build/input folder so field/pack/fd007_001.arc would go in build/input/field/pack/fd007_001.arc
+
+5. Run build_local.bat.
+
+Now in your build/output folder you will have the entire compiled mod. You can copy this directly into an Aemulus package and then build your mods with Aemulus. If you'd like you can also just change the output path in your build_local.bat directly to your Aemulus package's folder so everything is immediately ready to build in Aemulus after you run build_local.bat.
