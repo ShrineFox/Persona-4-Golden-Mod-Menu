@@ -1,3 +1,4 @@
+import("../build/input/field/script/r_dungeon.bf");
 import("ConsistentReaper.msg");
 
 // Called whenever a treasure box spawns and determines what it is

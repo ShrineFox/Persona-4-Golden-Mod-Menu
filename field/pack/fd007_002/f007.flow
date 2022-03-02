@@ -1,4 +1,4 @@
-import("../build/input/field/pack/fd007_002/f007.bf");
+import("f007.bf");
 
 void door_entrance_hook()
 {
