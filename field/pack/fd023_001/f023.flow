@@ -9,7 +9,7 @@
 // Imports
 // 
 
-import( "../build/input/field/pack/fd023_001/f023.bf" );
+import( "f023.bf" );
 
 // 
 // Procedure declarations
