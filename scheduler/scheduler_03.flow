@@ -1,0 +1,8 @@
+import("scheduler_03.bf");
+import("RemoveLunchtimeInvites.bf.flow");
+
+// Remove lunchtime invitations
+void start_cmm_hirusasoi_hook()
+{
+    RemoveLunchtimeInvites();
+}
