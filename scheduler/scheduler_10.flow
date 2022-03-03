@@ -1,6 +1,6 @@
-import("../build/input/scheduler/scheduler_10.bf");
-import("../OtherMods/SaveEveryday.flow");
-import("../OtherMods/RemoveLunchtimeInvites.flow");
+import("scheduler_10.bf");
+import("SaveEveryday.bf.flow");
+import("RemoveLunchtimeInvites.bf.flow");
 
 // Remove lunchtime invitations
 void start_cmm_hirusasoi_hook()

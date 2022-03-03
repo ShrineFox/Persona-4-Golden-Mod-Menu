@@ -1,0 +1,9 @@
+import("scheduler_07.bf");
+import("SaveEveryday.bf.flow");
+import("RemoveLunchtimeInvites.bf.flow");
+
+// Remove lunchtime invitations
+void start_cmm_hirusasoi_hook()
+{
+    RemoveLunchtimeInvites();
+}

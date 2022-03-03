@@ -25,7 +25,12 @@ if not exist "%OUTPUT_PATH%\tblpatches" mkdir "%OUTPUT_PATH%\tblpatches"
 %COMPILER% .\OtherMods\ConsistentReaper.flow -Compile -OutFormat V1 -Library P4G -Encoding P4 -Out "%OUTPUT_PATH%\data_e\field\script\dungeon.bf" -Hook
 
 Xcopy /E /I /Y .\field "%OUTPUT_PATH%\data_e\field"
+Xcopy /E /I /Y .\scheduler "%OUTPUT_PATH%\data_e\scheduler"
 copy .\OtherMods\IntroSkip.flow "%OUTPUT_PATH%\data_e\field\pack\fd020_001\IntroSkip.bf.flow"
+copy .\OtherMods\SaveEveryday.flow "%OUTPUT_PATH%\data_e\scheduler\SaveEveryday.bf.flow"
+copy .\OtherMods\RemoveLunchtimeInvites.flow "%OUTPUT_PATH%\data_e\scheduler\RemoveLunchtimeInvites.bf.flow"
+copy .\Setup\FirstTimeSetup.flow "%OUTPUT_PATH%\data_e\scheduler\FirstTimeSetup.bf.flow"
+copy .\Setup\FirstTimeSetup.msg "%OUTPUT_PATH%\data_e\scheduler\FirstTimeSetup.msg"
 
 del /s /q "%INPUT_PATH%\init_free\*"
 rmdir /s /q "%INPUT_PATH%\init_free"

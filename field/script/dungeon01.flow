@@ -9,7 +9,7 @@
 // Imports
 // 
 
-import( "../build/input/field/script/dungeon01.bf" );
+import( "dungeon01.bf" );
 
 // 
 // Procedure declarations
