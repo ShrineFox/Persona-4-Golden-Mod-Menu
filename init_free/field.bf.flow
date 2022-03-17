@@ -58,7 +58,7 @@ void TurnOnAllOptions()
     BIT_ON(6325); // Find a Friend
     BIT_ON(5678); // Spoiler-free find a friend
     BIT_OFF(6326); // Save Anywhere
-    BIT_ON(6327); // Game over skip
+    BIT_OFF(6327); // Game over skip
     BIT_ON(6328); //Reap-Balanced Encounters
     BIT_ON(6330); //Enable Fox (DungeonOptions)
     BIT_ON(6331); //Enable Floor Select (DungeonOptions)
