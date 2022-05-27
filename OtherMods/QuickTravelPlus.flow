@@ -13,6 +13,9 @@ bool saveAnywhere()
 
 void field_order_hook()
 {
+	// Play the sub menu opening sound
+	FUNCTION_0023( 0, 3 );
+
 	bool calendar = BIT_CHK(6323);
 	bool friend = BIT_CHK(6325);
 	bool plus = BIT_CHK(6322);
