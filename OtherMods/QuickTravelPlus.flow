@@ -98,15 +98,15 @@ void StreetOrder(bool calendar, bool friend, bool save)
 	switch (fieldMinor)
 	{
 		case 1:
-			shoppingMask = shoppingMask + 1;
+			shoppingMask = shoppingMask + 2;
 			if ( DATE_CHK( 4, 12 ) || DATE_CHK( 4, 13 ) || DATE_CHK( 4, 14 ) || DATE_CHK( 4, 15 ) 
 			|| DATE_CHK( 4, 16 ) )
 			{
-				streetMask = streetMask - 3;
+				streetMask = streetMask - 1;
 			}
 			break;
 		case 2:
-			shoppingMask = shoppingMask + 2;
+			shoppingMask = shoppingMask + 1;
 			if ( DATE_CHK( 4, 11 ) )
             {
                 streetMask = streetMask + 9;
@@ -114,7 +114,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
 			if ( DATE_CHK( 4, 12 ) || DATE_CHK( 4, 13 ) || DATE_CHK( 4, 14 ) || DATE_CHK( 4, 15 ) 
 			|| DATE_CHK( 4, 16 ) )
 			{
-				streetMask = streetMask - 1;
+				streetMask = streetMask - 3;
 			}
 			break;
 		case 9:
@@ -156,13 +156,13 @@ void StreetOrder(bool calendar, bool friend, bool save)
 			}
 			switch (shopping)
 			{
-				case 0:
+				case 1:
 					if (GET_FIELD_MAJOR() == 8 && GET_FIELD_MINOR() == 9)
 						CALL_FIELD( 8, 1, 2, 0 );
 					else
 						CALL_FIELD( 8, 1, 0, 0 );
 					break;
-				case 1:
+				case 0:
 					if (GET_FIELD_MAJOR() == 8)
 						CALL_FIELD( 8, 2, 1, 0 );
 					else
@@ -183,7 +183,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
 					goto begin;
 			}
 			break;
-		case 1:
+		case 2:
 			FADE( 2, 5 );
 			FADE_SYNC();
 			if (GET_FIELD_MAJOR() == 8 && GET_FIELD_MINOR() == 9)
@@ -191,7 +191,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
 			else
 				CALL_FIELD( 8, 1, 0, 0 );
 			break;
-		case 2:
+		case 1:
 			FADE( 2, 5 );
 			FADE_SYNC();
 			if (GET_FIELD_MAJOR() == 8)
@@ -391,11 +391,11 @@ void NightOrder(bool calendar, bool friend, bool save)
 	{
 		case 1:
 			if (major == 8)
-				streetMask = streetMask + 1;
+				streetMask = streetMask + 2;
 			break;
 		case 2:
 			if (major == 8)
-				streetMask = streetMask + 2;
+				streetMask = streetMask + 1;
 			else if (major == 10)
 				nightMask = nightMask + 4;
 			break;
@@ -435,13 +435,13 @@ void NightOrder(bool calendar, bool friend, bool save)
 			}
 			switch (shopping)
 			{
-				case 0:
+				case 1:
 					if (GET_FIELD_MAJOR() == 8 && GET_FIELD_MINOR() == 9)
 						CALL_FIELD( 8, 1, 2, 0 );
 					else
 						CALL_FIELD( 8, 1, 0, 0 );
 					break;
-				case 1:
+				case 0:
 					if (GET_FIELD_MAJOR() == 8)
 						CALL_FIELD( 8, 2, 1, 0 );
 					else

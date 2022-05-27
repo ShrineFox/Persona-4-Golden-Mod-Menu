@@ -192,10 +192,10 @@ void NightOrder()
 			}
 			switch (shopping)
 			{
-				case 0:
+				case 1:
 					CALL_FIELD( 8, 1, 0, 0 );
 					break;
-				case 1:
+				case 0:
 					CALL_FIELD( 8, 2, 0, 0 );
 					break;
 				case 2:

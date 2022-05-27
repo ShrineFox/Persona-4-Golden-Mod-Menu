@@ -146,10 +146,10 @@ void StreetOrder()
 	FADE_SYNC();
 	switch (street)
 	{
-		case 0:
+		case 1:
 			CALL_FIELD( 8, 1, 0, 0 );
 			break;
-		case 1:
+		case 0:
 			if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 172 ) == 1 )
 			{
 				CALL_FIELD( 8, 2, 8, 0 );

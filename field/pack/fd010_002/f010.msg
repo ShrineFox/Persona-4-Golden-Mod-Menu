@@ -5,8 +5,8 @@
 [f 0 5 -258][f 2 1]Cancel[e]
 
 [sel ShoppingDistrict]
-[f 0 5 -258][f 2 1]Shopping District, North[e]
 [f 0 5 -258][f 2 1]Shopping District, South[e]
+[f 0 5 -258][f 2 1]Shopping District, North[e]
 [f 0 5 -258][f 2 1]Shiroku Pub[e]
 [f 0 5 -258][f 2 1]Velvet Room[e]
 [f 0 5 -258][f 2 1]Cancel[e]

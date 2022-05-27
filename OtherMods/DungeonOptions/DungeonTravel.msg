@@ -112,7 +112,7 @@
 [f 0 5 -258][f 2 1]Void Quest Chapter 7[e]
 [f 0 5 -258][f 2 1]Void Quest Chapter 8[e]
 [f 0 5 -258][f 2 1]Void Quest Chapter 9[e]
-[f 0 5 -258][f 2 1]Void Quest End Game[e]
+[f 0 5 -258][f 2 1]Void Quest Endgame[e]
 [f 0 5 -258][f 2 1]Previous[e]
 
 [sel NaotoFloors1]
