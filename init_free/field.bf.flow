@@ -58,7 +58,7 @@ void TurnOnAllOptions()
     BIT_ON(6325); // Find a Friend
     BIT_ON(5678); // Spoiler-free find a friend
     BIT_OFF(6326); // Save Anywhere
-    BIT_OFF(6327); // Game over skip
+    BIT_ON(6327); // Game over skip
     BIT_ON(6328); //Reap-Balanced Encounters
     BIT_ON(6330); //Enable Fox (DungeonOptions)
     BIT_ON(6331); //Enable Floor Select (DungeonOptions)
@@ -67,11 +67,11 @@ void TurnOnAllOptions()
     BIT_ON(6334); //Enable Default Direct Commands
     BIT_ON(6340); //Remove Lunchtime Invitations
     BIT_OFF(6341); // Remove Events
-    BIT_OFF(6342); // Save Everyday
-    BIT_OFF(6350); // Remove Camping Event
-    BIT_OFF(6351); // Remove Cross Dressing Event
-    BIT_OFF(6352); // Remove Group Date Event 
-    BIT_OFF(6353); // Remove Hot Springs Event
+    BIT_ON(6342); // Save Everyday
+    BIT_ON(6350); // Remove Camping Event
+    BIT_ON(6351); // Remove Cross Dressing Event
+    BIT_ON(6352); // Remove Group Date Event 
+    BIT_ON(6353); // Remove Hot Springs Event
 }
 
 void order_party_hook()
@@ -83,7 +83,8 @@ void order_party_hook()
     {
 		TurnOffAllOptions();
 		TurnOffAllOptionsV2();
-        TurnOnAllOptions();
+        MenuOptions();
+        //TurnOnAllOptions();
         goto restart;
     }
 

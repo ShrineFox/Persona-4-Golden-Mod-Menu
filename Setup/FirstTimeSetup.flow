@@ -1,63 +1,106 @@
 import("FirstTimeSetup.msg");
 
+void FirstTimeSetup()
+{
+	//Introduction
+	OPEN_MSG_WIN();
+	HELP_MSG(SquareMenuConfig);
+	CLOSE_MSG_WIN();
+
+	//Marks first time setup as complete
+	BIT_ON(6320);
+
+	//Set all menu option values to 0
+	for (int i = 0; i < 8; i++)
+	{
+		BIT_OFF(6321 + i);
+	}
+
+	// Set second group of menu options to 0
+	for (int i = 0; i < 3; i++)
+	{
+		BIT_OFF(6340 + i);
+	}
+
+	//Enable "Options" in menu for later configuration
+	BIT_ON(6329);
+
+	//Set all dungeon option values to 0
+	for (int i = 0; i < 4; i++)
+	{
+		BIT_OFF(6330 + i);
+	}
+
+	//Toggle options until done
+	MenuOptions();
+}
+
 void MenuOptions()
 {
-	//Toggle options until done
-	bool done = false;
-	int pageNum = 0;
-	int mask = 0;
-	while (!done)
+	//First time setup for Custom Square Menu
+	if (!BIT_CHK(6320))
 	{
-		//Set message variables
-		for (int i = 0; i < 8; i++)
+		FirstTimeSetup();
+	}
+	else
+	{
+		//Toggle options until done
+		bool done = false;
+		int pageNum = 0;
+		int mask = 0;
+		while (!done)
 		{
-			SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
-		}
-		SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6); // Default to direct commands
-		SET_MSG_VAR(9, 619 + BIT_CHK(6341), 6);
-		SET_MSG_VAR(10, 619 + BIT_CHK(6342), 6);
-
-		SEL_CHK_PAD(14, 18);
-		SEL_CHK_PAD(15, 18);
-
-		if (!pageNum)
-		{
-			mask = 6113;
-			SEL_CHK_PAD(10, 11);
-			SEL_CHK_PAD(11, 11);
-			SEL_CHK_PAD(5, 11);
-			SEL_CHK_PAD(7, 11);
-		}
-		else
-		{
-			mask = 3135;
-			SEL_CHK_PAD(10, 12);
-			SEL_CHK_PAD(11, 12);
-			SEL_CHK_PAD(5, 12);
-			SEL_CHK_PAD(7, 12);
-		}
-
-		//Toggle selection or read more about it
-		int selection = ADV_SEL(SquareMenuOptions_Text + pageNum, SquareMenuOptions, mask);
-		if (selection < 11)
-		{
-			if (selection > 8) // Scheduler mods have a different range of flags (6340+)
-				ToggleOption(ModMenu_About, 6332, selection, false);
-			else
-				ToggleOption(ModMenu_About, 6321, selection, false);
-		}
-		else if (selection == 11 || selection == 12)
-		{
-			pageNum = !pageNum;
-		}
-		else
-		{
-			done = true;
-			if (!BIT_CHK(6321))
+			//Set message variables
+			for (int i = 0; i < 8; i++)
 			{
-				OPEN_MSG_WIN();
-				MSG(OptionsWarning);
-				CLOSE_MSG_WIN();
+				SET_MSG_VAR(i, 619 + BIT_CHK(6321 + i), 6);
+			}
+			SET_MSG_VAR(8, 619 + BIT_CHK(6334), 6); // Default to direct commands
+			SET_MSG_VAR(9, 619 + BIT_CHK(6341), 6);
+			SET_MSG_VAR(10, 619 + BIT_CHK(6342), 6);
+
+			SEL_CHK_PAD(14, 18);
+			SEL_CHK_PAD(15, 18);
+
+			if (!pageNum)
+			{
+				mask = 6080;
+				SEL_CHK_PAD(10, 11);
+				SEL_CHK_PAD(11, 11);
+				SEL_CHK_PAD(5, 11);
+				SEL_CHK_PAD(7, 11);
+			}
+			else
+			{
+				mask = 2111;
+				SEL_CHK_PAD(10, 12);
+				SEL_CHK_PAD(11, 12);
+				SEL_CHK_PAD(5, 12);
+				SEL_CHK_PAD(7, 12);
+			}
+
+			//Toggle selection or read more about it
+			int selection = ADV_SEL(SquareMenuOptions_Text + pageNum, SquareMenuOptions, mask);
+			if (selection < 11)
+			{
+				if (selection > 8) // Scheduler mods have a different range of flags (6340+)
+					ToggleOption(ModMenu_About, 6332, selection, false);
+				else
+					ToggleOption(ModMenu_About, 6321, selection, false);
+			}
+			else if (selection == 11 || selection == 12)
+			{
+				pageNum = !pageNum;
+			}
+			else
+			{
+				done = true;
+				if (!BIT_CHK(6321))
+				{
+					OPEN_MSG_WIN();
+					MSG(OptionsWarning);
+					CLOSE_MSG_WIN();
+				}
 			}
 		}
 	}
@@ -258,3 +301,4 @@ void RemoveEventsOptionsToggle()
 			done = true;
 		}
 	}
+}
