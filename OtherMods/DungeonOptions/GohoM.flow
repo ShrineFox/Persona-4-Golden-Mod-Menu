@@ -169,6 +169,9 @@ void use_gohom()
     {
         CALL_DUNGEON( 160, 1 );
     }
-
+    else 
+    {
+        CALL_DUNGEON( 5, 1 ); // Yukiko's castle entrance in case we can't find the dungeon
+    }
 }
 
