@@ -86,7 +86,6 @@
 [f 0 5 -258][f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]
 [f 0 5 -258][f 2 1]> You have yet to speak with some of[n]the people who are close to you.[n][f 1 1][e]
 
-
 [msg MSG_0320_RETURN_HOME2]
 [f 0 5 -258][f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]
 [f 0 5 -258][f 2 1]> It's time for you to go back home to[n]prepare for tomorrow...[n][f 1 1][e]
@@ -177,3 +176,49 @@
 [msg MSG_GOJITUDAN_GUIDE_AI]
 [f 0 5 -258][f 2 1]> Come to think of it, you have yet[n]to say goodbye to Ai...[n][f 1 1][e]
 [f 0 5 -258][f 2 1]> Ai was always standing around at the[n][f 0 1 2]first floor hallway of the school's[n]Classroom Building[f 0 1 0]...[n][f 1 1][e]
+
+[msg EQUIP_SHOP_STOP]
+[f 2 1]> A fierce-looking man is single-mindedly[n]pounding on something in the back of the[n]store...[n][f 1 1][e]
+[f 2 1]> You decide not to enter...[n][f 1 1][e]
+
+[msg EQUIP_SHOP_CLOSED]
+[f 2 1]> The store has closed for today...[n][f 1 1][e]
+
+[msg MSG_0320_GO_HOME_COMU_AL_2]
+[f 0 5 65278][f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]
+[f 0 5 65278][f 2 1]> You now have said goodbye to everyone[n]who is close to you.[n][f 1 1][e]
+[f 0 5 65278][f 2 1]> Is there something that you still[n]have to do here...?[n][f 1 1][e]
+
+[msg MSG_ITEMSHOP_0411]
+[f 2 1]> A variety of products lines the[n]shelves...[n][f 1 1][e]
+[f 2 1]> A friendly-looking old lady sits behind[n]the counter...[n][f 1 1][e]
+
+[msg MSG_0320_NOMORE_NEED2]
+[f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]
+
+[msg MSG_0320_GO_HOME_COMU_NO_3]
+[f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]
+[f 2 1]> You have yet to speak with some of[n]the people who are close to you.[n][f 1 1][e]
+
+[msg MSG_0320_GO_HOME_COMU_AL_4]
+[f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]
+[f 2 1]> You now have said goodbye to everyone[n]who is close to you.[n][f 1 1][e]
+[f 2 1]> It's time for you to go back home to[n]prepare for tomorrow...[n][f 1 1][e]
+
+[msg MSG_0320_GO_HOME_COMU_AL_5]
+[f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]
+[f 2 1]> You now have said goodbye to everyone[n]who is close to you.[n][f 1 1][e]
+[f 2 1]> Is there something that you still[n]have to do here...?[n][f 1 1][e]
+
+[sel YESNO_SEL top]
+[f 0 5 65278][f 2 1]Yes[e]
+[f 0 5 65278][f 2 1]No[e]
+
+[msg MSG_0320_GO_HOME_COMU_NO_2]
+[f 0 5 65278][f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]
+[f 0 5 65278][f 2 1]> You have yet to speak with some of[n]the people who are close to you.[n][f 1 1][e]
+
+[msg MSG_0320_GO_HOME_COMU_AL_3]
+[f 0 5 65278][f 2 1]> You should have no reason to come[n]here anymore...[n][f 1 1][e]
+[f 0 5 65278][f 2 1]> You now have said goodbye to everyone[n]who is close to you.[n][f 1 1][e]
+[f 0 5 65278][f 2 1]> It's time for you to go back home to[n]prepare for tomorrow...[n][f 1 1][e]
