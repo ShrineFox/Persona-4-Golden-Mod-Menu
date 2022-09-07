@@ -163,12 +163,10 @@ void StreetOrder()
 			CALL_FIELD( 8, 9, 0, 0 );
 			break;
 		case 3:
-			DAIDARA_SHOP();
-			CALL_FIELD(8, 2, 2, 0 );
+			equip_shop();
 			break;
 		case 4:
-			SHIROKU_SHOP();
-			CALL_FIELD(8, 2, 3, 0);
+            item_shop();
 			break;
 		case 5:
 			call_velvet_room();
@@ -245,6 +243,7 @@ void call_velvet_room()
                 {
                     MSG( MSG_0320_GO_HOME_COMU_NO2 );
                     CLOSE_MSG_WIN();
+                    TOWN_MAP(0);
                     return;
                 }
 
@@ -268,6 +267,7 @@ void call_velvet_room()
             }
             else 
             {
+                TOWN_MAP(0);
                 return;
             }
 
@@ -296,6 +296,7 @@ void call_velvet_room()
             }
 
             CLOSE_MSG_WIN();
+            TOWN_MAP(0);
 			return;
         }
 
@@ -305,6 +306,7 @@ void call_velvet_room()
         OPEN_MSG_WIN();
         MSG( MSG_0320_DOUJIMA_SEARCH );
         CLOSE_MSG_WIN();
+        TOWN_MAP(0);
 		return;
     }
     else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 1019 ) && BIT_CHK( 0 + 0x0400 + 566 ) == 0 )
@@ -339,6 +341,7 @@ void call_velvet_room()
         OPEN_MSG_WIN();
         MSG( MSG_0320_NOMORE_NEED3 );
         CLOSE_MSG_WIN();
+        TOWN_MAP(0);
 		return;
     }
     else if ( var6 == 4 && var7 == 17 )
@@ -346,6 +349,7 @@ void call_velvet_room()
         OPEN_MSG_WIN();
         MSG( MSG_0417_VELVET_DONOTENT );
         CLOSE_MSG_WIN();
+        TOWN_MAP(0);
 		return;
     }
     else if ( GET_TIME_OF_DAY() == 5 )
@@ -572,4 +576,759 @@ void eve_0320_vs_marguerite()
     BIT_ON( 0 + 0x0400 + 0x0800 + 785 );
     BIT_ON( 0 + 0x0400 + 0x0800 + 788 );
     SET_CNT( 28, 0 );
+}
+
+void equip_shop()
+{
+    
+    if ( CHECK_TIME_SPAN( 4, 11, 4, 12 ) == 1 )
+    {
+        OPEN_MSG_WIN();
+        MSG( EQUIP_SHOP_STOP );
+        CLOSE_MSG_WIN();
+        TOWN_MAP(0);
+    }
+    else if ( ( ( GET_TIME_OF_DAY() == 5 ) && ( GET_WEATHER() != 1 ) ) && ( GET_WEATHER() != 7 ) )
+    {
+        OPEN_MSG_WIN();
+        MSG( EQUIP_SHOP_CLOSED );
+        CLOSE_MSG_WIN();
+        TOWN_MAP(0);
+    }
+    else if ( ( BIT_CHK( 1538 ) == 1 ) && ( BIT_CHK( 131 ) == 0 ) )
+    {
+        commu_gojitu();
+        TOWN_MAP(0);
+        return;
+    }
+    else 
+    {
+        FADE( 1, 10 );
+        FADE_SYNC();
+        DAIDARA_SHOP();
+        CALL_FIELD( 8, 2, 2, 0 );
+    }
+
+}
+
+
+// Procedure Index: 43
+void item_shop()
+{
+    
+    if ( CHECK_TIME_SPAN( 4, 11, 4, 12 ) == 1 )
+    {
+        OPEN_MSG_WIN();
+        MSG( MSG_ITEMSHOP_0411 );
+        CLOSE_MSG_WIN();
+        TOWN_MAP(0);
+    }
+    else if ( GET_TIME_OF_DAY() == 5 )
+    {
+        BIT_ON( 1868 );
+        BIT_ON( 1869 );
+        BIT_ON( 1870 );
+        BIT_ON( 1871 );
+        
+        if ( GET_DAY_OF_WEEK() == 1 )
+        {
+            BIT_OFF( 1868 );
+        }
+        else if ( GET_DAY_OF_WEEK() == 2 )
+        {
+            BIT_OFF( 1871 );
+        }
+        else if ( GET_DAY_OF_WEEK() == 3 )
+        {
+            BIT_OFF( 1870 );
+        }
+        else if ( GET_DAY_OF_WEEK() == 4 )
+        {
+            BIT_OFF( 1869 );
+        }
+        else 
+        {
+            BIT_OFF( 1868 );
+            BIT_OFF( 1869 );
+            BIT_OFF( 1870 );
+            BIT_OFF( 1871 );
+        }
+
+        FADE( 1, 10 );
+        FADE_SYNC();
+        BIT_ON( 2091 );
+        SHIROKU_PUB();
+        
+        if ( BIT_CHK( 2081 ) == 1 )
+        {
+            commu_yoru();
+        }
+        else 
+        {
+            CALL_FIELD( 8, 2, 3, 0 );
+        }
+    }
+    else if ( ( BIT_CHK( 1538 ) == 1 ) && ( BIT_CHK( 131 ) == 0 ) )
+    {
+        commu_gojitu();
+        TOWN_MAP(0);
+        return;
+    }
+    else 
+    {
+        FADE( 1, 10 );
+        FADE_SYNC();
+        SHIROKU_SHOP();
+        CALL_FIELD( 8, 2, 3, 0 );
+    }
+
+}
+
+
+void commu_gojitu()
+{
+    int var119;
+    
+    if ( BIT_CHK( 3405 ) == 1 )
+    {
+        OPEN_MSG_WIN();
+        
+        if ( BIT_CHK( 1591 ) == 1 )
+        {
+            MSG( MSG_0320_NOMORE_NEED3 );
+            CLOSE_MSG_WIN();
+            return;
+        }
+        else if ( BIT_CHK( 1539 ) == 1 )
+        {
+            
+            if ( BIT_CHK( 2304 ) == 1 )
+            {
+                MSG( MSG_0320_GO_HOME_COMU_AL_2 );
+            }
+            else 
+            {
+                MSG( MSG_0320_GO_HOME_COMU_NO_2 );
+                CLOSE_MSG_WIN();
+                return;
+            }
+
+        }
+        else 
+        {
+            MSG( MSG_0320_RETURN_HOME2 );
+        }
+
+        SEL_CHK_PAD( 14, 1 );
+        var119 = SEL( YESNO_SEL );
+        CLOSE_MSG_WIN();
+        
+        if ( var119 == 0 )
+        {
+            
+            if ( BIT_CHK( 3076 ) == 0 )
+            {
+                BIT_ON( 3076 );
+            }
+
+            
+            if ( DATE_CHK( 3, 20 ) )
+            {
+                BIT_ON( 46 );
+            }
+
+            FADE( 1, 10 );
+            FADE_SYNC();
+            TV_STUDIO();
+            return;
+        }
+        else 
+        {
+            return;
+        }
+
+    }
+    else 
+    {
+        OPEN_MSG_WIN();
+        
+        if ( BIT_CHK( 1591 ) == 1 )
+        {
+            MSG( MSG_0320_NOMORE_NEED3 );
+            CLOSE_MSG_WIN();
+            return;
+        }
+        else if ( BIT_CHK( 1539 ) == 1 )
+        {
+            
+            if ( BIT_CHK( 2304 ) == 1 )
+            {
+                MSG( MSG_0320_GO_HOME_COMU_AL_3 );
+            }
+            else 
+            {
+                MSG( MSG_0320_GO_HOME_COMU_NO_2 );
+                CLOSE_MSG_WIN();
+                gojitudan_guide();
+                return;
+            }
+
+        }
+        else 
+        {
+            MSG( MSG_0320_RETURN_HOME2 );
+        }
+
+        CLOSE_MSG_WIN();
+        return;
+    }
+
+}
+
+void commu_yoru()
+{
+    int var134;
+    int var135;
+    int var137;
+    var134 = GET_MONTH();
+    var135 = GET_DAY_OF_MONTH();
+    var137 = GET_TIME_OF_DAY();
+    
+    if ( ( var134 == 4 ) && ( var135 == 11 ) )
+    {
+        eve_0411_midnight();
+        return;
+    }
+    else if ( ( var134 == 4 ) && ( var135 == 13 ) )
+    {
+        eve_0413_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 4 ) && ( var135 == 15 ) )
+    {
+        eve_0415_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 4 ) && ( var135 == 0x10 ) )
+    {
+        eve_0416_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 4 ) && ( var135 == 29 ) )
+    {
+        eve_0429_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 5 ) && ( var135 == 14 ) )
+    {
+        eve_0514_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 5 ) && ( var135 == 15 ) )
+    {
+        eve_0515_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 5 ) && ( var135 == 17 ) )
+    {
+        eve_0517_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 6 ) && ( var135 == 4 ) )
+    {
+        eve_0604_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 6 ) && ( var135 == 21 ) )
+    {
+        eve_0621_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 6 ) && ( var135 == 23 ) )
+    {
+        eve_0623_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 7 ) && ( var135 == 9 ) )
+    {
+        eve_0709_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 7 ) && ( var135 == 10 ) )
+    {
+        eve_0710_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 7 ) && ( var135 == 26 ) )
+    {
+        eve_0726_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 8 ) && ( var135 == 12 ) )
+    {
+        eve_0812_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 9 ) && ( var135 == 14 ) )
+    {
+        eve_0914_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 9 ) && ( var135 == 15 ) )
+    {
+        eve_0915_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 10 ) && ( var135 == 5 ) )
+    {
+        eve_1005_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 11 ) && ( var135 == 20 ) )
+    {
+        eve_1120_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 12 ) && ( var135 == 3 ) )
+    {
+        eve_1203_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 12 ) && ( var135 == 5 ) )
+    {
+        eve_1205_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 12 ) && ( var135 == 7 ) )
+    {
+        eve_1207_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 12 ) && ( var135 == 26 ) )
+    {
+        eve_1226_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 1 ) && ( var135 == 3 ) )
+    {
+        eve_0103_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 1 ) && ( var135 == 17 ) )
+    {
+        eve_0117_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 1 ) && ( var135 == 24 ) )
+    {
+        eve_0124_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else if ( ( var134 == 2 ) && ( var135 == 2 ) )
+    {
+        eve_0202_midnight();
+        TV_STUDIO();
+        return;
+    }
+    else 
+    {
+        TV_STUDIO();
+        return;
+    }
+
+}
+
+// Procedure Index: 80
+void eve_0413_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 121, 1, 0 );
+    PLAY_CUTSCENE( 3 );
+    FUNCTION_0065();
+    CALL_EVENT( 121, 2, 0 );
+}
+
+
+// Procedure Index: 81
+void eve_0415_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 153, 1, 0 );
+    SHOW_DATE( 0 );
+    CALL_EVENT( 154, 1, 0 );
+    SHOW_DATE( 1 );
+    SET_ITEM( ( 0x0400 + 1 ), 1 );
+}
+
+
+// Procedure Index: 82
+void eve_0416_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 162, 2, 0 );
+    PLAY_CUTSCENE( 7 );
+    FUNCTION_0065();
+    CALL_EVENT( 162, 1, 0 );
+}
+
+
+// Procedure Index: 83
+void eve_0417_afterschool()
+{
+    CALL_EVENT( 169, 1, 0 );
+    FCL_FUNCTION_0001();
+    FCL_FUNCTION_0002();
+    FCL_FUNCTION_0003();
+    CALL_EVENT( 170, 1, 0 );
+    CALL_EVENT( 171, 1, 0 );
+    CALL_DUNGEON( 5, 0 );
+}
+
+
+// Procedure Index: 84
+void eve_0514_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 197, 1, 0 );
+}
+
+
+// Procedure Index: 85
+void eve_0515_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 199, 1, 0 );
+    FUNCTION_006B( -1 );
+}
+
+
+// Procedure Index: 86
+void eve_0517_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 207, 1, 0 );
+    CALL_EVENT( 208, 1, 0 );
+    FUNCTION_006B( -1 );
+}
+
+
+// Procedure Index: 87
+void eve_0604_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 218, 1, 0 );
+    CALL_EVENT( 219, 1, 0 );
+}
+
+
+// Procedure Index: 88
+void eve_0621_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 235, 1, 0 );
+}
+
+
+// Procedure Index: 89
+void eve_0623_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 245, 1, 0 );
+}
+
+
+// Procedure Index: 90
+void eve_0709_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 0x0100, 1, 0 );
+    CALL_EVENT( 220, 1, 0 );
+}
+
+
+// Procedure Index: 91
+void eve_0710_midnight()
+{
+    SHOW_DATE( 0 );
+    CALL_EVENT( 267, 1, 0 );
+    SHOW_DATE( 1 );
+    BIT_ON( 4865 );
+    BIT_ON( 4866 );
+    BIT_ON( 4867 );
+}
+
+
+// Procedure Index: 92
+void eve_0726_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 273, 1, 0 );
+    INCREASE_SL( 24 );
+}
+
+
+// Procedure Index: 93
+void eve_0812_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 283, 1, 0 );
+    CALL_EVENT( 220, 1, 0 );
+}
+
+
+// Procedure Index: 94
+void eve_0914_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 300, 1, 0 );
+}
+
+
+// Procedure Index: 95
+void eve_0915_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 302, 1, 0 );
+}
+
+
+// Procedure Index: 96
+void eve_1005_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 310, 1, 0 );
+    CALL_EVENT( 311, 1, 0 );
+}
+
+
+// Procedure Index: 97
+void eve_1120_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 360, 1, 0 );
+    CALL_EVENT( 220, 1, 0 );
+}
+
+
+// Procedure Index: 98
+void eve_1205_midnight()
+{
+    INCREASE_SL( 24 );
+    SHOW_DATE( 0 );
+    CALL_EVENT( 386, 2, 0 );
+    SHOW_DATE( 1 );
+    BIT_ON( 694 );
+}
+
+
+// Procedure Index: 99
+void eve_1207_midnight()
+{
+    
+    if ( GET_SL_LEVEL( 31 ) == 8 )
+    {
+        PLAY_SOUNDEFFECT( 173 );
+        CALL_EVENT( 730, 571, 0 );
+        
+        if ( BIT_CHK( 5656 ) == 1 )
+        {
+            CALL_EVENT( 730, 572, 0 );
+            CALL_EVENT( 730, 573, 0 );
+            CALL_EVENT( 730, 574, 0 );
+        }
+
+    }
+
+}
+
+
+// Procedure Index: 100
+void eve_0320_backhome()
+{
+    CALL_EVENT( 428, 1, 0 );
+    PLAY_CUTSCENE( 17 );
+    FUNCTION_0065();
+    SOFT_RESET();
+}
+
+// Procedure Index: 102
+void eve_1203_midnight()
+{
+    SHOW_DATE( 0 );
+    CALL_EVENT( 386, 1, 0 );
+    SHOW_DATE( 1 );
+}
+
+
+// Procedure Index: 103
+void eve_0320_foodcourt()
+{
+    
+    if ( BIT_CHK( 2067 ) == 1 )
+    {
+        INCREASE_SL( 0x20 );
+    }
+
+    CALL_EVENT( 429, 1, 0 );
+    BIT_ON( 1591 );
+    BIT_OFF( 1018 );
+    FUNCTION_006B( 2 );
+}
+
+// Procedure Index: 105
+void eve_0411_midnight()
+{
+    SHOW_DATE( 0 );
+    CALL_EVENT( 465, 2, 0 );
+    SHOW_DATE( 1 );
+    CALL_DUNGEON( 159, 0 );
+}
+
+
+// Procedure Index: 106
+void eve_0429_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 183, 1, 0 );
+    CALL_EVENT( 182, 2, 0 );
+}
+
+
+// Procedure Index: 107
+void eve_0213_midnight()
+{
+    
+    if ( BIT_CHK( 5665 ) == 0 )
+    {
+        BIT_ON( 5690 );
+    }
+
+}
+
+
+// Procedure Index: 108
+void eve_1226_midnight()
+{
+    PLAY_SOUNDEFFECT( 173 );
+    CALL_EVENT( 490, 501, 0 );
+    BIT_ON( 5715 );
+    FUNCTION_006B( -1 );
+    NEXT_DATE( 12, 31, 0 );
+}
+
+
+// Procedure Index: 109
+void eve_1227_midnight()
+{
+    
+    if ( BIT_CHK( 5682 ) == 0 )
+    {
+        PLAY_SOUNDEFFECT( 173 );
+        SHOW_DATE( 0 );
+        CALL_EVENT( 492, 500, 0 );
+        SHOW_DATE( 1 );
+    }
+
+    BIT_ON( 1682 );
+}
+
+
+// Procedure Index: 110
+void eve_0102_midnight()
+{
+    
+    if ( BIT_CHK( 3251 ) == 0 )
+    {
+        BIT_ON( 5690 );
+        BIT_ON( 5682 );
+        CALL_EVENT( 426, 2, 0 );
+        NEXT_DATE( 2, 11, 0 );
+    }
+
+}
+
+
+// Procedure Index: 111
+void eve_0103_midnight()
+{
+    CALL_EVENT( 492, 0x0200, 0 );
+    SHOW_DATE( 0 );
+    
+    if ( BIT_CHK( 3251 ) == 1 )
+    {
+        CALL_EVENT( 492, 503, 0 );
+    }
+    else 
+    {
+        CALL_EVENT( 492, 509, 0 );
+    }
+
+    SHOW_DATE( 1 );
+}
+
+
+// Procedure Index: 112
+void eve_0117_midnight()
+{
+    
+    if ( BIT_CHK( 3251 ) == 1 )
+    {
+        SHOW_DATE( 0 );
+        CALL_EVENT( 492, 504, 0 );
+        SHOW_DATE( 1 );
+    }
+
+}
+
+
+// Procedure Index: 113
+void eve_0124_midnight()
+{
+    
+    if ( BIT_CHK( 3251 ) == 1 )
+    {
+        SHOW_DATE( 0 );
+        CALL_EVENT( 492, 505, 0 );
+        SHOW_DATE( 1 );
+    }
+
+}
+
+
+// Procedure Index: 114
+void eve_0202_midnight()
+{
+    
+    if ( BIT_CHK( 3251 ) == 1 )
+    {
+        SHOW_DATE( 0 );
+        CALL_EVENT( 492, 506, 0 );
+        SHOW_DATE( 1 );
+    }
+
 }

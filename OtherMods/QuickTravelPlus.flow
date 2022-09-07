@@ -152,7 +152,7 @@ void StreetOrder(bool calendar, bool friend, bool save)
 		case 0:
 			SEL_CHK_PAD(14, 5);
 			int shopping = ADV_SEL( Street_Text, ShoppingDistrictDay, shoppingMask );
-			if (shopping < 4) 
+			if (shopping < 2) 
 			{
 				FADE( 2, 5 );
 				FADE_SYNC();
@@ -172,12 +172,10 @@ void StreetOrder(bool calendar, bool friend, bool save)
 						CALL_FIELD( 8, 2, 0, 0 );
 					break;
 				case 2:
-					DAIDARA_SHOP();
-					CALL_FIELD(8, 2, 2, 0 );
+					equip_shop();
 					break;
 				case 3:
-					SHIROKU_SHOP();
-					CALL_FIELD(8, 2, 3, 0);
+					item_shop();
 					break;
 				case 4:
 					call_velvet_room();
@@ -431,7 +429,7 @@ void NightOrder(bool calendar, bool friend, bool save)
 		case 0:
 			SEL_CHK_PAD(14, 4);
 			int shopping = ADV_SEL( Street_Text, ShoppingDistrict, streetMask );
-			if (shopping < 3) 
+			if (shopping < 2) 
 			{
 				FADE( 2, 5 );
 				FADE_SYNC();
@@ -451,44 +449,7 @@ void NightOrder(bool calendar, bool friend, bool save)
 						CALL_FIELD( 8, 2, 0, 0 );
 					break;
 				case 2:
-					BIT_ON( 0 + 0x0400 + 844 );
-					BIT_ON( 0 + 0x0400 + 845 );
-					BIT_ON( 0 + 0x0400 + 846 );
-					BIT_ON( 0 + 0x0400 + 847 );
-					
-					if ( GET_DAY_OF_WEEK() == 1 )
-					{
-						BIT_OFF( 0 + 0x0400 + 844 );
-					}
-					else if ( GET_DAY_OF_WEEK() == 2 )
-					{
-						BIT_OFF( 0 + 0x0400 + 847 );
-					}
-					else if ( GET_DAY_OF_WEEK() == 3 )
-					{
-						BIT_OFF( 0 + 0x0400 + 846 );
-					}
-					else if ( GET_DAY_OF_WEEK() == 4 )
-					{
-						BIT_OFF( 0 + 0x0400 + 845 );
-					}
-					else 
-					{
-						BIT_OFF( 0 + 0x0400 + 844 );
-						BIT_OFF( 0 + 0x0400 + 845 );
-						BIT_OFF( 0 + 0x0400 + 846 );
-						BIT_OFF( 0 + 0x0400 + 847 );
-					}
-					BIT_ON( 0 + 0x0400 + 1067 );
-					SHIROKU_PUB();
-					if ( BIT_CHK( 0 + 0x0400 + 1057 ) == 1 )
-					{
-						commu_yoru();
-					}
-					else 
-					{
-						CALL_FIELD( 8, 2, 3, 0 );
-					}
+					item_shop();
 					break;
 				case 3:
 					call_velvet_room();
@@ -793,6 +754,209 @@ void call_velvet_room()
     else 
     {
         CALL_FIELD( 8, 2, 4, 0 );
+    }
+
+}
+
+void equip_shop()
+{
+    
+    if ( CHECK_TIME_SPAN( 4, 11, 4, 12 ) == 1 )
+    {
+        OPEN_MSG_WIN();
+        MSG( EQUIP_SHOP_STOP );
+        CLOSE_MSG_WIN();
+    }
+    else if ( ( ( GET_TIME_OF_DAY() == 5 ) && ( GET_WEATHER() != 1 ) ) && ( GET_WEATHER() != 7 ) )
+    {
+        OPEN_MSG_WIN();
+        MSG( EQUIP_SHOP_CLOSED );
+        CLOSE_MSG_WIN();
+    }
+    else if ( ( BIT_CHK( 1538 ) == 1 ) && ( BIT_CHK( 131 ) == 0 ) )
+    {
+        commu_gojitu();
+        return;
+    }
+    else 
+    {
+        FADE( 1, 10 );
+        FADE_SYNC();
+        DAIDARA_SHOP();
+        CALL_FIELD( 8, 2, 2, 0 );
+    }
+
+}
+
+
+// Procedure Index: 43
+void item_shop()
+{
+    
+    if ( CHECK_TIME_SPAN( 4, 11, 4, 12 ) == 1 )
+    {
+        OPEN_MSG_WIN();
+        MSG( MSG_ITEMSHOP_0411 );
+        CLOSE_MSG_WIN();
+    }
+    else if ( GET_TIME_OF_DAY() == 5 )
+    {
+        BIT_ON( 1868 );
+        BIT_ON( 1869 );
+        BIT_ON( 1870 );
+        BIT_ON( 1871 );
+        
+        if ( GET_DAY_OF_WEEK() == 1 )
+        {
+            BIT_OFF( 1868 );
+        }
+        else if ( GET_DAY_OF_WEEK() == 2 )
+        {
+            BIT_OFF( 1871 );
+        }
+        else if ( GET_DAY_OF_WEEK() == 3 )
+        {
+            BIT_OFF( 1870 );
+        }
+        else if ( GET_DAY_OF_WEEK() == 4 )
+        {
+            BIT_OFF( 1869 );
+        }
+        else 
+        {
+            BIT_OFF( 1868 );
+            BIT_OFF( 1869 );
+            BIT_OFF( 1870 );
+            BIT_OFF( 1871 );
+        }
+
+        FADE( 1, 10 );
+        FADE_SYNC();
+        BIT_ON( 2091 );
+        SHIROKU_PUB();
+        
+        if ( BIT_CHK( 2081 ) == 1 )
+        {
+            commu_yoru();
+        }
+        else 
+        {
+            CALL_FIELD( 8, 2, 3, 0 );
+        }
+
+    }
+    else if ( ( BIT_CHK( 1538 ) == 1 ) && ( BIT_CHK( 131 ) == 0 ) )
+    {
+        commu_gojitu();
+        return;
+    }
+    else 
+    {
+        FADE( 1, 10 );
+        FADE_SYNC();
+        SHIROKU_SHOP();
+        CALL_FIELD( 8, 2, 3, 0 );
+    }
+
+}
+
+
+void commu_gojitu()
+{
+    int var119;
+    
+    if ( BIT_CHK( 3405 ) == 1 )
+    {
+        OPEN_MSG_WIN();
+        
+        if ( BIT_CHK( 1591 ) == 1 )
+        {
+            MSG( MSG_0320_NOMORE_NEED3 );
+            CLOSE_MSG_WIN();
+            return;
+        }
+        else if ( BIT_CHK( 1539 ) == 1 )
+        {
+            
+            if ( BIT_CHK( 2304 ) == 1 )
+            {
+                MSG( MSG_0320_GO_HOME_COMU_AL_2 );
+            }
+            else 
+            {
+                MSG( MSG_0320_GO_HOME_COMU_NO_2 );
+                CLOSE_MSG_WIN();
+                return;
+            }
+
+        }
+        else 
+        {
+            MSG( MSG_0320_RETURN_HOME2 );
+        }
+
+        SEL_CHK_PAD( 14, 1 );
+        var119 = SEL( YESNO_SEL );
+        CLOSE_MSG_WIN();
+        
+        if ( var119 == 0 )
+        {
+            
+            if ( BIT_CHK( 3076 ) == 0 )
+            {
+                BIT_ON( 3076 );
+            }
+
+            
+            if ( DATE_CHK( 3, 20 ) )
+            {
+                BIT_ON( 46 );
+            }
+
+            FADE( 1, 10 );
+            FADE_SYNC();
+            TV_STUDIO();
+            return;
+        }
+        else 
+        {
+            return;
+        }
+
+    }
+    else 
+    {
+        OPEN_MSG_WIN();
+        
+        if ( BIT_CHK( 1591 ) == 1 )
+        {
+            MSG( MSG_0320_NOMORE_NEED3 );
+            CLOSE_MSG_WIN();
+            return;
+        }
+        else if ( BIT_CHK( 1539 ) == 1 )
+        {
+            
+            if ( BIT_CHK( 2304 ) == 1 )
+            {
+                MSG( MSG_0320_GO_HOME_COMU_AL_3 );
+            }
+            else 
+            {
+                MSG( MSG_0320_GO_HOME_COMU_NO_2 );
+                CLOSE_MSG_WIN();
+                gojitudan_guide();
+                return;
+            }
+
+        }
+        else 
+        {
+            MSG( MSG_0320_RETURN_HOME2 );
+        }
+
+        CLOSE_MSG_WIN();
+        return;
     }
 
 }

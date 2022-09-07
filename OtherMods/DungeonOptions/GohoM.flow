@@ -1,4 +1,5 @@
 import("GohoM.msg");
+import("DungeonError.msg");
 
 void use_gohom()
 {
@@ -132,7 +133,7 @@ void use_gohom()
     }
 
     TRAESTO_VISUAL();
-    
+
     if ( var17 > 5 && var17 < 20 )
     {
         CALL_DUNGEON( 5, 1 );
@@ -169,6 +170,13 @@ void use_gohom()
     {
         CALL_DUNGEON( 160, 1 );
     }
-
+    else 
+    {
+        SET_MSG_VAR(1, var17, 0);
+        OPEN_MSG_WIN();
+        MSG(GOHOM_ERROR);
+        CLOSE_MSG_WIN();
+        CALL_DUNGEON( 5, 1 ); // Yukiko's castle entrance in case we can't find the dungeon
+    }
 }
 
