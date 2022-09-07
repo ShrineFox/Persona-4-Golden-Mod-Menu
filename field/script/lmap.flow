@@ -245,6 +245,7 @@ void call_velvet_room()
                 {
                     MSG( MSG_0320_GO_HOME_COMU_NO2 );
                     CLOSE_MSG_WIN();
+                    TOWN_MAP(0);
                     return;
                 }
 
@@ -268,6 +269,7 @@ void call_velvet_room()
             }
             else 
             {
+                TOWN_MAP(0);
                 return;
             }
 
@@ -296,6 +298,7 @@ void call_velvet_room()
             }
 
             CLOSE_MSG_WIN();
+            TOWN_MAP(0);
 			return;
         }
 
@@ -305,6 +308,7 @@ void call_velvet_room()
         OPEN_MSG_WIN();
         MSG( MSG_0320_DOUJIMA_SEARCH );
         CLOSE_MSG_WIN();
+        TOWN_MAP(0);
 		return;
     }
     else if ( var6 == 3 && var7 == 20 && BIT_CHK( 0 + 1019 ) && BIT_CHK( 0 + 0x0400 + 566 ) == 0 )
@@ -339,6 +343,7 @@ void call_velvet_room()
         OPEN_MSG_WIN();
         MSG( MSG_0320_NOMORE_NEED3 );
         CLOSE_MSG_WIN();
+        TOWN_MAP(0);
 		return;
     }
     else if ( var6 == 4 && var7 == 17 )
@@ -346,6 +351,7 @@ void call_velvet_room()
         OPEN_MSG_WIN();
         MSG( MSG_0417_VELVET_DONOTENT );
         CLOSE_MSG_WIN();
+        TOWN_MAP(0);
 		return;
     }
     else if ( GET_TIME_OF_DAY() == 5 )
