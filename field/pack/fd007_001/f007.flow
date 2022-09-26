@@ -333,7 +333,7 @@ void call_velvet_room()
         FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
         WAIT( 15 );
         FADE( 1, 10 );
-        FUNCTION_0024( 255, 255, 255 );
+        SET_FADE_COLOUR( 255, 255, 255 );
         FADE_SYNC();
         eve_0320_velvetroom();
         FUNCTION_006B( 1 );
@@ -348,7 +348,7 @@ void call_velvet_room()
         FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
         WAIT( 15 );
         FADE( 1, 10 );
-        FUNCTION_0024( 255, 255, 255 );
+        SET_FADE_COLOUR( 255, 255, 255 );
         FADE_SYNC();
         eve_0320_vs_marguerite();
         CALL_FIELD( 8, 2, 4, 0 );
@@ -386,7 +386,7 @@ void call_velvet_room()
     FLD_FUNCTION_0008( 10243, 1, 0, 0, 1 );
     WAIT( 15 );
     FADE( 1, 10 );
-    FUNCTION_0024( 255, 255, 255 );
+    SET_FADE_COLOUR( 255, 255, 255 );
     FADE_SYNC();
     BIT_ON( 0 + 0x0400 + 655 );
     
